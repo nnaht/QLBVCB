@@ -1,0 +1,87 @@
+﻿<Window x:Class="QLBVCB.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLBVCB"
+        mc:Ignorable="d"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"        
+        
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Name="loginWindow"
+        Title ="Đăng nhập" Height="612" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.RowSpan="1">
+            <Image Source="/Images/Login1.png" Stretch="Uniform"/>
+        </Grid>
+        <Grid Grid.Row="0" Height="20" VerticalAlignment="Top">
+            <local:UC_ControlBar Tag="{Binding Title, ElementName=loginWindow}"></local:UC_ControlBar>
+        </Grid>
+        <TextBox x:Name="tbUserName"
+                 Margin="306,330,306,236"
+                 Foreground="#FFF3E9E9"  BorderBrush="#7FF6EAEA"
+                 materialDesign:HintAssist.Hint="Tên đăng nhập"
+                 materialDesign:HintAssist.FloatingScale="0.9"
+                 materialDesign:TextFieldAssist.TextFieldCornerRadius="10"
+                 materialDesign:TextFieldAssist.HasClearButton="True"
+                 materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                 materialDesign:TextFieldAssist.LeadingIcon="Account"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 FontSize="15" Height="50.0033333333333">
+        </TextBox>
+        <PasswordBox x:Name="pbPassword"
+                Margin="306,401,306,171" 
+                Foreground="#FFF3E9E9" BorderBrush="#7FF6EAEA"
+                materialDesign:HintAssist.Hint="Mật khẩu"
+                materialDesign:HintAssist.FloatingScale="0.9"
+                materialDesign:TextFieldAssist.TextFieldCornerRadius="10"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                materialDesign:TextFieldAssist.LeadingIcon="Password"
+                Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
+                FontSize="15" Height="50.0033333333333">
+        </PasswordBox>
+        <Button x:Name="btnLogin"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                materialDesign:ButtonAssist.CornerRadius="15"
+                Foreground="White"
+                BorderBrush="Red"
+                Background="#FFD90429"
+                Content="Đăng nhập" FontSize="13"
+                Margin="353,487,353,105">
+        </Button>
+        <Label Margin="419,457,306,0"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                Foreground="White"
+                Opacity="0.8"
+                FontSize="10"
+                HorizontalContentAlignment="Left"
+                Cursor="IBeam"
+                VerticalAlignment="Top" Height="20">
+            <Label.Content>
+                <Underline>Quên mật khẩu</Underline>
+            </Label.Content>
+        </Label>
+        <TextBlock Margin="0,566,0,0"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center">
+            <Hyperlink Hyperlink.RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="https://www.facebook.com/nghia.chi.7146557">Liên hệ với chúng tôi</Hyperlink>
+        </TextBlock>
+    </Grid>
+</Window>

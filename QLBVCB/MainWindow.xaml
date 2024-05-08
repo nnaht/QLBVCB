@@ -1,0 +1,363 @@
+﻿<Window x:Class="QLBVCB.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLBVCB"
+        mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:uc="clr-namespace:QLBVCB.UserControls"
+        
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        
+        DataContext="{StaticResource VMMain}"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Name="mainWindow"
+        Title="MainWindow" Height="800" Width="1350">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Height="20" VerticalAlignment="Top">
+            <local:UC_ControlBar Tag="{Binding Title, ElementName=mainWindow}"></local:UC_ControlBar>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <DockPanel Grid.Column="0"
+                       Background="#FFD90429">
+                <DockPanel.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="DarkRed"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter Property="Foreground" Value="White"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DockPanel.Resources>
+                <StackPanel DockPanel.Dock="Top"
+                            Width="250">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Height" Value="50"></Setter>
+                            <Setter Property="FontSize" Value="20"></Setter>
+                            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                            <Setter Property="Foreground" Value="White"></Setter>
+                            <Setter Property="Background" Value="Transparent"></Setter>
+                            <Setter Property="Cursor" Value="Hand"></Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="DarkRed"></Setter>
+                                    <Setter Property="materialDesign:NavigationRailAssist.SelectionCornerRadius" Value="10, 10, 10, 10"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                        <Style TargetType="materialDesign:PackIcon">
+                            <Setter Property="Margin" Value="10, 0, 5, 0"></Setter>
+                            <Setter Property="Height" Value="25"></Setter>
+                            <Setter Property="Width" Value="25"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                            <Setter Property="Foreground" Value="White"></Setter>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Image Source="/Images/Logo.png" Margin="0, 10, 0, 10"/>
+                    <Button x:Name="btHome"
+                            Content="Trang Chủ"
+                            Click="btHome_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Home"/>
+                                    <TextBlock Text="{Binding Content, ElementName=btHome}" 
+                                                   VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btAirplane"
+                            Content="Quản lý máy bay"
+                            Click="btAirplane_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Airplane"/>
+                                    <TextBlock Text="{Binding Content, ElementName=btAirplane}" 
+                                                   VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btAirport"
+                            Content="Quản lý sân bay"
+                            Click="btAirport_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Airport"/>
+                                    <TextBlock Text="{Binding Content, ElementName=btAirport}" 
+                                                   VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btTicketType"
+                            Content="Quản lý loại vé"
+                            Click="btTicketType_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="TicketConfirmation" />
+                                    <TextBlock Text="{Binding Content, ElementName=btTicketType}" 
+                                                   VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btFlight"
+                            Content="Quản lý chuyến bay"
+                            Click="btFlight_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="AirplaneSearch" />
+                                    <TextBlock Text="{Binding Content, ElementName=btFlight}" 
+                                                   VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btBooking"
+                            Content="Quản lý đặt vé"
+                            Click="btBooking_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Ticket" />
+                                    <TextBlock Text="{Binding Content, ElementName=btBooking}" 
+                                                   VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btEmployee" 
+                            Content="Quản lý nhân viên"
+                            Click="btEmployee_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="CustomerService" />
+                                    <TextBlock Text="{Binding Content, ElementName=btEmployee}" 
+                                                   VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btCustomer"
+                            Content="Quản lý khách hàng"
+                            Click="btCustomer_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="People" />
+                                    <TextBlock Text="{Binding Content, ElementName=btCustomer}" 
+                                                   VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btAccount"
+                            Content="Quản lý tài khoản"
+                            Click="btAccount_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="AccountEdit" />
+                                    <TextBlock Text="{Binding Content, ElementName=btAccount}" 
+                                                   VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btRevenue"
+                            Content="Doanh thu"
+                            Click="btRevenue_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="ChartBar" />
+                                    <TextBlock Text="{Binding Content, ElementName=btRevenue}" 
+                                                   VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+                <TextBlock DockPanel.Dock="Bottom"
+                           Height="40"
+                           Width="90"
+                           VerticalAlignment="Bottom"
+                           Background="Transparent"
+                           FontSize="20"
+                           Cursor="Hand"
+                           MouseDown="TextBlock_MouseDown">
+                    <Underline>Đăng xuất</Underline>
+                </TextBlock>
+            </DockPanel>
+            <Grid Grid.Column="1" Background="#FFEDF2F4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="White">
+                    <materialDesign:Chip HorizontalAlignment="Right"
+                                         Background="#FFEDF2F4"
+                                         Content="Cao Duong Lam"
+                                         Cursor="Arrow">
+                        <materialDesign:Chip.Icon>
+                            <Image Source="/Images/Pikachuhihi.jpg" />
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <uc:UC_Home x:Name="uc_Home"></uc:UC_Home>
+                    <uc:UC_Airplane x:Name="uc_Airplane"></uc:UC_Airplane>
+                    <uc:UC_Airport x:Name="uc_Airport"></uc:UC_Airport>
+                    <uc:UC_TicketType x:Name="uc_TicketType"></uc:UC_TicketType>
+                    <uc:UC_Flight x:Name="uc_Flight"></uc:UC_Flight>
+                    <uc:UC_Booking x:Name="uc_Booking"></uc:UC_Booking>
+                    <uc:UC_Employee x:Name="uc_Employee"></uc:UC_Employee>
+                    <uc:UC_Customer x:Name="uc_Customer"></uc:UC_Customer>
+                    <uc:UC_Account x:Name="uc_Account"></uc:UC_Account>
+                    <uc:UC_Revenue x:Name="uc_Revenue"></uc:UC_Revenue>
+                </Grid>
+            </Grid>
+        </Grid>
+        <!--<Grid Grid.Row="1">
+            <materialDesign:Card>
+                <TabControl x:Name="tcMain"
+                            materialDesign:ElevationAssist.Elevation="Dp8"
+                            materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                            Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" 
+                        CommandParameter="{Binding ElementName=tcMain}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <TabItem Width="200" Height="135">
+                        <TabItem.Header>
+                            <Image Source="/Images/Logo.png" Stretch="UniformToFill" />
+                        </TabItem.Header>
+                        <Grid>
+                            
+                        </Grid>
+                    </TabItem>
+                    <TabItem Width="200">
+                        <TabItem.Header>
+                            <StackPanel>
+                                <TextBlock Text="Trang Chủ"></TextBlock>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Width="200">
+                        <TabItem.Header>
+                            <StackPanel>
+                                <TextBlock Text="Trang Chu"></TextBlock>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Width="200">
+                        <TabItem.Header>
+                            <StackPanel>
+                                <TextBlock Text="Trang Chu"></TextBlock>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Width="200">
+                        <TabItem.Header>
+                            <StackPanel>
+                                <TextBlock Text="Trang Chủ"></TextBlock>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Width="200">
+                        <TabItem.Header>
+                            <StackPanel>
+                                <TextBlock Text="Trang Chủ"></TextBlock>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Width="200">
+                        <TabItem.Header>
+                            <StackPanel>
+                                <TextBlock Text="Trang Chủ"></TextBlock>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Width="200">
+                        <TabItem.Header>
+                            <StackPanel>
+                                <TextBlock Text="Trang Chủ"></TextBlock>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Width="200">
+                        <TabItem.Header>
+                            <StackPanel>
+                                <TextBlock Text="Trang Chủ"></TextBlock>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Width="200">
+                        <TabItem.Header>
+                            <StackPanel>
+                                <TextBlock Text="Trang Chủ"></TextBlock>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Width="200">
+                        <TabItem.Header>
+                            <StackPanel>
+                                <TextBlock Text="Trang Chủ"></TextBlock>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                </TabControl>
+            </materialDesign:Card>
+
+        </Grid>-->
+    </Grid>
+</Window>
