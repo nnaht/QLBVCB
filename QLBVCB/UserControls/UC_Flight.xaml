@@ -33,6 +33,7 @@
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="Auto" Header="Mã chuyến bay" DisplayMemberBinding="{Binding MACB}"></GridViewColumn>
+                                    <GridViewColumn Width="Auto" Header="Mã máy bay" DisplayMemberBinding="{Binding MAMB}"></GridViewColumn>
                                     <GridViewColumn Width="Auto" Header="Thời gian cất cánh" DisplayMemberBinding="{Binding THOIGIAN_CATCANH}"></GridViewColumn>
                                     <GridViewColumn Width="Auto" Header="Thời gian hạ cánh" DisplayMemberBinding="{Binding THOIGIAN_HACANH}"></GridViewColumn>
                                     <GridViewColumn Width="Auto" Header="Trạng thái" DisplayMemberBinding="{Binding TRANGTHAI}"></GridViewColumn>

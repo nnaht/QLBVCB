@@ -29,6 +29,7 @@ namespace QLBVCB
             uc_Airport.Visibility = Visibility.Collapsed;
             uc_TicketType.Visibility = Visibility.Collapsed;
             uc_Flight.Visibility = Visibility.Collapsed;
+            uc_Ticket.Visibility = Visibility.Collapsed;
             uc_Booking.Visibility = Visibility.Collapsed;
             uc_Employee.Visibility = Visibility.Collapsed;
             uc_Customer.Visibility = Visibility.Collapsed;
@@ -50,6 +51,7 @@ namespace QLBVCB
             uc_Airport.Visibility = Visibility.Collapsed;
             uc_TicketType.Visibility = Visibility.Collapsed;
             uc_Flight.Visibility = Visibility.Collapsed;
+            uc_Ticket.Visibility = Visibility.Collapsed;
             uc_Booking.Visibility = Visibility.Collapsed;
             uc_Employee.Visibility = Visibility.Collapsed;
             uc_Customer.Visibility = Visibility.Collapsed;
@@ -64,6 +66,7 @@ namespace QLBVCB
             uc_Airport.Visibility = Visibility.Collapsed;
             uc_TicketType.Visibility = Visibility.Collapsed;
             uc_Flight.Visibility = Visibility.Collapsed;
+            uc_Ticket.Visibility = Visibility.Collapsed;
             uc_Booking.Visibility = Visibility.Collapsed;
             uc_Employee.Visibility = Visibility.Collapsed;
             uc_Customer.Visibility = Visibility.Collapsed;
@@ -78,6 +81,7 @@ namespace QLBVCB
             uc_Airport.Visibility = Visibility.Visible;
             uc_TicketType.Visibility = Visibility.Collapsed;
             uc_Flight.Visibility = Visibility.Collapsed;
+            uc_Ticket.Visibility = Visibility.Collapsed;
             uc_Booking.Visibility = Visibility.Collapsed;
             uc_Employee.Visibility = Visibility.Collapsed;
             uc_Customer.Visibility = Visibility.Collapsed;
@@ -92,6 +96,7 @@ namespace QLBVCB
             uc_Airport.Visibility = Visibility.Collapsed;
             uc_TicketType.Visibility = Visibility.Visible;
             uc_Flight.Visibility = Visibility.Collapsed;
+            uc_Ticket.Visibility = Visibility.Collapsed;
             uc_Booking.Visibility = Visibility.Collapsed;
             uc_Employee.Visibility = Visibility.Collapsed;
             uc_Customer.Visibility = Visibility.Collapsed;
@@ -106,6 +111,22 @@ namespace QLBVCB
             uc_Airport.Visibility = Visibility.Collapsed;
             uc_TicketType.Visibility = Visibility.Collapsed;
             uc_Flight.Visibility = Visibility.Visible;
+            uc_Ticket.Visibility = Visibility.Collapsed;
+            uc_Booking.Visibility = Visibility.Collapsed;
+            uc_Employee.Visibility = Visibility.Collapsed;
+            uc_Customer.Visibility = Visibility.Collapsed;
+            uc_Account.Visibility = Visibility.Collapsed;
+            uc_Revenue.Visibility = Visibility.Collapsed;
+        }
+
+        private void btTicket_Click(object sender, RoutedEventArgs e)
+        {
+            uc_Home.Visibility = Visibility.Collapsed;
+            uc_Airplane.Visibility = Visibility.Collapsed;
+            uc_Airport.Visibility = Visibility.Collapsed;
+            uc_TicketType.Visibility = Visibility.Collapsed;
+            uc_Flight.Visibility = Visibility.Collapsed;
+            uc_Ticket.Visibility = Visibility.Visible;
             uc_Booking.Visibility = Visibility.Collapsed;
             uc_Employee.Visibility = Visibility.Collapsed;
             uc_Customer.Visibility = Visibility.Collapsed;
@@ -120,6 +141,7 @@ namespace QLBVCB
             uc_Airport.Visibility = Visibility.Collapsed;
             uc_TicketType.Visibility = Visibility.Collapsed;
             uc_Flight.Visibility = Visibility.Collapsed;
+            uc_Ticket.Visibility = Visibility.Collapsed;
             uc_Booking.Visibility = Visibility.Visible;
             uc_Employee.Visibility = Visibility.Collapsed;
             uc_Customer.Visibility = Visibility.Collapsed;
@@ -134,6 +156,7 @@ namespace QLBVCB
             uc_Airport.Visibility = Visibility.Collapsed;
             uc_TicketType.Visibility = Visibility.Collapsed;
             uc_Flight.Visibility = Visibility.Collapsed;
+            uc_Ticket.Visibility = Visibility.Collapsed;
             uc_Booking.Visibility = Visibility.Collapsed;
             uc_Employee.Visibility = Visibility.Visible;
             uc_Customer.Visibility = Visibility.Collapsed;
@@ -148,6 +171,7 @@ namespace QLBVCB
             uc_Airport.Visibility = Visibility.Collapsed;
             uc_TicketType.Visibility = Visibility.Collapsed;
             uc_Flight.Visibility = Visibility.Collapsed;
+            uc_Ticket.Visibility = Visibility.Collapsed;
             uc_Booking.Visibility = Visibility.Collapsed;
             uc_Employee.Visibility = Visibility.Collapsed;
             uc_Customer.Visibility = Visibility.Visible;
@@ -162,6 +186,7 @@ namespace QLBVCB
             uc_Airport.Visibility = Visibility.Collapsed;
             uc_TicketType.Visibility = Visibility.Collapsed;
             uc_Flight.Visibility = Visibility.Collapsed;
+            uc_Ticket.Visibility = Visibility.Collapsed;
             uc_Booking.Visibility = Visibility.Collapsed;
             uc_Employee.Visibility = Visibility.Collapsed;
             uc_Customer.Visibility = Visibility.Collapsed;
@@ -176,6 +201,7 @@ namespace QLBVCB
             uc_Airport.Visibility = Visibility.Collapsed;
             uc_TicketType.Visibility = Visibility.Collapsed;
             uc_Flight.Visibility = Visibility.Collapsed;
+            uc_Ticket.Visibility = Visibility.Collapsed;
             uc_Booking.Visibility = Visibility.Collapsed;
             uc_Employee.Visibility = Visibility.Collapsed;
             uc_Customer.Visibility = Visibility.Collapsed;

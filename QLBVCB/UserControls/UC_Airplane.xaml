@@ -32,7 +32,9 @@
                                   SelectedItem="{Binding SelectedItem}">
                             <ListView.View>
                                 <GridView>
-                                    
+                                    <GridViewColumn Width="Auto" Header="Mã" DisplayMemberBinding="{Binding MAMB}"></GridViewColumn>
+                                    <GridViewColumn Width="Auto" Header="Loại máy bay" DisplayMemberBinding="{Binding LOAIMB}"></GridViewColumn>
+                                    <GridViewColumn Width="Auto" Header="Hãng máy bay" DisplayMemberBinding="{Binding HANGMB}"></GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
