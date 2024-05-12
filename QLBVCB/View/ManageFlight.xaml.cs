@@ -1,7 +1,5 @@
-﻿using QLBVCB.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,23 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace QLBVCB
+namespace QLBVCB.View
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for ManageFlight.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class ManageFlight : UserControl
     {
-        public Login()
+        public ManageFlight()
         {
             InitializeComponent();
-            DataContext = new VM_Loginn();
-
-        }
-
-        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
-        {
-            Process.Start(e.Uri.ToString());
         }
     }
 }

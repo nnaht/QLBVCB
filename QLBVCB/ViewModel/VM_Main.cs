@@ -11,16 +11,18 @@ namespace QLBVCB.ViewModel
     public class VM_Main : VM_Base
     {
         public bool IsLoaded = false;
+        private object _currentView;
+        public object CurrentView
+        {
+            get { return _currentView; }
+            set { _currentView = value; OnPropertyChanged(); }
+        }
         public ICommand LoadedWindowCommand { get; set; }
+        public ICommand ManageTicketTypeCommand { get; set; }
+        private void ManageTicketType(object obj) =>CurrentView = new VM_ManageTicketType();
         public VM_Main()
         {
-            LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
-            {
-                IsLoaded = true;
-                Login loginWindow = new Login();
-                loginWindow.ShowDialog();
-            }
-            );
+            ManageTicketTypeCommand = new RelayCommand(ManageTicketType);
         }
     }
 }

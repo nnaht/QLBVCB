@@ -13,5 +13,10 @@ namespace QLBVCB
     /// </summary>
     public partial class App : Application
     {
+        protected void ApplicationStart(object sender, StartupEventArgs e)
+        {
+            var V_Login = new Login();
+            V_Login.Show();
+        }
     }
 }

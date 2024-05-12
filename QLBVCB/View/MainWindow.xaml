@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:QLBVCB"
         mc:Ignorable="d"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        
+                xmlns:vm ="clr-namespace:QLBVCB.ViewModel"
+
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:uc="clr-namespace:QLBVCB.UserControls"
         
@@ -18,17 +19,19 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         
-        DataContext="{StaticResource VMMain}"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="None"
         Name="mainWindow"
-        Title="MainWindow" Height="800" Width="1350">
+        Title="MainWindow" Height="600" Width="1350">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <Window.DataContext>
+        <vm:VM_Main/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -84,6 +87,7 @@
                     <Image Source="/Images/Logo.png" Margin="0, 10, 0, 10"/>
                     <Button x:Name="btHome"
                             Content="Trang Chủ"
+                            
                             Click="btHome_Click">
                         <Button.Template>
                             <ControlTemplate>
@@ -126,7 +130,8 @@
                     </Button>
                     <Button x:Name="btTicketType"
                             Content="Quản lý loại vé"
-                            Click="btTicketType_Click">
+                            Command="{Binding ManageTicketTypeCommand}"
+                            >
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -253,7 +258,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Background="White">
+                <Grid Grid.Row="0" Background="#FFF7F1">
                     <materialDesign:Chip HorizontalAlignment="Right"
                                          Background="#FFEDF2F4"
                                          Content="Cao Duong Lam"
@@ -264,17 +269,12 @@
                     </materialDesign:Chip>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <uc:UC_Home x:Name="uc_Home"></uc:UC_Home>
-                    <uc:UC_Airplane x:Name="uc_Airplane"></uc:UC_Airplane>
-                    <uc:UC_Airport x:Name="uc_Airport"></uc:UC_Airport>
-                    <uc:UC_TicketType x:Name="uc_TicketType"></uc:UC_TicketType>
-                    <uc:UC_Flight x:Name="uc_Flight"></uc:UC_Flight>
-                    <uc:UC_Ticket x:Name="uc_Ticket"></uc:UC_Ticket>
-                    <uc:UC_Booking x:Name="uc_Booking"></uc:UC_Booking>
-                    <uc:UC_Employee x:Name="uc_Employee"></uc:UC_Employee>
-                    <uc:UC_Customer x:Name="uc_Customer"></uc:UC_Customer>
-                    <uc:UC_Account x:Name="uc_Account"></uc:UC_Account>
-                    <uc:UC_Revenue x:Name="uc_Revenue"></uc:UC_Revenue>
+                    <Border CornerRadius="0,0,10,0"
+                        Background="White">
+                        <ContentControl 
+                            Content="{Binding CurrentView}"
+                            Margin="0,0,0,25"/>
+                    </Border>
                 </Grid>
             </Grid>
         </Grid>

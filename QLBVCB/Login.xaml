@@ -63,7 +63,8 @@
                 BorderBrush="Red"
                 Background="#FFD90429"
                 Content="Đăng nhập" FontSize="13"
-                Margin="353,487,353,105">
+                Margin="353,487,353,105"
+                Command="{Binding LoginCommand}">
         </Button>
         <Label Margin="419,457,306,0"
                 Background="Transparent"
