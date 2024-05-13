@@ -6,9 +6,7 @@
         xmlns:local="clr-namespace:QLBVCB.View"
         xmlns:vm ="clr-namespace:QLBVCB.ViewModel"
         mc:Ignorable="d"
-                        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-
-        >
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" >
     <UserControl.DataContext>
         <vm:VM_ManageTicketType/>
     </UserControl.DataContext>
@@ -20,20 +18,24 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Left">
             <TextBox 
-Text=""
-x:Name="txtBoxSearchType" 
- Margin="55, 0, 0, 0"
-Width="300"
-Height="60"
-FontSize="18"
-BorderBrush="Black"
-CaretBrush="Black"
-materialDesign:HintAssist.IsFloating="False"
-materialDesign:HintAssist.Background="Transparent"
-materialDesign:HintAssist.Foreground="Black"
-materialDesign:HintAssist.Hint="🔎 Tìm kiếm loại vé"
-Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                Text=""
+                x:Name="txtBoxSearchType" 
+                Margin="55, 20, 0, 15"
+                Width="300"
+                Height="40"
+                FontSize="12"
+                BorderBrush="Black"
+                CaretBrush="Black"
+                materialDesign:HintAssist.IsFloating="False"
+                materialDesign:HintAssist.Background="Transparent"
+                materialDesign:HintAssist.Foreground="Black"
+                materialDesign:HintAssist.Hint="🔎 Tìm kiếm loại vé"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                <TextBox.Padding>
+                    <Thickness Left="5" Right="5" Top="10" Bottom="10"/>
+                </TextBox.Padding>
             </TextBox>
+
         </Grid>
         <Grid Grid.Row="1">
             <materialDesign:Card Margin="20,10,20,10"
@@ -45,7 +47,7 @@ Style="{StaticResource MaterialDesignOutlinedTextBox}">
                         <ListView ItemsSource="{Binding List}"
                                   HorizontalContentAlignment="Stretch"
                       d:ItemsSource="{d:SampleData}"
-                      SelectedItem="{Binding SelectedItem}" Width="630" Height="274">
+                      SelectedItem="{Binding SelectedItem}" Width="630" Height="350">
                             <ListView.View>
                                 <GridView>
                                     <GridView.ColumnHeaderContainerStyle>
@@ -68,9 +70,9 @@ Style="{StaticResource MaterialDesignOutlinedTextBox}">
         </Grid>
         <Grid Grid.Row="2" Margin="10,1,-10,-81">
             <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
- Margin="10, 10, 30, 10"
- ToolTip="Edit"
- HorizontalAlignment="Right">
+                Margin="10, 10, 30, 10"
+                ToolTip="Edit"
+                HorizontalAlignment="Right">
                 <materialDesign:PackIcon Kind="Edit" Height="24" Width="24" HorizontalAlignment="Center" />
             </Button>
         </Grid>

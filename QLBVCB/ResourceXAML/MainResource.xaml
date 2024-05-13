@@ -5,6 +5,17 @@
     <DataTemplate DataType="{x:Type vm:VM_ManageTicketType}">
         <view:ManageTicketType/>
     </DataTemplate>
-    
 
+    <DataTemplate DataType="{x:Type vm:VM_ManageFlight}">
+        <view:ManageFlight/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:VM_ManageAirport}">
+        <view:ManageAirport/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:VM_ManagePlane}">
+        <view:ManagePlane/>
+    </DataTemplate>
+    
 </ResourceDictionary>

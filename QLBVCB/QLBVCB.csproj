@@ -44,6 +44,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=3.0.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.3.0.0\lib\net462\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -143,6 +146,9 @@
     <Compile Include="UserControls\UC_Booking.xaml.cs">
       <DependentUpon>UC_Booking.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UC_ControlBar2.xaml.cs">
+      <DependentUpon>UC_ControlBar2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UC_Customer.xaml.cs">
       <DependentUpon>UC_Customer.xaml</DependentUpon>
     </Compile>
@@ -164,21 +170,43 @@
     <Compile Include="UserControls\UC_TicketType.xaml.cs">
       <DependentUpon>UC_TicketType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\VM_AERPlane.cs" />
+    <Compile Include="ViewModel\VM_ControlBar2.cs" />
+    <Compile Include="ViewModel\VM_ManageAirport.cs" />
     <Compile Include="ViewModel\VM_Base.cs" />
     <Compile Include="ViewModel\VM_ControlBar.cs" />
     <Compile Include="ViewModel\VM_Loginn.cs" />
     <Compile Include="ViewModel\VM_Main.cs" />
+    <Compile Include="ViewModel\VM_ManageFlight.cs" />
     <Compile Include="ViewModel\VM_ManageTicketType.cs" />
+    <Compile Include="ViewModel\VM_ManagePlane.cs" />
+    <Compile Include="View\AERPlane.xaml.cs">
+      <DependentUpon>AERPlane.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EditAirplane.xaml.cs">
       <DependentUpon>EditAirplane.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManageAirport.xaml.cs">
+      <DependentUpon>ManageAirport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManageFlight.xaml.cs">
       <DependentUpon>ManageFlight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagePlane.xaml.cs">
+      <DependentUpon>ManagePlane.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ManageTicketType.xaml.cs">
       <DependentUpon>ManageTicketType.xaml</DependentUpon>
     </Compile>
     <Page Include="Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UC_ControlBar2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AERPlane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,7 +282,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ManageAirport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ManageFlight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagePlane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
