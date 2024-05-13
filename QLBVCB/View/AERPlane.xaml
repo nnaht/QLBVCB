@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:QLBVCB.View"
         xmlns:uc="clr-namespace:QLBVCB.UserControls"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:QLBVCB.ViewModel"
         mc:Ignorable="d"
         Title="AERPlane" Height="550" Width="400"
         Background="Transparent"
@@ -32,7 +33,7 @@
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" Margin ="0,0,0,5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Label Content="Máy bay" FontSize="30" Foreground="#00224D" FontWeight="Bold" />
+                        <Label Content="MÁY BAY" FontSize="30" Foreground="#00224D" FontWeight="Bold" />
                     </Grid>
                     <Grid Grid.Row="1" Margin ="20,0,10,0" HorizontalAlignment="Center">
                         <TextBox 
@@ -42,7 +43,7 @@
          Width="170"
          BorderBrush="#B31312"
          CaretBrush="#B31312"
-         Foreground="#A94438"
+         Foreground="#FFD90429"
          HorizontalAlignment="Left"
          materialDesign:HintAssist.Background="Transparent"
          materialDesign:HintAssist.Foreground="Black"
@@ -64,8 +65,8 @@
                     <Grid Grid.Row="0">
                         <TextBox
                         VerticalAlignment="Center"
-                        Foreground="#A94438"
-                        BorderBrush="#A94438"
+                        Foreground="#FFD90429"
+                        BorderBrush="#FFD90429"
                         materialDesign:HintAssist.Hint="Mã máy bay"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" />
                     </Grid>
@@ -73,15 +74,15 @@
                         <TextBox
   VerticalAlignment="Center"
   materialDesign:HintAssist.Hint="Loại"
-                        Foreground="#A94438"
-                        BorderBrush="#A94438"
-  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="130" />
+                        Foreground="#FFD90429"
+                        BorderBrush="#FFD90429"
+  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" />
                     </Grid>
                     <Grid Grid.Row="2">
                         <TextBox
   VerticalAlignment="Center"
-                        Foreground="#A94438"
-                        BorderBrush="#A94438"
+                        Foreground="#FFD90429"
+                        BorderBrush="#FFD90429"
   materialDesign:HintAssist.Hint="Hãng sản xuất"
   Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     </Grid>
@@ -104,7 +105,7 @@
                             <DataGrid.ColumnHeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    <Setter Property="Background" Value="#FFF34438"/>
+                                    <Setter Property="Background" Value="#FFD90429"/>
                                     <Setter Property="Foreground" Value="White"/>
                                     <Setter Property="BorderThickness" Value="1,0,0,0"/>
                                     <Setter Property="BorderBrush" Value="White"/>
@@ -130,7 +131,7 @@ Width="Auto">
   materialDesign:ButtonAssist.CornerRadius="5"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
   Style="{StaticResource MaterialDesignRaisedLightButton}"
-  ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFF34438" BorderBrush="#FFB11409">
+  ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
                             <TextBlock
     Text="Thêm" Foreground="#DDFEFEFE" />
                         </Button>
@@ -144,7 +145,7 @@ Width="Auto">
   materialDesign:ButtonAssist.CornerRadius="5"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
   Style="{StaticResource MaterialDesignRaisedLightButton}"
-  ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFF34438" BorderBrush="#FFB11409">
+  ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
                             <TextBlock
     Text="Sửa" Foreground="#DDFEFEFE" />
                         </Button>
@@ -158,7 +159,7 @@ Width="Auto">
     materialDesign:ButtonAssist.CornerRadius="5"
     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
     Style="{StaticResource MaterialDesignRaisedLightButton}"
-    ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFF34438" BorderBrush="#FFB11409">
+    ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
                             <TextBlock
       Text="Xóa" Foreground="#DDFEFEFE" />
                         </Button>
