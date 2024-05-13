@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:QLBVCB.ViewModel"
                     xmlns:view ="clr-namespace:QLBVCB.View">
+    <vm:VM_AERPlane x:Key="AERPlaneVM"></vm:VM_AERPlane>
+    
     <DataTemplate DataType="{x:Type vm:VM_ManageTicketType}">
         <view:ManageTicketType/>
     </DataTemplate>

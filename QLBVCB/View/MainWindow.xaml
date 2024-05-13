@@ -269,13 +269,13 @@
                     </materialDesign:Chip>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <!--<Border CornerRadius="0,0,10,0"
+                    <Border CornerRadius="0,0,10,0"
                         Background="White">
                         <ContentControl 
                             Content="{Binding CurrentView}"
                             Margin="0,0,0,25"/>
-                    </Border>-->
-                    <ttt:ManageTicket></ttt:ManageTicket>
+                    </Border>
+                    <!--<ttt:ManageTicket></ttt:ManageTicket>-->
                 </Grid>
             </Grid>
         </Grid>
