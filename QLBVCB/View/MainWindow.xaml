@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:QLBVCB"
         mc:Ignorable="d"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                xmlns:vm ="clr-namespace:QLBVCB.ViewModel"
+        xmlns:vm ="clr-namespace:QLBVCB.ViewModel"
 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:uc="clr-namespace:QLBVCB.UserControls"
+        xmlns:ttt="clr-namespace:QLBVCB.View"
         
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -23,7 +24,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         Name="mainWindow"
-        Title="MainWindow" Height="600" Width="1350">
+        Title="MainWindow" Height="800" Width="1350">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
@@ -269,12 +270,13 @@
                     </materialDesign:Chip>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Border CornerRadius="0,0,10,0"
+                    <!--<Border CornerRadius="0,0,10,0"
                         Background="White">
                         <ContentControl 
                             Content="{Binding CurrentView}"
                             Margin="0,0,0,25"/>
-                    </Border>
+                    </Border>-->
+                    <ttt:ManageTicket></ttt:ManageTicket>
                 </Grid>
             </Grid>
         </Grid>

@@ -18,7 +18,7 @@ namespace QLBVCB.ViewModel
             MainWindow mainWindow = new MainWindow();
             CloseWindow(Application.Current.MainWindow);
             Application.Current.MainWindow = mainWindow;
-            mainWindow.Show();
+            mainWindow.ShowDialog();
         }
 
         private void CloseWindow(Window window)

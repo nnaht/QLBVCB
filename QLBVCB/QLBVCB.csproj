@@ -172,8 +172,23 @@
     <Compile Include="View\EditAirplane.xaml.cs">
       <DependentUpon>EditAirplane.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManageAccount.xaml.cs">
+      <DependentUpon>ManageAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageBooking.xaml.cs">
+      <DependentUpon>ManageBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageCustomer.xaml.cs">
+      <DependentUpon>ManageCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageEmployee.xaml.cs">
+      <DependentUpon>ManageEmployee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManageFlight.xaml.cs">
       <DependentUpon>ManageFlight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageTicket.xaml.cs">
+      <DependentUpon>ManageTicket.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ManageTicketType.xaml.cs">
       <DependentUpon>ManageTicketType.xaml</DependentUpon>
@@ -254,7 +269,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ManageAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManageBooking.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManageCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManageEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ManageFlight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManageTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

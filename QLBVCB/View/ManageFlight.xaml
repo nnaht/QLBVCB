@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:view="clr-namespace:QLBVCB.View"
         mc:Ignorable="d"
-                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Left">
-            <TextBox 
+            <TextBox
         Text=""
         x:Name="txtBoxSearchType" 
          Margin="55, 0, 0, 0"
@@ -32,8 +32,7 @@
         <Grid Grid.Row="1">
             <materialDesign:Card Margin="20,10,20,10"
                      materialDesign:ElevationAssist.Elevation="Dp16"
-                     UniformCornerRadius="10"
-                     >
+                     UniformCornerRadius="10">
                 <Grid Margin="5" >
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
