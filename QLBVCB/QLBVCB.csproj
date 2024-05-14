@@ -180,8 +180,17 @@
     <Compile Include="ViewModel\VM_ManageFlight.cs" />
     <Compile Include="ViewModel\VM_ManageTicketType.cs" />
     <Compile Include="ViewModel\VM_ManagePlane.cs" />
+    <Compile Include="View\AERAirport.xaml.cs">
+      <DependentUpon>AERAirport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AERFlight.xaml.cs">
+      <DependentUpon>AERFlight.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AERPlane.xaml.cs">
       <DependentUpon>AERPlane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AERTicketType.xaml.cs">
+      <DependentUpon>AERTicketType.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditAirplane.xaml.cs">
       <DependentUpon>EditAirplane.xaml</DependentUpon>
@@ -221,7 +230,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AERAirport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AERFlight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AERPlane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AERTicketType.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

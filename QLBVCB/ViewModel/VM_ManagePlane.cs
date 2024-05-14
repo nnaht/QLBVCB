@@ -18,8 +18,8 @@ namespace QLBVCB.ViewModel
         {
             try
             {
-                AERPlane aerPlanePage = new AERPlane();
-                aerPlanePage.Show();
+                AERPlane aERPlane = new AERPlane();
+                aERPlane.ShowDialog();
             }
             catch (Exception ex)
             {
