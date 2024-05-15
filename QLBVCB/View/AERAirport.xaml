@@ -9,8 +9,9 @@ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Background="Transparent"
 WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
         xmlns:vm="clr-namespace:QLBVCB.ViewModel"
+        DataContext="{StaticResource AERAirportVM}"
         mc:Ignorable="d"
-        Title="AERAirport" Height="450" Width="800">
+        Title="AERAirport" Height="600" Width="900">
     <Grid>
         <Border Background="#FFF7F1" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
             <Grid>
@@ -27,6 +28,7 @@ WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.2*"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <Grid.RowDefinitions>
@@ -38,7 +40,7 @@ WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True
                         </Grid>
                         <Grid Grid.Row="1" Margin ="20,0,10,0" HorizontalAlignment="Center">
                             <TextBox 
-        Text="{Binding SearchTravel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
         Style="{StaticResource MaterialDesignOutlinedTextBox}"
          Height="40"
          Width="170"
@@ -48,7 +50,7 @@ WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True
          HorizontalAlignment="Left"
          materialDesign:HintAssist.Background="Transparent"
          materialDesign:HintAssist.Foreground="Black"
-         materialDesign:HintAssist.Hint="Nhập tên hãng..."
+         materialDesign:HintAssist.Hint="Nhập tên sân bay..."
             materialDesign:HintAssist.IsFloating="False"
          FontSize="16">
                                 <TextBox.Padding>
@@ -63,19 +65,39 @@ WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
+                        <Grid Grid.Row="1">
                             <TextBox
-                        VerticalAlignment="Center"
-                        Foreground="#FFD90429"
-                        BorderBrush="#FFD90429"
-                        materialDesign:HintAssist.Hint="Mã máy bay"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" />
+                      VerticalAlignment="Center"
+                      Foreground="#FFD90429"
+                      BorderBrush="#FFD90429"
+                      materialDesign:HintAssist.Hint="Mã sân bay"
+                                Text="{Binding MASB, UpdateSourceTrigger=PropertyChanged}"
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" Margin="70,0,-70,0" />
                         </Grid>
+                        <Grid Grid.Row="2">
+                            <TextBox
+VerticalAlignment="Center"
+materialDesign:HintAssist.Hint="Tên sân bay"
+                      Foreground="#FFD90429"
+                      BorderBrush="#FFD90429"
+                                Text="{Binding TEN_SANBAY, UpdateSourceTrigger=PropertyChanged}"
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" Margin="70,0,-70,0" />
+                        </Grid>
+
+                    </Grid>
+                    <Grid Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,30,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
                         <Grid Grid.Row="1">
                             <TextBox
   VerticalAlignment="Center"
-  materialDesign:HintAssist.Hint="Loại"
+  materialDesign:HintAssist.Hint="Thành phố"
                         Foreground="#FFD90429"
+                                Text="{Binding THANHPHO, UpdateSourceTrigger=PropertyChanged}"
                         BorderBrush="#FFD90429"
   Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" />
                         </Grid>
@@ -84,7 +106,8 @@ WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True
   VerticalAlignment="Center"
                         Foreground="#FFD90429"
                         BorderBrush="#FFD90429"
-  materialDesign:HintAssist.Hint="Hãng sản xuất"
+  materialDesign:HintAssist.Hint="Quốc gia"
+                                Text="{Binding QUOCGIA, UpdateSourceTrigger=PropertyChanged}"
   Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                         </Grid>
                     </Grid>
@@ -93,16 +116,17 @@ WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True
                     <Grid Margin="0,20,0,0" HorizontalAlignment="Center" Background="white">
                         <ScrollViewer VerticalScrollBarVisibility="Auto"
       HorizontalScrollBarVisibility="Auto">
-                            <DataGrid ItemsSource="{Binding List}"
+                            <DataGrid ItemsSource="{Binding AirportView}"
 AutoGenerateColumns="False"
-SelectedItem="{Binding SelectedItem}" 
+SelectedItem="{Binding AirportSelectedItem}" 
 Background="#FFF8F8F8" 
+                                      IsReadOnly="True"
 Width="760" Height="365">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Mã" Binding="{Binding MAMB}" Width="*"/>
-                                    <DataGridTextColumn Header="Tên sân bay" Binding="{Binding LOAIMB}" Width="2*"/>
-                                    <DataGridTextColumn Header="Thành phố" Binding="{Binding HANGMB}" Width="2*"/>
-                                    <DataGridTextColumn Header="Quốc gia" Binding="{Binding HANGMB}" Width="2*"/>
+                                    <DataGridTextColumn Header="Mã" Binding="{Binding MASB}" Width="*"/>
+                                    <DataGridTextColumn Header="Tên sân bay" Binding="{Binding TEN_SANBAY}" Width="2*"/>
+                                    <DataGridTextColumn Header="Thành phố" Binding="{Binding THANHPHO}" Width="2*"/>
+                                    <DataGridTextColumn Header="Quốc gia" Binding="{Binding QUOCGIA}" Width="2*"/>
                                 </DataGrid.Columns>
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
@@ -133,6 +157,7 @@ Width="Auto">
   materialDesign:ButtonAssist.CornerRadius="5"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
   Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                Command="{Binding AddAirportCommand}"
   ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
                                 <TextBlock
     Text="Thêm" Foreground="#DDFEFEFE" />
@@ -147,6 +172,7 @@ Width="Auto">
   materialDesign:ButtonAssist.CornerRadius="5"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
   Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                Command="{Binding EditAirportCommand}"
   ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
                                 <TextBlock
     Text="Sửa" Foreground="#DDFEFEFE" />
@@ -161,6 +187,7 @@ Width="Auto">
     materialDesign:ButtonAssist.CornerRadius="5"
     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
     Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                Command="{Binding RemoveAirportCommand}"
     ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
                                 <TextBlock
       Text="Xóa" Foreground="#DDFEFEFE" />

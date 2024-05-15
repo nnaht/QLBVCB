@@ -9,10 +9,11 @@ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Background="Transparent"
 WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
         xmlns:vm="clr-namespace:QLBVCB.ViewModel"
+        DataContext="{StaticResource AERTicketTypeVM}"
         mc:Ignorable="d"
         Title="AERTicketType" Height="600" Width="900">
     <Grid>
-        <Border Background="#FFF7F1" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
+        <Border Background="#FFF7F1" BorderBrush="#FFD90429" BorderThickness="1" CornerRadius="10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -39,7 +40,7 @@ WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True
                         </Grid>
                         <Grid Grid.Row="1" Margin ="20,0,10,0" HorizontalAlignment="Center">
                             <TextBox 
-        Text="{Binding SearchTravel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
         Style="{StaticResource MaterialDesignOutlinedTextBox}"
          Height="40"
          Width="170"
@@ -49,7 +50,7 @@ WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True
          HorizontalAlignment="Left"
          materialDesign:HintAssist.Background="Transparent"
          materialDesign:HintAssist.Foreground="Black"
-         materialDesign:HintAssist.Hint="Nhập tên hãng..."
+         materialDesign:HintAssist.Hint="Nhập tên loại vé..."
             materialDesign:HintAssist.IsFloating="False"
          FontSize="16">
                                 <TextBox.Padding>
@@ -62,15 +63,15 @@ WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <TextBox
-                      VerticalAlignment="Center"
+                      VerticalAlignment="Top"
                       Foreground="#FFD90429"
                       BorderBrush="#FFD90429"
                       materialDesign:HintAssist.Hint="Mã loại vé"
-                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" Margin="70,0,-70,0" />
+                                Text="{Binding MALV, UpdateSourceTrigger=PropertyChanged}"
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" Margin="70,15,-70,0" />
                         </Grid>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
@@ -78,11 +79,12 @@ WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True
                                 <ColumnDefinition Width="9*"/>
                             </Grid.ColumnDefinitions>
                             <TextBox
-VerticalAlignment="Center"
+VerticalAlignment="Top"
 materialDesign:HintAssist.Hint="Tên loại vé"
                       Foreground="#FFD90429"
+                                Text="{Binding TEN_LOAIVE, UpdateSourceTrigger=PropertyChanged}"
                       BorderBrush="#FFD90429"
-Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" Margin="20,0,-70,0" Grid.Column="1" />
+Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" Margin="20,3,-70,0" Grid.Column="1" />
                         </Grid>
 
                     </Grid>
@@ -98,12 +100,14 @@ Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" Margin="2
                         Foreground="#FFD90429"
                         BorderBrush="#FFD90429"
                         materialDesign:HintAssist.Hint="Giá vé"
+                                Text="{Binding GIAVE, UpdateSourceTrigger=PropertyChanged}"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" />
                         </Grid>
                         <Grid Grid.Row="1">
                             <TextBox
   VerticalAlignment="Center"
   materialDesign:HintAssist.Hint="Phí thay đổi"
+                                Text="{Binding PHI_THAYDOI, UpdateSourceTrigger=PropertyChanged}"
                         Foreground="#FFD90429"
                         BorderBrush="#FFD90429"
   Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" />
@@ -112,6 +116,7 @@ Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" Margin="2
                             <TextBox
   VerticalAlignment="Center"
                         Foreground="#FFD90429"
+                                Text="{Binding PHI_HUY, UpdateSourceTrigger=PropertyChanged}"
                         BorderBrush="#FFD90429"
   materialDesign:HintAssist.Hint="Phí hủy"
   Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
@@ -122,17 +127,18 @@ Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" Margin="2
                     <Grid Margin="0,20,0,0" HorizontalAlignment="Center" Background="white">
                         <ScrollViewer VerticalScrollBarVisibility="Auto"
       HorizontalScrollBarVisibility="Auto">
-                            <DataGrid ItemsSource="{Binding List}"
+                            <DataGrid ItemsSource="{Binding TicketTypeView}"
 AutoGenerateColumns="False"
-SelectedItem="{Binding SelectedItem}" 
+SelectedItem="{Binding TicketTypeSelectedItem}" 
 Background="#FFF8F8F8" 
+                                      IsReadOnly="True"
 Width="760" Height="365">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Mã" Binding="{Binding MAMB}" Width="*"/>
-                                    <DataGridTextColumn Header="Tên loại vé" Binding="{Binding LOAIMB}" Width="2*"/>
-                                    <DataGridTextColumn Header="Giá vé" Binding="{Binding HANGMB}" Width="2*"/>
-                                    <DataGridTextColumn Header="Phí thay đổi" Binding="{Binding HANGMB}" Width="2*"/>
-                                    <DataGridTextColumn Header="Phí hủy" Binding="{Binding HANGMB}" Width="2*"/>
+                                    <DataGridTextColumn Header="Mã" Binding="{Binding MALV}" Width="*"/>
+                                    <DataGridTextColumn Header="Tên loại vé" Binding="{Binding TEN_LOAIVE}" Width="2*"/>
+                                    <DataGridTextColumn Header="Giá vé" Binding="{Binding GIAVE}" Width="2*"/>
+                                    <DataGridTextColumn Header="Phí thay đổi" Binding="{Binding PHI_THAYDOI}" Width="2*"/>
+                                    <DataGridTextColumn Header="Phí hủy" Binding="{Binding PHI_HUY}" Width="2*"/>
                                 </DataGrid.Columns>
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
@@ -163,6 +169,7 @@ Width="Auto">
   materialDesign:ButtonAssist.CornerRadius="5"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
   Style="{StaticResource MaterialDesignRaisedLightButton}"
+Command="{Binding AddTicketTypeCommand}"
   ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
                                 <TextBlock
     Text="Thêm" Foreground="#DDFEFEFE" />
@@ -177,6 +184,7 @@ Width="Auto">
   materialDesign:ButtonAssist.CornerRadius="5"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
   Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                Command="{Binding EditTicketTypeCommand}"
   ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
                                 <TextBlock
     Text="Sửa" Foreground="#DDFEFEFE" />
@@ -191,6 +199,7 @@ Width="Auto">
     materialDesign:ButtonAssist.CornerRadius="5"
     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
     Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                Command="{Binding RemoveTicketTypeCommand}"
     ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
                                 <TextBlock
       Text="Xóa" Foreground="#DDFEFEFE" />

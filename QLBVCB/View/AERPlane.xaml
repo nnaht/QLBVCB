@@ -8,12 +8,13 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:QLBVCB.ViewModel"
         mc:Ignorable="d"
-        Title="AERPlane" Height="550" Width="400"
+        Title="AERPlane" Height="550" Width="410"
         
         DataContext="{StaticResource AERPlaneVM}"
         
         Background="Transparent"
         WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
+
     <Border Background="#FFF7F1" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -40,7 +41,7 @@
                     </Grid>
                     <Grid Grid.Row="1" Margin ="20,0,10,0" HorizontalAlignment="Center">
                         <TextBox 
-        Text="{Binding SearchTravel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
         Style="{StaticResource MaterialDesignOutlinedTextBox}"
          Height="40"
          Width="170"
@@ -50,7 +51,7 @@
          HorizontalAlignment="Left"
          materialDesign:HintAssist.Background="Transparent"
          materialDesign:HintAssist.Foreground="Black"
-         materialDesign:HintAssist.Hint="Nhập tên hãng..."
+         materialDesign:HintAssist.Hint="Nhập loại máy bay..."
             materialDesign:HintAssist.IsFloating="False"
          FontSize="16">
                             <TextBox.Padding>
@@ -70,6 +71,7 @@
                                  Text="{Binding MAMB, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
                                  BorderBrush="#FFD90429"
+                                 IsReadOnly="True"
                                  materialDesign:HintAssist.Hint="Mã máy bay"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" />
                     </Grid>
@@ -96,14 +98,15 @@
                 <Grid Margin="0,20,0,0" HorizontalAlignment="Center" Background="white">
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Auto">
-                        <DataGrid ItemsSource="{Binding PlaneList}"
+                        <DataGrid ItemsSource="{Binding PlaneView}"
                                   AutoGenerateColumns="False"
                                   SelectedItem="{Binding PlaneSelectedItem}" 
                                   Background="#FFF8F8F8" 
-                                  Width="335">
+                                  IsReadOnly="True"
+                                  Width="345">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã" Binding="{Binding MAMB}" Width="*"/>
-                                <DataGridTextColumn Header="Loại máy bay" Binding="{Binding LOAIMB}" Width="2*"/>
+                                <DataGridTextColumn Header="Mã" Binding="{Binding MAMB}" Width="1.25*"/>
+                                <DataGridTextColumn Header="Loại máy bay" Binding="{Binding LOAIMB}" Width="1.75*"/>
                                 <DataGridTextColumn Header="Hãng máy bay" Binding="{Binding HANGMB}" Width="2*"/>
                             </DataGrid.Columns>
                             <DataGrid.ColumnHeaderStyle>

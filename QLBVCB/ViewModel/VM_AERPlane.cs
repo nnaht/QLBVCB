@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace QLBVCB.ViewModel
@@ -44,19 +46,33 @@ namespace QLBVCB.ViewModel
                 }
             }
         }
+        private string _SearchKeyword;
+        public string SearchKeyword
+        {
+            get => _SearchKeyword;
+            set
+            {
+                _SearchKeyword = value;
+                OnPropertyChanged();
+                FilterPlane();
+            }
+        }
+
+        public ICollectionView PlaneView { get; private set; }
         public VM_AERPlane()
         {
             PlaneList = new ObservableCollection<MAYBAY>(DataProvider.Ins.DB.MAYBAYs);
-
-            var displayListPlane = DataProvider.Ins.DB.MAYBAYs.Where(x => x.MAMB == MAMB);
+            var displayPlaneList = DataProvider.Ins.DB.MAYBAYs.Where(x => x.MAMB == MAMB);
+            PlaneView = CollectionViewSource.GetDefaultView(PlaneList);
+            PlaneView.Filter = FilterPlane;
 
             AddPlaneCommand = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(MAMB) || string.IsNullOrEmpty(LOAIMB) || string.IsNullOrEmpty(HANGMB))
                     return false;
-                if (displayListPlane == null)
+                if (displayPlaneList == null)
                     return false;
-                if (displayListPlane.Count() != 0)
+                if (displayPlaneList.Count() != 0)
                     return false;
                 return true;
             }, (p) =>
@@ -73,7 +89,7 @@ namespace QLBVCB.ViewModel
                     return false;
                 if (PlaneSelectedItem == null)
                     return false;
-                if (displayListPlane == null && displayListPlane.Count() != 0)
+                if (displayPlaneList == null && displayPlaneList.Count() != 0)
                     return false;
                 return true;
             }, (p) =>
@@ -91,7 +107,7 @@ namespace QLBVCB.ViewModel
                     return false;
                 if (PlaneSelectedItem == null)
                     return false;
-                if (displayListPlane != null && displayListPlane.Count() != 0)
+                if (displayPlaneList != null && displayPlaneList.Count() != 0)
                     return true;
                 foreach (var item in PlaneList)
                 {
@@ -106,6 +122,19 @@ namespace QLBVCB.ViewModel
 
                 PlaneList.Remove(PlaneSelectedItem);
             });
+        }
+        private bool FilterPlane(object item)
+        {
+            if (item is MAYBAY plane)
+            {
+                return string.IsNullOrEmpty(SearchKeyword) || plane.LOAIMB.StartsWith(SearchKeyword, StringComparison.OrdinalIgnoreCase);
+            }
+            return false;
+        }
+
+        private void FilterPlane()
+        {
+            PlaneView.Refresh();
         }
     }
 }

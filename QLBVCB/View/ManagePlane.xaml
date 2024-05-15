@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Left">
             <TextBox 
-            Text=""
+            Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
             x:Name="txtBoxSearchType" 
             Margin="55, 20, 0, 15"
         Width="300"
@@ -30,7 +30,7 @@
         materialDesign:HintAssist.IsFloating="False"
         materialDesign:HintAssist.Background="Transparent"
         materialDesign:HintAssist.Foreground="Black"
-        materialDesign:HintAssist.Hint="🔎 Tìm kiếm chuyến bay"
+        materialDesign:HintAssist.Hint="🔎 Nhập loại máy bay..."
         Style="{StaticResource MaterialDesignOutlinedTextBox}">
                 <TextBox.Padding>
                     <Thickness Left="5" Right="5" Top="10" Bottom="10"/>
@@ -42,11 +42,11 @@
             <Grid Margin="5" HorizontalAlignment="Center" Background="white" Width="760" Height="365">
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
-                    <DataGrid ItemsSource="{Binding List}"
+                    <DataGrid ItemsSource="{Binding PlaneView}"
                         AutoGenerateColumns="False"
                         SelectedItem="{Binding SelectedItem}" 
                         Background="#FFF8F8F8" 
-                        Width="760" Height="365">
+                        Width="760" Height="365" IsReadOnly="True" MinColumnWidth="19" MinRowHeight="30" RowHeight="30">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Mã" Binding="{Binding MAMB}" Width="*"/>
                             <DataGridTextColumn Header="Loại máy bay" Binding="{Binding LOAIMB}" Width="2*"/>
@@ -76,6 +76,7 @@
                 <Button
                     Height="40"
                     materialDesign:ButtonAssist.CornerRadius="5"
+                     Command="{Binding ExportExcelManagePlaneCommand}"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedLightButton}"
                     ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409" Width="140">

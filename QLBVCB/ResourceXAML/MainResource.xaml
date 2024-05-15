@@ -3,7 +3,13 @@
                     xmlns:vm="clr-namespace:QLBVCB.ViewModel"
                     xmlns:view ="clr-namespace:QLBVCB.View">
     <vm:VM_AERPlane x:Key="AERPlaneVM"></vm:VM_AERPlane>
-    
+
+    <vm:VM_AERFlight x:Key="AERFlightVM"></vm:VM_AERFlight>
+
+    <vm:VM_AERTicketType x:Key="AERTicketTypeVM"></vm:VM_AERTicketType>
+
+    <vm:VM_AERAirport x:Key="AERAirportVM"></vm:VM_AERAirport>
+
     <DataTemplate DataType="{x:Type vm:VM_ManageTicketType}">
         <view:ManageTicketType/>
     </DataTemplate>
