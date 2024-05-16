@@ -24,7 +24,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         Name="mainWindow"
-        Title="MainWindow" Height="600" Width="1350">
+        Title="MainWindow" Height="800" Width="1350">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
@@ -39,6 +39,12 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Height="20" VerticalAlignment="Top">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0,0" StartPoint="1,0">
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FFD90429" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
             <local:UC_ControlBar Tag="{Binding Title, ElementName=mainWindow}"></local:UC_ControlBar>
         </Grid>
         <Grid Grid.Row="1">
@@ -159,7 +165,7 @@
                     </Button>
                     <Button x:Name="btTicket"
                             Content="Quản lý vé"
-                            Click="btTicket_Click">
+                            Command="{Binding ManageTicketCommand}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -173,7 +179,7 @@
                     </Button>
                     <Button x:Name="btBooking"
                             Content="Quản lý đặt vé"
-                            Click="btBooking_Click">
+                            Command="{Binding ManageBookingCommand}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -187,7 +193,7 @@
                     </Button>
                     <Button x:Name="btEmployee" 
                             Content="Quản lý nhân viên"
-                            Click="btEmployee_Click">
+                            Command="{Binding ManageEmployeeCommand}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -201,7 +207,7 @@
                     </Button>
                     <Button x:Name="btCustomer"
                             Content="Quản lý khách hàng"
-                            Click="btCustomer_Click">
+                            Command="{Binding ManageCustomerCommand}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -215,7 +221,7 @@
                     </Button>
                     <Button x:Name="btAccount"
                             Content="Quản lý tài khoản"
-                            Click="btAccount_Click">
+                            Command="{Binding ManageAccountCommand}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -273,7 +279,7 @@
                         Background="White">
                         <ContentControl 
                             Content="{Binding CurrentView}"
-                            Margin="0,0,0,25"/>
+                            Margin="0,0,0,5"/>
                     </Border>
                     <!--<ttt:ManageTicket></ttt:ManageTicket>-->
                 </Grid>

@@ -170,24 +170,44 @@
     <Compile Include="UserControls\UC_TicketType.xaml.cs">
       <DependentUpon>UC_TicketType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\VM_AERAccount.cs" />
+    <Compile Include="ViewModel\VM_AERCustomer.cs" />
+    <Compile Include="ViewModel\VM_AEREmployee.cs" />
     <Compile Include="ViewModel\VM_AERPlane.cs" />
+    <Compile Include="ViewModel\VM_AERTicket.cs" />
     <Compile Include="ViewModel\VM_ControlBar2.cs" />
+    <Compile Include="ViewModel\VM_ManageAccount.cs" />
     <Compile Include="ViewModel\VM_ManageAirport.cs" />
     <Compile Include="ViewModel\VM_Base.cs" />
     <Compile Include="ViewModel\VM_ControlBar.cs" />
     <Compile Include="ViewModel\VM_Loginn.cs" />
     <Compile Include="ViewModel\VM_Main.cs" />
+    <Compile Include="ViewModel\VM_ManageCustomer.cs" />
+    <Compile Include="ViewModel\VM_ManageEmployee.cs" />
     <Compile Include="ViewModel\VM_ManageFlight.cs" />
+    <Compile Include="ViewModel\VM_ManageTicket.cs" />
     <Compile Include="ViewModel\VM_ManageTicketType.cs" />
     <Compile Include="ViewModel\VM_ManagePlane.cs" />
+    <Compile Include="View\AERAccount.xaml.cs">
+      <DependentUpon>AERAccount.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AERAirport.xaml.cs">
       <DependentUpon>AERAirport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AERCustomer.xaml.cs">
+      <DependentUpon>AERCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AEREmployee.xaml.cs">
+      <DependentUpon>AEREmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AERFlight.xaml.cs">
       <DependentUpon>AERFlight.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AERPlane.xaml.cs">
       <DependentUpon>AERPlane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AERTicket.xaml.cs">
+      <DependentUpon>AERTicket.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AERTicketType.xaml.cs">
       <DependentUpon>AERTicketType.xaml</DependentUpon>
@@ -230,7 +250,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AERAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AERAirport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AERCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AEREmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -239,6 +271,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AERPlane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AERTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

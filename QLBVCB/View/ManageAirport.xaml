@@ -8,6 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+             <!--d:DesignHeight="740" d:DesignWidth="800"-->
     <UserControl.DataContext>
         <vm:VM_ManageAirport/>
     </UserControl.DataContext>
@@ -30,7 +31,7 @@
             materialDesign:HintAssist.IsFloating="False"
             materialDesign:HintAssist.Background="Transparent"
             materialDesign:HintAssist.Foreground="Black"
-            materialDesign:HintAssist.Hint="🔎 Tìm kiếm chuyến bay"
+            materialDesign:HintAssist.Hint="🔎 Tìm kiếm sân bay"
             Style="{StaticResource MaterialDesignOutlinedTextBox}">
                 <TextBox.Padding>
                     <Thickness Left="5" Right="5" Top="10" Bottom="10"/>
@@ -44,6 +45,7 @@
                     <DataGrid ItemsSource="{Binding List}"
     AutoGenerateColumns="False"
     SelectedItem="{Binding SelectedItem}" 
+                              d:ItemsSource="{d:SampleData}"
     Background="#FFF8F8F8" 
     Width="760" Height="365">
                         <DataGrid.Columns>
@@ -62,7 +64,6 @@
                                 <Setter Property="Padding" Value="5"/>
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
-
                     </DataGrid>
                 </ScrollViewer>
             </Grid>

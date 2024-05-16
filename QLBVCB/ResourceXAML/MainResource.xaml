@@ -3,7 +3,11 @@
                     xmlns:vm="clr-namespace:QLBVCB.ViewModel"
                     xmlns:view ="clr-namespace:QLBVCB.View">
     <vm:VM_AERPlane x:Key="AERPlaneVM"></vm:VM_AERPlane>
-    
+    <vm:VM_AERTicket x:Key="AERTicketVM"></vm:VM_AERTicket>
+    <vm:VM_AEREmployee x:Key="AEREmployeeVM"></vm:VM_AEREmployee>
+    <vm:VM_AERCustomer x:Key="AERCustomerVM"></vm:VM_AERCustomer>
+    <vm:VM_AERAccount x:Key="AERAccountVM"></vm:VM_AERAccount>
+
     <DataTemplate DataType="{x:Type vm:VM_ManageTicketType}">
         <view:ManageTicketType/>
     </DataTemplate>
@@ -19,5 +23,21 @@
     <DataTemplate DataType="{x:Type vm:VM_ManagePlane}">
         <view:ManagePlane/>
     </DataTemplate>
-    
+
+    <DataTemplate DataType="{x:Type vm:VM_ManageTicket}">
+        <view:ManageTicket/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:VM_ManageEmployee}">
+        <view:ManageEmployee/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:VM_ManageCustomer}">
+        <view:ManageCustomer/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:VM_ManageAccount}">
+        <view:ManageAccount/>
+    </DataTemplate>
+
 </ResourceDictionary>
