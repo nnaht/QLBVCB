@@ -20,16 +20,16 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         Name="loginWindow"
-        Title ="Đăng nhập" Height="612" Width="800">
+        Title ="Đăng nhập" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.RowSpan="1">
-            <Image Source="/Images/Login1.png" Stretch="Uniform"/>
+            <Image Source="/Images/Login1.png" Stretch="Uniform" Margin="0,-10,0,14"/>
         </Grid>
-        <Grid Grid.Row="0" Height="20" VerticalAlignment="Top">
+        <Grid Grid.Row="0" Height="20" VerticalAlignment="Top" Margin="15, 3, 15, 0">
             <local:UC_ControlBar Tag="{Binding Title, ElementName=loginWindow}"></local:UC_ControlBar>
         </Grid>
         <TextBox x:Name="tbUserName"
@@ -79,7 +79,7 @@
                 <Underline>Quên mật khẩu</Underline>
             </Label.Content>
         </Label>
-        <TextBlock Margin="0,566,0,0"
+        <TextBlock Margin="0,553,0,0"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Center">
             <Hyperlink Hyperlink.RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="https://www.facebook.com/nghia.chi.7146557">Liên hệ với chúng tôi</Hyperlink>

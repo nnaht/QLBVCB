@@ -8,6 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+             <!--d:DesignHeight="740" d:DesignWidth="800"-->
     <UserControl.DataContext>
         <vm:VM_ManageAirport/>
     </UserControl.DataContext>
@@ -44,6 +45,7 @@
                     <DataGrid ItemsSource="{Binding AirportView}"
     AutoGenerateColumns="False"
     SelectedItem="{Binding SelectedItem}" 
+                              d:ItemsSource="{d:SampleData}"
     Background="#FFF8F8F8" 
                               IsReadOnly="True"
     Width="760" Height="365">
@@ -63,7 +65,6 @@
                                 <Setter Property="Padding" Value="5"/>
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
-
                     </DataGrid>
                 </ScrollViewer>
             </Grid>

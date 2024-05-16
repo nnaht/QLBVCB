@@ -19,10 +19,20 @@ namespace QLBVCB.ViewModel
         public ICommand ManageFlightCommand { get; set; }
         public ICommand ManagePlaneCommand { get; set; }
         public ICommand ManageAirportCommand { get; set; }
+        public ICommand ManageTicketCommand { get; set; }
+        public ICommand ManageBookingCommand { get; set; }
+        public ICommand ManageEmployeeCommand { get; set; }
+        public ICommand ManageCustomerCommand { get; set; }
+        public ICommand ManageAccountCommand { get; set; }
         private void ManageTicketType(object obj) =>CurrentView = new VM_ManageTicketType();
         private void ManageFlight(object obj) => CurrentView = new VM_ManageFlight();
         private void ManagePlane(object obj) => CurrentView = new VM_ManagePlane();
         private void ManageAirport(object obj) => CurrentView = new VM_ManageAirport();
+        private void ManageTicket(object obj) => CurrentView = new VM_ManageTicket();
+        private void ManageEmployee (object obj) => CurrentView = new VM_ManageEmployee();
+        private void ManageCustomer (object obj) => CurrentView = new VM_ManageCustomer();
+        private void ManageAccount (object obj) => CurrentView = new VM_ManageAccount();
+
         public object CurrentView
         {
             get { return _currentView; }
@@ -34,6 +44,10 @@ namespace QLBVCB.ViewModel
             ManageFlightCommand = new RelayCommand(ManageFlight);
             ManagePlaneCommand = new RelayCommand(ManagePlane);
             ManageAirportCommand = new RelayCommand(ManageAirport);
+            ManageTicketCommand = new RelayCommand(ManageTicket);
+            ManageEmployeeCommand = new RelayCommand(ManageEmployee);
+            ManageCustomerCommand = new RelayCommand(ManageCustomer);
+            ManageAccountCommand = new RelayCommand(ManageAccount);
         }
     }
 }
