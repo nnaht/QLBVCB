@@ -24,7 +24,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         Name="mainWindow"
-        Title="MainWindow" Height="800" Width="1350">
+        Title="MainWindow" Height="600" Width="1350">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
@@ -178,8 +178,9 @@
                         </Button.Template>
                     </Button>
                     <Button x:Name="btBooking"
-                            Content="Quản lý đặt vé"
-                            Command="{Binding ManageBookingCommand}">
+                            Content="Đặt vé"
+                            Command="{Binding ManageBookingCommand}"
+                            >
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">

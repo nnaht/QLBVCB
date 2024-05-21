@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace QLBVCB.View
 {
     /// <summary>
-    /// Interaction logic for AERPlane.xaml
+    /// Interaction logic for SeatingPlan.xaml
     /// </summary>
-    public partial class AERPlane : Window
+    public partial class SeatingPlan : Window
     {
-        public AERPlane()
+        public SeatingPlan()
         {
             InitializeComponent();
-        }
-
-        private void UC_ControlBar2_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

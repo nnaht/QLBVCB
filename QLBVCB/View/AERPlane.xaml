@@ -9,7 +9,7 @@
         xmlns:vm="clr-namespace:QLBVCB.ViewModel"
         mc:Ignorable="d"
         Title="AERPlane" Height="550" Width="410"
-        
+     
         DataContext="{StaticResource AERPlaneVM}"
         
         Background="Transparent"
@@ -24,7 +24,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,10,0">
-                <uc:UC_ControlBar2></uc:UC_ControlBar2>
+                <uc:UC_ControlBar2 ></uc:UC_ControlBar2>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -67,11 +67,10 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <TextBox VerticalAlignment="Center"
+                        <TextBox VerticalAlignment="Bottom"
                                  Text="{Binding MAMB, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
                                  BorderBrush="#FFD90429"
-                                 IsReadOnly="True"
                                  materialDesign:HintAssist.Hint="Mã máy bay"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="140" />
                     </Grid>

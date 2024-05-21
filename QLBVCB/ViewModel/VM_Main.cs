@@ -32,6 +32,7 @@ namespace QLBVCB.ViewModel
         private void ManageEmployee (object obj) => CurrentView = new VM_ManageEmployee();
         private void ManageCustomer (object obj) => CurrentView = new VM_ManageCustomer();
         private void ManageAccount (object obj) => CurrentView = new VM_ManageAccount();
+        private void ManageBooking(object obj) => CurrentView = new VM_ManageBooking();
 
         public object CurrentView
         {
@@ -48,6 +49,7 @@ namespace QLBVCB.ViewModel
             ManageEmployeeCommand = new RelayCommand(ManageEmployee);
             ManageCustomerCommand = new RelayCommand(ManageCustomer);
             ManageAccountCommand = new RelayCommand(ManageAccount);
+            ManageBookingCommand = new RelayCommand(ManageBooking);
         }
     }
 }

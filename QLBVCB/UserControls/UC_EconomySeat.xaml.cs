@@ -10,23 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QLBVCB.View
+namespace QLBVCB.UserControls
 {
     /// <summary>
-    /// Interaction logic for AERPlane.xaml
+    /// Interaction logic for UC_EconomySeat.xaml
     /// </summary>
-    public partial class AERPlane : Window
+    public partial class UC_EconomySeat : UserControl
     {
-        public AERPlane()
+        public UC_EconomySeat()
         {
             InitializeComponent();
-        }
-
-        private void UC_ControlBar2_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

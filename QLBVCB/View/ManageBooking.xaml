@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QLBVCB.View"
              mc:Ignorable="d" 
-             
+             xmlns:vm="clr-namespace:QLBVCB.ViewModel"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
@@ -13,46 +13,33 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
-
              d:DesignHeight="740" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:VM_ManageBooking/>
+    </UserControl.DataContext>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" HorizontalAlignment="Left">
-            <TextBox Text=""
-                     x:Name="txtBoxSearch" 
-                     Margin="55, 20, 0, 15"
-                     Width="300"
-                     Height="40"
-                     FontSize="12"
-                     BorderBrush="Black"
-                     CaretBrush="Black"
-                     materialDesign:HintAssist.IsFloating="False"
-                     materialDesign:HintAssist.Background="Transparent"
-                     materialDesign:HintAssist.Foreground="Black"
-                     materialDesign:HintAssist.Hint="🔎 Tìm kiếm đặt vé"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}">
-                <TextBox.Padding>
-                    <Thickness Left="5" Right="5" Top="10" Bottom="10"/>
-                </TextBox.Padding>
-            </TextBox>
-        </Grid>
-        <Grid Grid.Row="1" Height="585">
-            <Grid Margin="5"
-                  HorizontalAlignment="Center"
-                  Background="White"
-                  Width="760" Height="585">
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                  HorizontalScrollBarVisibility="Auto">
-                    <DataGrid ItemsSource="{Binding List}"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Column -->
+        <Grid Grid.Column="0">
+            <Grid Margin="0,20,0,0" HorizontalAlignment="Center" Background="white">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <DataGrid ItemsSource="{Binding FlightView}"
                               AutoGenerateColumns="False"
-                              Background="#FFF8F8F8"
-                              d:ItemsSource="{d:SampleData}"
-                              SelectedItem="{Binding SelectedItem}"
-                              Width="760" Height="570">
+                              SelectedItem="{Binding FlightSelectedItem}" 
+                              Background="#FFF8F8F8" 
+                              IsReadOnly="True"
+                              Width="612">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Sân bay cất cánh" Binding="{Binding MASB_CATCANH}" Width="Auto"/>
+                            <DataGridTextColumn Header="Sân bay hạ cánh" Binding="{Binding MASB_HACANH}" Width="Auto"/>
+                            <DataGridTextColumn Header="Số ghế" Binding="{Binding SO_GHE}" Width="Auto"/>
+                            <DataGridTextColumn Header="Thời gian cất cánh" Binding="{Binding THOIGIAN_CATCANH}" Width="Auto"/>
+                            <DataGridTextColumn Header="Thời gian hạ cánh" Binding="{Binding THOIGIAN_HACANH}" Width="Auto"/>
+                        </DataGrid.Columns>
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -63,41 +50,73 @@
                                 <Setter Property="Padding" Value="5"/>
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Width="*" Header="Mã đặt vé" Binding="{Binding MABK}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Mã khách hàng" Binding="{Binding MAKH}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Mã nhân viên" Binding="{Binding MANV}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Mã vé" Binding="{Binding MAVB}"></DataGridTextColumn>
-                        </DataGrid.Columns>
                     </DataGrid>
                 </ScrollViewer>
             </Grid>
         </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" HorizontalAlignment="Left" >
-                <Button Height="40"
-                        Margin="20, 0, 0, 0"
+
+        <!-- Right Column -->
+        <Grid Grid.Column="1" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Label VerticalAlignment="Top" Content="MUA VÉ" FontSize="30" Foreground="#00224D" FontWeight="Bold" Margin="76,-82,-96,0" />
+                <StackPanel Margin="10">
+                    <CheckBox
+                        Background="#FFD90429"
+                        Foreground="#FFD90429"
+    x:Name="MaterialDesignFilledTextBoxEnabledComboBox"
+    Content="Khứ hồi" />
+                    <ComboBox Margin="0,0,0,10"
+                              Name="cbStart"
+                              ItemsSource="{Binding Path=StartLocation}"
+                              Width="256"
+                              materialDesign:HintAssist.Hint="Điểm xuất phát"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              Background="Transparent"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                              BorderBrush="#B2ED1C1C" Foreground="#FFD90429">
+                        <ComboBox.SelectedItem>
+                            <Binding Mode="TwoWay" Path="SelectedStartLocation" UpdateSourceTrigger="PropertyChanged"/>
+                        </ComboBox.SelectedItem>
+                    </ComboBox>
+
+                    <ComboBox Margin="0,0,0,10"
+                              Width="256"
+                              materialDesign:HintAssist.Hint="Điểm đến"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              ItemsSource="{Binding Destination}"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                              BorderBrush="#B2ED1C1C" Foreground="#FFD90429">
+                        <ComboBox.SelectedItem>
+                            <Binding Mode="TwoWay" Path="SelectedDestination" UpdateSourceTrigger="PropertyChanged"/>
+                        </ComboBox.SelectedItem>
+                    </ComboBox>
+
+                    <DatePicker Margin="5,0,10,10"
+                                Width="256"
+                                BorderBrush="#B2ED1C1C" Foreground="#FFD90429"
+                                materialDesign:HintAssist.Hint="Pick Date"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Button Section -->
+            <Grid Grid.Row="1" VerticalAlignment="Bottom" Height="50">
+                <Button Margin="20,118,15,-108"
+                        Height="45"
                         materialDesign:ButtonAssist.CornerRadius="5"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409" Width="140">
-                    <TextBlock Text="Xuất File Excel" 
-                               Foreground="#DDFEFEFE" />
+                        Command="{Binding BuyTicketCommand}"
+                        ToolTip="MaterialDesignRaisedLightButton with Round Corners" 
+                        Background="#FFD90429" BorderBrush="#FFB11409">
+                    <TextBlock Text="Đặt vé" Foreground="#DDFEFEFE" FontSize="20" />
                 </Button>
             </Grid>
-            <Button Grid.Column="1"
-                    Style="{StaticResource MaterialDesignFloatingActionButton}"
-                    Margin="10, 10, 20, 10"
-                    ToolTip="Edit"
-                    Background="#FFD90429"
-                    HorizontalAlignment="Right"
-                    Command="{Binding OpenAERBookingCommand}">
-                <materialDesign:PackIcon Kind="Edit" Height="24" Width="24" />
-            </Button>
         </Grid>
     </Grid>
 </UserControl>

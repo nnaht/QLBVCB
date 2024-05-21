@@ -1,50 +1,63 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:QLBVCB.ViewModel"
-                    xmlns:view ="clr-namespace:QLBVCB.View">
-    <vm:VM_AERPlane x:Key="AERPlaneVM"></vm:VM_AERPlane>
+                    xmlns:view="clr-namespace:QLBVCB.View"
+                    xmlns:uc="clr-namespace:QLBVCB.UserControls"
+                    xmlns:local="clr-namespace:QLBVCB">
 
-    <vm:VM_AERFlight x:Key="AERFlightVM"></vm:VM_AERFlight>
+    <!-- ViewModels -->
+    <vm:VM_AERPlane x:Key="AERPlaneVM" />
+    <vm:VM_AERFlight x:Key="AERFlightVM" />
+    <vm:VM_AERTicketType x:Key="AERTicketTypeVM" />
+    <vm:VM_AERAirport x:Key="AERAirportVM" />
+    <vm:VM_AERTicket x:Key="AERTicketVM" />
+    <vm:VM_AEREmployee x:Key="AEREmployeeVM" />
+    <vm:VM_AERCustomer x:Key="AERCustomerVM" />
+    <vm:VM_AERAccount x:Key="AERAccountVM" />
 
-    <vm:VM_AERTicketType x:Key="AERTicketTypeVM"></vm:VM_AERTicketType>
+    <!-- DataTemplates -->
+    <DataTemplate x:Key="EconomySeatTemplate">
+        <uc:UC_EconomySeat Padding="5"/>
+    </DataTemplate>
+    <DataTemplate x:Key="EmptySeatTemplate">
+        <uc:UC_EmptySeat Padding="5"/>
+    </DataTemplate>
+    <DataTemplate x:Key="LabelTemplate">
+        <TextBlock Text="{Binding Label}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFD90429" />
+    </DataTemplate>
+    <vm:SeatTemplateSelector x:Key="SeatTemplateSelector"
+                            EconomySeatTemplate="{StaticResource EconomySeatTemplate}"
+                            EmptySeatTemplate="{StaticResource EmptySeatTemplate}"
+                            LabelTemplate="{StaticResource LabelTemplate}" />
 
-    <vm:VM_AERAirport x:Key="AERAirportVM"></vm:VM_AERAirport>
 
-    <vm:VM_AERTicket x:Key="AERTicketVM"></vm:VM_AERTicket>
-    <vm:VM_AEREmployee x:Key="AEREmployeeVM"></vm:VM_AEREmployee>
-    <vm:VM_AERCustomer x:Key="AERCustomerVM"></vm:VM_AERCustomer>
-    <vm:VM_AERAccount x:Key="AERAccountVM"></vm:VM_AERAccount>
-
+    <!-- View DataTemplates -->
     <DataTemplate DataType="{x:Type vm:VM_ManageTicketType}">
-        <view:ManageTicketType/>
+        <view:ManageTicketType />
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:VM_ManageFlight}">
-        <view:ManageFlight/>
+        <view:ManageFlight />
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:VM_ManageAirport}">
-        <view:ManageAirport/>
+        <view:ManageAirport />
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:VM_ManagePlane}">
-        <view:ManagePlane/>
+        <view:ManagePlane />
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:VM_ManageTicket}">
-        <view:ManageTicket/>
+        <view:ManageTicket />
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:VM_ManageEmployee}">
-        <view:ManageEmployee/>
+        <view:ManageEmployee />
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:VM_ManageCustomer}">
-        <view:ManageCustomer/>
+        <view:ManageCustomer />
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:VM_ManageAccount}">
-        <view:ManageAccount/>
+        <view:ManageAccount />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:VM_ManageBooking}">
+        <view:ManageBooking />
     </DataTemplate>
 
 </ResourceDictionary>

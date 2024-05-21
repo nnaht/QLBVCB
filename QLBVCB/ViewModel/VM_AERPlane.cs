@@ -81,6 +81,7 @@ namespace QLBVCB.ViewModel
                 DataProvider.Ins.DB.MAYBAYs.Add(plane);
                 DataProvider.Ins.DB.SaveChanges();
                 PlaneList.Add(plane);
+                OnPropertyChanged();
             });
 
             EditPlaneCommand = new RelayCommand<object>((p) =>

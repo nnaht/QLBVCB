@@ -159,6 +159,7 @@
     <Compile Include="Model\VEBAY.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\SeatTemplateSelector.cs" />
     <Compile Include="UC_ControlBar.xaml.cs">
       <DependentUpon>UC_ControlBar.xaml</DependentUpon>
     </Compile>
@@ -172,6 +173,9 @@
     <Compile Include="UserControls\UC_Airport.xaml.cs">
       <DependentUpon>UC_Airport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UC_BookedSeat.xaml.cs">
+      <DependentUpon>UC_BookedSeat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UC_Booking.xaml.cs">
       <DependentUpon>UC_Booking.xaml</DependentUpon>
     </Compile>
@@ -181,8 +185,14 @@
     <Compile Include="UserControls\UC_Customer.xaml.cs">
       <DependentUpon>UC_Customer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UC_EconomySeat.xaml.cs">
+      <DependentUpon>UC_EconomySeat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UC_Employee.xaml.cs">
       <DependentUpon>UC_Employee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_EmptySeat.xaml.cs">
+      <DependentUpon>UC_EmptySeat.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UC_Flight.xaml.cs">
       <DependentUpon>UC_Flight.xaml</DependentUpon>
@@ -192,6 +202,9 @@
     </Compile>
     <Compile Include="UserControls\UC_Revenue.xaml.cs">
       <DependentUpon>UC_Revenue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SeatingChart.xaml.cs">
+      <DependentUpon>UC_SeatingChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UC_Ticket.xaml.cs">
       <DependentUpon>UC_Ticket.xaml</DependentUpon>
@@ -214,12 +227,14 @@
     <Compile Include="ViewModel\VM_ControlBar.cs" />
     <Compile Include="ViewModel\VM_Loginn.cs" />
     <Compile Include="ViewModel\VM_Main.cs" />
+    <Compile Include="ViewModel\VM_ManageBooking.cs" />
     <Compile Include="ViewModel\VM_ManageCustomer.cs" />
     <Compile Include="ViewModel\VM_ManageEmployee.cs" />
     <Compile Include="ViewModel\VM_ManageFlight.cs" />
     <Compile Include="ViewModel\VM_ManageTicket.cs" />
     <Compile Include="ViewModel\VM_ManageTicketType.cs" />
     <Compile Include="ViewModel\VM_ManagePlane.cs" />
+    <Compile Include="ViewModel\VM_SeatingChart.cs" />
     <Compile Include="View\AERAccount.xaml.cs">
       <DependentUpon>AERAccount.xaml</DependentUpon>
     </Compile>
@@ -274,11 +289,30 @@
     <Compile Include="View\ManageTicketType.xaml.cs">
       <DependentUpon>ManageTicketType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SeatingPlan.xaml.cs">
+      <DependentUpon>SeatingPlan.xaml</DependentUpon>
+    </Compile>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\UC_BookedSeat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\UC_ControlBar2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UC_EconomySeat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UC_EmptySeat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UC_SeatingChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -419,6 +453,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManageTicketType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SeatingPlan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
