@@ -36,6 +36,7 @@
             <local:UC_ControlBar Tag="{Binding Title, ElementName=loginWindow}"></local:UC_ControlBar>
         </Grid>
         <TextBox x:Name="tbUserName"
+                 Text="{Binding Username}"
                  Margin="306,330,306,236"
                  Foreground="#FFF3E9E9"  BorderBrush="#7FF6EAEA"
                  materialDesign:HintAssist.Hint="Tên đăng nhập"
