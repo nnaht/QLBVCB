@@ -59,7 +59,7 @@
                     </Grid>
                     <Grid Grid.Row="1" Margin ="20,0,10,0"
                           HorizontalAlignment="Center">
-                        <TextBox Text="{Binding SearchTravel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        <TextBox Text="{Binding SearchTicket, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                  Height="40"
                                  Width="170"
@@ -69,7 +69,7 @@
                                  HorizontalAlignment="Left"
                                  materialDesign:HintAssist.Background="Transparent"
                                  materialDesign:HintAssist.Foreground="Black"
-                                 materialDesign:HintAssist.Hint="Nhập mã vé..."
+                                 materialDesign:HintAssist.Hint="Nhập mã chuyến bay..."
                                  materialDesign:HintAssist.IsFloating="False"
                                  FontSize="16">
                             <TextBox.Padding>
@@ -86,10 +86,12 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Row="0" Grid.Column="0">
                         <TextBox VerticalAlignment="Center"
+                                 IsReadOnly="True"
                                  Text="{Binding MAVB, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
                                  BorderBrush="#FFD90429"
@@ -108,7 +110,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid Grid.Row="0" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding THUTU_GHE, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -118,7 +120,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid Grid.Row="1" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding MALV, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -128,7 +130,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid Grid.Row="2" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding DADAT, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -146,9 +148,10 @@
                       Background="White">
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Auto">
-                        <DataGrid ItemsSource="{Binding TicketList}"
+                        <DataGrid ItemsSource="{Binding TicketView}"
                                   AutoGenerateColumns="False"
                                   Background="#FFF8F8F8"
+                                  IsReadOnly="True"
                                   d:ItemsSource="{d:SampleData}"
                                   SelectedItem="{Binding TicketSelectedItem}"
                                   Width="760">

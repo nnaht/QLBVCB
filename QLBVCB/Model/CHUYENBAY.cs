@@ -9,26 +9,42 @@
 
 namespace QLBVCB.Model
 {
+    using QLBVCB.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class CHUYENBAY
+    public partial class CHUYENBAY : VM_Base
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CHUYENBAY()
         {
             this.VEBAYs = new HashSet<VEBAY>();
         }
-    
-        public string MACB { get; set; }
-        public string MAMB { get; set; }
-        public Nullable<System.DateTime> THOIGIAN_CATCANH { get; set; }
-        public Nullable<System.DateTime> THOIGIAN_HACANH { get; set; }
-        public string TRANGTHAI { get; set; }
-        public Nullable<int> SO_GHE { get; set; }
-        public string MASB_CATCANH { get; set; }
-        public string MASB_HACANH { get; set; }
-    
+
+        private string _MACB;
+        public string MACB { get => _MACB; set { _MACB = value; OnPropertyChanged(); } }
+
+        private string _MAMB;
+        public string MAMB { get => _MAMB; set { _MAMB = value; OnPropertyChanged(); } }
+
+        private Nullable<System.DateTime> _THOIGIAN_CATCANH;
+        public Nullable<System.DateTime> THOIGIAN_CATCANH { get => _THOIGIAN_CATCANH; set { _THOIGIAN_CATCANH = value; OnPropertyChanged(); } }
+
+        private Nullable<System.DateTime> _THOIGIAN_HACANH;
+        public Nullable<System.DateTime> THOIGIAN_HACANH { get => _THOIGIAN_HACANH; set { _THOIGIAN_HACANH = value; OnPropertyChanged(); } }
+
+        private string _TRANGTHAI;
+        public string TRANGTHAI { get => _TRANGTHAI; set { _TRANGTHAI = value; OnPropertyChanged(); } }
+
+        private Nullable<int> _SO_GHE;
+        public Nullable<int> SO_GHE { get => _SO_GHE; set { _SO_GHE = value; OnPropertyChanged(); } }
+
+        private string _MASB_CATCANH;
+        public string MASB_CATCANH { get => _MASB_CATCANH; set { _MASB_CATCANH = value; OnPropertyChanged(); } }
+
+        private string _MASB_HACANH;
+        public string MASB_HACANH { get => _MASB_HACANH; set { _MASB_HACANH = value; OnPropertyChanged(); } }
+
         public virtual MAYBAY MAYBAY { get; set; }
         public virtual SANBAY SANBAY { get; set; }
         public virtual SANBAY SANBAY1 { get; set; }

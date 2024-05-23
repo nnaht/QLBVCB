@@ -2,18 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:QLBVCB.ViewModel"
                     xmlns:view ="clr-namespace:QLBVCB.View">
+    
     <vm:VM_AERPlane x:Key="AERPlaneVM"></vm:VM_AERPlane>
-
-    <vm:VM_AERFlight x:Key="AERFlightVM"></vm:VM_AERFlight>
-
-    <vm:VM_AERTicketType x:Key="AERTicketTypeVM"></vm:VM_AERTicketType>
-
     <vm:VM_AERAirport x:Key="AERAirportVM"></vm:VM_AERAirport>
-
+    <vm:VM_AERTicketType x:Key="AERTicketTypeVM"></vm:VM_AERTicketType>
+    <vm:VM_AERFlight x:Key="AERFlightVM"></vm:VM_AERFlight>
     <vm:VM_AERTicket x:Key="AERTicketVM"></vm:VM_AERTicket>
     <vm:VM_AEREmployee x:Key="AEREmployeeVM"></vm:VM_AEREmployee>
     <vm:VM_AERCustomer x:Key="AERCustomerVM"></vm:VM_AERCustomer>
     <vm:VM_AERAccount x:Key="AERAccountVM"></vm:VM_AERAccount>
+
+    <vm:VM_Loginn x:Key="LoginVM"></vm:VM_Loginn>
 
     <DataTemplate DataType="{x:Type vm:VM_ManageTicketType}">
         <view:ManageTicketType/>

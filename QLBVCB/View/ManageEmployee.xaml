@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:QLBVCB.View"
              mc:Ignorable="d" 
              
+             xmlns:vm ="clr-namespace:QLBVCB.ViewModel"
+             
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
@@ -15,6 +17,9 @@
              FontFamily="{DynamicResource MaterialDesignFont}"
 
              d:DesignHeight="740" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:VM_ManageEmployee/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,7 +27,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Left">
-            <TextBox Text=""
+            <TextBox Text="{Binding SearchEmployee, UpdateSourceTrigger=PropertyChanged}"
                      x:Name="txtBoxSearch" 
                      Margin="55, 20, 0, 15"
                      Width="300"
@@ -33,7 +38,7 @@
                      materialDesign:HintAssist.IsFloating="False"
                      materialDesign:HintAssist.Background="Transparent"
                      materialDesign:HintAssist.Foreground="Black"
-                     materialDesign:HintAssist.Hint="🔎 Tìm kiếm loại vé"
+                     materialDesign:HintAssist.Hint="🔎 Nhập họ tên nhân viên..."
                      Style="{StaticResource MaterialDesignOutlinedTextBox}">
                 <TextBox.Padding>
                     <Thickness Left="5" Right="5" Top="10" Bottom="10"/>
@@ -47,9 +52,10 @@
                   Width="760" Height="585">
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Auto">
-                    <DataGrid ItemsSource="{Binding EmployeeList}"
+                    <DataGrid ItemsSource="{Binding EmployeeView}"
                               AutoGenerateColumns="False"
                               Background="#FFF8F8F8"
+                              IsReadOnly="True"
                               d:ItemsSource="{d:SampleData}"
                               SelectedItem="{Binding SelectedItem}"
                               Width="760" Height="570">
@@ -64,17 +70,17 @@
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Width="*" Header="Mã nhân viên" Binding="{Binding MANV}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Họ tên" Binding="{Binding HOTEN}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Ngày sinh" Binding="{Binding NGAYSINH}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Giới tính" Binding="{Binding GIOITINH}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Căn cước công dân" Binding="{Binding CCCD}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Địa chỉ" Binding="{Binding DIACHI}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Số điện thoại" Binding="{Binding SDT}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Email" Binding="{Binding EMAIL}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Lương" Binding="{Binding LUONG}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Vị trí" Binding="{Binding VITRI}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="*" Header="Hoạt động" Binding="{Binding HOATDONG}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="Auto" Header="Mã nhân viên" Binding="{Binding MANV}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="Auto" Header="Họ tên" Binding="{Binding HOTEN}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="Auto" Header="Ngày sinh" Binding="{Binding NGAYSINH}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="Auto" Header="Giới tính" Binding="{Binding GIOITINH}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="Auto" Header="Căn cước công dân" Binding="{Binding CCCD}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="Auto" Header="Địa chỉ" Binding="{Binding DIACHI}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="Auto" Header="Số điện thoại" Binding="{Binding SDT}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="Auto" Header="Email" Binding="{Binding EMAIL}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="Auto" Header="Lương" Binding="{Binding LUONG}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="Auto" Header="Vị trí" Binding="{Binding VITRI}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="Auto" Header="Hoạt động" Binding="{Binding HOATDONG}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </ScrollViewer>
@@ -89,9 +95,13 @@
                 <Button Height="40"
                         Margin="20, 0, 0, 0"
                         materialDesign:ButtonAssist.CornerRadius="5"
+                        Command="{Binding ExportExcelManageEmployeeCommand}"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409" Width="140">
+                        ToolTip="Export Excel"
+                        Background="#FFD90429"
+                        BorderBrush="#FFB11409"
+                        Width="140">
                     <TextBlock Text="Xuất File Excel" 
                                Foreground="#DDFEFEFE" />
                 </Button>

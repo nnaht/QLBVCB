@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLBVCB.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace QLBVCB.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        static public TAIKHOAN AccountLogin = new TAIKHOAN();
     }
     public class RelayCommand : ICommand
     {

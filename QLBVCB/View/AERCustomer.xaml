@@ -28,7 +28,6 @@
                 BorderBrush="Black"
                 BorderThickness="1"
                 CornerRadius="10">
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -60,7 +59,7 @@
                     </Grid>
                     <Grid Grid.Row="1" Margin ="20,0,10,0"
                           HorizontalAlignment="Center">
-                        <TextBox Text="{Binding SearchTravel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        <TextBox Text="{Binding SearchCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                  Height="40"
                                  Width="170"
@@ -87,12 +86,15 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Row="0" Grid.Column="0">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding MAKH, UpdateSourceTrigger=PropertyChanged}"
+                                 IsReadOnly="True"
                                  Foreground="#FFD90429"
                                  BorderBrush="#FFD90429"
                                  materialDesign:HintAssist.Hint="Mã khách hàng"
@@ -120,7 +122,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid Grid.Row="0" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding GIOITINH, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -130,7 +132,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid Grid.Row="1" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding CCCD, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -140,7 +142,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid Grid.Row="2" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding DIACHI, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -150,7 +152,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="0" Grid.Column="2">
+                    <Grid Grid.Row="0" Grid.Column="4">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding SDT, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -160,7 +162,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="1" Grid.Column="2">
+                    <Grid Grid.Row="1" Grid.Column="4">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding EMAIL, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -170,7 +172,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="2" Grid.Column="2">
+                    <Grid Grid.Row="2" Grid.Column="4">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding HOATDONG, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -189,9 +191,10 @@
                       Background="White">
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Auto">
-                        <DataGrid ItemsSource="{Binding CustomerList}"
+                        <DataGrid ItemsSource="{Binding CustomerView}"
                                   AutoGenerateColumns="False"
                                   Background="#FFF8F8F8"
+                                  IsReadOnly="True"
                                   d:ItemsSource="{d:SampleData}"
                                   SelectedItem="{Binding CustomerSelectedItem}"
                                   Width="760">
@@ -206,15 +209,15 @@
                                 </Style>
                             </DataGrid.ColumnHeaderStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Width="*" Header="Mã khách hàng" Binding="{Binding MAKH}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Họ tên" Binding="{Binding HOTEN}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Ngày sinh" Binding="{Binding NGAYSINH}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Giới tính" Binding="{Binding GIOITINH}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Căn cước công dân" Binding="{Binding CCCD}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Địa chỉ" Binding="{Binding DIACHI}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Số điện thoại" Binding="{Binding SDT}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Email" Binding="{Binding EMAIL}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Hoạt động" Binding="{Binding HOATDONG}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="Auto" Header="Mã khách hàng" Binding="{Binding MAKH}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="Auto" Header="Họ tên" Binding="{Binding HOTEN}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="Auto" Header="Ngày sinh" Binding="{Binding NGAYSINH}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="Auto" Header="Giới tính" Binding="{Binding GIOITINH}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="Auto" Header="Căn cước công dân" Binding="{Binding CCCD}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="Auto" Header="Địa chỉ" Binding="{Binding DIACHI}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="Auto" Header="Số điện thoại" Binding="{Binding SDT}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="Auto" Header="Email" Binding="{Binding EMAIL}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="Auto" Header="Hoạt động" Binding="{Binding HOATDONG}"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </ScrollViewer>

@@ -38,6 +38,7 @@
                     </Style>
                 </StackPanel.Resources>
                 <Button x:Name="btnMin"
+                        BorderBrush="Transparent"
                         Command="{Binding MinimizeWindowCommand}"
                         CommandParameter="{Binding ElementName=ucControlBar}"
                         ToolTip="Minimize"
@@ -45,6 +46,7 @@
                     <materialDesign:PackIcon Kind="WindowMinimize" />
                 </Button>
                 <Button x:Name="btnMax"
+                        BorderBrush="Transparent"
                         Command="{Binding MaximizeWindowCommand}"
                         CommandParameter="{Binding ElementName=ucControlBar}"
                         ToolTip="Maximize"
@@ -52,6 +54,7 @@
                     <materialDesign:PackIcon Kind="WindowMaximize" />
                 </Button>
                 <Button x:Name="btnClose"
+                        BorderBrush="Transparent"
                         Command="{Binding CloseWindowCommand}"
                         CommandParameter="{Binding ElementName=ucControlBar}"
                         ToolTip="Close"
