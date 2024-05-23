@@ -9,16 +9,25 @@
 
 namespace QLBVCB.Model
 {
+    using QLBVCB.ViewModel;
     using System;
     using System.Collections.Generic;
-    
-    public partial class TAIKHOAN
+
+    public partial class TAIKHOAN : VM_Base
     {
-        public string TENTK { get; set; }
-        public string MATKHAU { get; set; }
-        public Nullable<bool> HOATDONG { get; set; }
-        public string MANV { get; set; }
-    
+
+        private string _TENTK;
+        public string TENTK { get => _TENTK; set { _TENTK = value; OnPropertyChanged(); } }
+
+        private string _MATKHAU;
+        public string MATKHAU { get => _MATKHAU; set { _MATKHAU = value; OnPropertyChanged(); } }
+
+        private Nullable<bool> _HOATDONG;
+        public Nullable<bool> HOATDONG { get => _HOATDONG; set { _HOATDONG = value; OnPropertyChanged(); } }
+
+        private string _MANV;
+        public string MANV { get => _MANV; set { _MANV = value; OnPropertyChanged(); } }
+
         public virtual NHANVIEN NHANVIEN { get; set; }
     }
 }

@@ -25,8 +25,8 @@ namespace QLBVCB
         {
             InitializeComponent();
             DataContext = new VM_Loginn();
-
         }
+
 
         private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {

@@ -9,17 +9,27 @@
 
 namespace QLBVCB.Model
 {
+    using QLBVCB.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class BOOKING
+    public partial class BOOKING : VM_Base
     {
-        public int MSBK { get; set; }
-        public string MABK { get; set; }
-        public string MAKH { get; set; }
-        public string MANV { get; set; }
-        public string MAVB { get; set; }
-    
+        private int _MSBK;
+        public int MSBK { get => _MSBK; set { _MSBK = value; OnPropertyChanged(); } }
+
+        private string _MABK;
+        public string MABK { get => _MABK; set { _MABK = value; OnPropertyChanged(); } }
+
+        private string _MAKH;
+        public string MAKH { get => _MAKH; set { _MAKH = value; OnPropertyChanged(); } }
+
+        private string _MANV;
+        public string MANV { get => _MANV; set { _MANV = value; OnPropertyChanged(); } }
+
+        private string _MAVB;
+        public string MAVB { get => _MAVB; set { _MAVB = value; OnPropertyChanged(); } }
+
         public virtual KHACHHANG KHACHHANG { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }
         public virtual VEBAY VEBAY { get; set; }

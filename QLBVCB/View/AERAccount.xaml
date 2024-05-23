@@ -59,7 +59,7 @@
                     </Grid>
                     <Grid Grid.Row="1" Margin ="20,0,10,0"
                           HorizontalAlignment="Center">
-                        <TextBox Text="{Binding SearchTravel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        <TextBox Text="{Binding SearchAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                  Height="40"
                                  Width="170"
@@ -85,6 +85,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Row="0" Grid.Column="0">
@@ -107,7 +108,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid Grid.Row="0" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding MANV, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -117,7 +118,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid Grid.Row="1" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding HOATDONG, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -135,9 +136,10 @@
                       Background="White">
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Auto">
-                        <DataGrid ItemsSource="{Binding AcccountList}"
+                        <DataGrid ItemsSource="{Binding AccountView}"
                                   AutoGenerateColumns="False"
                                   Background="#FFF8F8F8"
+                                  IsReadOnly="True"
                                   d:ItemsSource="{d:SampleData}"
                                   SelectedItem="{Binding AccountSelectedItem}"
                                   Width="760">

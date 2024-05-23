@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:QLBVCB"
         mc:Ignorable="d"
         
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,6 +16,8 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"        
+        
+        DataContext="{StaticResource LoginVM}"
         
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
@@ -33,6 +36,7 @@
             <local:UC_ControlBar Tag="{Binding Title, ElementName=loginWindow}"></local:UC_ControlBar>
         </Grid>
         <TextBox x:Name="tbUserName"
+                 Text="{Binding Username}"
                  Margin="306,330,306,236"
                  Foreground="#FFF3E9E9"  BorderBrush="#7FF6EAEA"
                  materialDesign:HintAssist.Hint="Tên đăng nhập"
@@ -43,6 +47,12 @@
                  materialDesign:TextFieldAssist.LeadingIcon="Account"
                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  FontSize="15" Height="50.0033333333333">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="TextChanged">
+                    <i:InvokeCommandAction Command="{Binding UsernameChangedCommand}" 
+                                           CommandParameter="{Binding ElementName=tbUserName}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </TextBox>
         <PasswordBox x:Name="pbPassword"
                 Margin="306,401,306,171" 
@@ -55,9 +65,16 @@
                 materialDesign:TextFieldAssist.LeadingIcon="Password"
                 Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
                 FontSize="15" Height="50.0033333333333">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PasswordChanged">
+                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
+                                           CommandParameter="{Binding ElementName=pbPassword}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </PasswordBox>
         <Button x:Name="btnLogin"
                 Style="{StaticResource MaterialDesignRaisedButton}"
+                IsDefault="True"
                 materialDesign:ButtonAssist.CornerRadius="15"
                 Foreground="White"
                 BorderBrush="Red"

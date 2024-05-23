@@ -1,7 +1,10 @@
-﻿using QLBVCB.View;
+﻿using QLBVCB.Model;
+using QLBVCB.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,7 +16,9 @@ namespace QLBVCB.ViewModel
     {
         public bool IsLoaded = false;
         private object _currentView;
-        
+        //private ObservableCollection<TAIKHOAN> _AccountList;
+        //public ObservableCollection<TAIKHOAN> AccountList { get { return _AccountList; } set { _AccountList = value; OnPropertyChanged(); } }
+
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand ManageTicketTypeCommand { get; set; }
         public ICommand ManageFlightCommand { get; set; }
@@ -24,7 +29,7 @@ namespace QLBVCB.ViewModel
         public ICommand ManageEmployeeCommand { get; set; }
         public ICommand ManageCustomerCommand { get; set; }
         public ICommand ManageAccountCommand { get; set; }
-        private void ManageTicketType(object obj) =>CurrentView = new VM_ManageTicketType();
+        private void ManageTicketType(object obj) => CurrentView = new VM_ManageTicketType();
         private void ManageFlight(object obj) => CurrentView = new VM_ManageFlight();
         private void ManagePlane(object obj) => CurrentView = new VM_ManagePlane();
         private void ManageAirport(object obj) => CurrentView = new VM_ManageAirport();
@@ -41,6 +46,38 @@ namespace QLBVCB.ViewModel
         }
         public VM_Main()
         {
+            //LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            //{
+            //    IsLoaded = true;
+            //    if (p == null)
+            //    {
+            //        return;
+            //    }
+
+            //    p.Hide();
+
+            //    Login loginWindow = new Login();
+            //    loginWindow.ShowDialog();
+            //    LoadMainWindow();
+
+            //    if (loginWindow.DataContext == null)
+            //    {
+            //        return;
+            //    }
+
+            //    var loginVM = loginWindow.DataContext as VM_Loginn;
+
+            //    if (loginVM.IsLogin == true)
+            //    {
+            //        p.Show();
+            //    }
+            //    else
+            //    {
+            //        p.Close();
+            //    }
+
+            //});
+
             ManageTicketTypeCommand = new RelayCommand(ManageTicketType);
             ManageFlightCommand = new RelayCommand(ManageFlight);
             ManagePlaneCommand = new RelayCommand(ManagePlane);
@@ -51,5 +88,9 @@ namespace QLBVCB.ViewModel
             ManageAccountCommand = new RelayCommand(ManageAccount);
             ManageBookingCommand = new RelayCommand(ManageBooking);
         }
+        //void LoadMainWindow()
+        //{
+        //    AccountList = new ObservableCollection<TAIKHOAN>(DataProvider.Ins.DB.TAIKHOANs);
+        //}
     }
 }
