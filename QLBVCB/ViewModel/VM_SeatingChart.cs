@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Windows;
+using QLBVCB.Model;
+using System.Windows.Input;
 
 namespace QLBVCB.ViewModel
 {
@@ -18,27 +20,34 @@ namespace QLBVCB.ViewModel
     }
     public class VM_SeatingChart : INotifyPropertyChanged
     {
-        public ObservableCollection<Seat> Seats { get; set; }
+        public ObservableCollection<Seat> Seats
+        {
+            get => _seats;
+            set
+            {
+                _seats = value;
+                OnPropertyChanged(nameof(Seats));
+            }
+        }
+        private ObservableCollection<Seat> _seats;
         public string _flightId;
-        public VM_SeatingChart()
+        public ICommand BookCommand {  get; set; }
+        public VM_SeatingChart(string flightId, int totalSeats)
         {
             Seats = new ObservableCollection<Seat>();
-            GenerateSeats();
-        }
-        public VM_SeatingChart(string flightId)
-        {
-            Seats = new ObservableCollection<Seat>();
-            GenerateSeats();
             _flightId = flightId;
+            BookCommand = new RelayCommand(ExcecuteBookCommand);
+            GenerateSeats(totalSeats);
         }
-
-        private void GenerateSeats()
+        private void ExcecuteBookCommand(object obj)
         {
-            int totalSeats = 250;
-            int totalRows = 42;
-            int seatsPerRow = 7; // số cột bao gồm cột giữa là số hàng
+            var chuyenBay = DataProvider.Ins.DB.CHUYENBAYs.SingleOrDefault(cb => cb.MACB == _flightId);
+        }
+        private void GenerateSeats(int totalSeats)
+        {
+            int totalRows = (int)Math.Round((double)totalSeats / 6) + 1;
+            int seatsPerRow = 7;
             int currentSeat = 0;
-            // Thêm hàng đầu tiên với các chữ cái a-f
             Seats.Add(new Seat { SeatType = "Label", Row = 0, Column = 0, Label = "A" });
             Seats.Add(new Seat { SeatType = "Label", Row = 0, Column = 1, Label = "B" });
             Seats.Add(new Seat { SeatType = "Label", Row = 0, Column = 2, Label = "C" });
@@ -49,17 +58,24 @@ namespace QLBVCB.ViewModel
 
             for (int row = 1; row <= totalRows; row++)
             {
-                
+
+                var chuyenBay = DataProvider.Ins.DB.CHUYENBAYs.SingleOrDefault(cb => cb.MACB == _flightId);
+                var DADAT = DataProvider.Ins.DB.DADATs.ToList();
 
                 for (int col = 0; col < seatsPerRow; col++)
                 {
                     if (currentSeat < totalSeats)
                     {
-                        if (col == 3)
+                        if (DADAT.Any(d=>d.MACB == _flightId && d.Day == col && d.Hang == row))
+                        {
+                            Seats.Add(new Seat { SeatType = "Booked", Row = row, Column = col });
+                            currentSeat++;
+                        }
+                        else if (col == 3)
                         {
                             Seats.Add(new Seat { SeatType = "Label", Row = row, Column = 3, Label = row.ToString() });
                         }
-                        if (col != 3)
+                        else if (col != 3)
                         {
                             var seatType = (row < 6) ? "Economy" : "Empty";
                             Seats.Add(new Seat { SeatType = seatType, Row = row, Column = col });

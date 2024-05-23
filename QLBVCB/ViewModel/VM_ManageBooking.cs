@@ -1,9 +1,11 @@
 ﻿using QLBVCB.Model;
+using QLBVCB.UserControls;
 using QLBVCB.View;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -130,7 +132,6 @@ namespace QLBVCB.ViewModel
                                           flight.MASB_CATCANH.Equals(ConvertToCode(SelectedStartLocation), StringComparison.OrdinalIgnoreCase);
                 bool destinationMatch = string.IsNullOrEmpty(SelectedDestination) ||
                                         flight.MASB_HACANH.Equals(ConvertToCode(SelectedDestination), StringComparison.OrdinalIgnoreCase);
-
                 return startLocationMatch && destinationMatch;
             }
             return false;
@@ -160,20 +161,28 @@ namespace QLBVCB.ViewModel
         {
             FlightView.Refresh();
         }
-        private void ExecuteBuyTicketCommand(object obj)
+        private async void ExecuteBuyTicketCommand(object obj)
         {
             if(MACB != null)
             {
-                var seatingPlanViewModel = new VM_SeatingChart(MACB);
+                var chuyenBay = await GetChuyenBayAsync(MACB);
+                int totalSeats = chuyenBay?.SO_GHE ?? 250;
+
                 SeatingPlan seatingPlan = new SeatingPlan();
-               
+                seatingPlan.DataContext = new VM_SeatingChart(MACB, totalSeats);
                 seatingPlan.ShowDialog();
-                
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn chuyến bay");
             }
+        }
+        private Task<CHUYENBAY> GetChuyenBayAsync(string macb)
+        {
+            return Task.Run(() =>
+            {
+                return DataProvider.Ins.DB.CHUYENBAYs.SingleOrDefault(cb => cb.MACB == macb);
+            });
         }
     }
 }

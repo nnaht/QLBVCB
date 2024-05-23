@@ -7,6 +7,7 @@ namespace QLBVCB.ViewModel
     {
         public DataTemplate EconomySeatTemplate { get; set; }
         public DataTemplate EmptySeatTemplate { get; set; }
+        public DataTemplate BookedSeatTemplate { get; set; }
         public DataTemplate LabelTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
@@ -21,6 +22,8 @@ namespace QLBVCB.ViewModel
                     return EconomySeatTemplate;
                 case "Empty":
                     return EmptySeatTemplate;
+                case "Booked":
+                    return BookedSeatTemplate;
                 case "Label":
                     return LabelTemplate;
                 default:

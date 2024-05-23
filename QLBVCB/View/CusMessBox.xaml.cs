@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QLBVCB.UserControls
+namespace QLBVCB.View
 {
     /// <summary>
-    /// Interaction logic for UC_SeatingChart.xaml
+    /// Interaction logic for CusMessBox.xaml
     /// </summary>
-    public partial class UC_SeatingChart : UserControl
+    public partial class CusMessBox : Window
     {
-        public UC_SeatingChart()
+        public CusMessBox()
         {
             InitializeComponent();
         }

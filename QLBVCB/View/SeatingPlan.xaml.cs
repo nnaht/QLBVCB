@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLBVCB.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace QLBVCB.View
         public SeatingPlan()
         {
             InitializeComponent();
+
         }
     }
 }

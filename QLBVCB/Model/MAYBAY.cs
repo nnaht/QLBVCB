@@ -9,27 +9,21 @@
 
 namespace QLBVCB.Model
 {
-    using QLBVCB.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class MAYBAY : VM_Base
+    public partial class MAYBAY
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MAYBAY()
         {
             this.CHUYENBAYs = new HashSet<CHUYENBAY>();
         }
-
-        private string _MAMB;
-        public string MAMB { get => _MAMB; set { _MAMB = value; OnPropertyChanged(); } }
-
-        private string _LOAIMB;
-        public string LOAIMB { get => _LOAIMB; set { _LOAIMB = value; OnPropertyChanged(); } }
-
-        private string _HANGMB;
-        public string HANGMB { get => _HANGMB; set { _HANGMB = value; OnPropertyChanged(); } }
-
+    
+        public string MAMB { get; set; }
+        public string LOAIMB { get; set; }
+        public string HANGMB { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHUYENBAY> CHUYENBAYs { get; set; }
     }

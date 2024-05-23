@@ -19,3 +19,4 @@ Content="Indeterminate"
 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
 Style="{StaticResource MaterialDesignRaisedButton}" BorderBrush="#FF0609FF" />
 </UserControl>
+<!--#FF395D69-->

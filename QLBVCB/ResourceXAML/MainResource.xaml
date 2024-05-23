@@ -22,13 +22,17 @@
     <DataTemplate x:Key="EmptySeatTemplate">
         <uc:UC_EmptySeat Padding="5"/>
     </DataTemplate>
+    <DataTemplate x:Key="BookedSeatTemplate">
+        <uc:UC_BookedSeat Padding="5"/>
+    </DataTemplate>
     <DataTemplate x:Key="LabelTemplate">
-        <TextBlock Text="{Binding Label}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFD90429" />
+        <TextBlock Text="{Binding Label}" FontWeight="DemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFD90429" />
     </DataTemplate>
     <vm:SeatTemplateSelector x:Key="SeatTemplateSelector"
-                            EconomySeatTemplate="{StaticResource EconomySeatTemplate}"
-                            EmptySeatTemplate="{StaticResource EmptySeatTemplate}"
-                            LabelTemplate="{StaticResource LabelTemplate}" />
+                         EconomySeatTemplate="{StaticResource EconomySeatTemplate}"
+                         EmptySeatTemplate="{StaticResource EmptySeatTemplate}"
+                         BookedSeatTemplate="{StaticResource BookedSeatTemplate}"
+                         LabelTemplate="{StaticResource LabelTemplate}" />
 
 
     <!-- View DataTemplates -->

@@ -18,6 +18,7 @@ namespace QLBVCB.Model
         public CHUYENBAY()
         {
             this.VEBAYs = new HashSet<VEBAY>();
+            this.DADATs = new HashSet<DADAT>();
         }
     
         public string MACB { get; set; }
@@ -25,7 +26,7 @@ namespace QLBVCB.Model
         public Nullable<System.DateTime> THOIGIAN_CATCANH { get; set; }
         public Nullable<System.DateTime> THOIGIAN_HACANH { get; set; }
         public string TRANGTHAI { get; set; }
-        public Nullable<int> SO_GHE { get; set; }
+        public int SO_GHE { get; set; }
         public string MASB_CATCANH { get; set; }
         public string MASB_HACANH { get; set; }
     
@@ -34,5 +35,7 @@ namespace QLBVCB.Model
         public virtual SANBAY SANBAY1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VEBAY> VEBAYs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DADAT> DADATs { get; set; }
     }
 }

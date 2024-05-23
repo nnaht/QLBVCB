@@ -119,6 +119,9 @@
     <Compile Include="Model\CHUYENBAY.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\DADAT.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Model\KHACHHANG.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -148,9 +151,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SANBAY.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TAIKHOAN.cs">
@@ -203,9 +203,6 @@
     <Compile Include="UserControls\UC_Revenue.xaml.cs">
       <DependentUpon>UC_Revenue.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UC_SeatingChart.xaml.cs">
-      <DependentUpon>UC_SeatingChart.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\UC_Ticket.xaml.cs">
       <DependentUpon>UC_Ticket.xaml</DependentUpon>
     </Compile>
@@ -220,7 +217,11 @@
     <Compile Include="ViewModel\VM_AERPlane.cs" />
     <Compile Include="ViewModel\VM_AERTicket.cs" />
     <Compile Include="ViewModel\VM_AERTicketType.cs" />
+    <Compile Include="ViewModel\VM_BookedSeat.cs" />
     <Compile Include="ViewModel\VM_ControlBar2.cs" />
+    <Compile Include="ViewModel\VM_CusMessBox.cs" />
+    <Compile Include="ViewModel\VM_EconomySeat.cs" />
+    <Compile Include="ViewModel\VM_EmptySeat.cs" />
     <Compile Include="ViewModel\VM_ManageAccount.cs" />
     <Compile Include="ViewModel\VM_ManageAirport.cs" />
     <Compile Include="ViewModel\VM_Base.cs" />
@@ -258,6 +259,9 @@
     </Compile>
     <Compile Include="View\AERTicketType.xaml.cs">
       <DependentUpon>AERTicketType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CusMessBox.xaml.cs">
+      <DependentUpon>CusMessBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditAirplane.xaml.cs">
       <DependentUpon>EditAirplane.xaml</DependentUpon>
@@ -312,10 +316,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\UC_SeatingChart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\AERAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -345,6 +345,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AERTicketType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CusMessBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
