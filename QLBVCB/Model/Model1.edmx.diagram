@@ -25,6 +25,7 @@
         <AssociationConnector Association="QLBVCBModel.FK__TAIKHOAN__MANV__286302EC" ManuallyRouted="false" />
         <EntityTypeShape EntityType="QLBVCBModel.DADAT" Width="1.5" PointX="7.375" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="QLBVCBModel.FK_DADAT_CHUYENBAY" />
+        <EntityTypeShape EntityType="QLBVCBModel.sysdiagram" Width="1.5" PointX="7.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
