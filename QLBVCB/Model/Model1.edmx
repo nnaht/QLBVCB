@@ -250,12 +250,8 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <EntitySet Name="SANBAY" EntityType="Self.SANBAY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEBAY" EntityType="Self.VEBAY" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DADAT" EntityType="Self.DADAT" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [DADAT].[MACB] AS [MACB], 
-    [DADAT].[Hang] AS [Hang], 
-    [DADAT].[Day] AS [Day]
-    FROM [dbo].[DADAT] AS [DADAT]</DefiningQuery>
+          <EntitySet Name="DADAT" EntityType="Self.DADAT" store:Type="Tables" Schema="dbo">
+            
           </EntitySet>
           <AssociationSet Name="FK__BOOKING__MAKH__4D94879B" Association="Self.FK__BOOKING__MAKH__4D94879B">
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />

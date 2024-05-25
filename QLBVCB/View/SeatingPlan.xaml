@@ -29,25 +29,29 @@ WindowStyle="None"
             </Grid>
             <Grid Grid.Row= "2" >
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding Seats}" Margin="0,0,0,30">
-                        <ItemsControl.ItemsPanel>
+                    <ListView ItemsSource="{Binding Seats}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid Columns="7" />
                             </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <ContentPresenter Content="{Binding}" 
-                                  ContentTemplateSelector="{StaticResource SeatTemplateSelector}" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                        <ItemsControl.ItemContainerStyle>
-                            <Style TargetType="ContentPresenter">
-                                <Setter Property="Grid.Row" Value="{Binding Row}" />
-                                <Setter Property="Grid.Column" Value="{Binding Column}" />
+                        </ListView.ItemsPanel>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
                             </Style>
-                        </ItemsControl.ItemContainerStyle>
-                    </ItemsControl>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <!-- Thay vì sử dụng ContentPresenter, bạn có thể sử dụng một Grid hoặc bất kỳ panel nào khác để chứa UserControl -->
+                                <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding DataContext.SeatActionCommand, RelativeSource={RelativeSource AncestorType=ListView}}" 
+CommandParameter="{Binding}">
+                                    <ContentControl Content="{Binding}" 
+            ContentTemplateSelector="{StaticResource SeatTemplateSelector}" />
+                                </Button>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </ScrollViewer>
             </Grid>
             <Grid Grid.Row= "3" HorizontalAlignment="Right" Margin="0,15,10,20">

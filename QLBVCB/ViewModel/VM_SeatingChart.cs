@@ -8,6 +8,8 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using QLBVCB.Model;
 using System.Windows.Input;
+using System.Windows.Controls;
+using QLBVCB.View;
 
 namespace QLBVCB.ViewModel
 {
@@ -16,10 +18,21 @@ namespace QLBVCB.ViewModel
         public string SeatType { get; set; }
         public int Row { get; set; }
         public int Column { get; set; }
-        public string Label { get; set; } 
+        public string Label { get; set; }
     }
+
+    public class Booking
+    {
+        public string Ma { get; set; }
+
+        public int Hang { get; set; }
+        public int Day { get; set; }
+    }
+
     public class VM_SeatingChart : INotifyPropertyChanged
     {
+        public List<Tuple<string, int, int>> selection = new List<Tuple<string, int, int>> { };
+        public static List<Booking> Bookings { get; private set; }
         public ObservableCollection<Seat> Seats
         {
             get => _seats;
@@ -30,19 +43,75 @@ namespace QLBVCB.ViewModel
             }
         }
         private ObservableCollection<Seat> _seats;
-        public string _flightId;
-        public ICommand BookCommand {  get; set; }
+        private string _flightId;
+        public string FlightId
+        {
+            get => _flightId;
+            set
+            {
+                _flightId = value;
+                OnPropertyChanged(nameof(FlightId));
+            }
+        }
+        public ICommand BookCommand { get; set; }
+        public ICommand SeatActionCommand { get; }
         public VM_SeatingChart(string flightId, int totalSeats)
         {
             Seats = new ObservableCollection<Seat>();
             _flightId = flightId;
-            BookCommand = new RelayCommand(ExcecuteBookCommand);
+            BookCommand = new RelayCommand(async (p) => await ExecuteBookCommand());
             GenerateSeats(totalSeats);
+            SeatActionCommand = new RelayCommand(ExecuteShowSeatInfoCommand);
+            Bookings = new List<Booking>();
         }
-        private void ExcecuteBookCommand(object obj)
+        private void ExecuteShowSeatInfoCommand(object obj)
         {
-            var chuyenBay = DataProvider.Ins.DB.CHUYENBAYs.SingleOrDefault(cb => cb.MACB == _flightId);
+            // Xử lý khi người dùng nhấn vào một ghế
+            Seat clickedSeat = obj as Seat;
+            if (clickedSeat != null)
+            {
+                var seatTuple = new Tuple<string, int, int>(_flightId, clickedSeat.Row, clickedSeat.Column);
+                if (selection.Contains(seatTuple))
+                {
+                    selection.Remove(seatTuple);
+                }
+                else
+                {
+                    selection.Add(seatTuple);
+                    MessageBox.Show(selection.Count.ToString());
+                }
+            }
         }
+        private async Task ExecuteBookCommand()
+        {
+            try
+            {
+                var chuyenBay = DataProvider.Ins.DB.CHUYENBAYs.SingleOrDefault(cb => cb.MACB == _flightId);
+                if (chuyenBay != null)
+                {
+                    chuyenBay.SO_GHE -= selection.Count;
+                    foreach (var item in selection)
+                    {
+                        var temp = new DADAT
+                        {
+                            MACB = item.Item1.ToString(),
+                            Hang = item.Item2,
+                            Day = item.Item3
+                        };
+                        DataProvider.Ins.DB.DADATs.Add(temp);
+                        await DataProvider.Ins.DB.SaveChangesAsync();
+                    }
+                    MessageBox.Show("Booking completed successfully!");
+                    selection.Clear();
+                    Application.Current.Windows.OfType<Window>().FirstOrDefault()?.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while booking: " + ex.Message);
+            }
+        }
+
         private void GenerateSeats(int totalSeats)
         {
             int totalRows = (int)Math.Round((double)totalSeats / 6) + 1;
@@ -66,7 +135,7 @@ namespace QLBVCB.ViewModel
                 {
                     if (currentSeat < totalSeats)
                     {
-                        if (DADAT.Any(d=>d.MACB == _flightId && d.Day == col && d.Hang == row))
+                        if (DADAT.Any(d => d.MACB == _flightId && d.Day == col && d.Hang == row))
                         {
                             Seats.Add(new Seat { SeatType = "Booked", Row = row, Column = col });
                             currentSeat++;
@@ -81,7 +150,7 @@ namespace QLBVCB.ViewModel
                             Seats.Add(new Seat { SeatType = seatType, Row = row, Column = col });
                             currentSeat++;
                         }
-                        
+
                     }
                 }
             }

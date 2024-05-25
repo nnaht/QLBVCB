@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:QLBVCB.UserControls"
              xmlns:vm ="clr-namespace:QLBVCB.ViewModel"
              mc:Ignorable="d" 
+             
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="30" d:DesignWidth="30">
     <UserControl.DataContext>
@@ -14,11 +15,7 @@
     <Button
         
 Margin="0"
-Height="30"
-Width="30"
-materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-materialDesign:ButtonProgressAssist.Value="-1"
+BorderThickness="1"  Width="30" Height="30" 
 Content="Indeterminate"
 Command="{Binding PickSeatCommand}"
 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"

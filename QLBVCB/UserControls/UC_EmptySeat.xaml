@@ -4,18 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QLBVCB.UserControls"
+             xmlns:vm="clr-namespace:QLBVCB.ViewModel"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="30">
-    <Button
-    Margin="0"
-    Height="30"
-    Width="30"
-        Background="#FF24FF93"
-    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-    materialDesign:ButtonProgressAssist.Value="-1"
-    Content="Indeterminate"
-    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-    Style="{StaticResource MaterialDesignRaisedButton}" BorderBrush="#FF24FF93" />
+    <UserControl.Resources>
+        <vm:BoolToColorConverterEmpty x:Key="BoolToColorConverter" />
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <vm:VM_EmptySeat />
+    </UserControl.DataContext>
+    <Border BorderThickness="1" BorderBrush="Gray" Width="30" Height="30" CornerRadius="10">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Setter Property="Background" Value="GreenYellow"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsChosen}" Value="True">
+                        <Setter Property="Background" Value="White"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        <Border.InputBindings>
+            <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.SeatActionCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                  CommandParameter="info"/>
+        </Border.InputBindings>
+    </Border>
 </UserControl>

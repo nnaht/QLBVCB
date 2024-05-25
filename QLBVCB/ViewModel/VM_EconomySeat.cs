@@ -1,13 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
 namespace QLBVCB.ViewModel
 {
-    public class BoolToColorConverter : IValueConverter
+    public class BoolToColorConverterEconomy : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -35,9 +36,7 @@ namespace QLBVCB.ViewModel
         }
 
         public ICommand ToggleCommand { get; }
-
-        public VM_EconomySeat()
-        {
+        public VM_EconomySeat() {
             ToggleCommand = new RelayCommand(ToggleChosen);
         }
 
