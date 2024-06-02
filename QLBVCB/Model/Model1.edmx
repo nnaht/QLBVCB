@@ -4,13 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QLBVCBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QLBVCBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BOOKING">
           <Key>
             <PropertyRef Name="MABK" />
           </Key>
-          <Property Name="MSBK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MABK" Type="nvarchar" MaxLength="6" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="MABK" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="MAKH" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="MANV" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="MAVB" Type="nvarchar" MaxLength="6" Nullable="false" />
@@ -44,8 +43,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <Key>
             <PropertyRef Name="MAKH" />
           </Key>
-          <Property Name="MSKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MAKH" Type="nvarchar" MaxLength="6" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="MAKH" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="HOTEN" Type="nvarchar" MaxLength="50" />
           <Property Name="NGAYSINH" Type="smalldatetime" />
           <Property Name="GIOITINH" Type="nvarchar" MaxLength="10" />
@@ -59,8 +57,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <Key>
             <PropertyRef Name="MALV" />
           </Key>
-          <Property Name="MSLV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MALV" Type="nvarchar" MaxLength="4" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="MALV" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="TEN_LOAIVE" Type="nvarchar" MaxLength="50" />
           <Property Name="GIAVE" Type="decimal" Precision="19" Scale="4" />
           <Property Name="PHI_THAYDOI" Type="decimal" Precision="19" Scale="4" />
@@ -78,8 +75,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <Key>
             <PropertyRef Name="MANV" />
           </Key>
-          <Property Name="MSNV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MANV" Type="nvarchar" MaxLength="6" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="MANV" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="HOTEN" Type="nvarchar" MaxLength="50" />
           <Property Name="NGAYSINH" Type="smalldatetime" />
           <Property Name="GIOITINH" Type="nvarchar" MaxLength="10" />
@@ -100,16 +96,6 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <Property Name="THANHPHO" Type="nvarchar" MaxLength="50" />
           <Property Name="QUOCGIA" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="TAIKHOAN">
           <Key>
             <PropertyRef Name="TENTK" />
@@ -123,14 +109,13 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <Key>
             <PropertyRef Name="MAVB" />
           </Key>
-          <Property Name="MSVB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MAVB" Type="nvarchar" MaxLength="6" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="MAVB" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="MACB" Type="nvarchar" MaxLength="7" Nullable="false" />
           <Property Name="THUTU_GHE" Type="nvarchar" MaxLength="3" />
           <Property Name="MALV" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="DADAT" Type="bit" />
         </EntityType>
-        <Association Name="FK__BOOKING__MAKH__4222D4EF">
+        <Association Name="FK__BOOKING__MAKH__4D94879B">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
           <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,7 +127,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BOOKING__MANV__4316F928">
+        <Association Name="FK__BOOKING__MANV__4E88ABD4">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
           <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -154,7 +139,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BOOKING__MAVB__440B1D61">
+        <Association Name="FK__BOOKING__MAVB__4F7CD00D">
           <End Role="VEBAY" Type="Self.VEBAY" Multiplicity="1" />
           <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -166,7 +151,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHUYENBAY__MAMB__30F848ED">
+        <Association Name="FK__CHUYENBAY__MAMB__440B1D61">
           <End Role="MAYBAY" Type="Self.MAYBAY" Multiplicity="1" />
           <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="*" />
           <ReferentialConstraint>
@@ -178,7 +163,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHUYENBAY__MASB___31EC6D26">
+        <Association Name="FK__CHUYENBAY__MASB___44FF419A">
           <End Role="SANBAY" Type="Self.SANBAY" Multiplicity="1" />
           <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="*" />
           <ReferentialConstraint>
@@ -190,7 +175,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHUYENBAY__MASB___32E0915F">
+        <Association Name="FK__CHUYENBAY__MASB___45F365D3">
           <End Role="SANBAY" Type="Self.SANBAY" Multiplicity="1" />
           <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="*" />
           <ReferentialConstraint>
@@ -202,7 +187,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TAIKHOAN__MANV__286302EC">
+        <Association Name="FK__TAIKHOAN__MANV__3B75D760">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
           <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
           <ReferentialConstraint>
@@ -214,7 +199,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEBAY__MACB__3D5E1FD2">
+        <Association Name="FK__VEBAY__MACB__48CFD27E">
           <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="1" />
           <End Role="VEBAY" Type="Self.VEBAY" Multiplicity="*" />
           <ReferentialConstraint>
@@ -226,7 +211,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEBAY__MALV__3E52440B">
+        <Association Name="FK__VEBAY__MALV__49C3F6B7">
           <End Role="LOAIVE" Type="Self.LOAIVE" Multiplicity="1" />
           <End Role="VEBAY" Type="Self.VEBAY" Multiplicity="*" />
           <ReferentialConstraint>
@@ -258,7 +243,6 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <EntitySet Name="MAYBAY" EntityType="Self.MAYBAY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANBAY" EntityType="Self.SANBAY" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEBAY" EntityType="Self.VEBAY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DADAT" EntityType="Self.DADAT" store:Type="Tables" store:Schema="dbo">
@@ -268,39 +252,39 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
     [DADAT].[Day] AS [Day]
     FROM [dbo].[DADAT] AS [DADAT]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__BOOKING__MAKH__4222D4EF" Association="Self.FK__BOOKING__MAKH__4222D4EF">
+          <AssociationSet Name="FK__BOOKING__MAKH__4D94879B" Association="Self.FK__BOOKING__MAKH__4D94879B">
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
             <End Role="BOOKING" EntitySet="BOOKING" />
           </AssociationSet>
-          <AssociationSet Name="FK__BOOKING__MANV__4316F928" Association="Self.FK__BOOKING__MANV__4316F928">
+          <AssociationSet Name="FK__BOOKING__MANV__4E88ABD4" Association="Self.FK__BOOKING__MANV__4E88ABD4">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="BOOKING" EntitySet="BOOKING" />
           </AssociationSet>
-          <AssociationSet Name="FK__BOOKING__MAVB__440B1D61" Association="Self.FK__BOOKING__MAVB__440B1D61">
+          <AssociationSet Name="FK__BOOKING__MAVB__4F7CD00D" Association="Self.FK__BOOKING__MAVB__4F7CD00D">
             <End Role="VEBAY" EntitySet="VEBAY" />
             <End Role="BOOKING" EntitySet="BOOKING" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHUYENBAY__MAMB__30F848ED" Association="Self.FK__CHUYENBAY__MAMB__30F848ED">
+          <AssociationSet Name="FK__CHUYENBAY__MAMB__440B1D61" Association="Self.FK__CHUYENBAY__MAMB__440B1D61">
             <End Role="MAYBAY" EntitySet="MAYBAY" />
             <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHUYENBAY__MASB___31EC6D26" Association="Self.FK__CHUYENBAY__MASB___31EC6D26">
+          <AssociationSet Name="FK__CHUYENBAY__MASB___44FF419A" Association="Self.FK__CHUYENBAY__MASB___44FF419A">
             <End Role="SANBAY" EntitySet="SANBAY" />
             <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHUYENBAY__MASB___32E0915F" Association="Self.FK__CHUYENBAY__MASB___32E0915F">
+          <AssociationSet Name="FK__CHUYENBAY__MASB___45F365D3" Association="Self.FK__CHUYENBAY__MASB___45F365D3">
             <End Role="SANBAY" EntitySet="SANBAY" />
             <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
           </AssociationSet>
-          <AssociationSet Name="FK__TAIKHOAN__MANV__286302EC" Association="Self.FK__TAIKHOAN__MANV__286302EC">
+          <AssociationSet Name="FK__TAIKHOAN__MANV__3B75D760" Association="Self.FK__TAIKHOAN__MANV__3B75D760">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEBAY__MACB__3D5E1FD2" Association="Self.FK__VEBAY__MACB__3D5E1FD2">
+          <AssociationSet Name="FK__VEBAY__MACB__48CFD27E" Association="Self.FK__VEBAY__MACB__48CFD27E">
             <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
             <End Role="VEBAY" EntitySet="VEBAY" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEBAY__MALV__3E52440B" Association="Self.FK__VEBAY__MALV__3E52440B">
+          <AssociationSet Name="FK__VEBAY__MALV__49C3F6B7" Association="Self.FK__VEBAY__MALV__49C3F6B7">
             <End Role="LOAIVE" EntitySet="LOAIVE" />
             <End Role="VEBAY" EntitySet="VEBAY" />
           </AssociationSet>
@@ -309,7 +293,8 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             <End Role="DADAT" EntitySet="DADAT" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLBVCBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -317,14 +302,13 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <Key>
             <PropertyRef Name="MABK" />
           </Key>
-          <Property Name="MSBK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MABK" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="MABK" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MAKH" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MANV" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MAVB" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__BOOKING__MAKH__4222D4EF" FromRole="BOOKING" ToRole="KHACHHANG" />
-          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__BOOKING__MANV__4316F928" FromRole="BOOKING" ToRole="NHANVIEN" />
-          <NavigationProperty Name="VEBAY" Relationship="Self.FK__BOOKING__MAVB__440B1D61" FromRole="BOOKING" ToRole="VEBAY" />
+          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__BOOKING__MAKH__4D94879B" FromRole="BOOKING" ToRole="KHACHHANG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__BOOKING__MANV__4E88ABD4" FromRole="BOOKING" ToRole="NHANVIEN" />
+          <NavigationProperty Name="VEBAY" Relationship="Self.FK__BOOKING__MAVB__4F7CD00D" FromRole="BOOKING" ToRole="VEBAY" />
         </EntityType>
         <EntityType Name="CHUYENBAY">
           <Key>
@@ -338,18 +322,17 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <Property Name="SO_GHE" Type="Int32" />
           <Property Name="MASB_CATCANH" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="MASB_HACANH" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="MAYBAY" Relationship="Self.FK__CHUYENBAY__MAMB__30F848ED" FromRole="CHUYENBAY" ToRole="MAYBAY" />
-          <NavigationProperty Name="SANBAY" Relationship="Self.FK__CHUYENBAY__MASB___31EC6D26" FromRole="CHUYENBAY" ToRole="SANBAY" />
-          <NavigationProperty Name="SANBAY1" Relationship="Self.FK__CHUYENBAY__MASB___32E0915F" FromRole="CHUYENBAY" ToRole="SANBAY" />
-          <NavigationProperty Name="VEBAYs" Relationship="Self.FK__VEBAY__MACB__3D5E1FD2" FromRole="CHUYENBAY" ToRole="VEBAY" />
-          <NavigationProperty Name="DADATs" Relationship="QLBVCBModel.FK_DADAT_CHUYENBAY" FromRole="CHUYENBAY" ToRole="DADAT" />
+          <NavigationProperty Name="MAYBAY" Relationship="Self.FK__CHUYENBAY__MAMB__440B1D61" FromRole="CHUYENBAY" ToRole="MAYBAY" />
+          <NavigationProperty Name="SANBAY" Relationship="Self.FK__CHUYENBAY__MASB___44FF419A" FromRole="CHUYENBAY" ToRole="SANBAY" />
+          <NavigationProperty Name="SANBAY1" Relationship="Self.FK__CHUYENBAY__MASB___45F365D3" FromRole="CHUYENBAY" ToRole="SANBAY" />
+          <NavigationProperty Name="VEBAYs" Relationship="Self.FK__VEBAY__MACB__48CFD27E" FromRole="CHUYENBAY" ToRole="VEBAY" />
+          <NavigationProperty Name="DADATs" Relationship="Self.FK_DADAT_CHUYENBAY" FromRole="CHUYENBAY" ToRole="DADAT" />
         </EntityType>
         <EntityType Name="KHACHHANG">
           <Key>
             <PropertyRef Name="MAKH" />
           </Key>
-          <Property Name="MSKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MAKH" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="MAKH" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NGAYSINH" Type="DateTime" Precision="0" />
           <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -358,19 +341,18 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HOATDONG" Type="Boolean" />
-          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__MAKH__4222D4EF" FromRole="KHACHHANG" ToRole="BOOKING" />
+          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__MAKH__4D94879B" FromRole="KHACHHANG" ToRole="BOOKING" />
         </EntityType>
         <EntityType Name="LOAIVE">
           <Key>
             <PropertyRef Name="MALV" />
           </Key>
-          <Property Name="MSLV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MALV" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="MALV" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TEN_LOAIVE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GIAVE" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="PHI_THAYDOI" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="PHI_HUY" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="VEBAYs" Relationship="Self.FK__VEBAY__MALV__3E52440B" FromRole="LOAIVE" ToRole="VEBAY" />
+          <NavigationProperty Name="VEBAYs" Relationship="Self.FK__VEBAY__MALV__49C3F6B7" FromRole="LOAIVE" ToRole="VEBAY" />
         </EntityType>
         <EntityType Name="MAYBAY">
           <Key>
@@ -379,14 +361,13 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <Property Name="MAMB" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LOAIMB" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="HANGMB" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CHUYENBAYs" Relationship="Self.FK__CHUYENBAY__MAMB__30F848ED" FromRole="MAYBAY" ToRole="CHUYENBAY" />
+          <NavigationProperty Name="CHUYENBAYs" Relationship="Self.FK__CHUYENBAY__MAMB__440B1D61" FromRole="MAYBAY" ToRole="CHUYENBAY" />
         </EntityType>
         <EntityType Name="NHANVIEN">
           <Key>
             <PropertyRef Name="MANV" />
           </Key>
-          <Property Name="MSNV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MANV" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="MANV" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NGAYSINH" Type="DateTime" Precision="0" />
           <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -397,8 +378,8 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <Property Name="LUONG" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="VITRI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HOATDONG" Type="Boolean" />
-          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__MANV__4316F928" FromRole="NHANVIEN" ToRole="BOOKING" />
-          <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK__TAIKHOAN__MANV__286302EC" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
+          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__MANV__4E88ABD4" FromRole="NHANVIEN" ToRole="BOOKING" />
+          <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK__TAIKHOAN__MANV__3B75D760" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
         </EntityType>
         <EntityType Name="SANBAY">
           <Key>
@@ -408,8 +389,8 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <Property Name="TEN_SANBAY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="THANHPHO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="QUOCGIA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CHUYENBAYs" Relationship="Self.FK__CHUYENBAY__MASB___31EC6D26" FromRole="SANBAY" ToRole="CHUYENBAY" />
-          <NavigationProperty Name="CHUYENBAYs1" Relationship="Self.FK__CHUYENBAY__MASB___32E0915F" FromRole="SANBAY" ToRole="CHUYENBAY" />
+          <NavigationProperty Name="CHUYENBAYs" Relationship="Self.FK__CHUYENBAY__MASB___44FF419A" FromRole="SANBAY" ToRole="CHUYENBAY" />
+          <NavigationProperty Name="CHUYENBAYs1" Relationship="Self.FK__CHUYENBAY__MASB___45F365D3" FromRole="SANBAY" ToRole="CHUYENBAY" />
         </EntityType>
         <EntityType Name="TAIKHOAN">
           <Key>
@@ -419,23 +400,33 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="HOATDONG" Type="Boolean" />
           <Property Name="MANV" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__TAIKHOAN__MANV__286302EC" FromRole="TAIKHOAN" ToRole="NHANVIEN" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__TAIKHOAN__MANV__3B75D760" FromRole="TAIKHOAN" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="VEBAY">
           <Key>
             <PropertyRef Name="MAVB" />
           </Key>
-          <Property Name="MSVB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MAVB" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="MAVB" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MACB" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="THUTU_GHE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="MALV" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DADAT" Type="Boolean" />
-          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__MAVB__440B1D61" FromRole="VEBAY" ToRole="BOOKING" />
-          <NavigationProperty Name="CHUYENBAY" Relationship="Self.FK__VEBAY__MACB__3D5E1FD2" FromRole="VEBAY" ToRole="CHUYENBAY" />
-          <NavigationProperty Name="LOAIVE" Relationship="Self.FK__VEBAY__MALV__3E52440B" FromRole="VEBAY" ToRole="LOAIVE" />
+          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__MAVB__4F7CD00D" FromRole="VEBAY" ToRole="BOOKING" />
+          <NavigationProperty Name="CHUYENBAY" Relationship="Self.FK__VEBAY__MACB__48CFD27E" FromRole="VEBAY" ToRole="CHUYENBAY" />
+          <NavigationProperty Name="LOAIVE" Relationship="Self.FK__VEBAY__MALV__49C3F6B7" FromRole="VEBAY" ToRole="LOAIVE" />
         </EntityType>
-        <Association Name="FK__BOOKING__MAKH__4222D4EF">
+        <EntityType Name="DADAT">
+          <Key>
+            <PropertyRef Name="MACB" />
+            <PropertyRef Name="Hang" />
+            <PropertyRef Name="Day" />
+          </Key>
+          <Property Name="MACB" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hang" Type="Int32" Nullable="false" />
+          <Property Name="Day" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CHUYENBAY" Relationship="Self.FK_DADAT_CHUYENBAY" FromRole="DADAT" ToRole="CHUYENBAY" />
+        </EntityType>
+        <Association Name="FK__BOOKING__MAKH__4D94879B">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
           <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -447,7 +438,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BOOKING__MANV__4316F928">
+        <Association Name="FK__BOOKING__MANV__4E88ABD4">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
           <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -459,7 +450,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BOOKING__MAVB__440B1D61">
+        <Association Name="FK__BOOKING__MAVB__4F7CD00D">
           <End Role="VEBAY" Type="Self.VEBAY" Multiplicity="1" />
           <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -471,7 +462,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHUYENBAY__MAMB__30F848ED">
+        <Association Name="FK__CHUYENBAY__MAMB__440B1D61">
           <End Role="MAYBAY" Type="Self.MAYBAY" Multiplicity="1" />
           <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="*" />
           <ReferentialConstraint>
@@ -483,7 +474,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHUYENBAY__MASB___31EC6D26">
+        <Association Name="FK__CHUYENBAY__MASB___44FF419A">
           <End Role="SANBAY" Type="Self.SANBAY" Multiplicity="1" />
           <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="*" />
           <ReferentialConstraint>
@@ -495,7 +486,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHUYENBAY__MASB___32E0915F">
+        <Association Name="FK__CHUYENBAY__MASB___45F365D3">
           <End Role="SANBAY" Type="Self.SANBAY" Multiplicity="1" />
           <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="*" />
           <ReferentialConstraint>
@@ -507,7 +498,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEBAY__MACB__3D5E1FD2">
+        <Association Name="FK__VEBAY__MACB__48CFD27E">
           <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="1" />
           <End Role="VEBAY" Type="Self.VEBAY" Multiplicity="*" />
           <ReferentialConstraint>
@@ -519,7 +510,19 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEBAY__MALV__3E52440B">
+        <Association Name="FK_DADAT_CHUYENBAY">
+          <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="1" />
+          <End Role="DADAT" Type="Self.DADAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUYENBAY">
+              <PropertyRef Name="MACB" />
+            </Principal>
+            <Dependent Role="DADAT">
+              <PropertyRef Name="MACB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VEBAY__MALV__49C3F6B7">
           <End Role="LOAIVE" Type="Self.LOAIVE" Multiplicity="1" />
           <End Role="VEBAY" Type="Self.VEBAY" Multiplicity="*" />
           <ReferentialConstraint>
@@ -531,7 +534,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TAIKHOAN__MANV__286302EC">
+        <Association Name="FK__TAIKHOAN__MANV__3B75D760">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
           <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
           <ReferentialConstraint>
@@ -543,7 +546,7 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QLBVCBEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QLBVCBEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BOOKINGs" EntityType="Self.BOOKING" />
           <EntitySet Name="CHUYENBAYs" EntityType="Self.CHUYENBAY" />
           <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
@@ -553,92 +556,57 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <EntitySet Name="SANBAYs" EntityType="Self.SANBAY" />
           <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
           <EntitySet Name="VEBAYs" EntityType="Self.VEBAY" />
-          <AssociationSet Name="FK__BOOKING__MAKH__4222D4EF" Association="Self.FK__BOOKING__MAKH__4222D4EF">
+          <EntitySet Name="DADATs" EntityType="Self.DADAT" />
+          <AssociationSet Name="FK__BOOKING__MAKH__4D94879B" Association="Self.FK__BOOKING__MAKH__4D94879B">
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
             <End Role="BOOKING" EntitySet="BOOKINGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__BOOKING__MANV__4316F928" Association="Self.FK__BOOKING__MANV__4316F928">
+          <AssociationSet Name="FK__BOOKING__MANV__4E88ABD4" Association="Self.FK__BOOKING__MANV__4E88ABD4">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="BOOKING" EntitySet="BOOKINGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__BOOKING__MAVB__440B1D61" Association="Self.FK__BOOKING__MAVB__440B1D61">
+          <AssociationSet Name="FK__BOOKING__MAVB__4F7CD00D" Association="Self.FK__BOOKING__MAVB__4F7CD00D">
             <End Role="VEBAY" EntitySet="VEBAYs" />
             <End Role="BOOKING" EntitySet="BOOKINGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHUYENBAY__MAMB__30F848ED" Association="Self.FK__CHUYENBAY__MAMB__30F848ED">
+          <AssociationSet Name="FK__CHUYENBAY__MAMB__440B1D61" Association="Self.FK__CHUYENBAY__MAMB__440B1D61">
             <End Role="MAYBAY" EntitySet="MAYBAYs" />
             <End Role="CHUYENBAY" EntitySet="CHUYENBAYs" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHUYENBAY__MASB___31EC6D26" Association="Self.FK__CHUYENBAY__MASB___31EC6D26">
+          <AssociationSet Name="FK__CHUYENBAY__MASB___44FF419A" Association="Self.FK__CHUYENBAY__MASB___44FF419A">
             <End Role="SANBAY" EntitySet="SANBAYs" />
             <End Role="CHUYENBAY" EntitySet="CHUYENBAYs" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHUYENBAY__MASB___32E0915F" Association="Self.FK__CHUYENBAY__MASB___32E0915F">
+          <AssociationSet Name="FK__CHUYENBAY__MASB___45F365D3" Association="Self.FK__CHUYENBAY__MASB___45F365D3">
             <End Role="SANBAY" EntitySet="SANBAYs" />
             <End Role="CHUYENBAY" EntitySet="CHUYENBAYs" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEBAY__MACB__3D5E1FD2" Association="Self.FK__VEBAY__MACB__3D5E1FD2">
+          <AssociationSet Name="FK__VEBAY__MACB__48CFD27E" Association="Self.FK__VEBAY__MACB__48CFD27E">
             <End Role="CHUYENBAY" EntitySet="CHUYENBAYs" />
             <End Role="VEBAY" EntitySet="VEBAYs" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEBAY__MALV__3E52440B" Association="Self.FK__VEBAY__MALV__3E52440B">
-            <End Role="LOAIVE" EntitySet="LOAIVEs" />
-            <End Role="VEBAY" EntitySet="VEBAYs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TAIKHOAN__MANV__286302EC" Association="Self.FK__TAIKHOAN__MANV__286302EC">
-            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
-            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
-          </AssociationSet>
-          <EntitySet Name="DADATs" EntityType="QLBVCBModel.DADAT" />
-          <AssociationSet Name="FK_DADAT_CHUYENBAY" Association="QLBVCBModel.FK_DADAT_CHUYENBAY">
+          <AssociationSet Name="FK_DADAT_CHUYENBAY" Association="Self.FK_DADAT_CHUYENBAY">
             <End Role="CHUYENBAY" EntitySet="CHUYENBAYs" />
             <End Role="DADAT" EntitySet="DADATs" />
           </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="QLBVCBModel.sysdiagram" />
+          <AssociationSet Name="FK__VEBAY__MALV__49C3F6B7" Association="Self.FK__VEBAY__MALV__49C3F6B7">
+            <End Role="LOAIVE" EntitySet="LOAIVEs" />
+            <End Role="VEBAY" EntitySet="VEBAYs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TAIKHOAN__MANV__3B75D760" Association="Self.FK__TAIKHOAN__MANV__3B75D760">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="DADAT">
-          <Key>
-            <PropertyRef Name="MACB" />
-            <PropertyRef Name="Hang" />
-            <PropertyRef Name="Day" />
-          </Key>
-          <Property Name="MACB" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="true" />
-          <Property Name="Hang" Type="Int32" Nullable="false" />
-          <Property Name="Day" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CHUYENBAY" Relationship="QLBVCBModel.FK_DADAT_CHUYENBAY" FromRole="DADAT" ToRole="CHUYENBAY" />
-        </EntityType>
-        <Association Name="FK_DADAT_CHUYENBAY">
-          <End Type="QLBVCBModel.CHUYENBAY" Role="CHUYENBAY" Multiplicity="1" />
-          <End Type="QLBVCBModel.DADAT" Role="DADAT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CHUYENBAY">
-              <PropertyRef Name="MACB" />
-            </Principal>
-            <Dependent Role="DADAT">
-              <PropertyRef Name="MACB" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QLBVCBModelStoreContainer" CdmEntityContainer="QLBVCBEntities2">
+        <EntityContainerMapping StorageEntityContainer="QLBVCBModelStoreContainer" CdmEntityContainer="QLBVCBEntities5">
           <EntitySetMapping Name="BOOKINGs">
             <EntityTypeMapping TypeName="QLBVCBModel.BOOKING">
               <MappingFragment StoreEntitySet="BOOKING">
-                <ScalarProperty Name="MSBK" ColumnName="MSBK" />
                 <ScalarProperty Name="MABK" ColumnName="MABK" />
                 <ScalarProperty Name="MAKH" ColumnName="MAKH" />
                 <ScalarProperty Name="MANV" ColumnName="MANV" />
@@ -663,7 +631,6 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <EntitySetMapping Name="KHACHHANGs">
             <EntityTypeMapping TypeName="QLBVCBModel.KHACHHANG">
               <MappingFragment StoreEntitySet="KHACHHANG">
-                <ScalarProperty Name="MSKH" ColumnName="MSKH" />
                 <ScalarProperty Name="MAKH" ColumnName="MAKH" />
                 <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
                 <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
@@ -679,7 +646,6 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <EntitySetMapping Name="LOAIVEs">
             <EntityTypeMapping TypeName="QLBVCBModel.LOAIVE">
               <MappingFragment StoreEntitySet="LOAIVE">
-                <ScalarProperty Name="MSLV" ColumnName="MSLV" />
                 <ScalarProperty Name="MALV" ColumnName="MALV" />
                 <ScalarProperty Name="TEN_LOAIVE" ColumnName="TEN_LOAIVE" />
                 <ScalarProperty Name="GIAVE" ColumnName="GIAVE" />
@@ -700,7 +666,6 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <EntitySetMapping Name="NHANVIENs">
             <EntityTypeMapping TypeName="QLBVCBModel.NHANVIEN">
               <MappingFragment StoreEntitySet="NHANVIEN">
-                <ScalarProperty Name="MSNV" ColumnName="MSNV" />
                 <ScalarProperty Name="MANV" ColumnName="MANV" />
                 <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
                 <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
@@ -738,7 +703,6 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <EntitySetMapping Name="VEBAYs">
             <EntityTypeMapping TypeName="QLBVCBModel.VEBAY">
               <MappingFragment StoreEntitySet="VEBAY">
-                <ScalarProperty Name="MSVB" ColumnName="MSVB" />
                 <ScalarProperty Name="MAVB" ColumnName="MAVB" />
                 <ScalarProperty Name="MACB" ColumnName="MACB" />
                 <ScalarProperty Name="THUTU_GHE" ColumnName="THUTU_GHE" />
@@ -750,20 +714,9 @@ warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defi
           <EntitySetMapping Name="DADATs">
             <EntityTypeMapping TypeName="QLBVCBModel.DADAT">
               <MappingFragment StoreEntitySet="DADAT">
-                <ScalarProperty Name="Day" ColumnName="Day" />
-                <ScalarProperty Name="Hang" ColumnName="Hang" />
                 <ScalarProperty Name="MACB" ColumnName="MACB" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="QLBVCBModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Hang" ColumnName="Hang" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

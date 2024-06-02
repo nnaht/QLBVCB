@@ -22,10 +22,10 @@ namespace QLBVCB.Model
                 _ins = value;
             }
         }
-        public QLBVCBEntities3 DB { get; set; }
+        public QLBVCBEntities5 DB { get; set; }
         private DataProvider()
         {
-            DB = new QLBVCBEntities3();
+            DB = new QLBVCBEntities5();
         }
     }
 }

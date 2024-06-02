@@ -20,7 +20,6 @@ namespace QLBVCB.Model
             this.BOOKINGs = new HashSet<BOOKING>();
         }
     
-        public int MSKH { get; set; }
         public string MAKH { get; set; }
         public string HOTEN { get; set; }
         public Nullable<System.DateTime> NGAYSINH { get; set; }

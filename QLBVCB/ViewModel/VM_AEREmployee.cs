@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
@@ -88,7 +89,7 @@ namespace QLBVCB.ViewModel
             AddEmployeeCommand = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(HOTEN) || string.IsNullOrEmpty(NGAYSINH.ToString()) || string.IsNullOrEmpty(GIOITINH) || string.IsNullOrEmpty(CCCD)
-                    || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(LUONG.ToString()) 
+                    || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(LUONG.ToString())
                     || string.IsNullOrEmpty(VITRI) || string.IsNullOrEmpty(HOATDONG.ToString()))
                     return false;
                 if (displayEmployeeList == null)
@@ -98,7 +99,7 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                var employee = new NHANVIEN() { HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRI = VITRI, HOATDONG = HOATDONG };
+                var employee = new NHANVIEN() { MANV = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRI = VITRI, HOATDONG = HOATDONG };
                 DataProvider.Ins.DB.NHANVIENs.Add(employee);
                 DataProvider.Ins.DB.SaveChanges();
                 EmployeeList.Add(employee);
@@ -174,6 +175,20 @@ namespace QLBVCB.ViewModel
         private void FilterEmployee()
         {
             EmployeeView.Refresh();
+        }
+        private String GetNextId()
+        {
+            var lastEmployee = DataProvider.Ins.DB.NHANVIENs.OrderByDescending(e => e.MANV).Take(1).FirstOrDefault();
+            string temp = lastEmployee.MANV.ToString();
+            if (temp != null)
+            {
+                temp = "NV" + (int.Parse(temp.Substring(2)) + 1).ToString().PadLeft(4, '0');
+            }
+            else
+            {
+                _ = "NV0001";
+            }
+            return temp;
         }
     }
 }

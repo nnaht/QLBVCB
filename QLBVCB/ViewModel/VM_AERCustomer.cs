@@ -90,7 +90,7 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                var customer = new KHACHHANG    () { HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, HOATDONG = HOATDONG };
+                var customer = new KHACHHANG    () {MAKH = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, HOATDONG = HOATDONG };
                 DataProvider.Ins.DB.KHACHHANGs.Add(customer);
                 DataProvider.Ins.DB.SaveChanges();
                 CustomerList.Add(customer);
@@ -164,6 +164,20 @@ namespace QLBVCB.ViewModel
         private void FilterCustomer()
         {
             CustomerView.Refresh();
+        }
+        private String GetNextId()
+        {
+            var lastCustomer = DataProvider.Ins.DB.KHACHHANGs.OrderByDescending(e => e.MAKH).Take(1).FirstOrDefault();
+            string temp = lastCustomer.MAKH.ToString();
+            if (temp != null)
+            {
+                temp = "KH" + (int.Parse(temp.Substring(2)) + 1).ToString().PadLeft(4, '0');
+            }
+            else
+            {
+                _ = "KH0001";
+            }
+            return temp;
         }
     }
 }

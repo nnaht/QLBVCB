@@ -14,7 +14,6 @@ namespace QLBVCB.Model
     
     public partial class BOOKING
     {
-        public int MSBK { get; set; }
         public string MABK { get; set; }
         public string MAKH { get; set; }
         public string MANV { get; set; }

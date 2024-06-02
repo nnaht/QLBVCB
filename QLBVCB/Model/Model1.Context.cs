@@ -13,10 +13,10 @@ namespace QLBVCB.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QLBVCBEntities2 : DbContext
+    public partial class QLBVCBEntities5 : DbContext
     {
-        public QLBVCBEntities2()
-            : base("name=QLBVCBEntities2")
+        public QLBVCBEntities5()
+            : base("name=QLBVCBEntities5")
         {
         }
     
@@ -35,6 +35,5 @@ namespace QLBVCB.Model
         public virtual DbSet<TAIKHOAN> TAIKHOANs { get; set; }
         public virtual DbSet<VEBAY> VEBAYs { get; set; }
         public virtual DbSet<DADAT> DADATs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

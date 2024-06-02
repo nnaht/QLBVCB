@@ -21,7 +21,6 @@ namespace QLBVCB.Model
             this.TAIKHOANs = new HashSet<TAIKHOAN>();
         }
     
-        public int MSNV { get; set; }
         public string MANV { get; set; }
         public string HOTEN { get; set; }
         public Nullable<System.DateTime> NGAYSINH { get; set; }

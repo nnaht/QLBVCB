@@ -20,7 +20,6 @@ namespace QLBVCB.Model
             this.BOOKINGs = new HashSet<BOOKING>();
         }
     
-        public int MSVB { get; set; }
         public string MAVB { get; set; }
         public string MACB { get; set; }
         public string THUTU_GHE { get; set; }
