@@ -1,0 +1,761 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLBVCBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOOKING">
+          <Key>
+            <PropertyRef Name="MABK" />
+          </Key>
+          <Property Name="MSBK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MABK" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="MAKH" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="MANV" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="MAVB" Type="nvarchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CHUYENBAY">
+          <Key>
+            <PropertyRef Name="MACB" />
+          </Key>
+          <Property Name="MACB" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="MAMB" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="THOIGIAN_CATCANH" Type="smalldatetime" />
+          <Property Name="THOIGIAN_HACANH" Type="smalldatetime" />
+          <Property Name="TRANGTHAI" Type="nvarchar" MaxLength="50" />
+          <Property Name="SO_GHE" Type="int" />
+          <Property Name="MASB_CATCANH" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="MASB_HACANH" Type="char" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QLBVCB.dbo.DADAT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DADAT">
+          <Key>
+            <PropertyRef Name="MACB" />
+            <PropertyRef Name="Hang" />
+            <PropertyRef Name="Day" />
+          </Key>
+          <Property Name="MACB" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="Hang" Type="int" Nullable="false" />
+          <Property Name="Day" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MAKH" />
+          </Key>
+          <Property Name="MSKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MAKH" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="HOTEN" Type="nvarchar" MaxLength="50" />
+          <Property Name="NGAYSINH" Type="smalldatetime" />
+          <Property Name="GIOITINH" Type="nvarchar" MaxLength="10" />
+          <Property Name="CCCD" Type="nvarchar" MaxLength="50" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="50" />
+          <Property Name="SDT" Type="varchar" MaxLength="10" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="HOATDONG" Type="bit" />
+        </EntityType>
+        <EntityType Name="LOAIVE">
+          <Key>
+            <PropertyRef Name="MALV" />
+          </Key>
+          <Property Name="MSLV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MALV" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="TEN_LOAIVE" Type="nvarchar" MaxLength="50" />
+          <Property Name="GIAVE" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="PHI_THAYDOI" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="PHI_HUY" Type="decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="MAYBAY">
+          <Key>
+            <PropertyRef Name="MAMB" />
+          </Key>
+          <Property Name="MAMB" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="LOAIMB" Type="nvarchar" MaxLength="100" />
+          <Property Name="HANGMB" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MSNV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MANV" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="HOTEN" Type="nvarchar" MaxLength="50" />
+          <Property Name="NGAYSINH" Type="smalldatetime" />
+          <Property Name="GIOITINH" Type="nvarchar" MaxLength="10" />
+          <Property Name="CCCD" Type="nvarchar" MaxLength="50" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="50" />
+          <Property Name="SDT" Type="varchar" MaxLength="10" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="LUONG" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="VITRI" Type="nvarchar" MaxLength="50" />
+          <Property Name="HOATDONG" Type="bit" />
+        </EntityType>
+        <EntityType Name="SANBAY">
+          <Key>
+            <PropertyRef Name="MASB" />
+          </Key>
+          <Property Name="MASB" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="TEN_SANBAY" Type="nvarchar" MaxLength="50" />
+          <Property Name="THANHPHO" Type="nvarchar" MaxLength="50" />
+          <Property Name="QUOCGIA" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="TENTK" />
+          </Key>
+          <Property Name="TENTK" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MATKHAU" Type="varchar" MaxLength="50" />
+          <Property Name="HOATDONG" Type="bit" />
+          <Property Name="MANV" Type="nvarchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VEBAY">
+          <Key>
+            <PropertyRef Name="MAVB" />
+          </Key>
+          <Property Name="MSVB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MAVB" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="MACB" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="THUTU_GHE" Type="nvarchar" MaxLength="3" />
+          <Property Name="MALV" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="DADAT" Type="bit" />
+        </EntityType>
+        <Association Name="FK__BOOKING__MAKH__5165187F">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MAKH" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BOOKING__MANV__52593CB8">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BOOKING__MAVB__534D60F1">
+          <End Role="VEBAY" Type="Self.VEBAY" Multiplicity="1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEBAY">
+              <PropertyRef Name="MAVB" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="MAVB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CHUYENBAY__MAMB__45F365D3">
+          <End Role="MAYBAY" Type="Self.MAYBAY" Multiplicity="1" />
+          <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAYBAY">
+              <PropertyRef Name="MAMB" />
+            </Principal>
+            <Dependent Role="CHUYENBAY">
+              <PropertyRef Name="MAMB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CHUYENBAY__MASB___46E78A0C">
+          <End Role="SANBAY" Type="Self.SANBAY" Multiplicity="1" />
+          <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANBAY">
+              <PropertyRef Name="MASB" />
+            </Principal>
+            <Dependent Role="CHUYENBAY">
+              <PropertyRef Name="MASB_CATCANH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CHUYENBAY__MASB___47DBAE45">
+          <End Role="SANBAY" Type="Self.SANBAY" Multiplicity="1" />
+          <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANBAY">
+              <PropertyRef Name="MASB" />
+            </Principal>
+            <Dependent Role="CHUYENBAY">
+              <PropertyRef Name="MASB_HACANH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TAIKHOAN__MANV__3C69FB99">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="TAIKHOAN">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VEBAY__MACB__4BAC3F29">
+          <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="1" />
+          <End Role="VEBAY" Type="Self.VEBAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUYENBAY">
+              <PropertyRef Name="MACB" />
+            </Principal>
+            <Dependent Role="VEBAY">
+              <PropertyRef Name="MACB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VEBAY__MALV__4CA06362">
+          <End Role="LOAIVE" Type="Self.LOAIVE" Multiplicity="1" />
+          <End Role="VEBAY" Type="Self.VEBAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAIVE">
+              <PropertyRef Name="MALV" />
+            </Principal>
+            <Dependent Role="VEBAY">
+              <PropertyRef Name="MALV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DADAT_CHUYENBAY">
+          <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="1" />
+          <End Role="DADAT" Type="Self.DADAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUYENBAY">
+              <PropertyRef Name="MACB" />
+            </Principal>
+            <Dependent Role="DADAT">
+              <PropertyRef Name="MACB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLBVCBModel1StoreContainer">
+          <EntitySet Name="BOOKING" EntityType="Self.BOOKING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHUYENBAY" EntityType="Self.CHUYENBAY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAIVE" EntityType="Self.LOAIVE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAYBAY" EntityType="Self.MAYBAY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SANBAY" EntityType="Self.SANBAY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VEBAY" EntityType="Self.VEBAY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DADAT" EntityType="Self.DADAT" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DADAT].[MACB] AS [MACB], 
+    [DADAT].[Hang] AS [Hang], 
+    [DADAT].[Day] AS [Day]
+    FROM [dbo].[DADAT] AS [DADAT]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__BOOKING__MAKH__5165187F" Association="Self.FK__BOOKING__MAKH__5165187F">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="BOOKING" EntitySet="BOOKING" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BOOKING__MANV__52593CB8" Association="Self.FK__BOOKING__MANV__52593CB8">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="BOOKING" EntitySet="BOOKING" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BOOKING__MAVB__534D60F1" Association="Self.FK__BOOKING__MAVB__534D60F1">
+            <End Role="VEBAY" EntitySet="VEBAY" />
+            <End Role="BOOKING" EntitySet="BOOKING" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHUYENBAY__MAMB__45F365D3" Association="Self.FK__CHUYENBAY__MAMB__45F365D3">
+            <End Role="MAYBAY" EntitySet="MAYBAY" />
+            <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHUYENBAY__MASB___46E78A0C" Association="Self.FK__CHUYENBAY__MASB___46E78A0C">
+            <End Role="SANBAY" EntitySet="SANBAY" />
+            <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHUYENBAY__MASB___47DBAE45" Association="Self.FK__CHUYENBAY__MASB___47DBAE45">
+            <End Role="SANBAY" EntitySet="SANBAY" />
+            <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TAIKHOAN__MANV__3C69FB99" Association="Self.FK__TAIKHOAN__MANV__3C69FB99">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VEBAY__MACB__4BAC3F29" Association="Self.FK__VEBAY__MACB__4BAC3F29">
+            <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
+            <End Role="VEBAY" EntitySet="VEBAY" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VEBAY__MALV__4CA06362" Association="Self.FK__VEBAY__MALV__4CA06362">
+            <End Role="LOAIVE" EntitySet="LOAIVE" />
+            <End Role="VEBAY" EntitySet="VEBAY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DADAT_CHUYENBAY" Association="Self.FK_DADAT_CHUYENBAY">
+            <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
+            <End Role="DADAT" EntitySet="DADAT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLBVCBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BOOKING">
+          <Key>
+            <PropertyRef Name="MABK" />
+          </Key>
+          <Property Name="MSBK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MABK" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MAKH" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MANV" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MAVB" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__BOOKING__MAKH__5165187F" FromRole="BOOKING" ToRole="KHACHHANG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__BOOKING__MANV__52593CB8" FromRole="BOOKING" ToRole="NHANVIEN" />
+          <NavigationProperty Name="VEBAY" Relationship="Self.FK__BOOKING__MAVB__534D60F1" FromRole="BOOKING" ToRole="VEBAY" />
+        </EntityType>
+        <EntityType Name="CHUYENBAY">
+          <Key>
+            <PropertyRef Name="MACB" />
+          </Key>
+          <Property Name="MACB" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MAMB" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="THOIGIAN_CATCANH" Type="DateTime" Precision="0" />
+          <Property Name="THOIGIAN_HACANH" Type="DateTime" Precision="0" />
+          <Property Name="TRANGTHAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SO_GHE" Type="Int32" />
+          <Property Name="MASB_CATCANH" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MASB_HACANH" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MAYBAY" Relationship="Self.FK__CHUYENBAY__MAMB__45F365D3" FromRole="CHUYENBAY" ToRole="MAYBAY" />
+          <NavigationProperty Name="SANBAY" Relationship="Self.FK__CHUYENBAY__MASB___46E78A0C" FromRole="CHUYENBAY" ToRole="SANBAY" />
+          <NavigationProperty Name="SANBAY1" Relationship="Self.FK__CHUYENBAY__MASB___47DBAE45" FromRole="CHUYENBAY" ToRole="SANBAY" />
+          <NavigationProperty Name="VEBAYs" Relationship="Self.FK__VEBAY__MACB__4BAC3F29" FromRole="CHUYENBAY" ToRole="VEBAY" />
+          <NavigationProperty Name="DADATs" Relationship="Self.FK_DADAT_CHUYENBAY" FromRole="CHUYENBAY" ToRole="DADAT" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MAKH" />
+          </Key>
+          <Property Name="MSKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAKH" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSINH" Type="DateTime" Precision="0" />
+          <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CCCD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HOATDONG" Type="Boolean" />
+          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__MAKH__5165187F" FromRole="KHACHHANG" ToRole="BOOKING" />
+        </EntityType>
+        <EntityType Name="LOAIVE">
+          <Key>
+            <PropertyRef Name="MALV" />
+          </Key>
+          <Property Name="MSLV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MALV" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TEN_LOAIVE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GIAVE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PHI_THAYDOI" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PHI_HUY" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="VEBAYs" Relationship="Self.FK__VEBAY__MALV__4CA06362" FromRole="LOAIVE" ToRole="VEBAY" />
+        </EntityType>
+        <EntityType Name="MAYBAY">
+          <Key>
+            <PropertyRef Name="MAMB" />
+          </Key>
+          <Property Name="MAMB" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LOAIMB" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HANGMB" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CHUYENBAYs" Relationship="Self.FK__CHUYENBAY__MAMB__45F365D3" FromRole="MAYBAY" ToRole="CHUYENBAY" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MSNV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MANV" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSINH" Type="DateTime" Precision="0" />
+          <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CCCD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LUONG" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="VITRI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HOATDONG" Type="Boolean" />
+          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__MANV__52593CB8" FromRole="NHANVIEN" ToRole="BOOKING" />
+          <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK__TAIKHOAN__MANV__3C69FB99" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
+        </EntityType>
+        <EntityType Name="SANBAY">
+          <Key>
+            <PropertyRef Name="MASB" />
+          </Key>
+          <Property Name="MASB" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TEN_SANBAY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="THANHPHO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QUOCGIA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CHUYENBAYs" Relationship="Self.FK__CHUYENBAY__MASB___46E78A0C" FromRole="SANBAY" ToRole="CHUYENBAY" />
+          <NavigationProperty Name="CHUYENBAYs1" Relationship="Self.FK__CHUYENBAY__MASB___47DBAE45" FromRole="SANBAY" ToRole="CHUYENBAY" />
+        </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="TENTK" />
+          </Key>
+          <Property Name="TENTK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HOATDONG" Type="Boolean" />
+          <Property Name="MANV" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__TAIKHOAN__MANV__3C69FB99" FromRole="TAIKHOAN" ToRole="NHANVIEN" />
+        </EntityType>
+        <EntityType Name="VEBAY">
+          <Key>
+            <PropertyRef Name="MAVB" />
+          </Key>
+          <Property Name="MSVB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAVB" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MACB" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="THUTU_GHE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="MALV" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DADAT" Type="Boolean" />
+          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__MAVB__534D60F1" FromRole="VEBAY" ToRole="BOOKING" />
+          <NavigationProperty Name="CHUYENBAY" Relationship="Self.FK__VEBAY__MACB__4BAC3F29" FromRole="VEBAY" ToRole="CHUYENBAY" />
+          <NavigationProperty Name="LOAIVE" Relationship="Self.FK__VEBAY__MALV__4CA06362" FromRole="VEBAY" ToRole="LOAIVE" />
+        </EntityType>
+        <EntityType Name="DADAT">
+          <Key>
+            <PropertyRef Name="MACB" />
+            <PropertyRef Name="Hang" />
+            <PropertyRef Name="Day" />
+          </Key>
+          <Property Name="MACB" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hang" Type="Int32" Nullable="false" />
+          <Property Name="Day" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CHUYENBAY" Relationship="Self.FK_DADAT_CHUYENBAY" FromRole="DADAT" ToRole="CHUYENBAY" />
+        </EntityType>
+        <Association Name="FK__BOOKING__MAKH__5165187F">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MAKH" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BOOKING__MANV__52593CB8">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BOOKING__MAVB__534D60F1">
+          <End Role="VEBAY" Type="Self.VEBAY" Multiplicity="1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEBAY">
+              <PropertyRef Name="MAVB" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="MAVB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CHUYENBAY__MAMB__45F365D3">
+          <End Role="MAYBAY" Type="Self.MAYBAY" Multiplicity="1" />
+          <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MAYBAY">
+              <PropertyRef Name="MAMB" />
+            </Principal>
+            <Dependent Role="CHUYENBAY">
+              <PropertyRef Name="MAMB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CHUYENBAY__MASB___46E78A0C">
+          <End Role="SANBAY" Type="Self.SANBAY" Multiplicity="1" />
+          <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANBAY">
+              <PropertyRef Name="MASB" />
+            </Principal>
+            <Dependent Role="CHUYENBAY">
+              <PropertyRef Name="MASB_CATCANH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CHUYENBAY__MASB___47DBAE45">
+          <End Role="SANBAY" Type="Self.SANBAY" Multiplicity="1" />
+          <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANBAY">
+              <PropertyRef Name="MASB" />
+            </Principal>
+            <Dependent Role="CHUYENBAY">
+              <PropertyRef Name="MASB_HACANH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VEBAY__MACB__4BAC3F29">
+          <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="1" />
+          <End Role="VEBAY" Type="Self.VEBAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUYENBAY">
+              <PropertyRef Name="MACB" />
+            </Principal>
+            <Dependent Role="VEBAY">
+              <PropertyRef Name="MACB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DADAT_CHUYENBAY">
+          <End Role="CHUYENBAY" Type="Self.CHUYENBAY" Multiplicity="1" />
+          <End Role="DADAT" Type="Self.DADAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUYENBAY">
+              <PropertyRef Name="MACB" />
+            </Principal>
+            <Dependent Role="DADAT">
+              <PropertyRef Name="MACB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VEBAY__MALV__4CA06362">
+          <End Role="LOAIVE" Type="Self.LOAIVE" Multiplicity="1" />
+          <End Role="VEBAY" Type="Self.VEBAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAIVE">
+              <PropertyRef Name="MALV" />
+            </Principal>
+            <Dependent Role="VEBAY">
+              <PropertyRef Name="MALV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TAIKHOAN__MANV__3C69FB99">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="TAIKHOAN">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLBVCBEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOOKINGs" EntityType="Self.BOOKING" />
+          <EntitySet Name="CHUYENBAYs" EntityType="Self.CHUYENBAY" />
+          <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+          <EntitySet Name="LOAIVEs" EntityType="Self.LOAIVE" />
+          <EntitySet Name="MAYBAYs" EntityType="Self.MAYBAY" />
+          <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+          <EntitySet Name="SANBAYs" EntityType="Self.SANBAY" />
+          <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
+          <EntitySet Name="VEBAYs" EntityType="Self.VEBAY" />
+          <EntitySet Name="DADATs" EntityType="Self.DADAT" />
+          <AssociationSet Name="FK__BOOKING__MAKH__5165187F" Association="Self.FK__BOOKING__MAKH__5165187F">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="BOOKING" EntitySet="BOOKINGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BOOKING__MANV__52593CB8" Association="Self.FK__BOOKING__MANV__52593CB8">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="BOOKING" EntitySet="BOOKINGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BOOKING__MAVB__534D60F1" Association="Self.FK__BOOKING__MAVB__534D60F1">
+            <End Role="VEBAY" EntitySet="VEBAYs" />
+            <End Role="BOOKING" EntitySet="BOOKINGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHUYENBAY__MAMB__45F365D3" Association="Self.FK__CHUYENBAY__MAMB__45F365D3">
+            <End Role="MAYBAY" EntitySet="MAYBAYs" />
+            <End Role="CHUYENBAY" EntitySet="CHUYENBAYs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHUYENBAY__MASB___46E78A0C" Association="Self.FK__CHUYENBAY__MASB___46E78A0C">
+            <End Role="SANBAY" EntitySet="SANBAYs" />
+            <End Role="CHUYENBAY" EntitySet="CHUYENBAYs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHUYENBAY__MASB___47DBAE45" Association="Self.FK__CHUYENBAY__MASB___47DBAE45">
+            <End Role="SANBAY" EntitySet="SANBAYs" />
+            <End Role="CHUYENBAY" EntitySet="CHUYENBAYs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VEBAY__MACB__4BAC3F29" Association="Self.FK__VEBAY__MACB__4BAC3F29">
+            <End Role="CHUYENBAY" EntitySet="CHUYENBAYs" />
+            <End Role="VEBAY" EntitySet="VEBAYs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DADAT_CHUYENBAY" Association="Self.FK_DADAT_CHUYENBAY">
+            <End Role="CHUYENBAY" EntitySet="CHUYENBAYs" />
+            <End Role="DADAT" EntitySet="DADATs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VEBAY__MALV__4CA06362" Association="Self.FK__VEBAY__MALV__4CA06362">
+            <End Role="LOAIVE" EntitySet="LOAIVEs" />
+            <End Role="VEBAY" EntitySet="VEBAYs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TAIKHOAN__MANV__3C69FB99" Association="Self.FK__TAIKHOAN__MANV__3C69FB99">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLBVCBModel1StoreContainer" CdmEntityContainer="QLBVCBEntities3">
+          <EntitySetMapping Name="BOOKINGs">
+            <EntityTypeMapping TypeName="QLBVCBModel1.BOOKING">
+              <MappingFragment StoreEntitySet="BOOKING">
+                <ScalarProperty Name="MSBK" ColumnName="MSBK" />
+                <ScalarProperty Name="MABK" ColumnName="MABK" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="MAVB" ColumnName="MAVB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHUYENBAYs">
+            <EntityTypeMapping TypeName="QLBVCBModel1.CHUYENBAY">
+              <MappingFragment StoreEntitySet="CHUYENBAY">
+                <ScalarProperty Name="MACB" ColumnName="MACB" />
+                <ScalarProperty Name="MAMB" ColumnName="MAMB" />
+                <ScalarProperty Name="THOIGIAN_CATCANH" ColumnName="THOIGIAN_CATCANH" />
+                <ScalarProperty Name="THOIGIAN_HACANH" ColumnName="THOIGIAN_HACANH" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="SO_GHE" ColumnName="SO_GHE" />
+                <ScalarProperty Name="MASB_CATCANH" ColumnName="MASB_CATCANH" />
+                <ScalarProperty Name="MASB_HACANH" ColumnName="MASB_HACANH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACHHANGs">
+            <EntityTypeMapping TypeName="QLBVCBModel1.KHACHHANG">
+              <MappingFragment StoreEntitySet="KHACHHANG">
+                <ScalarProperty Name="MSKH" ColumnName="MSKH" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="HOATDONG" ColumnName="HOATDONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAIVEs">
+            <EntityTypeMapping TypeName="QLBVCBModel1.LOAIVE">
+              <MappingFragment StoreEntitySet="LOAIVE">
+                <ScalarProperty Name="MSLV" ColumnName="MSLV" />
+                <ScalarProperty Name="MALV" ColumnName="MALV" />
+                <ScalarProperty Name="TEN_LOAIVE" ColumnName="TEN_LOAIVE" />
+                <ScalarProperty Name="GIAVE" ColumnName="GIAVE" />
+                <ScalarProperty Name="PHI_THAYDOI" ColumnName="PHI_THAYDOI" />
+                <ScalarProperty Name="PHI_HUY" ColumnName="PHI_HUY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAYBAYs">
+            <EntityTypeMapping TypeName="QLBVCBModel1.MAYBAY">
+              <MappingFragment StoreEntitySet="MAYBAY">
+                <ScalarProperty Name="MAMB" ColumnName="MAMB" />
+                <ScalarProperty Name="LOAIMB" ColumnName="LOAIMB" />
+                <ScalarProperty Name="HANGMB" ColumnName="HANGMB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHANVIENs">
+            <EntityTypeMapping TypeName="QLBVCBModel1.NHANVIEN">
+              <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="MSNV" ColumnName="MSNV" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="LUONG" ColumnName="LUONG" />
+                <ScalarProperty Name="VITRI" ColumnName="VITRI" />
+                <ScalarProperty Name="HOATDONG" ColumnName="HOATDONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SANBAYs">
+            <EntityTypeMapping TypeName="QLBVCBModel1.SANBAY">
+              <MappingFragment StoreEntitySet="SANBAY">
+                <ScalarProperty Name="MASB" ColumnName="MASB" />
+                <ScalarProperty Name="TEN_SANBAY" ColumnName="TEN_SANBAY" />
+                <ScalarProperty Name="THANHPHO" ColumnName="THANHPHO" />
+                <ScalarProperty Name="QUOCGIA" ColumnName="QUOCGIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAIKHOANs">
+            <EntityTypeMapping TypeName="QLBVCBModel1.TAIKHOAN">
+              <MappingFragment StoreEntitySet="TAIKHOAN">
+                <ScalarProperty Name="TENTK" ColumnName="TENTK" />
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="HOATDONG" ColumnName="HOATDONG" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VEBAYs">
+            <EntityTypeMapping TypeName="QLBVCBModel1.VEBAY">
+              <MappingFragment StoreEntitySet="VEBAY">
+                <ScalarProperty Name="MSVB" ColumnName="MSVB" />
+                <ScalarProperty Name="MAVB" ColumnName="MAVB" />
+                <ScalarProperty Name="MACB" ColumnName="MACB" />
+                <ScalarProperty Name="THUTU_GHE" ColumnName="THUTU_GHE" />
+                <ScalarProperty Name="MALV" ColumnName="MALV" />
+                <ScalarProperty Name="DADAT" ColumnName="DADAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DADATs">
+            <EntityTypeMapping TypeName="QLBVCBModel1.DADAT">
+              <MappingFragment StoreEntitySet="DADAT">
+                <ScalarProperty Name="MACB" ColumnName="MACB" />
+                <ScalarProperty Name="Hang" ColumnName="Hang" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

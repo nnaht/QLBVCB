@@ -9,35 +9,23 @@
 
 namespace QLBVCB.Model
 {
-    using QLBVCB.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class VEBAY : VM_Base
+    public partial class VEBAY
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public VEBAY()
         {
             this.BOOKINGs = new HashSet<BOOKING>();
         }
-
-        private int _MSVB;
-        public int MSVB { get => _MSVB; set { _MSVB = value; OnPropertyChanged(); } }
-
-        private string _MAVB;
-        public string MAVB { get => _MAVB; set { _MAVB = value; OnPropertyChanged(); } }
-
-        private string _MACB;
-        public string MACB { get => _MACB; set { _MACB = value; OnPropertyChanged(); } }
-
-        private string _THUTU_GHE;
-        public string THUTU_GHE { get => _THUTU_GHE; set { _THUTU_GHE = value; OnPropertyChanged(); } }
-
-        private string _MALV;
-        public string MALV { get => _MALV; set { _MALV = value; OnPropertyChanged(); } }
-
-        private Nullable<bool> _DADAT;
-        public Nullable<bool> DADAT { get => _DADAT; set { _DADAT = value; OnPropertyChanged(); } }
+    
+        public int MSVB { get; set; }
+        public string MAVB { get; set; }
+        public string MACB { get; set; }
+        public string THUTU_GHE { get; set; }
+        public string MALV { get; set; }
+        public Nullable<bool> DADAT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOKING> BOOKINGs { get; set; }
