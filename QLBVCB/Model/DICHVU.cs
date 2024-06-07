@@ -12,30 +12,24 @@ namespace QLBVCB.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CHUYENBAY
+    public partial class DICHVU
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CHUYENBAY()
+        public DICHVU()
         {
-            this.VEBAYs = new HashSet<VEBAY>();
             this.DADATs = new HashSet<DADAT>();
+            this.DADATs1 = new HashSet<DADAT>();
         }
     
-        public string MACB { get; set; }
-        public string MAMB { get; set; }
-        public Nullable<System.DateTime> THOIGIAN_CATCANH { get; set; }
-        public Nullable<System.DateTime> THOIGIAN_HACANH { get; set; }
-        public string TRANGTHAI { get; set; }
-        public int SO_GHE { get; set; }
-        public string MASB_CATCANH { get; set; }
-        public string MASB_HACANH { get; set; }
+        public string MADV { get; set; }
+        public string LOAIDV { get; set; }
+        public string TENDV { get; set; }
+        public Nullable<int> SOLUONG { get; set; }
+        public decimal DONGIA { get; set; }
     
-        public virtual MAYBAY MAYBAY { get; set; }
-        public virtual SANBAY SANBAY { get; set; }
-        public virtual SANBAY SANBAY1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VEBAY> VEBAYs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DADAT> DADATs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DADAT> DADATs1 { get; set; }
     }
 }

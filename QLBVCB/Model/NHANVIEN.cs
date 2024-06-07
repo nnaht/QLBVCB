@@ -9,58 +9,30 @@
 
 namespace QLBVCB.Model
 {
-    using Microsoft.Xaml.Behaviors.Media;
-    using QLBVCB.ViewModel;
     using System;
     using System.Collections.Generic;
-
-    public partial class NHANVIEN : VM_Base
+    
+    public partial class NHANVIEN
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NHANVIEN()
         {
-            this.BOOKINGs = new HashSet<BOOKING>();
             this.TAIKHOANs = new HashSet<TAIKHOAN>();
         }
-
-        private int _MSNV;
-        public int MSNV { get => _MSNV; set { _MSNV = value; OnPropertyChanged(); } }
-
-        private string _MANV;
-        public string MANV { get => _MANV; set { _MANV = value; OnPropertyChanged(); } }
-
-        private string _HOTEN;
-        public string HOTEN { get => _HOTEN; set { _HOTEN = value; OnPropertyChanged(); } }
-
-        private Nullable<System.DateTime> _NGAYSINH;
-        public Nullable<System.DateTime> NGAYSINH { get => _NGAYSINH; set { _NGAYSINH = value; OnPropertyChanged(); } }
-
-        private string _GIOITINH;
-        public string GIOITINH { get => _GIOITINH; set { _GIOITINH = value; OnPropertyChanged(); } }
-
-        private string _CCCD;
-        public string CCCD { get => _CCCD; set { _CCCD = value; OnPropertyChanged(); } }
-
-        private string _DIACHI;
-        public string DIACHI { get => _DIACHI; set { _DIACHI = value; OnPropertyChanged(); } }
-
-        private string _SDT;
-        public string SDT { get => _SDT; set { _SDT = value; OnPropertyChanged(); } }
-
-        private string _EMAIL;
-        public string EMAIL { get => _EMAIL; set { _EMAIL = value; OnPropertyChanged(); } }
-
-        private Nullable<decimal> _LUONG;
-        public Nullable<decimal> LUONG { get => _LUONG; set { _LUONG = value; OnPropertyChanged(); } }
-
-        private string _VITRI;
-        public string VITRI { get => _VITRI; set { _VITRI = value; OnPropertyChanged(); } }
-
-        private Nullable<bool> _HOATDONG;
-        public Nullable<bool> HOATDONG { get => _HOATDONG; set { _HOATDONG = value; OnPropertyChanged(); } }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BOOKING> BOOKINGs { get; set; }
+    
+        public int MSNV { get; set; }
+        public string MANV { get; set; }
+        public string HOTEN { get; set; }
+        public Nullable<System.DateTime> NGAYSINH { get; set; }
+        public string GIOITINH { get; set; }
+        public string CCCD { get; set; }
+        public string DIACHI { get; set; }
+        public string SDT { get; set; }
+        public string EMAIL { get; set; }
+        public Nullable<decimal> LUONG { get; set; }
+        public string VITRI { get; set; }
+        public Nullable<bool> HOATDONG { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TAIKHOAN> TAIKHOANs { get; set; }
     }

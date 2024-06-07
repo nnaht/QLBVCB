@@ -25,7 +25,6 @@ namespace QLBVCB.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BOOKING> BOOKINGs { get; set; }
         public virtual DbSet<CHUYENBAY> CHUYENBAYs { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANGs { get; set; }
         public virtual DbSet<LOAIVE> LOAIVEs { get; set; }
@@ -35,6 +34,6 @@ namespace QLBVCB.Model
         public virtual DbSet<TAIKHOAN> TAIKHOANs { get; set; }
         public virtual DbSet<VEBAY> VEBAYs { get; set; }
         public virtual DbSet<DADAT> DADATs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<DICHVU> DICHVUs { get; set; }
     }
 }

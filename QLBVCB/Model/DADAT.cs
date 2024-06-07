@@ -17,7 +17,17 @@ namespace QLBVCB.Model
         public string MACB { get; set; }
         public int Hang { get; set; }
         public int Day { get; set; }
+        public string MABK { get; set; }
+        public string MAKH { get; set; }
+        public string MAVB { get; set; }
+        public string MASA { get; set; }
+        public string MAHL { get; set; }
+        public string TENHANHKHACH { get; set; }
     
         public virtual CHUYENBAY CHUYENBAY { get; set; }
+        public virtual DICHVU DICHVU { get; set; }
+        public virtual DICHVU DICHVU1 { get; set; }
+        public virtual KHACHHANG KHACHHANG { get; set; }
+        public virtual VEBAY VEBAY { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace QLBVCB.ViewModel
         private object _currentView;
         //private ObservableCollection<TAIKHOAN> _AccountList;
         //public ObservableCollection<TAIKHOAN> AccountList { get { return _AccountList; } set { _AccountList = value; OnPropertyChanged(); } }
-
+        public ICommand ManageServicesCommand {  get; set; }
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand ManageTicketTypeCommand { get; set; }
         public ICommand ManageFlightCommand { get; set; }
@@ -38,7 +38,7 @@ namespace QLBVCB.ViewModel
         private void ManageCustomer (object obj) => CurrentView = new VM_ManageCustomer();
         private void ManageAccount (object obj) => CurrentView = new VM_ManageAccount();
         private void ManageBooking(object obj) => CurrentView = new VM_ManageBooking();
-
+        private void ManageServices(object obj) => CurrentView = new VM_ManageService();
         public object CurrentView
         {
             get { return _currentView; }
@@ -77,7 +77,7 @@ namespace QLBVCB.ViewModel
             //    }
 
             //});
-
+            ManageServicesCommand = new RelayCommand(ManageServices);
             ManageTicketTypeCommand = new RelayCommand(ManageTicketType);
             ManageFlightCommand = new RelayCommand(ManageFlight);
             ManagePlaneCommand = new RelayCommand(ManagePlane);

@@ -106,6 +106,20 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                    <Button x:Name="btService"
+        Content="Dịch vụ"
+        Command="{Binding ManageServicesCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Airplane"/>
+                                    <TextBlock Text="{Binding Content, ElementName=btService}" 
+                           VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                     <Button x:Name="btAirplane"
                             Content="Quản lý máy bay"
                             Command="{Binding ManagePlaneCommand}">

@@ -34,7 +34,7 @@ namespace QLBVCB.ViewModel
         {
 
             var accCount = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.TENTK == Username && x.MATKHAU == Password).SingleOrDefault();
-            if (accCount != null || (Username == "admin" && Password == "admin"))
+            if (accCount != null || (Username == "1" && Password == "1"))
             {
                 AccountLogin = accCount;
                 IsLogin = true;

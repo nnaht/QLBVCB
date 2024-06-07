@@ -38,6 +38,7 @@
     <vm:VM_Loginn x:Key="LoginVM"></vm:VM_Loginn>
 
     <!-- View DataTemplates -->
+    
     <DataTemplate DataType="{x:Type vm:VM_ManageTicketType}">
         <view:ManageTicketType />
     </DataTemplate>

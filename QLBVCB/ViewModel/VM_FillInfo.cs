@@ -1,0 +1,185 @@
+﻿using QLBVCB.Model;
+using QLBVCB.UserControls;
+using QLBVCB.View;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+
+namespace QLBVCB.ViewModel
+{
+    internal class VM_FillInfo : VM_Base
+    {
+        public ICommand BookCommand { get; set; }
+        public ObservableCollection<VM_CustomerInfo> Customers { get; set; }
+        public ObservableCollection<CustomerInfo> CustomerInfos { get; set; }
+        private string sdt;
+        public string SDT
+        {
+            get => sdt;
+            set
+            {
+                sdt = value;
+                OnPropertyChanged(nameof(SDT));
+            }
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
+        }
+        private int totalPeople;
+
+        public VM_FillInfo(List<Tuple<string, int, int>> selection, bool isRecuperate)
+        {
+            BookCommand = new RelayCommand(ExecuteBookCommand);
+            Customers = new ObservableCollection<VM_CustomerInfo>();
+            setTotalPeople(selection, isRecuperate);
+            for (int i = 0; i < totalPeople; i++)
+            {
+                var selectionItem = selection[i];
+                Customers.Add(new VM_CustomerInfo(selectionItem.Item1, selectionItem.Item2, selectionItem.Item3, isRecuperate));
+            }
+
+            CustomerInfos = new ObservableCollection<CustomerInfo>();
+            foreach (var customer in Customers)
+            {
+                var customerInfo = new CustomerInfo();
+                customerInfo.DataContext = customer;
+                CustomerInfos.Add(customerInfo);
+            }
+        }
+
+        private void ExecuteBookCommand(object obj)
+        {
+            List<string> names = Customers.Select(customer => customer.PassengerName).ToList();
+
+            try
+            {
+                var macbList = Customers.Select(c => c.MACB).ToList();
+                var chuyenBays = DataProvider.Ins.DB.CHUYENBAYs.Where(cb => macbList.Contains(cb.MACB)).ToList();
+
+                for (int i = 0; i < Customers.Count; i++)
+                {
+                    var customer = Customers[i];
+                    var chuyenBay = chuyenBays.SingleOrDefault(cb => cb.MACB == customer.MACB);
+                    if (chuyenBay != null)
+                    {
+                        var selectedMealOption = customer.SelectedMealOption;
+                        var selectedLuggageOption = customer.SelectedLuggageOption;
+
+                        var suatan = DataProvider.Ins.DB.DICHVUs
+                            .Where(dv => dv.LOAIDV == "Suất ăn" && dv.TENDV == selectedMealOption)
+                            .SingleOrDefault();
+                        var hanhly = DataProvider.Ins.DB.DICHVUs
+                            .Where(dv => dv.LOAIDV == "Hành lý" && dv.TENDV == selectedLuggageOption)
+                            .SingleOrDefault();
+
+                        if (suatan == null || hanhly == null)
+                        {
+                            ShowCustomMessageBox("Vui lòng chọn dịch vụ và suất ăn!");
+                            return;
+                        }
+
+                        var khachHang = DataProvider.Ins.DB.KHACHHANGs.SingleOrDefault(kh => kh.SDT == SDT);
+                        if (khachHang == null)
+                        {
+                            ShowCustomMessageBox("Số điện thoại không tồn tại!");
+                            return;
+                        }
+
+                        string mavb = GetNextId(i);
+
+                        // Tạo mới bản ghi trong bảng VEBAY
+                        var veBay = new VEBAY
+                        {
+                            MAVB = mavb,
+                            MACB = customer.MACB,
+                            MALV= customer.HANG >= 6 ? "LV01": "LV02",
+                            THUTU_GHE = customer.DAY.ToString()+customer.HANG.ToString(),
+                            
+                            // Thiết lập các giá trị khác cho veBay nếu cần
+                        };
+                        DataProvider.Ins.DB.VEBAYs.Add(veBay);
+
+                        var dadat = new DADAT
+                        {
+                            MACB = customer.MACB,
+                            Hang = customer.HANG,
+                            Day = customer.DAY,
+                            TENHANHKHACH = names[i],
+                            MAKH = khachHang.MAKH,
+                            MAVB = mavb,
+                            MABK = GetBNextId(i),
+                            MASA = suatan.MADV,
+                            MAHL = hanhly.MADV,
+                        };
+
+                        DataProvider.Ins.DB.DADATs.Add(dadat);
+
+                        // Update the SO_GHE in CHUYENBAY table
+                        chuyenBay.SO_GHE -= 1;
+                        DataProvider.Ins.DB.SaveChanges();
+                    }
+                }
+
+
+                ShowCustomMessageBox("Đặt vé thành công.");
+                Application.Current.Windows.OfType<Window>().FirstOrDefault()?.Close();
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = ex.Message;
+                if (ex.InnerException != null)
+                {
+                    errorMessage += "\n" + ex.InnerException.Message;
+                    if (ex.InnerException.InnerException != null)
+                    {
+                        errorMessage += "\n" + ex.InnerException.InnerException.Message;
+                    }
+                }
+                ShowCustomMessageBox("Đặt chỗ không thành công");
+            }
+        }
+
+        private string GetBNextId(int i)
+        {
+            var lastTicket = DataProvider.Ins.DB.DADATs.OrderByDescending(e => e.MABK).FirstOrDefault();
+            if (lastTicket != null)
+            {
+                int nextId = int.Parse(lastTicket.MABK.Substring(2)) + 1 + i;
+                return "BK" + nextId.ToString().PadLeft(4, '0');
+            }
+            else
+            {
+                return "BK0001";
+            }
+        }
+
+        private string GetNextId(int i)
+        {
+            var lastTicket = DataProvider.Ins.DB.VEBAYs.OrderByDescending(e => e.MAVB).FirstOrDefault();
+            if (lastTicket != null)
+            {
+                int nextId = int.Parse(lastTicket.MAVB.Substring(2)) + 1 + i;
+                return "VB" + nextId.ToString().PadLeft(4, '0');
+            }
+            else
+            {
+                return "VB0001";
+            }
+        }
+
+
+       
+        public void setTotalPeople(List<Tuple<string, int, int>> selection, bool isRecuperate)
+        {
+            totalPeople = selection.Count;
+        }
+
+    }
+}

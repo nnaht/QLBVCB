@@ -65,12 +65,13 @@
             <Grid Grid.Row="0">
                 <Label VerticalAlignment="Top" Content="MUA VÉ" FontSize="30" Foreground="#00224D" FontWeight="Bold" Margin="76,-82,-96,0" />
                 <StackPanel Margin="10">
-                    <CheckBox
+                    <CheckBox Margin="5,0,10,10"
                         Background="#FFD90429"
                         Foreground="#FFD90429"
     x:Name="MaterialDesignFilledTextBoxEnabledComboBox"
-    Content="Khứ hồi" />
-                    <ComboBox Margin="0,0,0,10"
+    Content="Khứ hồi" 
+    IsChecked="{Binding IsRecuperate, Mode=TwoWay}"/>
+                    <ComboBox Margin="5,0,10,10"
                               Name="cbStart"
                               ItemsSource="{Binding Path=StartLocation}"
                               Width="256"
@@ -84,7 +85,7 @@
                         </ComboBox.SelectedItem>
                     </ComboBox>
 
-                    <ComboBox Margin="0,0,0,10"
+                    <ComboBox Margin="5,0,10,10"
                               Width="256"
                               materialDesign:HintAssist.Hint="Điểm đến"
                               materialDesign:TextFieldAssist.HasClearButton="True"

@@ -8,25 +8,21 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="30">
-    <UserControl.Resources>
-        <vm:BoolToColorConverter x:Key="BoolToColorConverter" />
-    </UserControl.Resources>
-    <UserControl.DataContext>
-        <vm:VM_EconomySeat/>
-    </UserControl.DataContext>
-    <Button
-Margin="0"
-        Background="{Binding IsChosen, Converter={StaticResource BoolToColorConverter}}"
-        Command="{Binding ToggleCommand}"
-Height="30"
-Width="30"
-materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-materialDesign:ButtonProgressAssist.Value="-1"
-Content="Indeterminate"
-IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-Style="{StaticResource MaterialDesignRaisedButton}"
-        BorderBrush="{Binding IsChosen, Converter={StaticResource BoolToColorConverter}}" />
-
+    <Border BorderThickness="1" BorderBrush="Gray" Width="30" Height="30" CornerRadius="10">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Setter Property="Background" Value="MediumPurple"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsChosen}" Value="True">
+                        <Setter Property="Background" Value="White"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        <Border.InputBindings>
+            <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.SeatActionCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                      CommandParameter="info"/>
+        </Border.InputBindings>
+    </Border>
 </UserControl>
 <!--#FF395D69-->
