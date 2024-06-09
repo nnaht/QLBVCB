@@ -12,26 +12,24 @@ namespace QLBVCB.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class VEBAY
+    public partial class DICHVU
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public VEBAY()
+        public DICHVU()
         {
-            this.BOOKINGs = new HashSet<BOOKING>();
             this.DADATs = new HashSet<DADAT>();
+            this.DADATs1 = new HashSet<DADAT>();
         }
     
-        public string MAVB { get; set; }
-        public string MACB { get; set; }
-        public string THUTU_GHE { get; set; }
-        public string MALV { get; set; }
-        public Nullable<bool> DADAT { get; set; }
+        public string MADV { get; set; }
+        public string LOAIDV { get; set; }
+        public string TENDV { get; set; }
+        public Nullable<int> SOLUONG { get; set; }
+        public decimal DONGIA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BOOKING> BOOKINGs { get; set; }
-        public virtual CHUYENBAY CHUYENBAY { get; set; }
-        public virtual LOAIVE LOAIVE { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DADAT> DADATs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DADAT> DADATs1 { get; set; }
     }
 }

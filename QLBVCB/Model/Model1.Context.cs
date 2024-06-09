@@ -35,5 +35,6 @@ namespace QLBVCB.Model
         public virtual DbSet<TAIKHOAN> TAIKHOANs { get; set; }
         public virtual DbSet<VEBAY> VEBAYs { get; set; }
         public virtual DbSet<DADAT> DADATs { get; set; }
+        public virtual DbSet<DICHVU> DICHVUs { get; set; }
     }
 }

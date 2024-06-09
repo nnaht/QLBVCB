@@ -18,6 +18,7 @@ namespace QLBVCB.Model
         public KHACHHANG()
         {
             this.BOOKINGs = new HashSet<BOOKING>();
+            this.DADATs = new HashSet<DADAT>();
         }
     
         public string MAKH { get; set; }
@@ -32,5 +33,7 @@ namespace QLBVCB.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOKING> BOOKINGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DADAT> DADATs { get; set; }
     }
 }
