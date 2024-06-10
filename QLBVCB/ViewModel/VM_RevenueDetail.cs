@@ -1,41 +1,47 @@
 ﻿using OfficeOpenXml.Style;
 using OfficeOpenXml;
 using QLBVCB.Model;
-using QLBVCB.ViewModel;
+using QLBVCB.View;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System;
+
 namespace QLBVCB.ViewModel
 {
-    internal class VM_ManageService : VM_Base
+    public class DoanhThuResult
     {
-        private ObservableCollection<DICHVU> _ServiceList;
-        public ObservableCollection<DICHVU> ServiceList
-        {
-            get { return _ServiceList; }
-            set { _ServiceList = value; OnPropertyChanged(); }
-        }
+        public int THANG { get; set; }
+        public decimal VE { get; set; }
+        public decimal LUONG { get; set; }
+        public decimal DICHVU { get; set; }
+        public decimal DOANHTHU { get; set; }
+    }
+    internal class VM_RevenueDetail : VM_Base
+    {
+        private ObservableCollection<DoanhThuResult> _RevenueList;
+        public ObservableCollection<DoanhThuResult> RevenueList { get { return _RevenueList; } set { _RevenueList = value; OnPropertyChanged(); } }
 
-        private string _MADV;
-        public string MADV { get => _MADV; set { _MADV = value; OnPropertyChanged(); } }
+        private string _THANG;
+        public string THANG { get => _THANG; set { _THANG = value; OnPropertyChanged(); } }
 
-        private string _LOAIDV;
-        public string LOAIDV { get => _LOAIDV; set { _LOAIDV = value; OnPropertyChanged(); } }
+        private string _VE;
+        public string VE { get => _VE; set { _VE = value; OnPropertyChanged(); } }
 
-        private string _TENDV;
-        public string TENDV { get => _TENDV; set { _TENDV = value; OnPropertyChanged(); } }
+        private string _DICHVU;
+        public string DICHVU { get => _DICHVU; set { _DICHVU = value; OnPropertyChanged(); } }
 
-        private int _SOLUONG;
-        public int SOLUONG { get => _SOLUONG; set { _SOLUONG = value; OnPropertyChanged(); } }
+        private string _LUONG;
+        public string LUONG { get => _LUONG; set { _LUONG = value; OnPropertyChanged(); } }
 
-        private string _DONGIA;
-        public string DONGIA { get => _DONGIA; set { _DONGIA = value; OnPropertyChanged(); } }
-
-        public ICommand OpenAERServiceCommand { get; set; }
-        public ICommand ExportExcelManageServiceCommand { get; set; }
+        private string _DOANHTHU;
+        public string DOANHTHU { get => _DOANHTHU; set { _DOANHTHU = value; OnPropertyChanged(); } }
 
         private string _SearchKeyword;
         public string SearchKeyword
@@ -45,35 +51,44 @@ namespace QLBVCB.ViewModel
             {
                 _SearchKeyword = value;
                 OnPropertyChanged();
-                ServiceView.Refresh();
+                FilterRevenue();
             }
         }
 
-        public ICollectionView ServiceView { get; private set; }
-
-        public VM_ManageService()
+        private string _nam;
+        public string Nam
         {
-            OpenAERServiceCommand = new RelayCommand(ExecuteOpenAERServiceCommand);
-            ExportExcelManageServiceCommand = new RelayCommand(ExecuteExportExcelManageServiceCommand);
-            ServiceList = new ObservableCollection<DICHVU>(DataProvider.Ins.DB.DICHVUs);
-            ServiceView = CollectionViewSource.GetDefaultView(ServiceList);
-            ServiceView.Filter = FilterService;
+            get => _nam;
+            set
+            {
+                _nam = value;
+                OnPropertyChanged();
+                LoadRevenueData();
+            }
         }
 
-        private void ExecuteOpenAERServiceCommand(object obj)
+        public ICollectionView RevenueView { get; private set; }
+        public ICommand ExportExcelManageRevenueCommand { get; set; }
+        public List<string> NamList { get; set; }
+
+        public VM_RevenueDetail()
         {
-            try
-            {
-                // AERService aERService = new AERService();
-                // aERService.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
-            }
+            NamList = Enumerable.Range(2020, 6).Select(i => i.ToString()).ToList();
+            Nam = "2024";
+            ExportExcelManageRevenueCommand = new RelayCommand(ExecuteExportExcelManageRevenueCommand);
+            LoadRevenueData();
         }
 
-        private void ExecuteExportExcelManageServiceCommand(object obj)
+        private void LoadRevenueData()
+        {
+            RevenueList = new ObservableCollection<DoanhThuResult>(
+                DataProvider.Ins.DB.Database.SqlQuery<DoanhThuResult>("EXEC DBO.DOANHTHUTUNGTHANG @NAM = {0}", Nam).ToList()
+            );
+            RevenueView = CollectionViewSource.GetDefaultView(RevenueList);
+            RevenueView.Filter = FilterRevenue;
+        }
+
+        private void ExecuteExportExcelManageRevenueCommand(object obj)
         {
             try
             {
@@ -98,16 +113,16 @@ namespace QLBVCB.ViewModel
 
                 using (ExcelPackage excelPackage = new ExcelPackage())
                 {
-                    excelPackage.Workbook.Properties.Title = "Danh sách dịch vụ";
+                    excelPackage.Workbook.Properties.Title = "Chi tiết doanh thu";
                     excelPackage.Workbook.Worksheets.Add("Sheet1");
                     ExcelWorksheet excelWorkSheet = excelPackage.Workbook.Worksheets[0];
                     excelWorkSheet.Name = "Sheet 1";
                     excelWorkSheet.Cells.Style.Font.Size = 14;
                     excelWorkSheet.Cells.Style.Font.Name = "Times New Roman";
 
-                    string[] columnHeader = { "Mã dịch vụ", "Loại dịch vụ", "Tên dịch vụ", "Số lượng", "Đơn giá" };
-                    var countColumnHeader = columnHeader.Length;
-                    excelWorkSheet.Cells[1, 1].Value = "Danh sách dịch vụ";
+                    string[] columnHeader = { "Tháng", "Vé", "Dịch Vụ", "Lương", "Doanh Thu" };
+                    var countColumnHeader = columnHeader.Count();
+                    excelWorkSheet.Cells[1, 1].Value = "Chi tiết doanh thu";
                     excelWorkSheet.Cells[1, 1, 1, countColumnHeader].Merge = true;
                     excelWorkSheet.Cells[1, 1, 1, countColumnHeader].Style.Font.Bold = true;
                     excelWorkSheet.Cells[1, 1, 1, countColumnHeader].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
@@ -128,13 +143,13 @@ namespace QLBVCB.ViewModel
                     }
 
                     rowIndex = 3;
-                    foreach (var Service in ServiceList)
+                    foreach (var Revenue in RevenueList)
                     {
-                        excelWorkSheet.Cells[rowIndex, 1].Value = Service.MADV;
-                        excelWorkSheet.Cells[rowIndex, 2].Value = Service.LOAIDV;
-                        excelWorkSheet.Cells[rowIndex, 3].Value = Service.TENDV;
-                        excelWorkSheet.Cells[rowIndex, 4].Value = Service.SOLUONG;
-                        excelWorkSheet.Cells[rowIndex, 5].Value = Service.DONGIA;
+                        excelWorkSheet.Cells[rowIndex, 1].Value = Revenue.THANG;
+                        excelWorkSheet.Cells[rowIndex, 2].Value = Revenue.VE;
+                        excelWorkSheet.Cells[rowIndex, 3].Value = Revenue.DICHVU;
+                        excelWorkSheet.Cells[rowIndex, 4].Value = Revenue.LUONG;
+                        excelWorkSheet.Cells[rowIndex, 5].Value = Revenue.DOANHTHU;
 
                         for (int i = 1; i <= countColumnHeader; i++)
                         {
@@ -162,13 +177,18 @@ namespace QLBVCB.ViewModel
             }
         }
 
-        private bool FilterService(object item)
+        private bool FilterRevenue(object item)
         {
-            if (item is DICHVU service)
+            if (item is DoanhThuResult Revenue)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || service.TENDV.StartsWith(SearchKeyword, StringComparison.OrdinalIgnoreCase);
+                return string.IsNullOrEmpty(SearchKeyword) || Revenue.THANG.ToString().Contains(SearchKeyword);
             }
             return false;
+        }
+
+        private void FilterRevenue()
+        {
+            RevenueView.Refresh();
         }
     }
 }

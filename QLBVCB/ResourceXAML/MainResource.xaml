@@ -66,5 +66,13 @@
     <DataTemplate DataType="{x:Type vm:VM_ManageBooking}">
         <view:ManageBooking />
     </DataTemplate>
-
+    <DataTemplate DataType="{x:Type vm:VM_ManageRevenue}">
+        <view:ManageRevenue />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:VM_ManageService}">
+        <view:ManageService />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:VM_Home}">
+        <view:Home />
+    </DataTemplate>
 </ResourceDictionary>

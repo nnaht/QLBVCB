@@ -29,6 +29,9 @@ namespace QLBVCB.ViewModel
         public ICommand ManageEmployeeCommand { get; set; }
         public ICommand ManageCustomerCommand { get; set; }
         public ICommand ManageAccountCommand { get; set; }
+        public ICommand ManageRevenueCommand { get; set; }
+        public ICommand ManageServiceCommand { get; set; }
+        public ICommand ManageHomeCommand { get; set; }
         private void ManageTicketType(object obj) => CurrentView = new VM_ManageTicketType();
         private void ManageFlight(object obj) => CurrentView = new VM_ManageFlight();
         private void ManagePlane(object obj) => CurrentView = new VM_ManagePlane();
@@ -38,7 +41,10 @@ namespace QLBVCB.ViewModel
         private void ManageCustomer (object obj) => CurrentView = new VM_ManageCustomer();
         private void ManageAccount (object obj) => CurrentView = new VM_ManageAccount();
         private void ManageBooking(object obj) => CurrentView = new VM_ManageBooking();
-        private void ManageServices(object obj) => CurrentView = new VM_ManageService();
+        private void ManageHome(object obj) => CurrentView = new VM_Home();
+        private void ManageService(object obj) => CurrentView = new VM_ManageService();
+        private void ManageRevenue(object obj) => CurrentView = new VM_ManageRevenue();
+
         public object CurrentView
         {
             get { return _currentView; }
@@ -77,7 +83,7 @@ namespace QLBVCB.ViewModel
             //    }
 
             //});
-            ManageServicesCommand = new RelayCommand(ManageServices);
+            ManageRevenueCommand = new RelayCommand(ManageRevenue);
             ManageTicketTypeCommand = new RelayCommand(ManageTicketType);
             ManageFlightCommand = new RelayCommand(ManageFlight);
             ManagePlaneCommand = new RelayCommand(ManagePlane);
@@ -87,6 +93,8 @@ namespace QLBVCB.ViewModel
             ManageCustomerCommand = new RelayCommand(ManageCustomer);
             ManageAccountCommand = new RelayCommand(ManageAccount);
             ManageBookingCommand = new RelayCommand(ManageBooking);
+            ManageServiceCommand = new RelayCommand(ManageService);
+            ManageHomeCommand = new RelayCommand(ManageHome);
         }
         //void LoadMainWindow()
         //{

@@ -26,6 +26,7 @@
         <AssociationConnector Association="QLBVCBModel.FK_DADAT_DICHVU_MASA" />
         <AssociationConnector Association="QLBVCBModel.FK_DADAT_KHACHHANG" />
         <AssociationConnector Association="QLBVCBModel.FK_DADAT_VEBAY" />
+        <EntityTypeShape EntityType="QLBVCBModel.sysdiagram" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -56,6 +56,12 @@
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=3.0.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.3.0.0\lib\net462\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -153,6 +159,15 @@
     <Compile Include="Model\SANBAY.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\TAIKHOAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -227,6 +242,7 @@
     <Compile Include="ViewModel\VM_EconomySeat.cs" />
     <Compile Include="ViewModel\VM_EmptySeat.cs" />
     <Compile Include="ViewModel\VM_FillInfo.cs" />
+    <Compile Include="ViewModel\VM_Home.cs" />
     <Compile Include="ViewModel\VM_ManageAccount.cs" />
     <Compile Include="ViewModel\VM_ManageAirport.cs" />
     <Compile Include="ViewModel\VM_Base.cs" />
@@ -237,12 +253,14 @@
     <Compile Include="ViewModel\VM_ManageCustomer.cs" />
     <Compile Include="ViewModel\VM_ManageEmployee.cs" />
     <Compile Include="ViewModel\VM_ManageFlight.cs" />
+    <Compile Include="ViewModel\VM_ManageRevenue.cs" />
     <Compile Include="ViewModel\VM_ManageService.cs" />
     <Compile Include="ViewModel\VM_ManageTicket.cs" />
     <Compile Include="ViewModel\VM_ManageTicketType.cs" />
     <Compile Include="ViewModel\VM_ManagePlane.cs" />
     <Compile Include="ViewModel\VM_Recuperate.cs" />
     <Compile Include="ViewModel\VM_RecuperateSeat.cs" />
+    <Compile Include="ViewModel\VM_RevenueDetail.cs" />
     <Compile Include="ViewModel\VM_SeatingChart.cs" />
     <Compile Include="View\AERAccount.xaml.cs">
       <DependentUpon>AERAccount.xaml</DependentUpon>
@@ -277,6 +295,9 @@
     <Compile Include="View\FillInfo.xaml.cs">
       <DependentUpon>FillInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManageAccount.xaml.cs">
       <DependentUpon>ManageAccount.xaml</DependentUpon>
     </Compile>
@@ -295,6 +316,9 @@
     <Compile Include="View\ManageFlight.xaml.cs">
       <DependentUpon>ManageFlight.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManageRevenue.xaml.cs">
+      <DependentUpon>ManageRevenue.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManageService.xaml.cs">
       <DependentUpon>ManageService.xaml</DependentUpon>
     </Compile>
@@ -312,6 +336,9 @@
     </Compile>
     <Compile Include="View\RecuperateSeat.xaml.cs">
       <DependentUpon>RecuperateSeat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RevenueDetail.xaml.cs">
+      <DependentUpon>RevenueDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SeatingPlan.xaml.cs">
       <DependentUpon>SeatingPlan.xaml</DependentUpon>
@@ -377,6 +404,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FillInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -476,6 +507,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ManageRevenue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ManageService.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -497,6 +532,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RecuperateSeat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RevenueDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -540,6 +579,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\home.jpg" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

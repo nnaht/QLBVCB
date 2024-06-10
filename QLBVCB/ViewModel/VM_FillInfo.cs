@@ -117,6 +117,7 @@ namespace QLBVCB.ViewModel
                             MABK = GetBNextId(i),
                             MASA = suatan.MADV,
                             MAHL = hanhly.MADV,
+                            NGTHANHTOAN = DateTime.Now
                         };
 
                         DataProvider.Ins.DB.DADATs.Add(dadat);
