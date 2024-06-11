@@ -14,6 +14,7 @@
     <vm:VM_AEREmployee x:Key="AEREmployeeVM" />
     <vm:VM_AERCustomer x:Key="AERCustomerVM" />
     <vm:VM_AERAccount x:Key="AERAccountVM" />
+    <vm:VM_AERService x:Key="AERServiceVM" />
 
     <!-- DataTemplates -->
     <DataTemplate x:Key="EconomySeatTemplate">

@@ -233,6 +233,7 @@
     <Compile Include="ViewModel\VM_AERAirport.cs" />
     <Compile Include="ViewModel\VM_AERFlight.cs" />
     <Compile Include="ViewModel\VM_AERPlane.cs" />
+    <Compile Include="ViewModel\VM_AERService.cs" />
     <Compile Include="ViewModel\VM_AERTicket.cs" />
     <Compile Include="ViewModel\VM_AERTicketType.cs" />
     <Compile Include="ViewModel\VM_BookedSeat.cs" />
@@ -285,6 +286,9 @@
     </Compile>
     <Compile Include="View\AERTicketType.xaml.cs">
       <DependentUpon>AERTicketType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AER_Service.xaml.cs">
+      <DependentUpon>AER_Service.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CusMessBox.xaml.cs">
       <DependentUpon>CusMessBox.xaml</DependentUpon>
@@ -396,6 +400,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AERTicketType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AER_Service.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

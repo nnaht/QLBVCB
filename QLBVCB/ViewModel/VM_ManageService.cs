@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System;
+using QLBVCB.View;
 namespace QLBVCB.ViewModel
 {
     internal class VM_ManageService : VM_Base
@@ -64,8 +65,8 @@ namespace QLBVCB.ViewModel
         {
             try
             {
-                // AERService aERService = new AERService();
-                // aERService.ShowDialog();
+                AER_Service aERService = new AER_Service();
+                aERService.ShowDialog();
             }
             catch (Exception ex)
             {

@@ -94,7 +94,7 @@ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                 ToolTip="Edit"
                     Background="#FFD90429"
                 HorizontalAlignment="Right"
-                    Command="{Binding OpenAERPlaneCommand}">
+                    Command="{Binding OpenAERServiceCommand}">
                     <materialDesign:PackIcon Kind="Edit" Height="24" Width="24"  />
                 </Button>
             </Grid>
