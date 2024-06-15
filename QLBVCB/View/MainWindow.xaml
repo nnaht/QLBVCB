@@ -104,12 +104,12 @@
                         </Button.Template>
                     </Button>
                     <Button x:Name="btService"
-        Content="Dịch vụ"
-        Command="{Binding ManageServiceCommand}">
+                            Content="Dịch vụ"
+                            Command="{Binding ManageServiceCommand}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Airplane"/>
+                                    <materialDesign:PackIcon Kind="Food"/>
                                     <TextBlock Text="{Binding Content, ElementName=btService}" 
                            VerticalAlignment="Center">
                                     </TextBlock>

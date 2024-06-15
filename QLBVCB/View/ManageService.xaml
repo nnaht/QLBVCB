@@ -19,20 +19,19 @@ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Left">
-            <TextBox 
-        Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
-        x:Name="txtBoxSearchType" 
-        Margin="55, 20, 0, 15"
-    Width="300"
-    Height="40"
-    FontSize="12"
-    BorderBrush="Black"
-    CaretBrush="Black"
-    materialDesign:HintAssist.IsFloating="False"
-    materialDesign:HintAssist.Background="Transparent"
-    materialDesign:HintAssist.Foreground="Black"
-    materialDesign:HintAssist.Hint="🔎 Nhập tên dịch vụ..."
-    Style="{StaticResource MaterialDesignOutlinedTextBox}">
+            <TextBox Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
+                     x:Name="txtBoxSearchType" 
+                     Margin="55, 20, 0, 15"
+                     Width="300"
+                     Height="40"
+                     FontSize="12"
+                     BorderBrush="Black"
+                     CaretBrush="Black"
+                     materialDesign:HintAssist.IsFloating="False"
+                     materialDesign:HintAssist.Background="Transparent"
+                     materialDesign:HintAssist.Foreground="Black"
+                     materialDesign:HintAssist.Hint="🔎 Nhập tên dịch vụ..."
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}">
                 <TextBox.Padding>
                     <Thickness Left="5" Right="5" Top="10" Bottom="10"/>
                 </TextBox.Padding>
@@ -43,10 +42,13 @@ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Auto">
                     <DataGrid ItemsSource="{Binding ServiceView}"
-                    AutoGenerateColumns="False"
-                    SelectedItem="{Binding SelectedItem}" 
-                    Background="#FFF8F8F8" 
-                    Width="760" Height="365" IsReadOnly="True" MinColumnWidth="19" MinRowHeight="30" RowHeight="30">
+                              AutoGenerateColumns="False"
+                              SelectedItem="{Binding SelectedItem}" 
+                              Background="#FFF8F8F8" 
+                              Width="760" Height="365" 
+                              IsReadOnly="True"
+                              MinColumnWidth="19" 
+                              MinRowHeight="30" RowHeight="30">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Mã" Binding="{Binding MADV}" Width="*"/>
                             <DataGridTextColumn Header="Loại dịch vụ" Binding="{Binding LOAIDV}" Width="2*"/>
@@ -74,18 +76,17 @@ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" HorizontalAlignment="Left" >
-                <Button
-                Height="40"
-                materialDesign:ButtonAssist.CornerRadius="5"
-                 Command="{Binding ExportExcelManagePlaneCommand}"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                Style="{StaticResource MaterialDesignRaisedLightButton}"
-                ToolTip="Export Excel"
-                Background="#FFD90429"
-                BorderBrush="#FFB11409"
-                Width="140">
-                    <TextBlock
-                    Text="Xuất File Excel" Foreground="#DDFEFEFE" />
+                <Button Height="40"
+                        materialDesign:ButtonAssist.CornerRadius="5"
+                        Command="{Binding ExportExcelManageServiceCommand}"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                        ToolTip="Export Excel"
+                        Background="#FFD90429"
+                        BorderBrush="#FFB11409"
+                        Width="140">
+                    <TextBlock Text="Xuất File Excel"
+                               Foreground="#DDFEFEFE" />
                 </Button>
             </Grid>
             <Grid Grid.Column="1" >

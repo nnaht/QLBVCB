@@ -26,7 +26,7 @@ namespace QLBVCB.Model
         public Nullable<System.DateTime> THOIGIAN_CATCANH { get; set; }
         public Nullable<System.DateTime> THOIGIAN_HACANH { get; set; }
         public string TRANGTHAI { get; set; }
-        public int SO_GHE { get; set; }
+        public Nullable<int> SO_GHE { get; set; }
         public string MASB_CATCANH { get; set; }
         public string MASB_HACANH { get; set; }
     

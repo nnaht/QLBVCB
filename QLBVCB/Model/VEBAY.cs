@@ -26,19 +26,9 @@ namespace QLBVCB.Model
         public string MALV { get; set; }
         public Nullable<bool> DADAT { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BOOKING> BOOKINGs { get; set; }
-    
-        public int MSVB { get; set; }
-        public string MAVB { get; set; }
-        public string MACB { get; set; }
-        public string THUTU_GHE { get; set; }
-        public string MALV { get; set; }
-        public Nullable<bool> DADAT { get; set; }
-    
         public virtual CHUYENBAY CHUYENBAY { get; set; }
-        public virtual LOAIVE LOAIVE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DADAT> DADATs { get; set; }
+        public virtual LOAIVE LOAIVE { get; set; }
     }
 }

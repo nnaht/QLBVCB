@@ -20,7 +20,6 @@ namespace QLBVCB.Model
             this.VEBAYs = new HashSet<VEBAY>();
         }
     
-        public int MSLV { get; set; }
         public string MALV { get; set; }
         public string TEN_LOAIVE { get; set; }
         public Nullable<decimal> GIAVE { get; set; }

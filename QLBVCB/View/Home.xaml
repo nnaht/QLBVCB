@@ -7,8 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.Background>
+        <!--<Grid.Background>
             <ImageBrush ImageSource="E:\QLBVCB\QLBVCB\Images\home.jpg" Stretch="Fill"/>
-        </Grid.Background>
+        </Grid.Background>-->
+        <Image Source="/Images/home.jpg" Stretch="Fill" />
     </Grid>
 </UserControl>
