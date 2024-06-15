@@ -22,6 +22,8 @@ namespace QLBVCB.Model
         public string MAVB { get; set; }
         public string MASA { get; set; }
         public string MAHL { get; set; }
+        public Nullable<System.DateTime> NGTHANHTOAN { get; set; }
+        public string TENHANHKHACH { get; set; }
     
         public virtual CHUYENBAY CHUYENBAY { get; set; }
         public virtual DICHVU DICHVU { get; set; }

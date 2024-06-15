@@ -7,10 +7,8 @@
         mc:Ignorable="d"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:vm ="clr-namespace:QLBVCB.ViewModel"
-
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:uc="clr-namespace:QLBVCB.UserControls"
-        
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -18,7 +16,6 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="None"
@@ -94,13 +91,27 @@
                     <Image Source="/Images/Logo.png" Margin="0, 10, 0, 10"/>
                     <Button x:Name="btHome"
                             Content="Trang Chủ"
-                            Command="{Binding ManagePlaneCommand}">
+                            Command="{Binding ManageHomeCommand}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Home"/>
                                     <TextBlock Text="{Binding Content, ElementName=btHome}" 
                                                VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btService"
+        Content="Dịch vụ"
+        Command="{Binding ManageServiceCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Airplane"/>
+                                    <TextBlock Text="{Binding Content, ElementName=btService}" 
+                           VerticalAlignment="Center">
                                     </TextBlock>
                                 </StackPanel>
                             </ControlTemplate>
@@ -241,9 +252,10 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                    
                     <Button x:Name="btRevenue"
                             Content="Doanh thu"
-                            Click="btRevenue_Click"
+                            Command="{Binding ManageRevenueCommand}"
                             Visibility="{Binding IsCEVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>

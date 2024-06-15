@@ -56,6 +56,12 @@
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=3.0.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.3.0.0\lib\net462\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -113,9 +119,6 @@
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\BOOKING.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\CHUYENBAY.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -156,11 +159,23 @@
     <Compile Include="Model\SANBAY.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\TAIKHOAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\VEBAY.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomerInfo.xaml.cs">
+      <DependentUpon>CustomerInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\SeatTemplateSelector.cs" />
     <Compile Include="UC_ControlBar.xaml.cs">
@@ -218,14 +233,18 @@
     <Compile Include="ViewModel\VM_AERAirport.cs" />
     <Compile Include="ViewModel\VM_AERFlight.cs" />
     <Compile Include="ViewModel\VM_AERPlane.cs" />
+    <Compile Include="ViewModel\VM_AERService.cs" />
     <Compile Include="ViewModel\VM_AERTicket.cs" />
     <Compile Include="ViewModel\VM_AERTicketType.cs" />
     <Compile Include="ViewModel\VM_BookedSeat.cs" />
     <Compile Include="ViewModel\VM_ControlBar2.cs" />
     <Compile Include="ViewModel\VM_CusMessBox.cs" />
     <Compile Include="ViewModel\VM_CustomerRegister.cs" />
+    <Compile Include="ViewModel\VM_CustomerInfo.cs" />
     <Compile Include="ViewModel\VM_EconomySeat.cs" />
     <Compile Include="ViewModel\VM_EmptySeat.cs" />
+    <Compile Include="ViewModel\VM_FillInfo.cs" />
+    <Compile Include="ViewModel\VM_Home.cs" />
     <Compile Include="ViewModel\VM_ManageAccount.cs" />
     <Compile Include="ViewModel\VM_ManageAirport.cs" />
     <Compile Include="ViewModel\VM_Base.cs" />
@@ -236,9 +255,14 @@
     <Compile Include="ViewModel\VM_ManageCustomer.cs" />
     <Compile Include="ViewModel\VM_ManageEmployee.cs" />
     <Compile Include="ViewModel\VM_ManageFlight.cs" />
+    <Compile Include="ViewModel\VM_ManageRevenue.cs" />
+    <Compile Include="ViewModel\VM_ManageService.cs" />
     <Compile Include="ViewModel\VM_ManageTicket.cs" />
     <Compile Include="ViewModel\VM_ManageTicketType.cs" />
     <Compile Include="ViewModel\VM_ManagePlane.cs" />
+    <Compile Include="ViewModel\VM_Recuperate.cs" />
+    <Compile Include="ViewModel\VM_RecuperateSeat.cs" />
+    <Compile Include="ViewModel\VM_RevenueDetail.cs" />
     <Compile Include="ViewModel\VM_SeatingChart.cs" />
     <Compile Include="View\AERAccount.xaml.cs">
       <DependentUpon>AERAccount.xaml</DependentUpon>
@@ -264,6 +288,9 @@
     <Compile Include="View\AERTicketType.xaml.cs">
       <DependentUpon>AERTicketType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AER_Service.xaml.cs">
+      <DependentUpon>AER_Service.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CusMessBox.xaml.cs">
       <DependentUpon>CusMessBox.xaml</DependentUpon>
     </Compile>
@@ -272,6 +299,12 @@
     </Compile>
     <Compile Include="View\EditAirplane.xaml.cs">
       <DependentUpon>EditAirplane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FillInfo.xaml.cs">
+      <DependentUpon>FillInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ManageAccount.xaml.cs">
       <DependentUpon>ManageAccount.xaml</DependentUpon>
@@ -291,6 +324,12 @@
     <Compile Include="View\ManageFlight.xaml.cs">
       <DependentUpon>ManageFlight.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManageRevenue.xaml.cs">
+      <DependentUpon>ManageRevenue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageService.xaml.cs">
+      <DependentUpon>ManageService.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManageTicket.xaml.cs">
       <DependentUpon>ManageTicket.xaml</DependentUpon>
     </Compile>
@@ -300,10 +339,23 @@
     <Compile Include="View\ManageTicketType.xaml.cs">
       <DependentUpon>ManageTicketType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\RecuperateFlight.xaml.cs">
+      <DependentUpon>RecuperateFlight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RecuperateSeat.xaml.cs">
+      <DependentUpon>RecuperateSeat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RevenueDetail.xaml.cs">
+      <DependentUpon>RevenueDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SeatingPlan.xaml.cs">
       <DependentUpon>SeatingPlan.xaml</DependentUpon>
     </Compile>
     <Page Include="Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomerInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -355,7 +407,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AER_Service.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CusMessBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FillInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -459,6 +523,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ManageRevenue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManageService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ManageTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -468,6 +540,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManageTicketType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RecuperateFlight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RecuperateSeat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RevenueDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -509,6 +593,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\home.jpg" />
+    <Content Include="Model\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Login.png" />

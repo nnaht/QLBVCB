@@ -1,10 +1,11 @@
 ﻿using QLBVCB.Model;
-using QLBVCB.UserControls;
 using QLBVCB.View;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Forms;
@@ -12,11 +13,11 @@ using System.Windows.Input;
 
 namespace QLBVCB.ViewModel
 {
-    internal class VM_ManageBooking : VM_Base
+    internal class VM_Recuperate : VM_Base
     {
         private ObservableCollection<string> _startLocation;
         private ObservableCollection<string> _destination;
-
+        private List<Tuple<string, int, int>> selection = new List<Tuple<string, int, int>> { };
         public ObservableCollection<string> StartLocation
         {
             get => _startLocation;
@@ -103,25 +104,10 @@ namespace QLBVCB.ViewModel
                 }
             }
         }
-
-        private bool _isRecuperate;
-        public bool IsRecuperate
-        {
-            get => _isRecuperate;
-            set
-            {
-                if (_isRecuperate != value)
-                {
-                    _isRecuperate = value;
-                    OnPropertyChanged(nameof(IsRecuperate));
-                }
-            }
-        }
-
         public ICommand BuyTicketCommand { get; set; }
-
-        public VM_ManageBooking()
+        public VM_Recuperate(List<Tuple<string, int, int>> selection)
         {
+            this.selection = selection;
             FlightList = new ObservableCollection<CHUYENBAY>(DataProvider.Ins.DB.CHUYENBAYs);
             FlightView = CollectionViewSource.GetDefaultView(FlightList);
             FlightView.Filter = FilterFlights;
@@ -177,7 +163,6 @@ namespace QLBVCB.ViewModel
         {
             FlightView.Refresh();
         }
-
         private async void ExecuteBuyTicketCommand(object obj)
         {
             if (MACB != null)
@@ -185,28 +170,22 @@ namespace QLBVCB.ViewModel
                 var chuyenBay = await GetChuyenBayAsync(MACB);
                 int totalSeats = chuyenBay?.SO_GHE ?? 250;
 
-                SeatingPlan seatingPlan = new SeatingPlan();
-                seatingPlan.DataContext = new VM_SeatingChart(MACB, totalSeats, IsRecuperate);
-                seatingPlan.ShowDialog();
+                RecuperateSeat recuperateSeat = new RecuperateSeat();
+                recuperateSeat.DataContext = new VM_RecuperateSeat(MACB, totalSeats, selection);
+                recuperateSeat.ShowDialog();
+
             }
             else
             {
-                ShowCustomMessageBox("Vui lòng chọn chuyến bay");
+                MessageBox.Show("Vui lòng chọn chuyến bay");
             }
         }
-
         private Task<CHUYENBAY> GetChuyenBayAsync(string macb)
         {
             return Task.Run(() =>
             {
                 return DataProvider.Ins.DB.CHUYENBAYs.SingleOrDefault(cb => cb.MACB == macb);
             });
-        }
-        public void ShowCustomMessageBox(string message)
-        {
-            CusMessBox customMessageBox = new CusMessBox();
-            customMessageBox.DataContext = new VM_CusMessBox(message);
-            customMessageBox.ShowDialog();
         }
     }
 }

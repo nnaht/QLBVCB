@@ -10,17 +10,10 @@
 namespace QLBVCB.Model
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class BOOKING
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public string MABK { get; set; }
-        public string MAKH { get; set; }
-        public string MANV { get; set; }
-        public string MAVB { get; set; }
-    
-        public virtual KHACHHANG KHACHHANG { get; set; }
-        public virtual NHANVIEN NHANVIEN { get; set; }
-        public virtual VEBAY VEBAY { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -17,7 +17,6 @@ namespace QLBVCB.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NHANVIEN()
         {
-            this.BOOKINGs = new HashSet<BOOKING>();
             this.TAIKHOANs = new HashSet<TAIKHOAN>();
         }
     
