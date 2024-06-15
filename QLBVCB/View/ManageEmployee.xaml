@@ -112,7 +112,8 @@
                     ToolTip="Edit"
                     Background="#FFD90429"
                     HorizontalAlignment="Right"
-                    Command="{Binding OpenAEREmployeeCommand}">
+                    Command="{Binding OpenAEREmployeeCommand}"
+                    Visibility="{Binding IsManagerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <materialDesign:PackIcon Kind="Edit" Height="24" Width="24" />
             </Button>
         </Grid>

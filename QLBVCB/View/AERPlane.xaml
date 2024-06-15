@@ -40,20 +40,19 @@
                         <Label Content="MÁY BAY" FontSize="30" Foreground="#00224D" FontWeight="Bold" />
                     </Grid>
                     <Grid Grid.Row="1" Margin ="20,0,10,0" HorizontalAlignment="Center">
-                        <TextBox 
-        Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
-        Style="{StaticResource MaterialDesignOutlinedTextBox}"
-         Height="40"
-         Width="170"
-         BorderBrush="#B31312"
-         CaretBrush="#B31312"
-         Foreground="#FFD90429"
-         HorizontalAlignment="Left"
-         materialDesign:HintAssist.Background="Transparent"
-         materialDesign:HintAssist.Foreground="Black"
-         materialDesign:HintAssist.Hint="Nhập loại máy bay..."
-            materialDesign:HintAssist.IsFloating="False"
-         FontSize="16">
+                        <TextBox Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 Height="40"
+                                 Width="170"
+                                 BorderBrush="#B31312"
+                                 CaretBrush="#B31312"
+                                 Foreground="#FFD90429"
+                                 HorizontalAlignment="Left"
+                                 materialDesign:HintAssist.Background="Transparent"
+                                 materialDesign:HintAssist.Foreground="Black"
+                                 materialDesign:HintAssist.Hint="Nhập loại máy bay..."
+                                 materialDesign:HintAssist.IsFloating="False"
+                                 FontSize="16">
                             <TextBox.Padding>
                                 <Thickness Left="5" Right="5" Top="7" Bottom="5"/>
                             </TextBox.Padding>
@@ -135,7 +134,7 @@
                                 materialDesign:ButtonAssist.CornerRadius="5"
                                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                 Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
+                                ToolTip="Thêm" Background="#FFD90429" BorderBrush="#FFB11409">
                             <TextBlock Text="Thêm"
                                        Foreground="#DDFEFEFE" />
                         </Button>
@@ -148,7 +147,7 @@
                                 materialDesign:ButtonAssist.CornerRadius="5"
                                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                 Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
+                                ToolTip="Sửa" Background="#FFD90429" BorderBrush="#FFB11409">
                             <TextBlock Text="Sửa"
                                        Foreground="#DDFEFEFE" />
                         </Button>
@@ -161,7 +160,7 @@
                                 materialDesign:ButtonAssist.CornerRadius="5"
                                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                 Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
+                                ToolTip="Xóa" Background="#FFD90429" BorderBrush="#FFB11409">
                             <TextBlock Text="Xóa" Foreground="#DDFEFEFE" />
                         </Button>
                     </Grid>

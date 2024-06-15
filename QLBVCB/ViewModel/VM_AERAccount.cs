@@ -80,7 +80,7 @@ namespace QLBVCB.ViewModel
                     return false;
                 if (AccountSelectedItem == null)
                     return false;
-                if (displayAccounttList == null && displayAccounttList.Count() != 0)
+                if (displayAccounttList.Count() == 0)
                     return false;
                 return true;
             }, (p) =>
@@ -95,18 +95,7 @@ namespace QLBVCB.ViewModel
 
             RemoveAccountCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(TENTK) || string.IsNullOrEmpty(MATKHAU) || string.IsNullOrEmpty(HOATDONG.ToString()) || string.IsNullOrEmpty(MANV))
-                    return false;
-                if (AccountSelectedItem == null)
-                    return false;
-                if (displayAccounttList != null && displayAccounttList.Count() != 0)
-                    return true;
-                //foreach (var item in TicketList)
-                //{
-                //    if (LOAIMB == item.LOAIMB && HANGMB == item.HANGMB)
-                //        return true;
-                //}
-                return false;
+                return true;
             }, (p) =>
             {
                 DataProvider.Ins.DB.TAIKHOANs.Remove(AccountSelectedItem);

@@ -223,6 +223,7 @@
     <Compile Include="ViewModel\VM_BookedSeat.cs" />
     <Compile Include="ViewModel\VM_ControlBar2.cs" />
     <Compile Include="ViewModel\VM_CusMessBox.cs" />
+    <Compile Include="ViewModel\VM_CustomerRegister.cs" />
     <Compile Include="ViewModel\VM_EconomySeat.cs" />
     <Compile Include="ViewModel\VM_EmptySeat.cs" />
     <Compile Include="ViewModel\VM_ManageAccount.cs" />
@@ -265,6 +266,9 @@
     </Compile>
     <Compile Include="View\CusMessBox.xaml.cs">
       <DependentUpon>CusMessBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomerRegister.xaml.cs">
+      <DependentUpon>CustomerRegister.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditAirplane.xaml.cs">
       <DependentUpon>EditAirplane.xaml</DependentUpon>
@@ -352,6 +356,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CusMessBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomerRegister.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

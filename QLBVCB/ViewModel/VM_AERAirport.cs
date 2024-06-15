@@ -89,7 +89,7 @@ namespace QLBVCB.ViewModel
                     return false;
                 if (AirportSelectedItem == null)
                     return false;
-                if (displayAirportList == null && displayAirportList.Count() != 0)
+                if (displayAirportList.Count() == 0)
                     return false;
                 return true;
             }, (p) =>
@@ -104,18 +104,7 @@ namespace QLBVCB.ViewModel
 
             RemoveAirportCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MASB) || string.IsNullOrEmpty(TEN_SANBAY) || string.IsNullOrEmpty(THANHPHO) || string.IsNullOrEmpty(QUOCGIA))
-                    return false;
-                if (AirportSelectedItem == null)
-                    return false;
-                if (displayAirportList != null && displayAirportList.Count() != 0)
-                    return true;
-                foreach (var item in AirportList)
-                {
-                    if (TEN_SANBAY == item.TEN_SANBAY && THANHPHO == item.THANHPHO && QUOCGIA == item.QUOCGIA)
-                        return true;
-                }
-                return false;
+                return true;
             }, (p) =>
             {
                 DataProvider.Ins.DB.SANBAYs.Remove(AirportSelectedItem);

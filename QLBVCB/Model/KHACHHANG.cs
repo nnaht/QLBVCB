@@ -30,6 +30,8 @@ namespace QLBVCB.Model
         public string SDT { get; set; }
         public string EMAIL { get; set; }
         public Nullable<bool> HOATDONG { get; set; }
+        public string TENTK { get; set; }
+        public string MATKHAU { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOKING> BOOKINGs { get; set; }

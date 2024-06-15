@@ -63,6 +63,8 @@
           <Property Name="SDT" Type="varchar" MaxLength="10" />
           <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
           <Property Name="HOATDONG" Type="bit" />
+          <Property Name="TENTK" Type="varchar" MaxLength="50" />
+          <Property Name="MATKHAU" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LOAIVE">
           <Key>
@@ -97,6 +99,8 @@
           <Property Name="LUONG" Type="decimal" Precision="19" Scale="4" />
           <Property Name="VITRI" Type="nvarchar" MaxLength="50" />
           <Property Name="HOATDONG" Type="bit" />
+          <Property Name="TENTK" Type="varchar" MaxLength="50" />
+          <Property Name="MATKHAU" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SANBAY">
           <Key>
@@ -412,6 +416,8 @@
           <Property Name="HOATDONG" Type="Boolean" />
           <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__MAKH__4D94879B" FromRole="KHACHHANG" ToRole="BOOKING" />
           <NavigationProperty Name="DADATs" Relationship="QLBVCBModel.FK_DADAT_KHACHHANG" FromRole="KHACHHANG" ToRole="DADAT" />
+          <Property Name="TENTK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="LOAIVE">
           <Key>
@@ -450,6 +456,8 @@
           <Property Name="HOATDONG" Type="Boolean" />
           <NavigationProperty Name="BOOKINGs" Relationship="Self.FK__BOOKING__MANV__4E88ABD4" FromRole="NHANVIEN" ToRole="BOOKING" />
           <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK__TAIKHOAN__MANV__3B75D760" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
+          <Property Name="TENTK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SANBAY">
           <Key>
@@ -786,6 +794,8 @@
           <EntitySetMapping Name="KHACHHANGs">
             <EntityTypeMapping TypeName="QLBVCBModel.KHACHHANG">
               <MappingFragment StoreEntitySet="KHACHHANG">
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="TENTK" ColumnName="TENTK" />
                 <ScalarProperty Name="MAKH" ColumnName="MAKH" />
                 <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
                 <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
@@ -821,6 +831,8 @@
           <EntitySetMapping Name="NHANVIENs">
             <EntityTypeMapping TypeName="QLBVCBModel.NHANVIEN">
               <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="TENTK" ColumnName="TENTK" />
                 <ScalarProperty Name="MANV" ColumnName="MANV" />
                 <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
                 <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />

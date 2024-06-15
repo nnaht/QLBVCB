@@ -40,6 +40,12 @@ namespace QLBVCB.ViewModel
         private string _EMAIL;
         public string EMAIL { get => _EMAIL; set { _EMAIL = value; OnPropertyChanged(); } }
 
+        private string _TENTK;
+        public string TENTK { get => _TENTK; set { _TENTK = value; OnPropertyChanged(); } }
+
+        private string _MATKHAU;
+        public string MATKHAU { get => _MATKHAU; set { _MATKHAU = value; OnPropertyChanged(); } }
+
         private Nullable<bool> _HOATDONG;
         public Nullable<bool> HOATDONG { get => _HOATDONG; set { _HOATDONG = value; OnPropertyChanged(); } }
 
@@ -66,6 +72,8 @@ namespace QLBVCB.ViewModel
                     DIACHI = CustomerSelectedItem.DIACHI;
                     SDT = CustomerSelectedItem.SDT;
                     EMAIL = CustomerSelectedItem.EMAIL;
+                    TENTK = CustomerSelectedItem.TENTK;
+                    MATKHAU = CustomerSelectedItem.MATKHAU;
                     HOATDONG = CustomerSelectedItem.HOATDONG;
                 }
             }
@@ -81,7 +89,8 @@ namespace QLBVCB.ViewModel
             AddCustomerCommand = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(HOTEN) || string.IsNullOrEmpty(NGAYSINH.ToString()) || string.IsNullOrEmpty(GIOITINH) || string.IsNullOrEmpty(CCCD)
-                    || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(HOATDONG.ToString()))
+                    || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(TENTK)
+                    || string.IsNullOrEmpty(MATKHAU) || string.IsNullOrEmpty(HOATDONG.ToString()))
                     return false;
                 if (displayCustomerList == null)
                     return false;
@@ -90,7 +99,7 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                var customer = new KHACHHANG    () {MAKH = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, HOATDONG = HOATDONG };
+                var customer = new KHACHHANG() { MAKH = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, TENTK = TENTK, MATKHAU = MATKHAU, HOATDONG = HOATDONG };
                 DataProvider.Ins.DB.KHACHHANGs.Add(customer);
                 DataProvider.Ins.DB.SaveChanges();
                 CustomerList.Add(customer);
@@ -99,11 +108,12 @@ namespace QLBVCB.ViewModel
             EditCustomerCommand = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(HOTEN) || string.IsNullOrEmpty(NGAYSINH.ToString()) || string.IsNullOrEmpty(GIOITINH) || string.IsNullOrEmpty(CCCD)
-                    || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(HOATDONG.ToString()))
+                    || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(TENTK)
+                    || string.IsNullOrEmpty(MATKHAU) || string.IsNullOrEmpty(HOATDONG.ToString()))
                     return false;
                 if (CustomerSelectedItem == null)
                     return false;
-                if (displayCustomerList == null && displayCustomerList.Count() != 0)
+                if (displayCustomerList.Count() == 0)
                     return false;
                 return true;
             }, (p) =>
@@ -116,24 +126,15 @@ namespace QLBVCB.ViewModel
                 customer.DIACHI = DIACHI;
                 customer.SDT = SDT;
                 customer.EMAIL = EMAIL;
+                customer.TENTK = TENTK;
+                customer.MATKHAU = MATKHAU;
                 customer.HOATDONG = HOATDONG;
                 DataProvider.Ins.DB.SaveChanges();
             });
 
             RemoveCustomerCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(HOTEN) || string.IsNullOrEmpty(NGAYSINH.ToString()) || string.IsNullOrEmpty(GIOITINH) || string.IsNullOrEmpty(CCCD)
-                    || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(HOATDONG.ToString()))
-                if (CustomerSelectedItem == null)
-                    return false;
-                if (displayCustomerList != null && displayCustomerList.Count() != 0)
-                    return true;
-                //foreach (var item in TicketList)
-                //{
-                //    if (LOAIMB == item.LOAIMB && HANGMB == item.HANGMB)
-                //        return true;
-                //}
-                return false;
+                return true;
             }, (p) =>
             {
                 DataProvider.Ins.DB.KHACHHANGs.Remove(CustomerSelectedItem);

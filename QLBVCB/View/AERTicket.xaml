@@ -218,7 +218,8 @@
                                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                 Style="{StaticResource MaterialDesignRaisedLightButton}"
                                 ToolTip="Xóa" Background="#FFD90429" BorderBrush="#FFB11409">
-                            <TextBlock Text="Xóa" Foreground="#DDFEFEFE" />
+                            <TextBlock Text="Xóa"
+                                       Foreground="#DDFEFEFE" />
                         </Button>
                     </Grid>
                 </Grid>

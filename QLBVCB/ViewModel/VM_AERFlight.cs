@@ -107,7 +107,7 @@ namespace QLBVCB.ViewModel
                     return false;
                 if (FlightSelectedItem == null)
                     return false;
-                if (displayFlightList == null && displayFlightList.Count() != 0)
+                if (displayFlightList.Count() == 0)
                     return false;
                 return true;
             }, (p) =>
@@ -126,20 +126,7 @@ namespace QLBVCB.ViewModel
 
             RemoveFlightCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MACB) || string.IsNullOrEmpty(MAMB) || string.IsNullOrEmpty(THOIGIAN_CATCANH) || string.IsNullOrEmpty(THOIGIAN_HACANH) ||
-                string.IsNullOrEmpty(TRANGTHAI) || string.IsNullOrEmpty(SO_GHE) || string.IsNullOrEmpty(MASB_CATCANH) || string.IsNullOrEmpty(MASB_HACANH))
-                    return false;
-                if (FlightSelectedItem == null)
-                    return false;
-                if (displayFlightList != null && displayFlightList.Count() != 0)
-                    return true;
-                foreach (var item in FlightList)
-                {
-                    if (MAMB == item.MAMB && THOIGIAN_CATCANH == item.THOIGIAN_CATCANH.ToString() && THOIGIAN_HACANH == THOIGIAN_HACANH.ToString() &&
-                    TRANGTHAI == TRANGTHAI && SO_GHE == SO_GHE.ToString() && MASB_CATCANH == MASB_CATCANH && MASB_HACANH == MASB_HACANH)
-                        return true;
-                }
-                return false;
+                return true;
             }, (p) =>
             {
                 DataProvider.Ins.DB.CHUYENBAYs.Remove(FlightSelectedItem);

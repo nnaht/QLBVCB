@@ -1,12 +1,8 @@
 ﻿using QLBVCB.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -90,7 +86,7 @@ namespace QLBVCB.ViewModel
                     return false;
                 if (PlaneSelectedItem == null)
                     return false;
-                if (displayPlaneList == null && displayPlaneList.Count() != 0)
+                if (displayPlaneList.Count() == 0)
                     return false;
                 return true;
             }, (p) =>
@@ -104,18 +100,7 @@ namespace QLBVCB.ViewModel
 
             RemovePlaneCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MAMB) || string.IsNullOrEmpty(LOAIMB) || string.IsNullOrEmpty(HANGMB))
-                    return false;
-                if (PlaneSelectedItem == null)
-                    return false;
-                if (displayPlaneList != null && displayPlaneList.Count() != 0)
-                    return true;
-                foreach (var item in PlaneList)
-                {
-                    if (LOAIMB == item.LOAIMB && HANGMB == item.HANGMB)
-                        return true;
-                }
-                return false;
+                return true;
             }, (p) =>
             {
                 DataProvider.Ins.DB.MAYBAYs.Remove(PlaneSelectedItem);

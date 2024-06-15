@@ -46,6 +46,7 @@ namespace QLBVCB.ViewModel
         }
         public VM_Main()
         {
+            #region login
             //LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             //{
             //    IsLoaded = true;
@@ -77,6 +78,7 @@ namespace QLBVCB.ViewModel
             //    }
 
             //});
+            #endregion
 
             ManageTicketTypeCommand = new RelayCommand(ManageTicketType);
             ManageFlightCommand = new RelayCommand(ManageFlight);
@@ -92,5 +94,13 @@ namespace QLBVCB.ViewModel
         //{
         //    AccountList = new ObservableCollection<TAIKHOAN>(DataProvider.Ins.DB.TAIKHOANs);
         //}
+        public bool IsCustomerVisible
+        {
+            get { return position != 3; }
+        }
+        public bool IsCEVisible
+        {
+            get { return position != 3 && position != 2; }
+        }
     }
 }

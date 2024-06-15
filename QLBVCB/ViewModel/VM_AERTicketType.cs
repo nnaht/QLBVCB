@@ -94,7 +94,7 @@ namespace QLBVCB.ViewModel
                     return false;
                 if (TicketTypeSelectedItem == null)
                     return false;
-                if (displayTicketTypeList == null && displayTicketTypeList.Count() != 0)
+                if (displayTicketTypeList.Count() == 0)
                     return false;
                 return true;
             }, (p) =>
@@ -110,18 +110,7 @@ namespace QLBVCB.ViewModel
 
             RemoveTicketTypeCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MALV) || string.IsNullOrEmpty(TEN_LOAIVE) || GIAVE != null || PHI_THAYDOI != null || PHI_HUY != null)
-                    return false;
-                if (TicketTypeSelectedItem == null)
-                    return false;
-                if (displayTicketTypeList != null && displayTicketTypeList.Count() != 0)
-                    return true;
-                foreach (var item in TicketTypeList)
-                {
-                    if (TEN_LOAIVE == item.TEN_LOAIVE && GIAVE == item.GIAVE && PHI_THAYDOI == item.PHI_THAYDOI && PHI_HUY == item.PHI_HUY)
-                        return true;
-                }
-                return false;
+                return true;
             }, (p) =>
             {
                 DataProvider.Ins.DB.LOAIVEs.Remove(TicketTypeSelectedItem);

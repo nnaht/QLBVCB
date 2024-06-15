@@ -5,6 +5,8 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Configuration;
+using QLBVCB.View;
 
 namespace QLBVCB.ViewModel
 {
@@ -19,6 +21,7 @@ namespace QLBVCB.ViewModel
         public string Password { get => _Password; set { _Password = value; OnPropertyChanged(); } }
 
         public ICommand LoginCommand { get; set; }
+        public ICommand SignInCommand { get; set; }
         public ICommand UsernameChangedCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
 
@@ -28,16 +31,28 @@ namespace QLBVCB.ViewModel
             //IsLogin = false;
             UsernameChangedCommand = new RelayCommand<TextBox>((p) => { return true; }, (p) => { Username = p.Text; });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
+            SignInCommand = new RelayCommand<Button>((p) => { return true; }, (p) => { CustomerRegister cr = new CustomerRegister(); cr.ShowDialog(); });
         }
 
         private void Login(object parameter)
         {
 
-            var accCount = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.TENTK == Username && x.MATKHAU == Password).SingleOrDefault();
-            if (accCount != null || (Username == "admin" && Password == "admin"))
+            var employeeAccCount = DataProvider.Ins.DB.NHANVIENs.Where(x => x.TENTK == Username && x.MATKHAU == Password).SingleOrDefault();
+            var customerAccCount = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.TENTK == Username && x.MATKHAU == Password).SingleOrDefault();
+            if (employeeAccCount != null)
             {
-                AccountLogin = accCount;
+                if (employeeAccCount.VITRI == "Quản Lý")
+                    position = 1;
+                else
+                    position = 2;
+            }
+            else if (customerAccCount != null)
+                position = 3;
+            if (position != 0 || (Username == "admin" && Password == "admin"))
+            {
+                EmployeeAccountLogin = employeeAccCount;
                 IsLogin = true;
+                //MessageBox.Show(position.ToString());
                 MainWindow mainWindow = new MainWindow();
                 Application.Current.Windows.OfType<Login>().FirstOrDefault()?.Close();
                 CloseWindow(Application.Current.MainWindow);

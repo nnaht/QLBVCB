@@ -108,7 +108,8 @@
                     </Button>
                     <Button x:Name="btAirplane"
                             Content="Quản lý máy bay"
-                            Command="{Binding ManagePlaneCommand}">
+                            Command="{Binding ManagePlaneCommand}"
+                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -122,7 +123,8 @@
                     </Button>
                     <Button x:Name="btAirport"
                             Content="Quản lý sân bay"
-                            Command="{Binding ManageAirportCommand}">
+                            Command="{Binding ManageAirportCommand}"
+                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -137,7 +139,7 @@
                     <Button x:Name="btTicketType"
                             Content="Quản lý loại vé"
                             Command="{Binding ManageTicketTypeCommand}"
-                            >
+                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -151,7 +153,8 @@
                     </Button>
                     <Button x:Name="btFlight"
                             Content="Quản lý chuyến bay"
-                            Command="{Binding ManageFlightCommand}">
+                            Command="{Binding ManageFlightCommand}"
+                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -165,7 +168,8 @@
                     </Button>
                     <Button x:Name="btTicket"
                             Content="Quản lý vé"
-                            Command="{Binding ManageTicketCommand}">
+                            Command="{Binding ManageTicketCommand}"
+                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -194,7 +198,8 @@
                     </Button>
                     <Button x:Name="btEmployee" 
                             Content="Quản lý nhân viên"
-                            Command="{Binding ManageEmployeeCommand}">
+                            Command="{Binding ManageEmployeeCommand}"
+                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -208,7 +213,8 @@
                     </Button>
                     <Button x:Name="btCustomer"
                             Content="Quản lý khách hàng"
-                            Command="{Binding ManageCustomerCommand}">
+                            Command="{Binding ManageCustomerCommand}"
+                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -222,7 +228,8 @@
                     </Button>
                     <Button x:Name="btAccount"
                             Content="Quản lý tài khoản"
-                            Command="{Binding ManageAccountCommand}">
+                            Command="{Binding ManageAccountCommand}"
+                            Visibility="{Binding IsCEVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -236,7 +243,8 @@
                     </Button>
                     <Button x:Name="btRevenue"
                             Content="Doanh thu"
-                            Click="btRevenue_Click">
+                            Click="btRevenue_Click"
+                            Visibility="{Binding IsCEVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">

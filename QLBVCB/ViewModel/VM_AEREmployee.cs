@@ -1,4 +1,5 @@
-﻿using QLBVCB.Model;
+﻿using OfficeOpenXml.Drawing.Chart;
+using QLBVCB.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -47,6 +48,12 @@ namespace QLBVCB.ViewModel
         private string _VITRI;
         public string VITRI { get => _VITRI; set { _VITRI = value; OnPropertyChanged(); } }
 
+        private string _TENTK;
+        public string TENTK { get => _TENTK; set { _TENTK = value; OnPropertyChanged(); } }
+
+        private string _MATKHAU;
+        public string MATKHAU { get => _MATKHAU; set { _MATKHAU = value; OnPropertyChanged(); } }
+
         private Nullable<bool> _HOATDONG;
         public Nullable<bool> HOATDONG { get => _HOATDONG; set { _HOATDONG = value; OnPropertyChanged(); } }
         public ICommand AddEmployeeCommand { get; set; }
@@ -74,6 +81,8 @@ namespace QLBVCB.ViewModel
                     EMAIL = EmployeeSelectedItem.EMAIL;
                     LUONG = EmployeeSelectedItem.LUONG;
                     VITRI = EmployeeSelectedItem.VITRI;
+                    TENTK = EmployeeSelectedItem.TENTK;
+                    MATKHAU = EmployeeSelectedItem.MATKHAU;
                     HOATDONG = EmployeeSelectedItem.HOATDONG;
                 }
             }
@@ -90,7 +99,7 @@ namespace QLBVCB.ViewModel
             {
                 if (string.IsNullOrEmpty(HOTEN) || string.IsNullOrEmpty(NGAYSINH.ToString()) || string.IsNullOrEmpty(GIOITINH) || string.IsNullOrEmpty(CCCD)
                     || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(LUONG.ToString())
-                    || string.IsNullOrEmpty(VITRI) || string.IsNullOrEmpty(HOATDONG.ToString()))
+                    || string.IsNullOrEmpty(VITRI) || string.IsNullOrWhiteSpace(TENTK) || string.IsNullOrWhiteSpace(MATKHAU) || string.IsNullOrEmpty(HOATDONG.ToString()))
                     return false;
                 if (displayEmployeeList == null)
                     return false;
@@ -99,8 +108,10 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                var employee = new NHANVIEN() { MANV = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRI = VITRI, HOATDONG = HOATDONG };
+                var employee = new NHANVIEN() { MANV = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRI = VITRI, TENTK = TENTK, MATKHAU = MATKHAU, HOATDONG = HOATDONG };
+                var accout = new TAIKHOAN() { MANV = GetNextId(), TENTK = TENTK, MATKHAU = MATKHAU };
                 DataProvider.Ins.DB.NHANVIENs.Add(employee);
+                DataProvider.Ins.DB.TAIKHOANs.Add(accout);
                 DataProvider.Ins.DB.SaveChanges();
                 EmployeeList.Add(employee);
             });
@@ -109,11 +120,11 @@ namespace QLBVCB.ViewModel
             {
                 if (string.IsNullOrEmpty(HOTEN) || string.IsNullOrEmpty(NGAYSINH.ToString()) || string.IsNullOrEmpty(GIOITINH) || string.IsNullOrEmpty(CCCD)
                     || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(LUONG.ToString())
-                    || string.IsNullOrEmpty(VITRI) || string.IsNullOrEmpty(HOATDONG.ToString()))
+                    || string.IsNullOrEmpty(VITRI) || string.IsNullOrWhiteSpace(TENTK) || string.IsNullOrWhiteSpace(MATKHAU) || string.IsNullOrEmpty(HOATDONG.ToString()))
                     return false;
                 if (EmployeeSelectedItem == null)
                     return false;
-                if (displayEmployeeList == null && displayEmployeeList.Count() != 0)
+                if (displayEmployeeList.Count() == 0)
                     return false;
                 return true;
             }, (p) =>
@@ -128,24 +139,15 @@ namespace QLBVCB.ViewModel
                 employee.EMAIL = EMAIL;
                 employee.LUONG = LUONG;
                 employee.VITRI = VITRI;
+                employee.TENTK = TENTK;
+                employee.MATKHAU = MATKHAU;
                 employee.HOATDONG = HOATDONG;
                 DataProvider.Ins.DB.SaveChanges();
             });
 
             RemoveEmployeeCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(HOTEN) || string.IsNullOrEmpty(NGAYSINH.ToString()) || string.IsNullOrEmpty(GIOITINH) || string.IsNullOrEmpty(CCCD)
-                    || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(HOATDONG.ToString()))
-                    if (EmployeeSelectedItem == null)
-                        return false;
-                if (displayEmployeeList != null && displayEmployeeList.Count() != 0)
-                    return true;
-                //foreach (var item in TicketList)
-                //{
-                //    if (LOAIMB == item.LOAIMB && HANGMB == item.HANGMB)
-                //        return true;
-                //}
-                return false;
+                return true;
             }, (p) =>
             {
                 DataProvider.Ins.DB.NHANVIENs.Remove(EmployeeSelectedItem);

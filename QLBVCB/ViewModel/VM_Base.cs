@@ -19,7 +19,8 @@ namespace QLBVCB.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        static public TAIKHOAN AccountLogin = new TAIKHOAN();
+        static public NHANVIEN EmployeeAccountLogin = new NHANVIEN();
+        static public int position = 0;
     }
     public class RelayCommand : ICommand
     {

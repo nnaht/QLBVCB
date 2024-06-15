@@ -83,6 +83,7 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -182,7 +183,26 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-
+                    <Grid Grid.Row="3" Grid.Column="2">
+                        <TextBox VerticalAlignment="Center"
+                                 Text="{Binding TENTK, UpdateSourceTrigger=PropertyChanged}"
+                                 Foreground="#FFD90429"
+                                 BorderBrush="#FFD90429"
+                                 materialDesign:HintAssist.Hint="Tên tài khoản"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Width="140">
+                        </TextBox>
+                    </Grid>
+                    <Grid Grid.Row="3" Grid.Column="4">
+                        <TextBox VerticalAlignment="Center"
+                                 Text="{Binding MATKHAU, UpdateSourceTrigger=PropertyChanged}"
+                                 Foreground="#FFD90429"
+                                 BorderBrush="#FFD90429"
+                                 materialDesign:HintAssist.Hint="Mật khẩu"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Width="140">
+                        </TextBox>
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid Grid.Row="2">
@@ -217,6 +237,8 @@
                                 <DataGridTextColumn Width="Auto" Header="Địa chỉ" Binding="{Binding DIACHI}"></DataGridTextColumn>
                                 <DataGridTextColumn Width="Auto" Header="Số điện thoại" Binding="{Binding SDT}"></DataGridTextColumn>
                                 <DataGridTextColumn Width="Auto" Header="Email" Binding="{Binding EMAIL}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="Auto" Header="Tên tài khoản" Binding="{Binding TENTK}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="Auto" Header="Mật khẩu" Binding="{Binding MATKHAU}"></DataGridTextColumn>
                                 <DataGridTextColumn Width="Auto" Header="Hoạt động" Binding="{Binding HOATDONG}"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>

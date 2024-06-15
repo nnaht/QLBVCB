@@ -147,5 +147,10 @@ namespace QLBVCB.ViewModel
         {
             EmployeeView.Refresh();
         }
+
+        public bool IsManagerVisible
+        {
+            get { return position != 2; }
+        }
     }
 }

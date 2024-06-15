@@ -85,7 +85,7 @@ namespace QLBVCB.ViewModel
                     return false;
                 if (TicketSelectedItem == null)
                     return false;
-                if (displayTicketList == null && displayTicketList.Count() != 0)
+                if (displayTicketList.Count() == 0)
                     return false;
                 return true;
             }, (p) =>
@@ -100,18 +100,7 @@ namespace QLBVCB.ViewModel
 
             RemoveTicketCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MACB) || string.IsNullOrEmpty(THUTU_GHE) || string.IsNullOrEmpty(MALV) || string.IsNullOrEmpty(DADAT))
-                    return false;
-                if (TicketSelectedItem == null)
-                    return false;
-                if (displayTicketList != null && displayTicketList.Count() != 0)
-                    return true;
-                //foreach (var item in TicketList)
-                //{
-                //    if (LOAIMB == item.LOAIMB && HANGMB == item.HANGMB)
-                //        return true;
-                //}
-                return false;
+                return true;
             }, (p) =>
             {
                 DataProvider.Ins.DB.VEBAYs.Remove(TicketSelectedItem);
