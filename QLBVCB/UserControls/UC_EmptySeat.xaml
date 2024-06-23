@@ -8,24 +8,31 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="30">
-    
+
     <UserControl.DataContext>
         <vm:VM_EmptySeat />
     </UserControl.DataContext>
-    <Border BorderThickness="1" BorderBrush="Gray" Width="30" Height="30" CornerRadius="10">
+    <Border BorderThickness="0.5" BorderBrush="Transparent" Width="30" Height="30" CornerRadius="5">
         <Border.Style>
             <Style TargetType="Border">
-                <Setter Property="Background" Value="GreenYellow"/>
+                <Setter Property="Background" Value="#FF2DCD19"/>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsChosen}" Value="True">
-                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Background" Value="LightGoldenrodYellow"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsChosen}" Value="False">
+                        <Setter Property="Background" Value="#FF2DCD19"/>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
         </Border.Style>
+        <Border.Effect>
+            <DropShadowEffect Color="Black" Direction="270" ShadowDepth="3" Opacity="0.5"/>
+        </Border.Effect>
         <Border.InputBindings>
-            <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.SeatActionCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
-                  CommandParameter="info"/>
+            <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.PickSeatCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                  CommandParameter="{Binding}">
+            </MouseBinding>
         </Border.InputBindings>
     </Border>
 </UserControl>

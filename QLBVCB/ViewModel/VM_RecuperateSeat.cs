@@ -55,6 +55,7 @@ namespace QLBVCB.ViewModel
             Seat clickedSeat = obj as Seat;
             if (clickedSeat != null)
             {
+                clickedSeat.IsPicking = !clickedSeat.IsPicking;
                 var seatTuple = new Tuple<string, int, int>(_flightId, clickedSeat.Row, clickedSeat.Column);
                 if (selection.Contains(seatTuple))
                 {
@@ -66,6 +67,7 @@ namespace QLBVCB.ViewModel
                     selection.Add(seatTuple);
                     ShowCustomMessageBox("Bạn đã chọn ghế " + setSeat(clickedSeat.Row, clickedSeat.Column));
                 }
+                clickedSeat.NotifyPropertyChanged(nameof(clickedSeat.IsPicking));
             }
         }
         public void ShowCustomMessageBox(string message)
@@ -73,6 +75,13 @@ namespace QLBVCB.ViewModel
             CusMessBox customMessageBox = new CusMessBox();
             customMessageBox.DataContext = new VM_CusMessBox(message);
             customMessageBox.ShowDialog();
+        }
+        private void CloseWindow(Window window)
+        {
+            if (window != null)
+            {
+                window.Close();
+            }
         }
         public string setSeat(int Hang, int Day)
         {
@@ -101,12 +110,16 @@ namespace QLBVCB.ViewModel
                     a = "F";
                     break;
             }
-            return a + Hang.ToString();
+            return Hang.ToString() + a ;
         }
         private async Task ExecuteBookCommand()
         {
             FillInfo fillInfo = new FillInfo();
             fillInfo.DataContext = new VM_FillInfo(selection,true);
+
+            Application.Current.Windows.OfType<RecuperateSeat>().FirstOrDefault()?.Close();
+            CloseWindow(Application.Current.MainWindow);
+            Application.Current.MainWindow = fillInfo;
             fillInfo.ShowDialog();
 
         }

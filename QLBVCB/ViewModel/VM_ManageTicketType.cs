@@ -175,7 +175,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is LOAIVEWrapper ticketType)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || ticketType.TEN_LOAIVE.StartsWith(SearchKeyword, StringComparison.OrdinalIgnoreCase);
+                return string.IsNullOrEmpty(SearchKeyword) || ticketType.TEN_LOAIVE.Contains(SearchKeyword);
             }
             return false;
         }

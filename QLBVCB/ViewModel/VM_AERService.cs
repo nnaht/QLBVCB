@@ -1,20 +1,29 @@
-﻿using QLBVCB.Model;
-using System;
-using System.Collections.Generic;
+﻿using OfficeOpenXml.Style;
+using OfficeOpenXml;
+using QLBVCB.Model;
+using QLBVCB.ViewModel;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Forms;
+using System;
+using QLBVCB.View;
+using System.Globalization;
 
 namespace QLBVCB.ViewModel
 {
+    
+
     internal class VM_AERService : VM_Base
     {
         private ObservableCollection<DICHVU> _ServiceList;
-        public ObservableCollection<DICHVU> ServiceList { get { return _ServiceList; } set { _ServiceList = value; OnPropertyChanged(); } }
+        public ObservableCollection<DICHVU> ServiceList
+        {
+            get { return _ServiceList; }
+            set { _ServiceList = value; OnPropertyChanged(); }
+        }
 
         private string _MADV;
         public string MADV { get => _MADV; set { _MADV = value; OnPropertyChanged(); } }
@@ -24,13 +33,29 @@ namespace QLBVCB.ViewModel
 
         private string _TENDV;
         public string TENDV { get => _TENDV; set { _TENDV = value; OnPropertyChanged(); } }
-        private int _SOLUONG;
-        public int SOLUONG { get => _SOLUONG; set { _SOLUONG = value; OnPropertyChanged(); } }
+
+        private int? _SOLUONG;
+        public int? SOLUONG { get => _SOLUONG; set { _SOLUONG = value; OnPropertyChanged(); } }
+
         private decimal _DONGIA;
-        public decimal DONGIA { get => _DONGIA; set { _DONGIA = value; OnPropertyChanged(); } }
+        public decimal DONGIA
+        {
+            get => _DONGIA;
+            set
+            {
+                _DONGIA = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(FormattedDONGIA)); // Notify UI that formatted value has changed
+            }
+        }
+
+        // Formatted property for DONGIA
+        public string FormattedDONGIA => DONGIA.ToString("#,##0.###");
+
         public ICommand AddServiceCommand { get; set; }
         public ICommand EditServiceCommand { get; set; }
         public ICommand RemoveServiceCommand { get; set; }
+
         private DICHVU _ServiceSelectedItem;
         public DICHVU ServiceSelectedItem
         {
@@ -44,11 +69,12 @@ namespace QLBVCB.ViewModel
                     MADV = ServiceSelectedItem.MADV;
                     LOAIDV = ServiceSelectedItem.LOAIDV;
                     TENDV = ServiceSelectedItem.TENDV;
-                    SOLUONG = int.Parse(ServiceSelectedItem.SOLUONG.ToString());
+                    SOLUONG = ServiceSelectedItem.SOLUONG;
                     DONGIA = ServiceSelectedItem.DONGIA;
                 }
             }
         }
+
         private string _SearchKeyword;
         public string SearchKeyword
         {
@@ -62,24 +88,19 @@ namespace QLBVCB.ViewModel
         }
 
         public ICollectionView ServiceView { get; private set; }
+
         public VM_AERService()
         {
             ServiceList = new ObservableCollection<DICHVU>(DataProvider.Ins.DB.DICHVUs);
-            var displayServiceList = DataProvider.Ins.DB.DICHVUs.Where(x => x.MADV == MADV);
             ServiceView = CollectionViewSource.GetDefaultView(ServiceList);
             ServiceView.Filter = FilterService;
+
             AddServiceCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MADV) || string.IsNullOrEmpty(LOAIDV) || string.IsNullOrEmpty(TENDV))
-                    return false;
-                if (displayServiceList == null)
-                    return false;
-                if (displayServiceList.Count() != 0)
-                    return false;
-                return true;
+                return !string.IsNullOrEmpty(MADV) && !string.IsNullOrEmpty(LOAIDV) && !string.IsNullOrEmpty(TENDV);
             }, (p) =>
             {
-                var service = new DICHVU() { MADV = MADV, TENDV = TENDV, SOLUONG = SOLUONG, DONGIA = DONGIA, LOAIDV= LOAIDV };
+                var service = new DICHVU() { MADV = MADV, TENDV = TENDV, SOLUONG = SOLUONG, DONGIA = DONGIA, LOAIDV = LOAIDV };
                 DataProvider.Ins.DB.DICHVUs.Add(service);
                 DataProvider.Ins.DB.SaveChanges();
                 ServiceList.Add(service);
@@ -87,46 +108,35 @@ namespace QLBVCB.ViewModel
 
             EditServiceCommand = new RelayCommand<object>((p) =>
             {
-                //if (string.IsNullOrEmpty(MASB) || string.IsNullOrEmpty(TEN_DICHVU) || string.IsNullOrEmpty(THANHPHO) || string.IsNullOrEmpty(QUOCGIA))
-                  //  return false;
-                if (ServiceSelectedItem == null)
-                    return false;
-                if (displayServiceList == null && displayServiceList.Count() != 0)
-                    return false;
-                return true;
+                return ServiceSelectedItem != null;
             }, (p) =>
             {
-                var service = DataProvider.Ins.DB.DICHVUs.Where(x => x.MADV == MADV).SingleOrDefault();
-                service.MADV = MADV;
-                service.TENDV = TENDV;
-                service.LOAIDV = LOAIDV;
-                service.SOLUONG = SOLUONG ;
-                service.DONGIA = DONGIA;
-                DataProvider.Ins.DB.SaveChanges();
+                var service = DataProvider.Ins.DB.DICHVUs.Find(MADV);
+                if (service != null)
+                {
+                    service.LOAIDV = LOAIDV;
+                    service.TENDV = TENDV;
+                    service.SOLUONG = SOLUONG;
+                    service.DONGIA = DONGIA;
+                    DataProvider.Ins.DB.SaveChanges();
+                    ServiceSelectedItem.LOAIDV = LOAIDV;
+                    ServiceSelectedItem.TENDV = TENDV;
+                    ServiceSelectedItem.SOLUONG = SOLUONG;
+                    ServiceSelectedItem.DONGIA = DONGIA;
+                }
             });
 
             RemoveServiceCommand = new RelayCommand<object>((p) =>
             {
-                //if (string.IsNullOrEmpty(MASB) || string.IsNullOrEmpty(TEN_DICHVU) || string.IsNullOrEmpty(THANHPHO) || string.IsNullOrEmpty(QUOCGIA))
-                 //   return false;
-                if (ServiceSelectedItem == null)
-                    return false;
-                if (displayServiceList != null && displayServiceList.Count() != 0)
-                    return true;
-                foreach (var item in ServiceList)
-                {
-                   // if (TEN_DICHVU == item.TEN_DICHVU && THANHPHO == item.THANHPHO && QUOCGIA == item.QUOCGIA)
-                        return true;
-                }
-                return false;
+                return ServiceSelectedItem != null;
             }, (p) =>
             {
                 DataProvider.Ins.DB.DICHVUs.Remove(ServiceSelectedItem);
                 DataProvider.Ins.DB.SaveChanges();
-
                 ServiceList.Remove(ServiceSelectedItem);
             });
         }
+
         private bool FilterService(object item)
         {
             if (item is DICHVU service)

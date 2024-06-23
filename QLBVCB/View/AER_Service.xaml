@@ -20,6 +20,10 @@ ResizeMode="NoResize"
 WindowStyle="None"
 AllowsTransparency="True"
 Title="AERTicket" Height="600" Width="800">
+    <Window.Resources>
+        <vm:NullToDefaultConverter  x:Key="NullToDefaultConverter"/>
+        <vm:DongiaFormatterConverter x:Key="DongiaFormatterConverter"/>
+    </Window.Resources>
     <Window.DataContext>
         <vm:VM_AERService/>
     </Window.DataContext>
@@ -136,12 +140,11 @@ Title="AERTicket" Height="600" Width="800">
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Auto">
                         <DataGrid ItemsSource="{Binding ServiceView}"
-                              AutoGenerateColumns="False"
-                              Background="#FFF8F8F8"
-                              IsReadOnly="True"
-                              d:ItemsSource="{d:SampleData}"
-                              SelectedItem="{Binding ServiceSelectedItem}"
-                              Width="760">
+                                  AutoGenerateColumns="False"
+                                  Background="#FFF8F8F8"
+                                  IsReadOnly="True"
+                                  SelectedItem="{Binding ServiceSelectedItem}"
+                                  Width="760">
                             <DataGrid.ColumnHeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -153,12 +156,11 @@ Title="AERTicket" Height="600" Width="800">
                                 </Style>
                             </DataGrid.ColumnHeaderStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Width="*" Header="Mã dịch vụ" Binding="{Binding MADV}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Loại dịch vụ" Binding="{Binding LOAIDV}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Tên dịch vụ" Binding="{Binding TENDV}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Số lượng" Binding="{Binding SOLUONG}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Đơn giá" Binding="{Binding DONGIA}"></DataGridTextColumn>
-
+                                <DataGridTextColumn Width="*" Header="Mã dịch vụ" Binding="{Binding MADV}"/>
+                                <DataGridTextColumn Width="*" Header="Loại dịch vụ" Binding="{Binding LOAIDV}"/>
+                                <DataGridTextColumn Width="*" Header="Tên dịch vụ" Binding="{Binding TENDV}"/>
+                                <DataGridTextColumn Width="*" Header="Số lượng" Binding="{Binding SOLUONG, Converter={StaticResource NullToDefaultConverter}}"/>
+                                <DataGridTextColumn Width="*" Header="Đơn giá" Binding="{Binding DONGIA, StringFormat={}{0:N0}}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </ScrollViewer>

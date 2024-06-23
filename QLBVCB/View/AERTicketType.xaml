@@ -74,7 +74,7 @@
                                      materialDesign:HintAssist.Hint="Mã loại vé"
                                      Text="{Binding MALV, UpdateSourceTrigger=PropertyChanged}"
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                     Width="140" Margin="70,15,-70,0" />
+                                     Width="140" Margin="70,15,-70,0" Focusable="False" />
                         </Grid>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
@@ -166,7 +166,6 @@
                         <Grid Width="Auto">
                             <Button Height="Auto"
                                     materialDesign:ButtonAssist.CornerRadius="5"
-                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                     Style="{StaticResource MaterialDesignRaisedLightButton}"
                                     Command="{Binding AddTicketTypeCommand}"
                                     ToolTip="Thêm" Background="#FFD90429" BorderBrush="#FFB11409">

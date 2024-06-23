@@ -4,20 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QLBVCB.View"
-             xmlns:vm ="clr-namespace:QLBVCB.ViewModel"
-             xmlns:uc ="clr-namespace:QLBVCB.UserControls"
-mc:Ignorable="d" 
-xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:vm="clr-namespace:QLBVCB.ViewModel"
+             xmlns:uc="clr-namespace:QLBVCB.UserControls"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <vm:NullToDefaultConverter  x:Key="NullToDefaultConverter"/>
+        <vm:DongiaFormatterConverter x:Key="DongiaFormatterConverter"/>
+    </UserControl.Resources>
+
     <UserControl.DataContext>
         <vm:VM_ManageService/>
     </UserControl.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
+        <!-- Search TextBox -->
         <Grid Grid.Row="0" HorizontalAlignment="Left">
             <TextBox Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
                      x:Name="txtBoxSearchType" 
@@ -37,10 +46,11 @@ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                 </TextBox.Padding>
             </TextBox>
         </Grid>
+
+        <!-- DataGrid -->
         <Grid Grid.Row="1">
             <Grid Margin="5" HorizontalAlignment="Center" Background="white" Width="760" Height="365">
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Auto">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                     <DataGrid ItemsSource="{Binding ServiceView}"
                               AutoGenerateColumns="False"
                               SelectedItem="{Binding SelectedItem}" 
@@ -49,13 +59,15 @@ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                               IsReadOnly="True"
                               MinColumnWidth="19" 
                               MinRowHeight="30" RowHeight="30">
+
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Mã" Binding="{Binding MADV}" Width="*"/>
                             <DataGridTextColumn Header="Loại dịch vụ" Binding="{Binding LOAIDV}" Width="2*"/>
                             <DataGridTextColumn Header="Tên dịch vụ" Binding="{Binding TENDV}" Width="2*"/>
-                            <DataGridTextColumn Header="Số lượng" Binding="{Binding SOLUONG}" Width="*"/>
-                            <DataGridTextColumn Header="Đơn giá" Binding="{Binding DONGIA}" Width="2*"/>
+                            <DataGridTextColumn Header="Số lượng" Binding="{Binding SOLUONG, Converter={StaticResource NullToDefaultConverter}}"/>
+                            <DataGridTextColumn Header="Đơn giá" Binding="{Binding DONGIA, Converter={StaticResource DongiaFormatterConverter}}" Width="2*"/>
                         </DataGrid.Columns>
+
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -66,15 +78,19 @@ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                                 <Setter Property="Padding" Value="5"/>
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
+
                     </DataGrid>
                 </ScrollViewer>
             </Grid>
         </Grid>
+
+        <!-- Buttons -->
         <Grid Grid.Row="2" Margin="20,1,-10,-81">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
+
             <Grid Grid.Column="0" HorizontalAlignment="Left" >
                 <Button Height="40"
                         materialDesign:ButtonAssist.CornerRadius="5"
@@ -85,20 +101,21 @@ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                         Background="#FFD90429"
                         BorderBrush="#FFB11409"
                         Width="140">
-                    <TextBlock Text="Xuất File Excel"
-                               Foreground="#DDFEFEFE" />
+                    <TextBlock Text="Xuất File Excel" Foreground="#DDFEFEFE" />
                 </Button>
             </Grid>
-            <Grid Grid.Column="1" >
+
+            <Grid Grid.Column="1">
                 <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
-                Margin="10, 10, 30, 10"
-                ToolTip="Edit"
-                    Background="#FFD90429"
-                HorizontalAlignment="Right"
-                    Command="{Binding OpenAERServiceCommand}">
+                        Margin="10, 10, 30, 10"
+                        ToolTip="Edit"
+                        Background="#FFD90429"
+                        HorizontalAlignment="Right"
+                        Command="{Binding OpenAERServiceCommand}">
                     <materialDesign:PackIcon Kind="Edit" Height="24" Width="24"  />
                 </Button>
             </Grid>
         </Grid>
+
     </Grid>
 </UserControl>

@@ -20,7 +20,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         Name="mainWindow"
-        Title="MainWindow" Height="800" Width="1350">
+        Title="MainWindow" Height="600" Width="1350">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
@@ -162,6 +162,21 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                    <Button x:Name="btBooking"
+        Content="Đặt vé"
+        Command="{Binding ManageBookingCommand}"
+        >
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="TicketAccount" />
+                                    <TextBlock Text="{Binding Content, ElementName=btBooking}" 
+                           VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                     <Button x:Name="btFlight"
                             Content="Quản lý chuyến bay"
                             Command="{Binding ManageFlightCommand}"
@@ -192,21 +207,22 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button x:Name="btBooking"
-                            Content="Đặt vé"
-                            Command="{Binding ManageBookingCommand}"
-                            >
+                    <Button x:Name="btRevenue"
+        Content="Doanh thu"
+        Command="{Binding ManageRevenueCommand}"
+        Visibility="{Binding IsCEVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="TicketAccount" />
-                                    <TextBlock Text="{Binding Content, ElementName=btBooking}" 
-                                               VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Kind="ChartBar" />
+                                    <TextBlock Text="{Binding Content, ElementName=btRevenue}" 
+                           VerticalAlignment="Center">
                                     </TextBlock>
                                 </StackPanel>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                    
                     <Button x:Name="btEmployee" 
                             Content="Quản lý nhân viên"
                             Command="{Binding ManageEmployeeCommand}"
@@ -253,21 +269,7 @@
                         </Button.Template>
                     </Button>
                     
-                    <Button x:Name="btRevenue"
-                            Content="Doanh thu"
-                            Command="{Binding ManageRevenueCommand}"
-                            Visibility="{Binding IsCEVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="ChartBar" />
-                                    <TextBlock Text="{Binding Content, ElementName=btRevenue}" 
-                                               VerticalAlignment="Center">
-                                    </TextBlock>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                    
                 </StackPanel>
                 <TextBlock DockPanel.Dock="Bottom"
                            Height="40"

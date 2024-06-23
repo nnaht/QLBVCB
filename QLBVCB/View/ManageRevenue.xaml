@@ -14,20 +14,37 @@
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-               
+            <Grid Grid.Column="0" >
+                <Border CornerRadius="10" Background="#FFD90429" Margin="20,0" BorderBrush="Black" BorderThickness="1">
+                    <Label Content="{Binding Label1}" Foreground="White" FontSize="30"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                        
+                    </Label>
+                </Border>
             </Grid>
-            <Grid Grid.Column="1">
-                
+            <Grid Grid.Column="1" >
+                <Border CornerRadius="10" Background="#FFD90429" Margin="20,0" BorderBrush="Black" BorderThickness="1">
+                    <Label Content="{Binding Label2}" Foreground="White" FontSize="30"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                        
+                    </Label>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="2" >
+                <Border CornerRadius="10" Background="#FFD90429" Margin="20,0" BorderBrush="Black" BorderThickness="1">
+                    <Label  Content="{Binding Label3}" Foreground="White" FontSize="30"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                        
+                    </Label>
+                </Border>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
@@ -78,7 +95,9 @@ BorderBrush="Transparent" Foreground="#FFD90429">
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
-            <Button Content="Refresh" Command="{Binding RefreshCommand}" Grid.Row="0" HorizontalAlignment="Left" Margin="10"/>
+            <Button Background="#FFD90429" Content="Làm mới"
+                    Command="{Binding RefreshCommand}" Grid.Row="0" 
+                    HorizontalAlignment="Left" Margin="20,0,0,0"/>
             <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
     Margin="10, 10, 30, 10"
     ToolTip="Edit"

@@ -9,8 +9,53 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System;
 using QLBVCB.View;
+using System.Globalization;
 namespace QLBVCB.ViewModel
 {
+    public class DongiaFormatterConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+                return null;
+
+            if (decimal.TryParse(value.ToString(), out decimal decimalValue))
+            {
+                return string.Format(CultureInfo.InvariantCulture, "{0:N0}", decimalValue);
+            }
+
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+                return null;
+
+            if (decimal.TryParse(value.ToString(), NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out decimal decimalValue))
+            {
+                return decimalValue;
+            }
+
+            return value;
+        }
+    }
+    public class NullToDefaultConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || (value is int intValue && intValue == 0))
+            {
+                return "Không có";
+            }
+            return value.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     internal class VM_ManageService : VM_Base
     {
         private ObservableCollection<DICHVU> _ServiceList;
@@ -29,8 +74,8 @@ namespace QLBVCB.ViewModel
         private string _TENDV;
         public string TENDV { get => _TENDV; set { _TENDV = value; OnPropertyChanged(); } }
 
-        private int _SOLUONG;
-        public int SOLUONG { get => _SOLUONG; set { _SOLUONG = value; OnPropertyChanged(); } }
+        private int? _SOLUONG;
+        public int? SOLUONG { get => _SOLUONG; set { _SOLUONG = value; OnPropertyChanged(); } }
 
         private string _DONGIA;
         public string DONGIA { get => _DONGIA; set { _DONGIA = value; OnPropertyChanged(); } }
@@ -129,13 +174,13 @@ namespace QLBVCB.ViewModel
                     }
 
                     rowIndex = 3;
-                    foreach (var Service in ServiceList)
+                    foreach (var service in ServiceList)
                     {
-                        excelWorkSheet.Cells[rowIndex, 1].Value = Service.MADV;
-                        excelWorkSheet.Cells[rowIndex, 2].Value = Service.LOAIDV;
-                        excelWorkSheet.Cells[rowIndex, 3].Value = Service.TENDV;
-                        excelWorkSheet.Cells[rowIndex, 4].Value = Service.SOLUONG;
-                        excelWorkSheet.Cells[rowIndex, 5].Value = Service.DONGIA;
+                        excelWorkSheet.Cells[rowIndex, 1].Value = service.MADV;
+                        excelWorkSheet.Cells[rowIndex, 2].Value = service.LOAIDV;
+                        excelWorkSheet.Cells[rowIndex, 3].Value = service.TENDV;
+                        excelWorkSheet.Cells[rowIndex, 4].Value = service.SOLUONG ?? (object)"Không có";
+                        excelWorkSheet.Cells[rowIndex, 5].Value = service.DONGIA;
 
                         for (int i = 1; i <= countColumnHeader; i++)
                         {
@@ -167,7 +212,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is DICHVU service)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || service.TENDV.StartsWith(SearchKeyword, StringComparison.OrdinalIgnoreCase);
+                return string.IsNullOrEmpty(SearchKeyword) || service.TENDV.Contains(SearchKeyword);
             }
             return false;
         }

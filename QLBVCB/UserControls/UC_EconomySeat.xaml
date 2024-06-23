@@ -8,21 +8,26 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="30">
-    <Border BorderThickness="1" BorderBrush="Gray" Width="30" Height="30" CornerRadius="10">
+    <Border BorderThickness="0.5" BorderBrush="Transparent" Width="30" Height="30" CornerRadius="5">
         <Border.Style>
             <Style TargetType="Border">
-                <Setter Property="Background" Value="MediumPurple"/>
+                <Setter Property="Background" Value="#FF5823C5"/>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsChosen}" Value="True">
-                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Background" Value="LightGoldenrodYellow"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsChosen}" Value="False">
+                        <Setter Property="Background" Value="#FF5823C5"/>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
         </Border.Style>
+        <Border.Effect>
+            <DropShadowEffect Color="Black" Direction="270" ShadowDepth="3" Opacity="0.5"/>
+        </Border.Effect>
         <Border.InputBindings>
             <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.SeatActionCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
-                      CommandParameter="info"/>
+                          CommandParameter="info"/>
         </Border.InputBindings>
     </Border>
 </UserControl>
-<!--#FF395D69-->

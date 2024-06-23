@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows;
 
 namespace QLBVCB.ViewModel
 {
@@ -172,12 +173,24 @@ namespace QLBVCB.ViewModel
 
                 RecuperateSeat recuperateSeat = new RecuperateSeat();
                 recuperateSeat.DataContext = new VM_RecuperateSeat(MACB, totalSeats, selection);
-                recuperateSeat.ShowDialog();
 
+                // Đóng cửa sổ hiện tại (RecuperateFlight)
+                var currentWindow = System.Windows.Application.Current.Windows.OfType<RecuperateFlight>().FirstOrDefault(w => w.DataContext == this);
+                currentWindow?.Close();
+
+                // Mở cửa sổ mới
+                recuperateSeat.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn chuyến bay");
+                System.Windows.MessageBox.Show("Vui lòng chọn chuyến bay");
+            }
+        }
+        private void CloseWindow(Window window)
+        {
+            if (window != null)
+            {
+                window.Close();
             }
         }
         private Task<CHUYENBAY> GetChuyenBayAsync(string macb)
