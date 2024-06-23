@@ -78,37 +78,13 @@
                         </TextBox>
                     </Grid>
                 </Grid>
-                <Grid Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,30,0">
+                <Grid Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,30,0">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition Width="20"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Row="0" Grid.Column="0">
-                        <TextBox VerticalAlignment="Center"
-                                 Text="{Binding TENTK, UpdateSourceTrigger=PropertyChanged}"
-                                 Foreground="#FFD90429"
-                                 BorderBrush="#FFD90429"
-                                 materialDesign:HintAssist.Hint="Tên tài khoản"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 Width="140">
-                        </TextBox>
-                    </Grid>
-                    <Grid Grid.Row="1" Grid.Column="0">
-                        <TextBox VerticalAlignment="Center"
-                                 Text="{Binding MATKHAU, UpdateSourceTrigger=PropertyChanged}"
-                                 Foreground="#FFD90429"
-                                 BorderBrush="#FFD90429"
-                                 materialDesign:HintAssist.Hint="Mật khẩu"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 Width="140">
-                        </TextBox>
-                    </Grid>
-                    <Grid Grid.Row="0" Grid.Column="2">
+                    <Grid Grid.Row="0">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding MANV, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -118,12 +94,22 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="1" Grid.Column="2">
+                    <Grid Grid.Row="1">
                         <TextBox VerticalAlignment="Center"
-                                 Text="{Binding HOATDONG, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding TENTK, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
                                  BorderBrush="#FFD90429"
-                                 materialDesign:HintAssist.Hint="Hoạt động"
+                                 materialDesign:HintAssist.Hint="Tên tài khoản"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Width="140">
+                        </TextBox>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <TextBox VerticalAlignment="Center"
+                                 Text="{Binding MATKHAU, UpdateSourceTrigger=PropertyChanged}"
+                                 Foreground="#FFD90429"
+                                 BorderBrush="#FFD90429"
+                                 materialDesign:HintAssist.Hint="Mật khẩu"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  Width="140">
                         </TextBox>
@@ -154,15 +140,13 @@
                                 </Style>
                             </DataGrid.ColumnHeaderStyle>
                             <DataGrid.Columns>
+                                <DataGridTextColumn Width="*" Header="Mã nhân viên" Binding="{Binding MANV}"></DataGridTextColumn>
                                 <DataGridTextColumn Width="*" Header="Tên tài khoản" Binding="{Binding TENTK}"></DataGridTextColumn>
                                 <DataGridTextColumn Width="*" Header="Mật khẩu" Binding="{Binding MATKHAU}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Hoạt động" Binding="{Binding HOATDONG}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Mã nhân viên" Binding="{Binding MANV}"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </ScrollViewer>
                 </Grid>
-
             </Grid>
             <Grid Grid.Row="3" Margin="10,0,10,10"
                   VerticalAlignment="Bottom">

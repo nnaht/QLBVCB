@@ -72,20 +72,20 @@ namespace QLBVCB.ViewModel
             var isExistSDT = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.SDT == SDT).SingleOrDefault();
             var isExistEMAIL = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.EMAIL == EMAIL).SingleOrDefault();
             var isExistTENTK = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.TENTK == TENTK).SingleOrDefault();
-            if (isExistCCCD != null) 
-                MessageBox.Show("Căn cước công dân này đã tồn tại!");
+            if (isExistCCCD != null)
+                ShowCustomMessageBox("Căn cước công dân này đã tồn tại!");
             else if (isExistSDT != null)
-                MessageBox.Show("Số điện thoại này đã tồn tại!");
+                ShowCustomMessageBox("Số điện thoại này đã tồn tại!");
             else if (isExistEMAIL != null)
-                MessageBox.Show("Email này đã được đăng ký!");
+                ShowCustomMessageBox("Email này đã được đăng ký!");
             else if (isExistTENTK != null)
-                MessageBox.Show("Tên tài khoản này đã được đăng ký!");
+                ShowCustomMessageBox("Tên tài khoản này đã được đăng ký!");
             else
             {
                 var customer = new KHACHHANG() { MAKH = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, TENTK = TENTK, MATKHAU = MATKHAU };
                 DataProvider.Ins.DB.KHACHHANGs.Add(customer);
                 DataProvider.Ins.DB.SaveChanges();
-                MessageBox.Show("Đăng ký thành công!");
+                ShowCustomMessageBox("Đăng ký thành công!");
                 Application.Current.Windows.OfType<CustomerRegister>().FirstOrDefault()?.Close();
             }
         }
@@ -102,6 +102,12 @@ namespace QLBVCB.ViewModel
                 _ = "KH0001";
             }
             return temp;
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
     }
 }

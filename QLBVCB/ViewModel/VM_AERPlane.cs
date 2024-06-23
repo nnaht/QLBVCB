@@ -1,8 +1,10 @@
 ﻿using QLBVCB.Model;
+using QLBVCB.View;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -78,6 +80,7 @@ namespace QLBVCB.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
                 PlaneList.Add(plane);
                 OnPropertyChanged();
+                ShowCustomMessageBox("Thêm thành công!");
             });
 
             EditPlaneCommand = new RelayCommand<object>((p) =>
@@ -96,6 +99,7 @@ namespace QLBVCB.ViewModel
                 plane.LOAIMB = LOAIMB;
                 plane.HANGMB = HANGMB;
                 DataProvider.Ins.DB.SaveChanges();
+                ShowCustomMessageBox("Sửa thành công!");
             });
 
             RemovePlaneCommand = new RelayCommand<object>((p) =>
@@ -103,10 +107,13 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                DataProvider.Ins.DB.MAYBAYs.Remove(PlaneSelectedItem);
-                DataProvider.Ins.DB.SaveChanges();
-
-                PlaneList.Remove(PlaneSelectedItem);
+                if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.MAYBAYs.Remove(PlaneSelectedItem);
+                    DataProvider.Ins.DB.SaveChanges();
+                    PlaneList.Remove(PlaneSelectedItem);
+                    ShowCustomMessageBox("Xóa thành công!");
+                }
             });
         }
         private bool FilterPlane(object item)
@@ -121,6 +128,12 @@ namespace QLBVCB.ViewModel
         private void FilterPlane()
         {
             PlaneView.Refresh();
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
     }
 }

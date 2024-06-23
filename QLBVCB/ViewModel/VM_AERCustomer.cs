@@ -1,4 +1,5 @@
 ﻿using QLBVCB.Model;
+using QLBVCB.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -89,8 +91,7 @@ namespace QLBVCB.ViewModel
             AddCustomerCommand = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(HOTEN) || string.IsNullOrEmpty(NGAYSINH.ToString()) || string.IsNullOrEmpty(GIOITINH) || string.IsNullOrEmpty(CCCD)
-                    || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(TENTK)
-                    || string.IsNullOrEmpty(MATKHAU) || string.IsNullOrEmpty(HOATDONG.ToString()))
+                  || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(TENTK) || string.IsNullOrEmpty(MATKHAU))
                     return false;
                 if (displayCustomerList == null)
                     return false;
@@ -103,13 +104,13 @@ namespace QLBVCB.ViewModel
                 DataProvider.Ins.DB.KHACHHANGs.Add(customer);
                 DataProvider.Ins.DB.SaveChanges();
                 CustomerList.Add(customer);
+                ShowCustomMessageBox("Thêm thành công!");
             });
 
             EditCustomerCommand = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(HOTEN) || string.IsNullOrEmpty(NGAYSINH.ToString()) || string.IsNullOrEmpty(GIOITINH) || string.IsNullOrEmpty(CCCD)
-                    || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(TENTK)
-                    || string.IsNullOrEmpty(MATKHAU) || string.IsNullOrEmpty(HOATDONG.ToString()))
+                  || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(TENTK) || string.IsNullOrEmpty(MATKHAU))
                     return false;
                 if (CustomerSelectedItem == null)
                     return false;
@@ -130,6 +131,7 @@ namespace QLBVCB.ViewModel
                 customer.MATKHAU = MATKHAU;
                 customer.HOATDONG = HOATDONG;
                 DataProvider.Ins.DB.SaveChanges();
+                ShowCustomMessageBox("Thêm thành công!");
             });
 
             RemoveCustomerCommand = new RelayCommand<object>((p) =>
@@ -137,9 +139,13 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                DataProvider.Ins.DB.KHACHHANGs.Remove(CustomerSelectedItem);
-                DataProvider.Ins.DB.SaveChanges();
-                CustomerList.Remove(CustomerSelectedItem);
+                if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.KHACHHANGs.Remove(CustomerSelectedItem);
+                    DataProvider.Ins.DB.SaveChanges();
+                    CustomerList.Remove(CustomerSelectedItem);
+                    ShowCustomMessageBox("Xóa thành công!");
+                }
             });
         }
 
@@ -179,6 +185,12 @@ namespace QLBVCB.ViewModel
                 _ = "KH0001";
             }
             return temp;
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
     }
 }

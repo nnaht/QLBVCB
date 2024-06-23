@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace QLBVCB.ViewModel
@@ -14,6 +15,7 @@ namespace QLBVCB.ViewModel
     internal class VM_FillInfo : VM_Base
     {
         public ICommand BookCommand { get; set; }
+        public ICommand AddCustomerCommand { get; set; }
         public ObservableCollection<VM_CustomerInfo> Customers { get; set; }
         public ObservableCollection<CustomerInfo> CustomerInfos { get; set; }
         private string sdt;
@@ -37,6 +39,7 @@ namespace QLBVCB.ViewModel
         public VM_FillInfo(List<Tuple<string, int, int>> selection, bool isRecuperate)
         {
             BookCommand = new RelayCommand(ExecuteBookCommand);
+            AddCustomerCommand = new RelayCommand<Button>((p) => { return true; }, (p) => { CustomerRegister cr = new CustomerRegister(); cr.DataContext = new VM_CustomerRegister(); cr.ShowDialog(); });
             Customers = new ObservableCollection<VM_CustomerInfo>();
             setTotalPeople(selection, isRecuperate);
             for (int i = 0; i < totalPeople; i++)

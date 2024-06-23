@@ -30,7 +30,7 @@
         materialDesign:HintAssist.IsFloating="False"
         materialDesign:HintAssist.Background="Transparent"
         materialDesign:HintAssist.Foreground="Black"
-        materialDesign:HintAssist.Hint="🔎 Nhập loại máy bay..."
+        materialDesign:HintAssist.Hint="🔎 Nhập mã máy bay..."
         Style="{StaticResource MaterialDesignOutlinedTextBox}">
                 <TextBox.Padding>
                     <Thickness Left="5" Right="5" Top="10" Bottom="10"/>

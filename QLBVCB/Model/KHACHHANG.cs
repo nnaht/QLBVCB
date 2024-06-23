@@ -9,29 +9,51 @@
 
 namespace QLBVCB.Model
 {
+    using QLBVCB.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class KHACHHANG
+    public partial class KHACHHANG : VM_Base
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KHACHHANG()
         {
             this.DADATs = new HashSet<DADAT>();
         }
-    
-        public string MAKH { get; set; }
-        public string HOTEN { get; set; }
-        public Nullable<System.DateTime> NGAYSINH { get; set; }
-        public string GIOITINH { get; set; }
-        public string CCCD { get; set; }
-        public string DIACHI { get; set; }
-        public string SDT { get; set; }
-        public string EMAIL { get; set; }
-        public Nullable<bool> HOATDONG { get; set; }
-        public string TENTK { get; set; }
-        public string MATKHAU { get; set; }
-    
+
+        private string _MAKH;
+        public string MAKH { get => _MAKH; set { _MAKH = value; OnPropertyChanged(); } }
+
+        private string _HOTEN;
+        public string HOTEN { get => _HOTEN; set { _HOTEN = value; OnPropertyChanged(); } }
+
+        private Nullable<System.DateTime> _NGAYSINH;
+        public Nullable<System.DateTime> NGAYSINH { get => _NGAYSINH; set { _NGAYSINH = value; OnPropertyChanged(); } }
+
+        private string _GIOITINH;
+        public string GIOITINH { get => _GIOITINH; set { _GIOITINH = value; OnPropertyChanged(); } }
+
+        private string _CCCD;
+        public string CCCD { get => _CCCD; set { _CCCD = value; OnPropertyChanged(); } }
+
+        private string _DIACHI;
+        public string DIACHI { get => _DIACHI; set { _DIACHI = value; OnPropertyChanged(); } }
+
+        private string _SDT;
+        public string SDT { get => _SDT; set { _SDT = value; OnPropertyChanged(); } }
+
+        private string _EMAIL;
+        public string EMAIL { get => _EMAIL; set { _EMAIL = value; OnPropertyChanged(); } }
+
+        private Nullable<bool> _HOATDONG;
+        public Nullable<bool> HOATDONG { get => _HOATDONG; set { _HOATDONG = value; OnPropertyChanged(); } }
+
+        private string _TENTK;
+        public string TENTK { get => _TENTK; set { _TENTK = value; OnPropertyChanged(); } }
+
+        private string _MATKHAU;
+        public string MATKHAU { get => _MATKHAU; set { _MATKHAU = value; OnPropertyChanged(); } }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DADAT> DADATs { get; set; }
     }

@@ -9,22 +9,42 @@
 
 namespace QLBVCB.Model
 {
+    using QLBVCB.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class DADAT
+    public partial class DADAT : VM_Base
     {
-        public string MACB { get; set; }
-        public int Hang { get; set; }
-        public int Day { get; set; }
-        public Nullable<System.DateTime> NGTHANHTOAN { get; set; }
-        public string MABK { get; set; }
-        public string MAKH { get; set; }
-        public string MAVB { get; set; }
-        public string MASA { get; set; }
-        public string TENHANHKHACH { get; set; }
-        public string MAHL { get; set; }
-    
+        private string _MACB;
+        public string MACB { get => _MACB; set { _MACB = value; OnPropertyChanged(); } }
+
+        private int _Hang;
+        public int Hang { get => _Hang; set { _Hang = value; OnPropertyChanged(); } }
+
+        private int _Day;
+        public int Day { get => _Day; set { _Day = value; OnPropertyChanged(); } }
+
+        private Nullable<System.DateTime> _NGTHANHTOAN;
+        public Nullable<System.DateTime> NGTHANHTOAN { get => _NGTHANHTOAN; set { _NGTHANHTOAN = value; OnPropertyChanged(); } }
+
+        private string _MABK;
+        public string MABK { get => _MABK; set { _MABK = value; OnPropertyChanged(); } }
+
+        private string _MAKH;
+        public string MAKH { get => _MAKH; set { _MAKH = value; OnPropertyChanged(); } }
+
+        private string _MAVB;
+        public string MAVB { get => _MAVB; set { _MAVB = value; OnPropertyChanged(); } }
+
+        private string _MASA;
+        public string MASA { get => _MASA; set { _MASA = value; OnPropertyChanged(); } }
+
+        private string _TENHANHKHACH;
+        public string TENHANHKHACH { get => _TENHANHKHACH; set { _TENHANHKHACH = value; OnPropertyChanged(); } }
+
+        private string _MAHL;
+        public string MAHL { get => _MAHL; set { _MAHL = value; OnPropertyChanged(); } }
+
         public virtual CHUYENBAY CHUYENBAY { get; set; }
         public virtual DICHVU DICHVU { get; set; }
         public virtual DICHVU DICHVU1 { get; set; }

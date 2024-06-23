@@ -228,6 +228,7 @@
     <Compile Include="ViewModel\VM_AERTicket.cs" />
     <Compile Include="ViewModel\VM_AERTicketType.cs" />
     <Compile Include="ViewModel\VM_BookedSeat.cs" />
+    <Compile Include="ViewModel\VM_ChangePassword.cs" />
     <Compile Include="ViewModel\VM_ControlBar2.cs" />
     <Compile Include="ViewModel\VM_CusMessBox.cs" />
     <Compile Include="ViewModel\VM_CustomerRegister.cs" />
@@ -251,6 +252,7 @@
     <Compile Include="ViewModel\VM_ManageTicket.cs" />
     <Compile Include="ViewModel\VM_ManageTicketType.cs" />
     <Compile Include="ViewModel\VM_ManagePlane.cs" />
+    <Compile Include="ViewModel\VM_PersonalInfo.cs" />
     <Compile Include="ViewModel\VM_Recuperate.cs" />
     <Compile Include="ViewModel\VM_RecuperateSeat.cs" />
     <Compile Include="ViewModel\VM_RevenueDetail.cs" />
@@ -281,6 +283,9 @@
     </Compile>
     <Compile Include="View\AER_Service.xaml.cs">
       <DependentUpon>AER_Service.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChangePassword.xaml.cs">
+      <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CusMessBox.xaml.cs">
       <DependentUpon>CusMessBox.xaml</DependentUpon>
@@ -329,6 +334,9 @@
     </Compile>
     <Compile Include="View\ManageTicketType.xaml.cs">
       <DependentUpon>ManageTicketType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PersonalInfo.xaml.cs">
+      <DependentUpon>PersonalInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RecuperateFlight.xaml.cs">
       <DependentUpon>RecuperateFlight.xaml</DependentUpon>
@@ -399,6 +407,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AER_Service.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChangePassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -531,6 +543,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManageTicketType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PersonalInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

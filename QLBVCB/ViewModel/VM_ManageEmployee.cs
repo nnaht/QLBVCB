@@ -26,7 +26,20 @@ namespace QLBVCB.ViewModel
         public VM_ManageEmployee()
         {
             EmployeeList = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
-            OpenAEREmployeeCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AEREmployee aer = new AEREmployee(); aer.ShowDialog(); });
+            OpenAEREmployeeCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                if (position > 1)
+                    ShowCustomMessageBox("Bạn không có quyền chỉnh sửa!");
+                else
+                {
+                    AEREmployee aer = new AEREmployee();
+                    aer.DataContext = new VM_AEREmployee();
+                    aer.ShowDialog();
+                }
+            });
             EmployeeView = CollectionViewSource.GetDefaultView(EmployeeList);
             EmployeeView.Filter = FilterEmployee;
             ExportExcelManageEmployeeCommand = new RelayCommand(ExecuteExportExcelManageCustomerCommand);
@@ -46,10 +59,10 @@ namespace QLBVCB.ViewModel
                 }
                 if (string.IsNullOrEmpty(filePath))
                 {
-                    MessageBox.Show("Đường dẫn không hợp lệ");
+                    ShowCustomMessageBox("Đường dẫn không hợp lệ");
                     return;
                 }
-                
+
                 ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
                 using (ExcelPackage excelPackage = new ExcelPackage())
@@ -61,7 +74,7 @@ namespace QLBVCB.ViewModel
                     excelWorkSheet.Cells.Style.Font.Size = 14;
                     excelWorkSheet.Cells.Style.Font.Name = "Times New Roman";
 
-                    string[] columnHeader = { "Mã nhân viên", "Họ tên", "Ngày sinh", "Giới tính", "Căn cước công dân", "Địa chỉ", "Số điện thoại", "Email", "Lương", "Vị trí", "Hoạt động" };
+                    string[] columnHeader = { "Mã nhân viên", "Họ tên", "Ngày sinh", "Giới tính", "Căn cước công dân", "Địa chỉ", "Số điện thoại", "Email", "Lương", "Vị trí" };
                     var countColumnHeader = columnHeader.Length;
                     excelWorkSheet.Cells[1, 1].Value = "Danh sách nhân viên";
                     excelWorkSheet.Cells[1, 1, 1, countColumnHeader].Merge = true;
@@ -96,7 +109,6 @@ namespace QLBVCB.ViewModel
                         excelWorkSheet.Cells[rowIndex, 8].Value = employee.EMAIL;
                         excelWorkSheet.Cells[rowIndex, 9].Value = employee.LUONG;
                         excelWorkSheet.Cells[rowIndex, 10].Value = employee.VITRI;
-                        excelWorkSheet.Cells[rowIndex, 11].Value = employee.HOATDONG;
 
                         for (int i = 1; i <= countColumnHeader; i++)
                         {
@@ -111,7 +123,7 @@ namespace QLBVCB.ViewModel
                     excelPackage.SaveAs(new System.IO.FileInfo(filePath));
                 }
 
-                MessageBox.Show("Xuất dữ liệu thành công!");
+                ShowCustomMessageBox("Xuất dữ liệu thành công!");
                 System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
                 {
                     FileName = filePath,
@@ -120,7 +132,7 @@ namespace QLBVCB.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
+                ShowCustomMessageBox("Có lỗi xảy ra: " + ex.Message);
             }
         }
 
@@ -147,10 +159,11 @@ namespace QLBVCB.ViewModel
         {
             EmployeeView.Refresh();
         }
-
-        public bool IsManagerVisible
+        public void ShowCustomMessageBox(string message)
         {
-            get { return position != 2; }
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
     }
 }

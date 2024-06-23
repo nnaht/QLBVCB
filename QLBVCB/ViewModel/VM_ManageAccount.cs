@@ -87,7 +87,6 @@ namespace QLBVCB.ViewModel
                     {
                         excelWorkSheet.Cells[rowIndex, 1].Value = account.TENTK;
                         excelWorkSheet.Cells[rowIndex, 2].Value = account.MATKHAU;
-                        excelWorkSheet.Cells[rowIndex, 3].Value = account.HOATDONG;
                         excelWorkSheet.Cells[rowIndex, 4].Value = account.MANV;
 
                         for (int i = 1; i <= countColumnHeader; i++)

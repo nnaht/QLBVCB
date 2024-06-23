@@ -31,7 +31,7 @@ namespace QLBVCB.ViewModel
             //IsLogin = false;
             UsernameChangedCommand = new RelayCommand<TextBox>((p) => { return true; }, (p) => { Username = p.Text; });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
-            SignInCommand = new RelayCommand<Button>((p) => { return true; }, (p) => { CustomerRegister cr = new CustomerRegister(); cr.ShowDialog(); });
+            SignInCommand = new RelayCommand<Button>((p) => { return true; }, (p) => { CustomerRegister cr = new CustomerRegister(); cr.DataContext = new VM_CustomerRegister(); cr.ShowDialog(); });
         }
 
         private void Login(object parameter)
@@ -45,12 +45,15 @@ namespace QLBVCB.ViewModel
                     position = 1;
                 else
                     position = 2;
+                EmployeeAccountLogin = employeeAccCount;
             }
             else if (customerAccCount != null)
+            {
                 position = 3;
+                CustomerAccountLogin = customerAccCount;
+            }
             if (position != 0 || (Username == "admin" && Password == "admin"))
             {
-                EmployeeAccountLogin = employeeAccCount;
                 IsLogin = true;
                 //MessageBox.Show(position.ToString());
                 MainWindow mainWindow = new MainWindow();

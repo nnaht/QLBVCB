@@ -17,6 +17,8 @@
     <vm:VM_AERService x:Key="AERServiceVM" />
 
     <vm:VM_CustomerRegister x:Key="CustomerRegisterVM" />
+    <vm:VM_PersonalInfo x:Key="PersonalInfoVM" />
+    <vm:VM_ChangePassword x:Key="ChangePasswordVM" />
 
     <!-- DataTemplates -->
     <DataTemplate x:Key="EconomySeatTemplate">

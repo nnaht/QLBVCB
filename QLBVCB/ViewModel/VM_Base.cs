@@ -20,6 +20,7 @@ namespace QLBVCB.ViewModel
         }
 
         static public NHANVIEN EmployeeAccountLogin = new NHANVIEN();
+        static public KHACHHANG CustomerAccountLogin = new KHACHHANG();
         static public int position = 0;
     }
     public class RelayCommand : ICommand

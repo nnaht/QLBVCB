@@ -22,6 +22,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="None"
+        AllowsTransparency="True"
         Name="loginWindow"
         Title ="Đăng nhập" Height="600" Width="800">
     <Grid>

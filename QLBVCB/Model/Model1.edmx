@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLBVCBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLBVCBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHUYENBAY">
           <Key>
             <PropertyRef Name="MACB" />
@@ -91,7 +91,6 @@
           <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
           <Property Name="LUONG" Type="decimal" Precision="19" Scale="4" />
           <Property Name="VITRI" Type="nvarchar" MaxLength="50" />
-          <Property Name="HOATDONG" Type="bit" />
           <Property Name="TENTK" Type="varchar" MaxLength="50" />
           <Property Name="MATKHAU" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -110,7 +109,6 @@
           </Key>
           <Property Name="TENTK" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MATKHAU" Type="varchar" MaxLength="50" />
-          <Property Name="HOATDONG" Type="bit" />
           <Property Name="MANV" Type="nvarchar" MaxLength="6" Nullable="false" />
         </EntityType>
         <EntityType Name="VEBAY">
@@ -311,8 +309,7 @@
             <End Role="DADAT" EntitySet="DADAT" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLBVCBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -417,7 +414,6 @@
           <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LUONG" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="VITRI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HOATDONG" Type="Boolean" />
           <Property Name="TENTK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK__TAIKHOAN__MANV__286302EC" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
@@ -439,7 +435,6 @@
           </Key>
           <Property Name="TENTK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HOATDONG" Type="Boolean" />
           <Property Name="MANV" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__TAIKHOAN__MANV__286302EC" FromRole="TAIKHOAN" ToRole="NHANVIEN" />
         </EntityType>
@@ -741,7 +736,6 @@
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="LUONG" ColumnName="LUONG" />
                 <ScalarProperty Name="VITRI" ColumnName="VITRI" />
-                <ScalarProperty Name="HOATDONG" ColumnName="HOATDONG" />
                 <ScalarProperty Name="TENTK" ColumnName="TENTK" />
                 <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
               </MappingFragment>
@@ -762,7 +756,6 @@
               <MappingFragment StoreEntitySet="TAIKHOAN">
                 <ScalarProperty Name="TENTK" ColumnName="TENTK" />
                 <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
-                <ScalarProperty Name="HOATDONG" ColumnName="HOATDONG" />
                 <ScalarProperty Name="MANV" ColumnName="MANV" />
               </MappingFragment>
             </EntityTypeMapping>

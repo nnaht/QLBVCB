@@ -80,7 +80,6 @@
                             <DataGridTextColumn Width="Auto" Header="Email" Binding="{Binding EMAIL}"></DataGridTextColumn>
                             <DataGridTextColumn Width="Auto" Header="Lương" Binding="{Binding LUONG}"></DataGridTextColumn>
                             <DataGridTextColumn Width="Auto" Header="Vị trí" Binding="{Binding VITRI}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="Auto" Header="Hoạt động" Binding="{Binding HOATDONG}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </ScrollViewer>
@@ -112,8 +111,7 @@
                     ToolTip="Edit"
                     Background="#FFD90429"
                     HorizontalAlignment="Right"
-                    Command="{Binding OpenAEREmployeeCommand}"
-                    Visibility="{Binding IsManagerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Command="{Binding OpenAEREmployeeCommand}">
                 <materialDesign:PackIcon Kind="Edit" Height="24" Width="24" />
             </Button>
         </Grid>

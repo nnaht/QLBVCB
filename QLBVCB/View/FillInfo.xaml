@@ -39,7 +39,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" Margin="20,0">
+                        <StackPanel Grid.Column="0" Margin="20,0" Orientation="Horizontal">
                             <TextBox 
 Text="{Binding SDT, UpdateSourceTrigger=PropertyChanged}"
 Style="{StaticResource MaterialDesignOutlinedTextBox}"
@@ -51,15 +51,20 @@ Foreground="#FFD90429"
 HorizontalAlignment="Left"
 materialDesign:HintAssist.Background="Transparent"
 materialDesign:HintAssist.Foreground="Black"
-materialDesign:HintAssist.Hint="Nhập sđt..."
+materialDesign:HintAssist.Hint="Nhập số điện thoại"
 materialDesign:HintAssist.IsFloating="False"
 FontSize="16">
                                 <TextBox.Padding>
                                     <Thickness Left="5" Right="5" Top="7" Bottom="5"/>
                                 </TextBox.Padding>
                             </TextBox>
-                            
-                        </Grid>
+                            <Button Margin="10 0 0 0"
+                                    Command="{Binding AddCustomerCommand}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                    ToolTip="Thêm khách hàng mới">
+                                <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
+                            </Button>
+                        </StackPanel>
                         <Grid Grid.Column="1" Margin="20,0" HorizontalAlignment="Center">
                            
                         </Grid>
