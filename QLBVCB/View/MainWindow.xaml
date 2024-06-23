@@ -114,7 +114,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Food"/>
                                     <TextBlock Text="{Binding Content, ElementName=btService}" 
-                           VerticalAlignment="Center">
+                                               VerticalAlignment="Center">
                                     </TextBlock>
                                 </StackPanel>
                             </ControlTemplate>
