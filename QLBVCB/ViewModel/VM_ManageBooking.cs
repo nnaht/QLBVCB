@@ -39,6 +39,7 @@ namespace QLBVCB.ViewModel
         }
         private string _MAMB;
         public string MAMB { get => _MAMB; set { _MAMB = value; OnPropertyChanged(); } }
+
         private string _MACB;
         public string MACB { get => _MACB; set { _MACB = value; OnPropertyChanged(); } }
 

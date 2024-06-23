@@ -179,7 +179,7 @@ namespace QLBVCB.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    ShowCustomMessageBox("Đặt chỗ không thành công, vui lòng thử lại");
+                    ShowCustomMessageBox("Đặt chỗ không thành công. Vui lòng thử lại!");
                 }
             }
             else

@@ -163,7 +163,7 @@
         Command="{Binding BookCommand}"
         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
         Style="{StaticResource MaterialDesignRaisedLightButton}"
-        ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
+        ToolTip="Tiếp tục" Background="#FFD90429" BorderBrush="#FFB11409">
                         <TextBlock Text="Tiếp tục" Foreground="#DDFEFEFE"/>
                     </Button>
                 </Grid>
