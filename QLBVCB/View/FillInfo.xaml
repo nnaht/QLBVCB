@@ -66,17 +66,14 @@ FontSize="16">
                             </Button>
                         </StackPanel>
                         <Grid Grid.Column="1" Margin="20,0" HorizontalAlignment="Center">
-                           
                         </Grid>
                         <Grid Grid.Column="2" Margin="20,0" HorizontalAlignment="Right">
-                            
                         </Grid>
                     </Grid>
                 </Grid>
-
                 <Grid Grid.Row="2" Margin="10,10,10,0">
-                    <ScrollViewer HorizontalAlignment="Center" FlowDirection="LeftToRight" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
-                        <ItemsControl ItemsSource="{Binding CustomerInfos}">
+                    <ScrollViewer HorizontalAlignment="Center" FlowDirection="LeftToRight" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding CustomerInfos}" Name="CustomerInfoControl">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel Orientation="Horizontal"/>
@@ -96,18 +93,31 @@ FontSize="16">
                         </ItemsControl>
                     </ScrollViewer>
                 </Grid>
-
-
                 <Grid Grid.Row="3" HorizontalAlignment="Right" Margin="0,20,10,10">
-                    <Button Height="40"
-                            Width="150"
-                            Command="{Binding BookCommand}"
-                            materialDesign:ButtonAssist.CornerRadius="5"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignRaisedLightButton}"
-                            ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
-                        <TextBlock Text="Đặt vé" Foreground="#DDFEFEFE"/>
-                    </Button>
+                    <StackPanel Orientation="Horizontal" Margin="10,0,10,10">
+                        <Button Height="40"
+                                Width="150"
+                                Command="{Binding ExportPdfCommand}"
+                                materialDesign:ButtonAssist.CornerRadius="5"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                Background="#FFD90429"
+                                BorderBrush="#FFB11409">
+                            <TextBlock Text="Xuất pdf" Foreground="#DDFEFEFE"/>
+                        </Button>
+                        <Button Height="40"
+                                Width="150"
+                                Command="{Binding BookCommand}"
+                                materialDesign:ButtonAssist.CornerRadius="5"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                Background="#FFD90429"
+                                BorderBrush="#FFB11409">
+                            <TextBlock Text="Đặt vé" Foreground="#DDFEFEFE"/>
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </Grid>
         </Border>

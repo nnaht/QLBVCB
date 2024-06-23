@@ -1,14 +1,21 @@
-﻿using QLBVCB.Model;
+﻿using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using QLBVCB.Model;
 using QLBVCB.UserControls;
 using QLBVCB.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace QLBVCB.ViewModel
 {
@@ -35,9 +42,10 @@ namespace QLBVCB.ViewModel
             customMessageBox.ShowDialog();
         }
         private int totalPeople;
-
+        public ICommand ExportPdfCommand { get; set; }
         public VM_FillInfo(List<Tuple<string, int, int>> selection, bool isRecuperate)
         {
+            ExportPdfCommand = new RelayCommand(ExecuteExportPdfCommand);
             BookCommand = new RelayCommand(ExecuteBookCommand);
             AddCustomerCommand = new RelayCommand<Button>((p) => { return true; }, (p) => { CustomerRegister cr = new CustomerRegister(); cr.DataContext = new VM_CustomerRegister(); cr.ShowDialog(); });
             Customers = new ObservableCollection<VM_CustomerInfo>();
@@ -56,7 +64,71 @@ namespace QLBVCB.ViewModel
                 CustomerInfos.Add(customerInfo);
             }
         }
+        private void ExecuteExportPdfCommand(object obj)
+        {
+            var mainWindow = Application.Current.Windows.OfType<FillInfo>().FirstOrDefault();
+            if (mainWindow != null)
+            {
+                var itemsControl = mainWindow.FindName("CustomerInfoControl") as ItemsControl;
+                if (itemsControl != null)
+                {
+                    string filePath = "CustomerInfo.pdf";
+                    ExportItemsControlToPdf(itemsControl, filePath);
+                    ShowCustomMessageBox($"Customer info has been successfully exported to {filePath}");
+                    Process.Start(new ProcessStartInfo(filePath) { UseShellExecute = true });
+                }
+                else
+                {
+                    ShowCustomMessageBox("Failed to find CustomerInfoControl.");
+                }
+            }
+            else
+            {
+                ShowCustomMessageBox("Failed to find the main window.");
+            }
+        }
 
+        private void ExportItemsControlToPdf(ItemsControl itemsControl, string filePath)
+        {
+            double dpi = 96;
+            double width = itemsControl.ActualWidth;
+            double height = itemsControl.ActualHeight;
+
+            var size = new Size(width, height);
+            itemsControl.Measure(size);
+            itemsControl.Arrange(new Rect(size));
+
+            RenderTargetBitmap rtb = new RenderTargetBitmap((int)width, (int)height, dpi, dpi, PixelFormats.Pbgra32);
+            rtb.Render(itemsControl);
+
+            PngBitmapEncoder encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(rtb));
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                ms.Seek(0, SeekOrigin.Begin);
+
+                using (PdfDocument document = new PdfDocument())
+                {
+                    PdfPage page = document.AddPage();
+                    XGraphics gfx = XGraphics.FromPdfPage(page);
+                    XImage image = XImage.FromStream(ms);
+
+                    double aspectRatio = image.PixelWidth / (double)image.PixelHeight;
+                    double pageWidth = page.Width;
+                    double pageHeight = pageWidth / aspectRatio;
+                    if (pageHeight > page.Height)
+                    {
+                        pageHeight = page.Height;
+                        pageWidth = pageHeight * aspectRatio;
+                    }
+
+                    gfx.DrawImage(image, 0, 0, pageWidth, pageHeight);
+                    document.Save(filePath);
+                }
+            }
+        }
         private void ExecuteBookCommand(object obj)
         {
             List<string> names = Customers.Select(customer => customer.PassengerName).ToList();
@@ -97,7 +169,6 @@ namespace QLBVCB.ViewModel
 
                         string mavb = GetNextId(i);
 
-                        // Tạo mới bản ghi trong bảng VEBAY
                         var veBay = new VEBAY
                         {
                             MAVB = mavb,
@@ -105,7 +176,6 @@ namespace QLBVCB.ViewModel
                             MALV= customer.HANG >= 6 ? "LV01": "LV02",
                             THUTU_GHE = customer.DAY.ToString()+customer.HANG.ToString(),
                             
-                            // Thiết lập các giá trị khác cho veBay nếu cần
                         };
                         DataProvider.Ins.DB.VEBAYs.Add(veBay);
 
@@ -124,8 +194,6 @@ namespace QLBVCB.ViewModel
                         };
 
                         DataProvider.Ins.DB.DADATs.Add(dadat);
-
-                        // Update the SO_GHE in CHUYENBAY table
                         chuyenBay.SO_GHE -= 1;
                         DataProvider.Ins.DB.SaveChanges();
                     }
@@ -133,7 +201,8 @@ namespace QLBVCB.ViewModel
 
 
                 ShowCustomMessageBox("Đặt vé thành công.");
-                Application.Current.Windows.OfType<Window>().FirstOrDefault()?.Close();
+                Application.Current.Windows.OfType<FillInfo>().FirstOrDefault()?.Close();
+                CloseWindow(Application.Current.MainWindow);
             }
             catch (Exception ex)
             {
@@ -149,7 +218,13 @@ namespace QLBVCB.ViewModel
                 ShowCustomMessageBox("Đặt chỗ không thành công");
             }
         }
-
+        private void CloseWindow(Window window)
+        {
+            if (window != null)
+            {
+                window.Close();
+            }
+        }
         private string GetBNextId(int i)
         {
             var lastTicket = DataProvider.Ins.DB.DADATs.OrderByDescending(e => e.MABK).FirstOrDefault();

@@ -7,7 +7,12 @@ using QLBVCB.View;
 using QLBVCB.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace QLBVCB.ViewModel
@@ -22,7 +27,7 @@ namespace QLBVCB.ViewModel
             {
                 _thang = value;
                 OnPropertyChanged();
-                RefreshData(null); // Refresh data when Thang changes
+                RefreshData2(null); // Refresh data when Thang changes
             }
         }
 
@@ -34,28 +39,105 @@ namespace QLBVCB.ViewModel
             {
                 _nam = value;
                 OnPropertyChanged();
-                RefreshData(null); // Refresh data when Nam changes
+                RefreshData2(null); // Refresh data when Nam changes
             }
         }
-
+        private string _label3;
+        public string Label3
+        {
+            get => _label3;
+            set
+            {
+                _label3 = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _label1;
+        public string Label1
+        {
+            get => _label1;
+            set
+            {
+                _label1 = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _label2;
+        public string Label2
+        {
+            get => _label2;
+            set
+            {
+                _label2 = value;
+                OnPropertyChanged();
+            }
+        }
         public SeriesCollection LineSeriesCollection { get; set; }
         public SeriesCollection ColumnSeriesCollection { get; set; }
         public List<string> Labels { get; set; }
         public ICommand RefreshCommand { get; set; }
         public ICommand OpenRevenueDetailCommand { get; set; }
+
         public List<string> ThangList { get; set; }
         public List<string> NamList { get; set; }
+        DataSet dsMonth = new DataSet();
 
         public VM_ManageRevenue()
+        {
+            Initialize();
+        }
+        private async void Initialize()
         {
             ThangList = Enumerable.Range(1, 12).Select(i => i.ToString("D2")).ToList();
             NamList = Enumerable.Range(2020, 2025).Select(i => i.ToString()).ToList();
 
             Thang = "06"; // Initialize with current month
             Nam = "2024"; // Initialize with current year
+
             OpenRevenueDetailCommand = new RelayCommand(ExecuteOpenRevenueDetailCommand);
-            RefreshCommand = new RelayCommand(RefreshData);
-            RefreshData(null); // Refresh data initially
+            RefreshCommand = new RelayCommand(RefreshData2);
+
+            await RefreshData();
+        }
+
+        private void SetLabel()
+        {
+            try
+            {
+                using (var context = new QLBVCBEntities())
+                {
+                    var ve = context.Database.SqlQuery<decimal>("SELECT DBO.TONGTIENVETHANG(@p0, @p1)", Nam, Thang).SingleOrDefault();
+                    var dichvu = context.Database.SqlQuery<decimal>("SELECT DBO.TONGTIENDICHVUTHANG(@p0, @p1)", Nam, Thang).SingleOrDefault();
+                    var luong = context.Database.SqlQuery<decimal>("SELECT DBO.TONGTIENLUONGTHANG()").SingleOrDefault();
+
+                    if (ve != default(decimal) && dichvu != default(decimal) && luong != default(decimal))
+                    {
+                        Label1 = $"{ve:N0} VNĐ";
+                        Label2 = $"{dichvu:N0} VNĐ";
+                        Label3 = $"{luong:N0} VNĐ";
+                    }
+                    else
+                    {
+                        Label1 = "0 VNĐ";
+                        Label2 = "0 VNĐ";
+                        Label3 = "0 VNĐ";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving label data: {ex.Message}");
+                // Handle exceptions appropriately, e.g., log the error, display a message to the user, etc.
+            }
+        }
+
+
+        private async Task RefreshData()
+        {
+            await Task.Run(() =>
+            {
+                SetLabel();
+            });
         }
         private void ExecuteOpenRevenueDetailCommand(object obj)
         {
@@ -68,10 +150,11 @@ namespace QLBVCB.ViewModel
             {
             }
         }
-        private void RefreshData(object obj)
+        private void RefreshData2(object obj)
         {
             SetYearData(Nam);
             SetMonthData(Nam, Thang);
+            RefreshData();
         }
 
         private void SetYearData(string year)
@@ -99,6 +182,7 @@ namespace QLBVCB.ViewModel
 
             Labels = results.Select(r => r.THANG.ToString()).ToList();
         }
+
 
         private void SetMonthData(string year, string month)
         {

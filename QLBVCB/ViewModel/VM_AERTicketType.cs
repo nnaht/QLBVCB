@@ -72,10 +72,35 @@ namespace QLBVCB.ViewModel
             TicketTypeView.Filter = FilterTicketType;
             AddTicketTypeCommand = new RelayCommand<object>((p) =>
             {
+                if (string.IsNullOrEmpty(TEN_LOAIVE))
+                    return false;
+                if (displayTicketTypeList == null)
+                    return false;
+                if (displayTicketTypeList.Count() != 0)
+                    return false;
                 return true;
             }, (p) =>
             {
-                var ticketType = new LOAIVE() { MALV = MALV, TEN_LOAIVE = TEN_LOAIVE, GIAVE = GIAVE, PHI_THAYDOI = PHI_THAYDOI, PHI_HUY = PHI_HUY };
+                var lastMalv = DataProvider.Ins.DB.LOAIVEs.OrderByDescending(lv => lv.MALV).FirstOrDefault()?.MALV;
+                string maTemp;
+                if (lastMalv != null)
+                {
+                    string numberPart = lastMalv.Substring(2);
+                    if (int.TryParse(numberPart, out int number))
+                    {
+                        number++; 
+                        maTemp = $"LV{number.ToString("D2")}"; 
+                    }
+                    else
+                    {
+                        maTemp = DataProvider.Ins.DB.LOAIVEs.LastOrDefault().MALV + 1; 
+                    }
+                }
+                else
+                {
+                    maTemp = "LV01";
+                }
+                var ticketType = new LOAIVE() { MALV = maTemp, TEN_LOAIVE = TEN_LOAIVE, GIAVE = GIAVE, PHI_THAYDOI = PHI_THAYDOI, PHI_HUY = PHI_HUY };
                 DataProvider.Ins.DB.LOAIVEs.Add(ticketType);
                 DataProvider.Ins.DB.SaveChanges();
                 TicketTypeList.Add(ticketType);
@@ -83,6 +108,8 @@ namespace QLBVCB.ViewModel
 
             EditTicketTypeCommand = new RelayCommand<object>((p) =>
             {
+                if (string.IsNullOrEmpty(MALV) || string.IsNullOrEmpty(TEN_LOAIVE))
+                    return false;
                 if (TicketTypeSelectedItem == null)
                     return false;
                 if (displayTicketTypeList.Count() == 0)

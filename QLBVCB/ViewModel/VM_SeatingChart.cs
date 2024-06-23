@@ -1,39 +1,64 @@
-﻿using System;
+﻿using QLBVCB.Model;
+using QLBVCB.View;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Collections.ObjectModel;
 using System.Windows;
-using QLBVCB.Model;
 using System.Windows.Input;
-using System.Windows.Controls;
-using QLBVCB.View;
 
 namespace QLBVCB.ViewModel
 {
-    public class Seat
+    public class Seat : INotifyPropertyChanged
     {
+        private bool _isPicking;
+
         public string SeatType { get; set; }
         public int Row { get; set; }
         public int Column { get; set; }
         public string Label { get; set; }
+
+        public bool IsPicking
+        {
+            get => _isPicking;
+            set
+            {
+                if (_isPicking != value)
+                {
+                    _isPicking = value;
+                    OnPropertyChanged(nameof(IsPicking));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            OnPropertyChanged(propertyName);
+        }
     }
 
     public class Booking
     {
         public string Ma { get; set; }
-
         public int Hang { get; set; }
         public int Day { get; set; }
     }
 
     public class VM_SeatingChart : INotifyPropertyChanged
     {
-        private List<Tuple<string, int, int>> selection = new List<Tuple<string, int, int>> { };
+        private List<Tuple<string, int, int>> selection = new List<Tuple<string, int, int>>();
         public static List<Booking> Bookings { get; private set; }
         private bool isRecuperated;
+
         public bool IsRecuperated
         {
             get => isRecuperated;
@@ -43,12 +68,14 @@ namespace QLBVCB.ViewModel
                 OnPropertyChanged(nameof(IsRecuperated));
             }
         }
+
         public void ShowCustomMessageBox(string message)
         {
             CusMessBox customMessageBox = new CusMessBox();
             customMessageBox.DataContext = new VM_CusMessBox(message);
             customMessageBox.ShowDialog();
         }
+
         public ObservableCollection<Seat> Seats
         {
             get => _seats;
@@ -60,6 +87,7 @@ namespace QLBVCB.ViewModel
         }
         private ObservableCollection<Seat> _seats;
         private string _flightId;
+
         public string FlightId
         {
             get => _flightId;
@@ -69,8 +97,10 @@ namespace QLBVCB.ViewModel
                 OnPropertyChanged(nameof(FlightId));
             }
         }
+
         public ICommand BookCommand { get; set; }
         public ICommand SeatActionCommand { get; }
+
         public VM_SeatingChart(string flightId, int totalSeats, bool isRecuperated)
         {
             Seats = new ObservableCollection<Seat>();
@@ -81,12 +111,14 @@ namespace QLBVCB.ViewModel
             SeatActionCommand = new RelayCommand(ExecuteShowSeatInfoCommand);
             Bookings = new List<Booking>();
         }
+
         private void ExecuteShowSeatInfoCommand(object obj)
         {
-            // Xử lý khi người dùng nhấn vào một ghế
             Seat clickedSeat = obj as Seat;
             if (clickedSeat != null)
             {
+                clickedSeat.IsPicking = !clickedSeat.IsPicking; // Toggle IsPicking
+
                 var seatTuple = new Tuple<string, int, int>(_flightId, clickedSeat.Row, clickedSeat.Column);
                 if (selection.Contains(seatTuple))
                 {
@@ -98,8 +130,10 @@ namespace QLBVCB.ViewModel
                     selection.Add(seatTuple);
                     ShowCustomMessageBox("Bạn đã chọn ghế " + setSeat(clickedSeat.Row, clickedSeat.Column));
                 }
+                clickedSeat.NotifyPropertyChanged(nameof(clickedSeat.IsPicking));
             }
         }
+
         public string setSeat(int Hang, int Day)
         {
             string a = "";
@@ -127,8 +161,9 @@ namespace QLBVCB.ViewModel
                     a = "F";
                     break;
             }
-            return a + Hang.ToString();
+            return Hang.ToString() + a;
         }
+
         private async Task ExecuteBookCommand()
         {
             if (isRecuperated == false)
@@ -137,6 +172,9 @@ namespace QLBVCB.ViewModel
                 {
                     FillInfo fillInfo = new FillInfo();
                     fillInfo.DataContext = new VM_FillInfo(selection, false);
+                    Application.Current.Windows.OfType<SeatingPlan>().FirstOrDefault()?.Close();
+                    CloseWindow(Application.Current.MainWindow);
+                    Application.Current.MainWindow = fillInfo;
                     fillInfo.ShowDialog();
                 }
                 catch (Exception ex)
@@ -148,7 +186,18 @@ namespace QLBVCB.ViewModel
             {
                 RecuperateFlight recuperate = new RecuperateFlight();
                 recuperate.DataContext = new VM_Recuperate(selection);
-                recuperate.Show();
+                Application.Current.Windows.OfType<SeatingPlan>().FirstOrDefault()?.Close();
+                CloseWindow(Application.Current.MainWindow);
+                Application.Current.MainWindow = recuperate;
+                recuperate.ShowDialog();
+            }
+        }
+
+        private void CloseWindow(Window window)
+        {
+            if (window != null)
+            {
+                window.Close();
             }
         }
 
@@ -157,6 +206,7 @@ namespace QLBVCB.ViewModel
             int totalRows = (int)Math.Round((double)totalSeats / 6) + 1;
             int seatsPerRow = 7;
             int currentSeat = 0;
+
             Seats.Add(new Seat { SeatType = "Label", Row = 0, Column = 0, Label = "A" });
             Seats.Add(new Seat { SeatType = "Label", Row = 0, Column = 1, Label = "B" });
             Seats.Add(new Seat { SeatType = "Label", Row = 0, Column = 2, Label = "C" });
@@ -167,7 +217,6 @@ namespace QLBVCB.ViewModel
 
             for (int row = 1; row <= totalRows; row++)
             {
-
                 var chuyenBay = DataProvider.Ins.DB.CHUYENBAYs.SingleOrDefault(cb => cb.MACB == _flightId);
                 var DADAT = DataProvider.Ins.DB.DADATs.ToList();
 
@@ -190,13 +239,13 @@ namespace QLBVCB.ViewModel
                             Seats.Add(new Seat { SeatType = seatType, Row = row, Column = col });
                             currentSeat++;
                         }
-
                     }
                 }
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -6,8 +6,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace QLBVCB.ViewModel
@@ -184,9 +185,10 @@ namespace QLBVCB.ViewModel
             {
                 var chuyenBay = await GetChuyenBayAsync(MACB);
                 int totalSeats = chuyenBay?.SO_GHE ?? 250;
-
                 SeatingPlan seatingPlan = new SeatingPlan();
                 seatingPlan.DataContext = new VM_SeatingChart(MACB, totalSeats, IsRecuperate);
+
+                Application.Current.MainWindow = seatingPlan;
                 seatingPlan.ShowDialog();
             }
             else
@@ -202,6 +204,7 @@ namespace QLBVCB.ViewModel
                 return DataProvider.Ins.DB.CHUYENBAYs.SingleOrDefault(cb => cb.MACB == macb);
             });
         }
+
         public void ShowCustomMessageBox(string message)
         {
             CusMessBox customMessageBox = new CusMessBox();

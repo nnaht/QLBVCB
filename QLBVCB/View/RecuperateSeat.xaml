@@ -4,15 +4,98 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLBVCB.View"
-                xmlns:uc="clr-namespace:QLBVCB.UserControls"
-xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:uc="clr-namespace:QLBVCB.UserControls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-                WindowStartupLocation="CenterScreen"
-ResizeMode="NoResize"
-WindowStyle="None"
+        xmlns:vm="clr-namespace:QLBVCB.ViewModel"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
         Title="RecuperateSeat" Height="600" Width="800">
+    <Window.Resources>
+        <!-- Define your templates here -->
+        <DataTemplate x:Key="EconomySeatTemplate">
+            <Border BorderThickness="0.5" BorderBrush="Transparent" Width="30" Height="30" CornerRadius="5">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#6420AA"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsPicking}" Value="True">
+                                <Setter Property="Background" Value="Yellow"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Direction="270" ShadowDepth="3" Opacity="0.5"/>
+                </Border.Effect>
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.SeatActionCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                  CommandParameter="{Binding}">
+                    </MouseBinding>
+                </Border.InputBindings>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="EmptySeatTemplate">
+            <Border BorderThickness="0.5" BorderBrush="Transparent" Width="30" Height="30" CornerRadius="5">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#06D001"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsPicking}" Value="True">
+                                <Setter Property="Background" Value="Yellow"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Direction="270" ShadowDepth="3" Opacity="0.5"/>
+                </Border.Effect>
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.SeatActionCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                  CommandParameter="{Binding}">
+                    </MouseBinding>
+                </Border.InputBindings>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="BookedSeatTemplate">
+            <Border BorderThickness="0.5" BorderBrush="Transparent" Width="30" Height="30" CornerRadius="5">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="Red"/>
+                    </Style>
+                </Border.Style>
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Direction="270" ShadowDepth="3" Opacity="0.5"/>
+                </Border.Effect>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="LabelTemplate">
+            <Border Background="Transparent">
+                <TextBlock Text="{Binding Label}" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="PickingSeatTemplate">
+            <Border BorderThickness="0.5" BorderBrush="Transparent" Width="30" Height="30" CornerRadius="5">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="Yellow"/>
+                    </Style>
+                </Border.Style>
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Direction="270" ShadowDepth="3" Opacity="0.5"/>
+                </Border.Effect>
+            </Border>
+        </DataTemplate>
+        <vm:SeatTemplateSelector x:Key="SeatTemplateSelector"
+                             EconomySeatTemplate="{StaticResource EconomySeatTemplate}"
+                             EmptySeatTemplate="{StaticResource EmptySeatTemplate}"
+                             BookedSeatTemplate="{StaticResource BookedSeatTemplate}"
+                             LabelTemplate="{StaticResource LabelTemplate}"
+                             PickingSeatTemplate="{StaticResource PickingSeatTemplate}"/>
+    </Window.Resources>
     <Border Background="#FFF7F1" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -29,10 +112,10 @@ WindowStyle="None"
             </Grid>
             <Grid Grid.Row= "2" >
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <ListView ItemsSource="{Binding Seats}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <ListView ItemsSource="{Binding Seats}" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="7" />
+                                <UniformGrid Columns="7"/>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                         <ListView.ItemContainerStyle>
@@ -43,27 +126,36 @@ WindowStyle="None"
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <!-- Thay vì sử dụng ContentPresenter, bạn có thể sử dụng một Grid hoặc bất kỳ panel nào khác để chứa UserControl -->
-                                <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding DataContext.SeatActionCommand, RelativeSource={RelativeSource AncestorType=ListView}}" 
-CommandParameter="{Binding}">
-                                    <ContentControl Content="{Binding}" 
-            ContentTemplateSelector="{StaticResource SeatTemplateSelector}" />
+                                <Button Margin="-8" Height="50" Background="Transparent" BorderBrush="Transparent"
+                        Command="{Binding DataContext.SeatActionCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                        CommandParameter="{Binding}">
+                                    <ContentControl Content="{Binding}" ContentTemplateSelector="{StaticResource SeatTemplateSelector}"/>
                                 </Button>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </ScrollViewer>
             </Grid>
-            <Grid Grid.Row= "3" HorizontalAlignment="Right" Margin="0,15,10,20">
-                <Button Height="Auto"
-                Width="100"
+            <Grid Grid.Row= "3" Margin="0,15,10,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" HorizontalAlignment="Left" Margin="10,0,0,0">
+                    <Image Source="/Images/notion.jpg" Stretch="Uniform" />
+                </Grid>
+                <Grid Grid.Column="1" HorizontalAlignment="Right">
+                    <Button Height="Auto"
+    Width="100"
     Command="{Binding BookCommand}"
     materialDesign:ButtonAssist.CornerRadius="5"
     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
     Style="{StaticResource MaterialDesignRaisedLightButton}"
     ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409">
-                    <TextBlock Text="Tiếp tục" Foreground="#DDFEFEFE" />
-                </Button>
+                        <TextBlock Text="Tiếp tục" Foreground="#DDFEFEFE" />
+                    </Button>
+                </Grid>
+                
             </Grid>
         </Grid>
     </Border>

@@ -333,7 +333,7 @@ namespace QLBVCB.ViewModel
                     a = "F";
                     break;
             }
-            return a + Hang.ToString();
+            return Hang.ToString() + a;
         }
 
         public string SetSeatType(int Hang)

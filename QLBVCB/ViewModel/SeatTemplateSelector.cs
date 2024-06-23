@@ -9,12 +9,16 @@ namespace QLBVCB.ViewModel
         public DataTemplate EmptySeatTemplate { get; set; }
         public DataTemplate BookedSeatTemplate { get; set; }
         public DataTemplate LabelTemplate { get; set; }
+        public DataTemplate PickingSeatTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             var seat = item as Seat;
             if (seat == null)
                 return base.SelectTemplate(item, container);
+
+            if (seat.IsPicking)
+                return PickingSeatTemplate;
 
             switch (seat.SeatType)
             {
@@ -31,5 +35,4 @@ namespace QLBVCB.ViewModel
             }
         }
     }
-
 }
