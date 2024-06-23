@@ -9,10 +9,11 @@
 
 namespace QLBVCB.Model
 {
+    using QLBVCB.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class DICHVU
+    public partial class DICHVU : VM_Base
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DICHVU()
@@ -20,13 +21,22 @@ namespace QLBVCB.Model
             this.DADATs = new HashSet<DADAT>();
             this.DADATs1 = new HashSet<DADAT>();
         }
-    
-        public string MADV { get; set; }
-        public string LOAIDV { get; set; }
-        public string TENDV { get; set; }
-        public Nullable<int> SOLUONG { get; set; }
-        public decimal DONGIA { get; set; }
-    
+
+        private string _MADV;
+        public string MADV { get => _MADV; set { _MADV = value; OnPropertyChanged(); } }
+
+        private string _LOAIDV;
+        public string LOAIDV { get => _LOAIDV; set { _LOAIDV = value; OnPropertyChanged(); } }
+
+        private string _TENDV;
+        public string TENDV { get => _TENDV; set { _TENDV = value; OnPropertyChanged(); } }
+
+        private Nullable<int> _SOLUONG;
+        public Nullable<int> SOLUONG { get => _SOLUONG; set { _SOLUONG = value; OnPropertyChanged(); } }
+
+        private decimal _DONGIA;
+        public decimal DONGIA { get => _DONGIA; set { _DONGIA = value; OnPropertyChanged(); } }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DADAT> DADATs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

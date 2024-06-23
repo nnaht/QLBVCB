@@ -1,4 +1,5 @@
 ﻿using QLBVCB.Model;
+using QLBVCB.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -81,6 +83,7 @@ namespace QLBVCB.ViewModel
                 DataProvider.Ins.DB.SANBAYs.Add(airport);
                 DataProvider.Ins.DB.SaveChanges();
                 AirportList.Add(airport);
+                ShowCustomMessageBox("Thêm thành công!");
             });
 
             EditAirportCommand = new RelayCommand<object>((p) =>
@@ -100,6 +103,7 @@ namespace QLBVCB.ViewModel
                 airport.THANHPHO = THANHPHO;
                 airport.QUOCGIA = QUOCGIA;
                 DataProvider.Ins.DB.SaveChanges();
+                ShowCustomMessageBox("Sửa thành công!");
             });
 
             RemoveAirportCommand = new RelayCommand<object>((p) =>
@@ -107,10 +111,14 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                DataProvider.Ins.DB.SANBAYs.Remove(AirportSelectedItem);
-                DataProvider.Ins.DB.SaveChanges();
+                if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.SANBAYs.Remove(AirportSelectedItem);
+                    DataProvider.Ins.DB.SaveChanges();
 
-                AirportList.Remove(AirportSelectedItem);
+                    AirportList.Remove(AirportSelectedItem);
+                    ShowCustomMessageBox("Xóa thành công!");
+                }
             });
         }
         private bool FilterAirport(object item)
@@ -125,6 +133,12 @@ namespace QLBVCB.ViewModel
         private void FilterAirport()
         {
             AirportView.Refresh();
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
     }
 }

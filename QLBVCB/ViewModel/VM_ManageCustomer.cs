@@ -25,7 +25,7 @@ namespace QLBVCB.ViewModel
         public VM_ManageCustomer()
         {
             CustomerList = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
-            OpenAERCustomerCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AERCustomer aer = new AERCustomer(); aer.ShowDialog(); });
+            OpenAERCustomerCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AERCustomer aer = new AERCustomer(); aer.DataContext = new VM_AERCustomer(); aer.ShowDialog(); });
             CustomerView = CollectionViewSource.GetDefaultView(CustomerList);
             CustomerView.Filter = FilterCustomer;
             ExportExcelManageCustomerCommand = new RelayCommand(ExecuteExportExcelManageCustomerCommand);
@@ -45,7 +45,7 @@ namespace QLBVCB.ViewModel
                 }
                 if (string.IsNullOrEmpty(filePath))
                 {
-                    MessageBox.Show("Đường dẫn không hợp lệ");
+                    ShowCustomMessageBox("Đường dẫn không hợp lệ");
                     return;
                 }
 
@@ -108,7 +108,7 @@ namespace QLBVCB.ViewModel
                     excelPackage.SaveAs(new System.IO.FileInfo(filePath));
                 }
 
-                MessageBox.Show("Xuất dữ liệu thành công!");
+                ShowCustomMessageBox("Xuất dữ liệu thành công!");
                 System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
                 {
                     FileName = filePath,
@@ -117,7 +117,7 @@ namespace QLBVCB.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
+                ShowCustomMessageBox("Có lỗi xảy ra: " + ex.Message);
             }
         }
 
@@ -143,6 +143,12 @@ namespace QLBVCB.ViewModel
         private void FilterCustomer()
         {
             CustomerView.Refresh();
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
     }
 }

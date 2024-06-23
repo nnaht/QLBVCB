@@ -41,7 +41,7 @@
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.6*"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
@@ -114,24 +114,26 @@
                         </TextBox>
                     </Grid>
                     <Grid Grid.Row="2" Grid.Column="0">
-                        <TextBox VerticalAlignment="Center"
-                                 Text="{Binding NGAYSINH, UpdateSourceTrigger=PropertyChanged}"
-                                 Foreground="#FFD90429"
-                                 BorderBrush="#FFD90429"
-                                 materialDesign:HintAssist.Hint="Ngày sinh"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 Width="140">
-                        </TextBox>
+                        <DatePicker VerticalAlignment="Center"
+                                    SelectedDate="{Binding NGAYSINH, UpdateSourceTrigger=PropertyChanged}"
+                                    Foreground="#FFD90429"
+                                    BorderBrush="#FFD90429"
+                                    materialDesign:HintAssist.Hint="Ngày sinh"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                                    Width="140">
+                        </DatePicker>
                     </Grid>
                     <Grid Grid.Row="0" Grid.Column="2">
-                        <TextBox VerticalAlignment="Center"
-                                 Text="{Binding GIOITINH, UpdateSourceTrigger=PropertyChanged}"
-                                 Foreground="#FFD90429"
-                                 BorderBrush="#FFD90429"
-                                 materialDesign:HintAssist.Hint="Giới tính"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 Width="140">
-                        </TextBox>
+                        <ComboBox VerticalAlignment="Center"
+                                  Text="{Binding GIOITINH, UpdateSourceTrigger=PropertyChanged}"
+                                  Foreground="#FFD90429"
+                                  BorderBrush="#FFD90429"
+                                  materialDesign:HintAssist.Hint="Giới tính"
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                  Width="140">
+                            <ComboBoxItem>Nam</ComboBoxItem>
+                            <ComboBoxItem>Nữ</ComboBoxItem>
+                        </ComboBox>
                     </Grid>
                     <Grid Grid.Row="1" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"

@@ -78,6 +78,7 @@
                 <Button
             Height="40"
             materialDesign:ButtonAssist.CornerRadius="5"
+                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Command="{Binding ExportExcelManageAirportCommand}"
             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
             Style="{StaticResource MaterialDesignRaisedLightButton}"
@@ -91,7 +92,8 @@
             Margin="10, 10, 30, 10"
             ToolTip="Edit"
                 Background="#FFD90429"
-            HorizontalAlignment="Right" Command="{Binding OpenAERAirportCommand}">
+                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    HorizontalAlignment="Right" Command="{Binding OpenAERAirportCommand}">
                     <materialDesign:PackIcon Kind="Edit" Height="24" Width="24"  />
                 </Button>
             </Grid>

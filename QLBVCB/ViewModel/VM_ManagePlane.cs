@@ -60,7 +60,7 @@ namespace QLBVCB.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
+                ShowCustomMessageBox("Có lỗi xảy ra: " + ex.Message);
             }
         }
 
@@ -81,7 +81,7 @@ namespace QLBVCB.ViewModel
 
                 if (string.IsNullOrEmpty(filePath))
                 {
-                    MessageBox.Show("Đường dẫn không hợp lệ");
+                    ShowCustomMessageBox("Đường dẫn không hợp lệ");
                     return;
                 }
 
@@ -138,7 +138,7 @@ namespace QLBVCB.ViewModel
                     excelPackage.SaveAs(new System.IO.FileInfo(filePath));
                 }
 
-                MessageBox.Show("Xuất dữ liệu thành công!");
+                ShowCustomMessageBox("Xuất dữ liệu thành công!");
                 System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
                 {
                     FileName = filePath,
@@ -147,14 +147,14 @@ namespace QLBVCB.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
+                ShowCustomMessageBox("Có lỗi xảy ra: " + ex.Message);
             }
         }
         private bool FilterPlane(object item)
         {
             if (item is MAYBAY plane)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || plane.LOAIMB.StartsWith(SearchKeyword, StringComparison.OrdinalIgnoreCase);
+                return string.IsNullOrEmpty(SearchKeyword) || plane.MAMB.StartsWith(SearchKeyword, StringComparison.OrdinalIgnoreCase);
             }
             return false;
         }
@@ -162,6 +162,12 @@ namespace QLBVCB.ViewModel
         private void FilterPlane()
         {
             PlaneView.Refresh();
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
     }
 }

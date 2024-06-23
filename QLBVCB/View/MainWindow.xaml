@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLBVCB"
         mc:Ignorable="d"
+        
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:vm ="clr-namespace:QLBVCB.ViewModel"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:uc="clr-namespace:QLBVCB.UserControls"
+        
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -16,6 +18,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
+        
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="None"
@@ -67,7 +70,7 @@
                             Width="250">
                     <StackPanel.Resources>
                         <Style TargetType="{x:Type Button}">
-                            <Setter Property="Height" Value="50"></Setter>
+                            <Setter Property="Height" Value="45"></Setter>
                             <Setter Property="FontSize" Value="20"></Setter>
                             <Setter Property="BorderBrush" Value="Transparent"></Setter>
                             <Setter Property="Foreground" Value="White"></Setter>
@@ -134,8 +137,7 @@
                     </Button>
                     <Button x:Name="btAirport"
                             Content="Quản lý sân bay"
-                            Command="{Binding ManageAirportCommand}"
-                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Command="{Binding ManageAirportCommand}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -149,8 +151,7 @@
                     </Button>
                     <Button x:Name="btTicketType"
                             Content="Quản lý loại vé"
-                            Command="{Binding ManageTicketTypeCommand}"
-                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Command="{Binding ManageTicketTypeCommand}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -194,8 +195,7 @@
                     </Button>
                     <Button x:Name="btBooking"
                             Content="Đặt vé"
-                            Command="{Binding ManageBookingCommand}"
-                            >
+                            Command="{Binding ManageBookingCommand}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -252,7 +252,6 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    
                     <Button x:Name="btRevenue"
                             Content="Doanh thu"
                             Command="{Binding ManageRevenueCommand}"
@@ -275,8 +274,12 @@
                            VerticalAlignment="Bottom"
                            Background="Transparent"
                            FontSize="20"
-                           Cursor="Hand"
-                           MouseDown="TextBlock_MouseDown">
+                           Cursor="Hand">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonUp">
+                            <i:InvokeCommandAction Command="{Binding LogoutCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <Underline>Đăng xuất</Underline>
                 </TextBlock>
             </DockPanel>
@@ -288,8 +291,8 @@
                 <Grid Grid.Row="0" Background="#FFF7F1">
                     <materialDesign:Chip HorizontalAlignment="Right"
                                          Background="#FFEDF2F4"
-                                         Content="Cao Duong Lam"
-                                         Cursor="Arrow">
+                                         Content="{Binding LoginName}"
+                                         Command="{Binding PersonalInfoCommand}">
                         <materialDesign:Chip.Icon>
                             <Image Source="/Images/Pikachuhihi.jpg" />
                         </materialDesign:Chip.Icon>
@@ -302,7 +305,6 @@
                             Content="{Binding CurrentView}"
                             Margin="0,0,0,5"/>
                     </Border>
-                    <!--<ttt:ManageTicket></ttt:ManageTicket>-->
                 </Grid>
             </Grid>
         </Grid>

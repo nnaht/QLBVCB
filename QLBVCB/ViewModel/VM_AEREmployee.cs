@@ -1,5 +1,6 @@
 ﻿using OfficeOpenXml.Drawing.Chart;
 using QLBVCB.Model;
+using QLBVCB.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -53,9 +55,6 @@ namespace QLBVCB.ViewModel
 
         private string _MATKHAU;
         public string MATKHAU { get => _MATKHAU; set { _MATKHAU = value; OnPropertyChanged(); } }
-
-        private Nullable<bool> _HOATDONG;
-        public Nullable<bool> HOATDONG { get => _HOATDONG; set { _HOATDONG = value; OnPropertyChanged(); } }
         public ICommand AddEmployeeCommand { get; set; }
         public ICommand EditEmployeeCommand { get; set; }
         public ICommand RemoveEmployeeCommand { get; set; }
@@ -83,7 +82,6 @@ namespace QLBVCB.ViewModel
                     VITRI = EmployeeSelectedItem.VITRI;
                     TENTK = EmployeeSelectedItem.TENTK;
                     MATKHAU = EmployeeSelectedItem.MATKHAU;
-                    HOATDONG = EmployeeSelectedItem.HOATDONG;
                 }
             }
         }
@@ -99,7 +97,7 @@ namespace QLBVCB.ViewModel
             {
                 if (string.IsNullOrEmpty(HOTEN) || string.IsNullOrEmpty(NGAYSINH.ToString()) || string.IsNullOrEmpty(GIOITINH) || string.IsNullOrEmpty(CCCD)
                     || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(LUONG.ToString())
-                    || string.IsNullOrEmpty(VITRI) || string.IsNullOrWhiteSpace(TENTK) || string.IsNullOrWhiteSpace(MATKHAU) || string.IsNullOrEmpty(HOATDONG.ToString()))
+                    || string.IsNullOrEmpty(VITRI) || string.IsNullOrWhiteSpace(TENTK) || string.IsNullOrWhiteSpace(MATKHAU))
                     return false;
                 if (displayEmployeeList == null)
                     return false;
@@ -108,19 +106,20 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                var employee = new NHANVIEN() { MANV = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRI = VITRI, TENTK = TENTK, MATKHAU = MATKHAU, HOATDONG = HOATDONG };
+                var employee = new NHANVIEN() { MANV = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRI = VITRI, TENTK = TENTK, MATKHAU = MATKHAU };
                 var accout = new TAIKHOAN() { MANV = GetNextId(), TENTK = TENTK, MATKHAU = MATKHAU };
                 DataProvider.Ins.DB.NHANVIENs.Add(employee);
                 DataProvider.Ins.DB.TAIKHOANs.Add(accout);
                 DataProvider.Ins.DB.SaveChanges();
                 EmployeeList.Add(employee);
+                ShowCustomMessageBox("Thêm thành công!");
             });
 
             EditEmployeeCommand = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(HOTEN) || string.IsNullOrEmpty(NGAYSINH.ToString()) || string.IsNullOrEmpty(GIOITINH) || string.IsNullOrEmpty(CCCD)
                     || string.IsNullOrEmpty(DIACHI) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(EMAIL) || string.IsNullOrEmpty(LUONG.ToString())
-                    || string.IsNullOrEmpty(VITRI) || string.IsNullOrWhiteSpace(TENTK) || string.IsNullOrWhiteSpace(MATKHAU) || string.IsNullOrEmpty(HOATDONG.ToString()))
+                    || string.IsNullOrEmpty(VITRI) || string.IsNullOrWhiteSpace(TENTK) || string.IsNullOrWhiteSpace(MATKHAU))
                     return false;
                 if (EmployeeSelectedItem == null)
                     return false;
@@ -141,8 +140,8 @@ namespace QLBVCB.ViewModel
                 employee.VITRI = VITRI;
                 employee.TENTK = TENTK;
                 employee.MATKHAU = MATKHAU;
-                employee.HOATDONG = HOATDONG;
                 DataProvider.Ins.DB.SaveChanges();
+                ShowCustomMessageBox("Sửa thành công!");
             });
 
             RemoveEmployeeCommand = new RelayCommand<object>((p) =>
@@ -150,9 +149,15 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                DataProvider.Ins.DB.NHANVIENs.Remove(EmployeeSelectedItem);
-                DataProvider.Ins.DB.SaveChanges();
-                EmployeeList.Remove(EmployeeSelectedItem);
+                if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    var employeeAccount = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.MANV == EmployeeSelectedItem.MANV).FirstOrDefault();
+                    DataProvider.Ins.DB.TAIKHOANs.Remove(employeeAccount);
+                    DataProvider.Ins.DB.NHANVIENs.Remove(EmployeeSelectedItem);
+                    DataProvider.Ins.DB.SaveChanges();
+                    EmployeeList.Remove(EmployeeSelectedItem);
+                    ShowCustomMessageBox("Xóa thành công!");
+                }
             });
         }
         private string _SearchEmployee;
@@ -191,6 +196,12 @@ namespace QLBVCB.ViewModel
                 _ = "NV0001";
             }
             return temp;
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
     }
 }

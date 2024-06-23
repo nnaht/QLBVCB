@@ -1,4 +1,5 @@
 ﻿using QLBVCB.Model;
+using QLBVCB.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -92,12 +94,21 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                var flight = new CHUYENBAY() { MACB = MACB, MAMB = MAMB, THOIGIAN_CATCANH = DateTime.Parse(THOIGIAN_CATCANH), THOIGIAN_HACANH = DateTime.Parse(THOIGIAN_HACANH),
-                    TRANGTHAI = TRANGTHAI, SO_GHE = int.Parse(SO_GHE), MASB_CATCANH = MASB_CATCANH, MASB_HACANH = MASB_HACANH
+                var flight = new CHUYENBAY()
+                {
+                    MACB = MACB,
+                    MAMB = MAMB,
+                    THOIGIAN_CATCANH = DateTime.Parse(THOIGIAN_CATCANH),
+                    THOIGIAN_HACANH = DateTime.Parse(THOIGIAN_HACANH),
+                    TRANGTHAI = TRANGTHAI,
+                    SO_GHE = int.Parse(SO_GHE),
+                    MASB_CATCANH = MASB_CATCANH,
+                    MASB_HACANH = MASB_HACANH
                 };
                 DataProvider.Ins.DB.CHUYENBAYs.Add(flight);
                 DataProvider.Ins.DB.SaveChanges();
                 FlightList.Add(flight);
+                ShowCustomMessageBox("Thêm thành công!");
             });
 
             EditFlightCommand = new RelayCommand<object>((p) =>
@@ -122,6 +133,7 @@ namespace QLBVCB.ViewModel
                 flight.MASB_CATCANH = MASB_CATCANH;
                 flight.MASB_HACANH = MASB_HACANH;
                 DataProvider.Ins.DB.SaveChanges();
+                ShowCustomMessageBox("Sửa thành công!");
             });
 
             RemoveFlightCommand = new RelayCommand<object>((p) =>
@@ -129,10 +141,14 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                DataProvider.Ins.DB.CHUYENBAYs.Remove(FlightSelectedItem);
-                DataProvider.Ins.DB.SaveChanges();
+                if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.CHUYENBAYs.Remove(FlightSelectedItem);
+                    DataProvider.Ins.DB.SaveChanges();
 
-                FlightList.Remove(FlightSelectedItem);
+                    FlightList.Remove(FlightSelectedItem);
+                    ShowCustomMessageBox("Xóa thành công!");
+                }
             });
         }
         private bool FilterFlight(object item)
@@ -147,6 +163,12 @@ namespace QLBVCB.ViewModel
         private void FilterFlight()
         {
             FlightView.Refresh();
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
     }
 }

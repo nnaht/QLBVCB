@@ -72,13 +72,6 @@ namespace QLBVCB.ViewModel
             TicketTypeView.Filter = FilterTicketType;
             AddTicketTypeCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MALV) || string.IsNullOrEmpty(TEN_LOAIVE) || GIAVE != null || 
-                    PHI_THAYDOI != null || PHI_HUY != null)
-                    return false;
-                if (displayTicketTypeList == null)
-                    return false;
-                if (displayTicketTypeList.Count() != 0)
-                    return false;
                 return true;
             }, (p) =>
             {
@@ -90,8 +83,6 @@ namespace QLBVCB.ViewModel
 
             EditTicketTypeCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MALV) || string.IsNullOrEmpty(TEN_LOAIVE) || GIAVE != null || PHI_THAYDOI != null || PHI_HUY != null)
-                    return false;
                 if (TicketTypeSelectedItem == null)
                     return false;
                 if (displayTicketTypeList.Count() == 0)
