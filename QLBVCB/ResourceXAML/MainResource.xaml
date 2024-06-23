@@ -14,6 +14,7 @@
     <vm:VM_AEREmployee x:Key="AEREmployeeVM" />
     <vm:VM_AERCustomer x:Key="AERCustomerVM" />
     <vm:VM_AERAccount x:Key="AERAccountVM" />
+    <vm:VM_AERService x:Key="AERServiceVM" />
 
     <vm:VM_CustomerRegister x:Key="CustomerRegisterVM" />
 
@@ -40,6 +41,7 @@
     <vm:VM_Loginn x:Key="LoginVM"></vm:VM_Loginn>
 
     <!-- View DataTemplates -->
+    
     <DataTemplate DataType="{x:Type vm:VM_ManageTicketType}">
         <view:ManageTicketType />
     </DataTemplate>
@@ -67,6 +69,13 @@
     <DataTemplate DataType="{x:Type vm:VM_ManageBooking}">
         <view:ManageBooking />
     </DataTemplate>
-
-
+    <DataTemplate DataType="{x:Type vm:VM_ManageRevenue}">
+        <view:ManageRevenue />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:VM_ManageService}">
+        <view:ManageService />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:VM_Home}">
+        <view:Home />
+    </DataTemplate>
 </ResourceDictionary>

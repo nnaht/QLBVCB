@@ -4,32 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bd79fc44271b47419b4558d11ee81bd7" Name="Diagram1" ZoomLevel="72">
-        <EntityTypeShape EntityType="QLBVCBModel.BOOKING" Width="1.5" PointX="7.375" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBVCBModel.CHUYENBAY" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBVCBModel.KHACHHANG" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBVCBModel.LOAIVE" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBVCBModel.MAYBAY" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBVCBModel.NHANVIEN" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBVCBModel.SANBAY" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBVCBModel.TAIKHOAN" Width="1.5" PointX="7.5" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBVCBModel.VEBAY" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBVCBModel.DADAT" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
-        <AssociationConnector Association="QLBVCBModel.FK__BOOKING__MAKH__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBVCBModel.FK__BOOKING__MANV__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBVCBModel.FK__BOOKING__MAVB__4F7CD00D" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBVCBModel.FK__CHUYENBAY__MAMB__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBVCBModel.FK__CHUYENBAY__MASB___44FF419A" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBVCBModel.FK__CHUYENBAY__MASB___45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBVCBModel.FK__VEBAY__MACB__48CFD27E" ManuallyRouted="false" />
+      <Diagram DiagramId="98b31098d1e44051aacd0392ebabb693" Name="Diagram1">
+        <EntityTypeShape EntityType="QLBVCBModel.CHUYENBAY" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBVCBModel.DADAT" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBVCBModel.DICHVU" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBVCBModel.KHACHHANG" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBVCBModel.LOAIVE" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBVCBModel.MAYBAY" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBVCBModel.NHANVIEN" Width="1.5" PointX="7.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBVCBModel.SANBAY" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBVCBModel.TAIKHOAN" Width="1.5" PointX="10" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBVCBModel.VEBAY" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="QLBVCBModel.FK__CHUYENBAY__MAMB__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBVCBModel.FK__CHUYENBAY__MASB___31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBVCBModel.FK__CHUYENBAY__MASB___32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBVCBModel.FK__VEBAY__MACB__35BCFE0A" ManuallyRouted="false" />
         <AssociationConnector Association="QLBVCBModel.FK_DADAT_CHUYENBAY" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBVCBModel.FK__VEBAY__MALV__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBVCBModel.FK__TAIKHOAN__MANV__3B75D760" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="QLBVCBModel.DICHVU" Width="1.5" PointX="7.375" PointY="0.75" />
-        <AssociationConnector Association="QLBVCBModel.FK_DADAT_DICHVU_MAHL" />
-        <AssociationConnector Association="QLBVCBModel.FK_DADAT_DICHVU_MASA" />
-        <AssociationConnector Association="QLBVCBModel.FK_DADAT_KHACHHANG" />
-        <AssociationConnector Association="QLBVCBModel.FK_DADAT_VEBAY" />
+        <AssociationConnector Association="QLBVCBModel.FK_DADAT_DICHVU_MAHL" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBVCBModel.FK_DADAT_DICHVU_MASA" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBVCBModel.FK_DADAT_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBVCBModel.FK_DADAT_VEBAY" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBVCBModel.FK__VEBAY__MALV__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBVCBModel.FK__TAIKHOAN__MANV__286302EC" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

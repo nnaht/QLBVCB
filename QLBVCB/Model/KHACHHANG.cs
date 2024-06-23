@@ -17,7 +17,6 @@ namespace QLBVCB.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KHACHHANG()
         {
-            this.BOOKINGs = new HashSet<BOOKING>();
             this.DADATs = new HashSet<DADAT>();
         }
     
@@ -33,8 +32,6 @@ namespace QLBVCB.Model
         public string TENTK { get; set; }
         public string MATKHAU { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BOOKING> BOOKINGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DADAT> DADATs { get; set; }
     }

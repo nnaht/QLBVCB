@@ -17,10 +17,12 @@ namespace QLBVCB.Model
         public string MACB { get; set; }
         public int Hang { get; set; }
         public int Day { get; set; }
+        public Nullable<System.DateTime> NGTHANHTOAN { get; set; }
         public string MABK { get; set; }
         public string MAKH { get; set; }
         public string MAVB { get; set; }
         public string MASA { get; set; }
+        public string TENHANHKHACH { get; set; }
         public string MAHL { get; set; }
     
         public virtual CHUYENBAY CHUYENBAY { get; set; }

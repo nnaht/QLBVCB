@@ -17,7 +17,6 @@ namespace QLBVCB.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NHANVIEN()
         {
-            this.BOOKINGs = new HashSet<BOOKING>();
             this.TAIKHOANs = new HashSet<TAIKHOAN>();
         }
     
@@ -35,8 +34,6 @@ namespace QLBVCB.Model
         public string TENTK { get; set; }
         public string MATKHAU { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BOOKING> BOOKINGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TAIKHOAN> TAIKHOANs { get; set; }
     }

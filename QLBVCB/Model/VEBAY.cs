@@ -17,7 +17,6 @@ namespace QLBVCB.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public VEBAY()
         {
-            this.BOOKINGs = new HashSet<BOOKING>();
             this.DADATs = new HashSet<DADAT>();
         }
     
@@ -27,11 +26,9 @@ namespace QLBVCB.Model
         public string MALV { get; set; }
         public Nullable<bool> DADAT { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BOOKING> BOOKINGs { get; set; }
         public virtual CHUYENBAY CHUYENBAY { get; set; }
-        public virtual LOAIVE LOAIVE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DADAT> DADATs { get; set; }
+        public virtual LOAIVE LOAIVE { get; set; }
     }
 }

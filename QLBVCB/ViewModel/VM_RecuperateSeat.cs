@@ -13,42 +13,11 @@ using QLBVCB.View;
 
 namespace QLBVCB.ViewModel
 {
-    public class Seat
-    {
-        public string SeatType { get; set; }
-        public int Row { get; set; }
-        public int Column { get; set; }
-        public string Label { get; set; }
-    }
 
-    public class Booking
-    {
-        public string Ma { get; set; }
-
-        public int Hang { get; set; }
-        public int Day { get; set; }
-    }
-
-    public class VM_SeatingChart : INotifyPropertyChanged
+    public class VM_RecuperateSeat : INotifyPropertyChanged
     {
         private List<Tuple<string, int, int>> selection = new List<Tuple<string, int, int>> { };
         public static List<Booking> Bookings { get; private set; }
-        private bool isRecuperated;
-        public bool IsRecuperated
-        {
-            get => isRecuperated;
-            set
-            {
-                isRecuperated = value;
-                OnPropertyChanged(nameof(IsRecuperated));
-            }
-        }
-        public void ShowCustomMessageBox(string message)
-        {
-            CusMessBox customMessageBox = new CusMessBox();
-            customMessageBox.DataContext = new VM_CusMessBox(message);
-            customMessageBox.ShowDialog();
-        }
         public ObservableCollection<Seat> Seats
         {
             get => _seats;
@@ -71,11 +40,11 @@ namespace QLBVCB.ViewModel
         }
         public ICommand BookCommand { get; set; }
         public ICommand SeatActionCommand { get; }
-        public VM_SeatingChart(string flightId, int totalSeats, bool isRecuperated)
+        public VM_RecuperateSeat(string flightId, int totalSeats, List<Tuple<string, int, int>> selection)
         {
             Seats = new ObservableCollection<Seat>();
+            this.selection = selection;
             _flightId = flightId;
-            this.isRecuperated = isRecuperated;
             BookCommand = new RelayCommand(async (p) => await ExecuteBookCommand());
             GenerateSeats(totalSeats);
             SeatActionCommand = new RelayCommand(ExecuteShowSeatInfoCommand);
@@ -83,7 +52,6 @@ namespace QLBVCB.ViewModel
         }
         private void ExecuteShowSeatInfoCommand(object obj)
         {
-            // Xử lý khi người dùng nhấn vào một ghế
             Seat clickedSeat = obj as Seat;
             if (clickedSeat != null)
             {
@@ -99,6 +67,12 @@ namespace QLBVCB.ViewModel
                     ShowCustomMessageBox("Bạn đã chọn ghế " + setSeat(clickedSeat.Row, clickedSeat.Column));
                 }
             }
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
         public string setSeat(int Hang, int Day)
         {
@@ -131,25 +105,10 @@ namespace QLBVCB.ViewModel
         }
         private async Task ExecuteBookCommand()
         {
-            if (isRecuperated == false)
-            {
-                try
-                {
-                    FillInfo fillInfo = new FillInfo();
-                    fillInfo.DataContext = new VM_FillInfo(selection, false);
-                    fillInfo.ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    ShowCustomMessageBox("Đặt chỗ không thành công, vui lòng thử lại");
-                }
-            }
-            else
-            {
-                RecuperateFlight recuperate = new RecuperateFlight();
-                recuperate.DataContext = new VM_Recuperate(selection);
-                recuperate.Show();
-            }
+            FillInfo fillInfo = new FillInfo();
+            fillInfo.DataContext = new VM_FillInfo(selection,true);
+            fillInfo.ShowDialog();
+
         }
 
         private void GenerateSeats(int totalSeats)
