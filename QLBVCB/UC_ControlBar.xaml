@@ -31,7 +31,7 @@
                     <GradientStop Color="#FFD90429" Offset="1"/>
                 </LinearGradientBrush>
             </DockPanel.Background>-->
-            <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
+            <StackPanel HorizontalAlignment="Right" DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Transparent"></Setter>
@@ -61,15 +61,6 @@
                         ToolBar.OverflowMode="AsNeeded">
                     <materialDesign:PackIcon Kind="Close" />
                 </Button>
-            </StackPanel>
-            <StackPanel DockPanel.Dock="Left" Background="Transparent" Orientation="Horizontal">
-                <Image Source="/Images/Airplane.png" Width="20" Height="20"></Image>
-                <TextBlock VerticalAlignment="Center"
-                           Foreground="White"
-                           Opacity="0.9"
-                           Margin="5, 0, 0, 0"
-                           Text="{Binding Tag, ElementName=ucControlBar}">
-                </TextBlock>
             </StackPanel>
         </DockPanel>
     </Grid>

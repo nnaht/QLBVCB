@@ -23,75 +23,73 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Left">
             <TextBox Text="{Binding SearchCustomer, UpdateSourceTrigger=PropertyChanged}"
                      x:Name="txtBoxSearch" 
-                     Margin="55, 20, 0, 15"
-                     Width="300"
-                     Height="40"
-                     FontSize="12"
-                     BorderBrush="Black"
-                     CaretBrush="Black"
-                     materialDesign:HintAssist.IsFloating="False"
-                     materialDesign:HintAssist.Background="Transparent"
-                     materialDesign:HintAssist.Foreground="Black"
-                     materialDesign:HintAssist.Hint="🔎 Nhập họ tên khách hàng..."
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}">
-                <TextBox.Padding>
-                    <Thickness Left="5" Right="5" Top="10" Bottom="10"/>
-                </TextBox.Padding>
+                             Margin="20"
+         Width="300"
+         Height="50"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center"
+         FontSize="14"
+         BorderBrush="Black"
+         CaretBrush="Black"
+         materialDesign:HintAssist.IsFloating="False"
+         materialDesign:HintAssist.Background="Transparent"
+         materialDesign:HintAssist.Foreground="Black"
+         materialDesign:HintAssist.Hint="🔎 Nhập tên khách hàng..."
+         Style="{StaticResource MaterialDesignOutlinedTextBox}">
             </TextBox>
         </Grid>
-        <Grid Grid.Row="1" Height="585">
-            <Grid Margin="5"
-                  HorizontalAlignment="Center"
-                  Background="White"
-                  Width="760" Height="585">
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15,0,20,20">
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Auto">
-                    <DataGrid ItemsSource="{Binding CustomerView}"
-                              AutoGenerateColumns="False"
-                              Background="#FFF8F8F8"
-                              IsReadOnly="True"
-                              d:ItemsSource="{d:SampleData}"
-                              SelectedItem="{Binding SelectedItem}"
-                              Width="760" Height="570">
-                        <DataGrid.ColumnHeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Background" Value="#FFD90429"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="BorderThickness" Value="1,0,0,0"/>
-                                <Setter Property="BorderBrush" Value="White"/>
-                                <Setter Property="Padding" Value="5"/>
-                            </Style>
-                        </DataGrid.ColumnHeaderStyle>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Width="Auto" Header="Mã khách hàng" Binding="{Binding MAKH}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="Auto" Header="Họ tên" Binding="{Binding HOTEN}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="Auto" Header="Ngày sinh" Binding="{Binding NGAYSINH}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="Auto" Header="Giới tính" Binding="{Binding GIOITINH}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="Auto" Header="Căn cước công dân" Binding="{Binding CCCD}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="Auto" Header="Địa chỉ" Binding="{Binding DIACHI}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="Auto" Header="Số điện thoại" Binding="{Binding SDT}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="Auto" Header="Email" Binding="{Binding EMAIL}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="Auto" Header="Hoạt động" Binding="{Binding HOATDONG}"></DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </ScrollViewer>
-            </Grid>
+                <DataGrid ItemsSource="{Binding CustomerView}"
+                                              AutoGenerateColumns="False"
+SelectedItem="{Binding SelectedItem}" 
+Background="#FFF8F8F8" 
+IsReadOnly="True"
+MinColumnWidth="150" 
+MinRowHeight="35"
+HorizontalAlignment="Stretch"
+VerticalAlignment="Stretch"
+Margin="5">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="Background" Value="#FFD90429"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="1,0,0,0"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="Padding" Value="5"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="Auto" Header="Mã khách hàng" Binding="{Binding MAKH}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="Auto" Header="Họ tên" Binding="{Binding HOTEN}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="Auto" Header="Ngày sinh" Binding="{Binding NGAYSINH}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="Auto" Header="Giới tính" Binding="{Binding GIOITINH}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="Auto" Header="Căn cước công dân" Binding="{Binding CCCD}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="Auto" Header="Địa chỉ" Binding="{Binding DIACHI}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="Auto" Header="Số điện thoại" Binding="{Binding SDT}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="Auto" Header="Email" Binding="{Binding EMAIL}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="Auto" Header="Hoạt động" Binding="{Binding HOATDONG}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2"  Margin="20,0,20,20" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" HorizontalAlignment="Left" >
                 <Button Height="40"
-                        Margin="20, 0, 0, 0"
                         materialDesign:ButtonAssist.CornerRadius="5"
                         Command="{Binding ExportExcelManageCustomerCommand}"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -100,13 +98,12 @@
                         Background="#FFD90429"
                         BorderBrush="#FFB11409"
                         Width="140">
-                    <TextBlock Text="Xuất File Excel" 
-                               Foreground="#DDFEFEFE" />
+                    <TextBlock Text="Xuất File Excel" FontSize="14" Foreground="#DDFEFEFE" />
+
                 </Button>
             </Grid>
             <Button Grid.Column="1"
                     Style="{StaticResource MaterialDesignFloatingActionButton}"
-                    Margin="10, 10, 20, 10"
                     ToolTip="Edit"
                     Background="#FFD90429"
                     HorizontalAlignment="Right"

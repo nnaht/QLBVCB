@@ -670,6 +670,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\notion.jpg" />
+    <Resource Include="Images\log.png" />
+    <Resource Include="Images\logi.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

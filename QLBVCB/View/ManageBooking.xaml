@@ -19,95 +19,96 @@
     </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2.5*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <!-- Left Column -->
-        <Grid Grid.Column="0">
-            <Grid Margin="0,20,0,20" HorizontalAlignment="Center" Background="white">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                    <DataGrid ItemsSource="{Binding FlightView}"
+        <Grid Grid.Column="0" HorizontalAlignment="Stretch" Margin="20">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <DataGrid ItemsSource="{Binding FlightView}"
                               AutoGenerateColumns="False"
                               SelectedItem="{Binding FlightSelectedItem}" 
                               Background="#FFF8F8F8" 
-                              IsReadOnly="True"
-                              Width="640">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Sân bay cất cánh" Binding="{Binding MASB_CATCANH}" Width="Auto"/>
-                            <DataGridTextColumn Header="Sân bay hạ cánh" Binding="{Binding MASB_HACANH}" Width="Auto"/>
-                            <DataGridTextColumn Header="Số ghế" Binding="{Binding SO_GHE}" Width="Auto"/>
-                            <DataGridTextColumn Header="Thời gian cất cánh" Binding="{Binding THOIGIAN_CATCANH}" Width="Auto"/>
-                            <DataGridTextColumn Header="Thời gian hạ cánh" Binding="{Binding THOIGIAN_HACANH}" Width="Auto"/>
-                        </DataGrid.Columns>
-                        <DataGrid.ColumnHeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Background" Value="#FFD90429"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="BorderThickness" Value="1,0,0,0"/>
-                                <Setter Property="BorderBrush" Value="White"/>
-                                <Setter Property="Padding" Value="5"/>
-                            </Style>
-                        </DataGrid.ColumnHeaderStyle>
-                    </DataGrid>
-                </ScrollViewer>
-            </Grid>
+                              IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Sân bay cất cánh" Binding="{Binding MASB_CATCANH}" Width="Auto"/>
+                        <DataGridTextColumn Header="Sân bay hạ cánh" Binding="{Binding MASB_HACANH}" Width="Auto"/>
+                        <DataGridTextColumn Header="Số ghế" Binding="{Binding SO_GHE}" Width="Auto"/>
+                        <DataGridTextColumn Header="Thời gian cất cánh" Binding="{Binding THOIGIAN_CATCANH}" Width="Auto"/>
+                        <DataGridTextColumn Header="Thời gian hạ cánh" Binding="{Binding THOIGIAN_HACANH}" Width="Auto"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="#FFD90429"/>
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="1,0,0,0"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="Padding" Value="5"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                </DataGrid>
+            </ScrollViewer>
         </Grid>
 
         <!-- Right Column -->
-        <Grid Grid.Column="1" VerticalAlignment="Center">
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0">
-                <Label VerticalAlignment="Top" Content="MUA VÉ" FontSize="30" Foreground="#00224D" FontWeight="Bold" Margin="76,-82,-96,0" />
+            <Grid Grid.Row="0" VerticalAlignment="Top">
                 <StackPanel Margin="10">
+                    <Label Content="MUA VÉ" FontSize="30" Margin="0,50" Foreground="#00224D" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     <CheckBox Margin="5,0,10,10"
-                        Background="#FFD90429"
-                        Foreground="#FFD90429"
-    x:Name="MaterialDesignFilledTextBoxEnabledComboBox"
-    Content="Khứ hồi" 
-    IsChecked="{Binding IsRecuperate, Mode=TwoWay}"/>
+                    Background="#FFD90429"
+                    Foreground="#FFD90429"
+x:Name="MaterialDesignFilledTextBoxEnabledComboBox"
+Content="Khứ hồi" 
+IsChecked="{Binding IsRecuperate, Mode=TwoWay}"/>
                     <ComboBox Margin="5,0,10,10"
-                              Name="cbStart"
-                              ItemsSource="{Binding Path=StartLocation}"
-                              Width="256"
-                              materialDesign:HintAssist.Hint="Điểm xuất phát"
-                              materialDesign:TextFieldAssist.HasClearButton="True"
-                              Background="Transparent"
-                              Style="{StaticResource MaterialDesignOutlinedComboBox}" 
-                              BorderBrush="#B2ED1C1C" Foreground="#FFD90429">
+                          Name="cbStart"
+                          ItemsSource="{Binding Path=StartLocation}"
+                          Width="256"
+                          materialDesign:HintAssist.Hint="Điểm xuất phát"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          Background="Transparent"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                          BorderBrush="#B2ED1C1C" Foreground="#FFD90429">
                         <ComboBox.SelectedItem>
                             <Binding Mode="TwoWay" Path="SelectedStartLocation" UpdateSourceTrigger="PropertyChanged"/>
                         </ComboBox.SelectedItem>
                     </ComboBox>
 
                     <ComboBox Margin="5,0,10,10"
-                              Width="256"
-                              materialDesign:HintAssist.Hint="Điểm đến"
-                              materialDesign:TextFieldAssist.HasClearButton="True"
-                              ItemsSource="{Binding Destination}"
-                              Style="{StaticResource MaterialDesignOutlinedComboBox}" 
-                              BorderBrush="#B2ED1C1C" Foreground="#FFD90429">
+                          Width="256"
+                          materialDesign:HintAssist.Hint="Điểm đến"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          ItemsSource="{Binding Destination}"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                          BorderBrush="#B2ED1C1C" Foreground="#FFD90429">
                         <ComboBox.SelectedItem>
                             <Binding Mode="TwoWay" Path="SelectedDestination" UpdateSourceTrigger="PropertyChanged"/>
                         </ComboBox.SelectedItem>
                     </ComboBox>
 
                     <DatePicker Margin="5,0,10,10"
-                                Width="256"
-                                BorderBrush="#B2ED1C1C" Foreground="#FFD90429"
-                                materialDesign:HintAssist.Hint="Ngày cất cánh"
-                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                            Width="256"
+                            BorderBrush="#B2ED1C1C" Foreground="#FFD90429"
+                            materialDesign:HintAssist.Hint="Ngày cất cánh"
+                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
                 </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" VerticalAlignment="Center">
+                
             </Grid>
 
             <!-- Button Section -->
-            <Grid Grid.Row="1" VerticalAlignment="Bottom" Height="50">
-                <Button Margin="20,118,15,-108"
+            <Grid Grid.Row="2" VerticalAlignment="Bottom">
+                <Button Margin="20,0,20,20"
                         Height="45"
                         materialDesign:ButtonAssist.CornerRadius="5"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"

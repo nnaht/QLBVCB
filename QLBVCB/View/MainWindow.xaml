@@ -106,6 +106,140 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                    <Button x:Name="btBooking"
+        Content="Đặt vé"
+        Command="{Binding ManageBookingCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="TicketAccount" />
+                                    <TextBlock Text="{Binding Content, ElementName=btBooking}" 
+                           VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btTicketType"
+        Content="Quản lý loại vé"
+        Command="{Binding ManageTicketTypeCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="TicketConfirmation" />
+                                    <TextBlock Text="{Binding Content, ElementName=btTicketType}" 
+                           VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    
+                    <Button x:Name="btTicket"
+        Content="Quản lý vé"
+        Command="{Binding ManageTicketCommand}"
+        Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Ticket" />
+                                    <TextBlock Text="{Binding Content, ElementName=btTicket}" 
+                           VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btFlight"
+        Content="Quản lý chuyến bay"
+        Command="{Binding ManageFlightCommand}"
+        Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="AirplaneSearch" />
+                                    <TextBlock Text="{Binding Content, ElementName=btFlight}" 
+                           VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btAirplane"
+         Content="Quản lý máy bay"
+         Command="{Binding ManagePlaneCommand}"
+         Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Airplane"/>
+                                    <TextBlock Text="{Binding Content, ElementName=btAirplane}" 
+                            VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btAirport"
+         Content="Quản lý sân bay"
+         Command="{Binding ManageAirportCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Airport"/>
+                                    <TextBlock Text="{Binding Content, ElementName=btAirport}" 
+                            VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btCustomer"
+Content="Quản lý khách hàng"
+Command="{Binding ManageCustomerCommand}"
+Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="People" />
+                                    <TextBlock Text="{Binding Content, ElementName=btCustomer}" 
+                   VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btEmployee" 
+                    Content="Quản lý nhân viên"
+                    Command="{Binding ManageEmployeeCommand}"
+                    Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="CustomerService" />
+                                    <TextBlock Text="{Binding Content, ElementName=btEmployee}" 
+                                       VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button x:Name="btAccount"
+                    Content="Quản lý tài khoản"
+                    Command="{Binding ManageAccountCommand}"
+                    Visibility="{Binding IsCEVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="AccountEdit" />
+                                    <TextBlock Text="{Binding Content, ElementName=btAccount}" 
+                                       VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                     <Button x:Name="btService"
                             Content="Dịch vụ"
                             Command="{Binding ManageServiceCommand}">
@@ -120,138 +254,10 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button x:Name="btAirplane"
-                            Content="Quản lý máy bay"
-                            Command="{Binding ManagePlaneCommand}"
-                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Airplane"/>
-                                    <TextBlock Text="{Binding Content, ElementName=btAirplane}" 
-                                               VerticalAlignment="Center">
-                                    </TextBlock>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button x:Name="btAirport"
-                            Content="Quản lý sân bay"
-                            Command="{Binding ManageAirportCommand}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Airport"/>
-                                    <TextBlock Text="{Binding Content, ElementName=btAirport}" 
-                                               VerticalAlignment="Center">
-                                    </TextBlock>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button x:Name="btTicketType"
-                            Content="Quản lý loại vé"
-                            Command="{Binding ManageTicketTypeCommand}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="TicketConfirmation" />
-                                    <TextBlock Text="{Binding Content, ElementName=btTicketType}" 
-                                               VerticalAlignment="Center">
-                                    </TextBlock>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button x:Name="btFlight"
-                            Content="Quản lý chuyến bay"
-                            Command="{Binding ManageFlightCommand}"
-                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="AirplaneSearch" />
-                                    <TextBlock Text="{Binding Content, ElementName=btFlight}" 
-                                               VerticalAlignment="Center">
-                                    </TextBlock>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button x:Name="btTicket"
-                            Content="Quản lý vé"
-                            Command="{Binding ManageTicketCommand}"
-                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Ticket" />
-                                    <TextBlock Text="{Binding Content, ElementName=btTicket}" 
-                                               VerticalAlignment="Center">
-                                    </TextBlock>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button x:Name="btBooking"
-                            Content="Đặt vé"
-                            Command="{Binding ManageBookingCommand}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="TicketAccount" />
-                                    <TextBlock Text="{Binding Content, ElementName=btBooking}" 
-                                               VerticalAlignment="Center">
-                                    </TextBlock>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button x:Name="btEmployee" 
-                            Content="Quản lý nhân viên"
-                            Command="{Binding ManageEmployeeCommand}"
-                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="CustomerService" />
-                                    <TextBlock Text="{Binding Content, ElementName=btEmployee}" 
-                                               VerticalAlignment="Center">
-                                    </TextBlock>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button x:Name="btCustomer"
-                            Content="Quản lý khách hàng"
-                            Command="{Binding ManageCustomerCommand}"
-                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="People" />
-                                    <TextBlock Text="{Binding Content, ElementName=btCustomer}" 
-                                               VerticalAlignment="Center">
-                                    </TextBlock>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button x:Name="btAccount"
-                            Content="Quản lý tài khoản"
-                            Command="{Binding ManageAccountCommand}"
-                            Visibility="{Binding IsCEVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="AccountEdit" />
-                                    <TextBlock Text="{Binding Content, ElementName=btAccount}" 
-                                               VerticalAlignment="Center">
-                                    </TextBlock>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+
+
+
+                    
                     <Button x:Name="btRevenue"
                             Content="Doanh thu"
                             Command="{Binding ManageRevenueCommand}"

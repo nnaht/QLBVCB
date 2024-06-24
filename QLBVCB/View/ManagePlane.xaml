@@ -14,58 +14,55 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Left">
-            <TextBox 
-            Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
-            x:Name="txtBoxSearchType" 
-            Margin="55, 20, 0, 15"
-        Width="300"
-        Height="40"
-        FontSize="12"
-        BorderBrush="Black"
-        CaretBrush="Black"
-        materialDesign:HintAssist.IsFloating="False"
-        materialDesign:HintAssist.Background="Transparent"
-        materialDesign:HintAssist.Foreground="Black"
-        materialDesign:HintAssist.Hint="🔎 Nhập mã máy bay..."
-        Style="{StaticResource MaterialDesignOutlinedTextBox}">
-                <TextBox.Padding>
-                    <Thickness Left="5" Right="5" Top="10" Bottom="10"/>
-                </TextBox.Padding>
+            <TextBox Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
+             x:Name="txtBoxSearchType" 
+             Margin="20"
+             Width="300"
+             Height="50"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Center"
+             FontSize="14"
+             BorderBrush="Black"
+             CaretBrush="Black"
+             materialDesign:HintAssist.IsFloating="False"
+             materialDesign:HintAssist.Background="Transparent"
+             materialDesign:HintAssist.Foreground="Black"
+             materialDesign:HintAssist.Hint="🔎 Nhập mã máy bay..."
+             Style="{StaticResource MaterialDesignOutlinedTextBox}">
             </TextBox>
         </Grid>
-        <Grid Grid.Row="1">
-            <Grid Margin="5" HorizontalAlignment="Center" Background="white" Width="760" Height="365">
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,0,20,20">
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
-                    <DataGrid ItemsSource="{Binding PlaneView}"
+                <DataGrid ItemsSource="{Binding PlaneView}"
                         AutoGenerateColumns="False"
                         SelectedItem="{Binding SelectedItem}" 
-                        Background="#FFF8F8F8" 
-                        Width="760" Height="365" IsReadOnly="True" MinColumnWidth="19" MinRowHeight="30" RowHeight="30">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã" Binding="{Binding MAMB}" Width="*"/>
-                            <DataGridTextColumn Header="Loại máy bay" Binding="{Binding LOAIMB}" Width="2*"/>
-                            <DataGridTextColumn Header="Hãng máy bay" Binding="{Binding HANGMB}" Width="2*"/>
-                        </DataGrid.Columns>
-                        <DataGrid.ColumnHeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Background" Value="#FFD90429"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="BorderThickness" Value="1,0,0,0"/>
-                                <Setter Property="BorderBrush" Value="White"/>
-                                <Setter Property="Padding" Value="5"/>
-                            </Style>
-                        </DataGrid.ColumnHeaderStyle>
-                    </DataGrid>
-                </ScrollViewer>
-            </Grid>
+                        Background="#FFF8F8F8" HorizontalAlignment="Stretch"
+VerticalAlignment="Stretch"  IsReadOnly="True" MinColumnWidth="350" MinRowHeight="35">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã" Binding="{Binding MAMB}" Width="*"/>
+                        <DataGridTextColumn Header="Loại máy bay" Binding="{Binding LOAIMB}" Width="2*"/>
+                        <DataGridTextColumn Header="Hãng máy bay" Binding="{Binding HANGMB}" Width="2*"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="#FFD90429"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="1,0,0,0"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="Padding" Value="5"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                </DataGrid>
+            </ScrollViewer>
         </Grid>
-        <Grid Grid.Row="2" Margin="20,1,-10,-81">
+        <Grid Grid.Row="2" Margin="20,0,20,20" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -81,13 +78,11 @@
                     Background="#FFD90429"
                     BorderBrush="#FFB11409"
                     Width="140">
-                    <TextBlock
-                        Text="Xuất File Excel" Foreground="#DDFEFEFE" />
+                    <TextBlock Text="Xuất File Excel" FontSize="14" Foreground="#DDFEFEFE" />
                 </Button>
             </Grid>
             <Grid Grid.Column="1" >
                 <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
-                    Margin="10, 10, 30, 10"
                     ToolTip="Edit"
                         Background="#FFD90429"
                     HorizontalAlignment="Right"

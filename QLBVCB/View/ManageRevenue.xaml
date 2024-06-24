@@ -14,7 +14,7 @@
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.2*"/>
             
             <RowDefinition Height="5*"/>
             <RowDefinition Height="Auto"/>
@@ -26,30 +26,41 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" >
-                <Border CornerRadius="10" Background="#FFD90429" Margin="20,0" BorderBrush="Black" BorderThickness="1">
-                    <Label Content="{Binding Label1}" Foreground="White" FontSize="30"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                        
-                    </Label>
+                <Border CornerRadius="10" Background="#FFF2F2" Margin="20,10,20,0" BorderBrush="#D71313" BorderThickness="1">
+                    
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
+                        <Label HorizontalAlignment="Center" FontWeight="DemiBold" Content="Doanh thu vé"  Foreground="Black" FontSize="30"></Label>
+                        <Label  Content="{Binding Label1}" Foreground="Black" FontSize="30"  HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        </Label>
+                    </StackPanel>
                 </Border>
             </Grid>
             <Grid Grid.Column="1" >
-                <Border CornerRadius="10" Background="#FFD90429" Margin="20,0" BorderBrush="Black" BorderThickness="1">
-                    <Label Content="{Binding Label2}" Foreground="White" FontSize="30"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                        
-                    </Label>
+                <Border CornerRadius="10" Background="#DFF5FF"  Margin="20,10,20,0" BorderBrush="#3572EF" BorderThickness="1">
+                   
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
+                        <Label HorizontalAlignment="Center" FontWeight="DemiBold" Content="Doanh thu dịch vụ"  Foreground="Black" FontSize="30"></Label>
+                        <Label Content="{Binding Label2}" Foreground="Black" FontSize="30"  HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        </Label>
+                    </StackPanel>
                 </Border>
             </Grid>
             <Grid Grid.Column="2" >
-                <Border CornerRadius="10" Background="#FFD90429" Margin="20,0" BorderBrush="Black" BorderThickness="1">
-                    <Label  Content="{Binding Label3}" Foreground="White" FontSize="30"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                        
-                    </Label>
+                <Border CornerRadius="10" Background="#FFFED3" Margin="20,10,20,0" BorderBrush="#F4CE14" BorderThickness="1">
+                   
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
+                        <Label HorizontalAlignment="Center" FontWeight="DemiBold" Content="Chi phí"  Foreground="Black" FontSize="30"></Label>
+                        <Label  Content="{Binding Label3}" Foreground="Black" FontSize="30"  HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        </Label>
+                    </StackPanel>
                 </Border>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1">
-            <Grid Margin="5" HorizontalAlignment="Center" Background="White" Width="760" Height="365">
-                <Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" VerticalAlignment="Stretch" Margin="0,20">
+            <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
@@ -64,38 +75,46 @@
                                 <Binding Mode="TwoWay" Path="Thang" UpdateSourceTrigger="PropertyChanged"/>
                             </ComboBox.SelectedItem>
                         </ComboBox>
-                        <lvc:PieChart Series="{Binding ColumnSeriesCollection}" Height="260" LegendLocation="Right"/>
+                        <lvc:PieChart Series="{Binding ColumnSeriesCollection}" LegendLocation="Right" Height="435"/>
                     </StackPanel>
                 </Grid>
-                <Grid Grid.Column="1" Margin="10,0,10,0">
-                    <StackPanel>
-                        <ComboBox materialDesign:HintAssist.Hint="Theo năm"
+            <Grid Grid.Column="1" Margin="10,0,10,0" VerticalAlignment="Stretch">
+                <StackPanel>
+                    <ComboBox materialDesign:HintAssist.Hint="Theo năm"
                                   materialDesign:TextFieldAssist.HasClearButton="True"
                                   ItemsSource="{Binding NamList}"
                                   Style="{StaticResource MaterialDesignOutlinedComboBox}" 
                                   BorderBrush="Transparent" Foreground="#FFD90429">
-                            <ComboBox.SelectedItem>
-                                <Binding Mode="TwoWay" Path="Nam" UpdateSourceTrigger="PropertyChanged"/>
-                            </ComboBox.SelectedItem>
-                        </ComboBox>
-                        <lvc:CartesianChart Series="{Binding LineSeriesCollection}" LegendLocation="Bottom" Height="260">
-                            <lvc:CartesianChart.AxisX>
-                                <lvc:Axis Title="Time" Labels="{Binding Labels}" />
-                            </lvc:CartesianChart.AxisX>
-                            <lvc:CartesianChart.AxisY>
-                                <lvc:Axis Title="Values" />
-                            </lvc:CartesianChart.AxisY>
-                        </lvc:CartesianChart>
-                    </StackPanel>
-                </Grid>
+                        <ComboBox.SelectedItem>
+                            <Binding Mode="TwoWay" Path="Nam" UpdateSourceTrigger="PropertyChanged"/>
+                        </ComboBox.SelectedItem>
+                    </ComboBox>
+                    <lvc:CartesianChart Series="{Binding LineSeriesCollection}" LegendLocation="Bottom" Height="435" >
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Time" Labels="{Binding Labels}" />
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Values" />
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </StackPanel>
             </Grid>
         </Grid>
-        <Grid Grid.Row="2">
-            <Button Background="#FFD90429" Content="Làm mới"
-                    Command="{Binding RefreshCommand}" Grid.Row="0" 
-                    HorizontalAlignment="Left" Margin="20,0,0,0"/>
+        <Grid Grid.Row="2" Margin="20,10,20,20" VerticalAlignment="Bottom">
+            
+            <Button Height="40"
+         materialDesign:ButtonAssist.CornerRadius="5"
+         Command="{Binding RefreshCommand}"
+         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+         Style="{StaticResource MaterialDesignRaisedLightButton}"
+         ToolTip="Reset"
+                    HorizontalAlignment="Left"
+         Background="#FFD90429"
+         BorderBrush="#FFB11409"
+         Width="140">
+                <TextBlock Text="Làm mới" FontSize="14" Foreground="#DDFEFEFE" />
+            </Button>
             <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
-                    Margin="10, 10, 30, 10"
                     ToolTip="Edit"
                     Background="#FFD90429"
                     HorizontalAlignment="Right"
