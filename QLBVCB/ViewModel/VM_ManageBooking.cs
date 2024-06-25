@@ -37,6 +37,7 @@ namespace QLBVCB.ViewModel
                 OnPropertyChanged();
             }
         }
+
         private string _MAMB;
         public string MAMB { get => _MAMB; set { _MAMB = value; OnPropertyChanged(); } }
 
@@ -120,26 +121,43 @@ namespace QLBVCB.ViewModel
             }
         }
 
+        private DateTime? _selectedDate;
+        public DateTime? SelectedDate
+        {
+            get => _selectedDate;
+            set
+            {
+                _selectedDate = value;
+                OnPropertyChanged();
+                FilterFlights();
+            }
+        }
+
         public ICommand BuyTicketCommand { get; set; }
 
         public VM_ManageBooking()
         {
             FlightList = new ObservableCollection<CHUYENBAY>(DataProvider.Ins.DB.CHUYENBAYs);
             FlightView = CollectionViewSource.GetDefaultView(FlightList);
-            FlightView.Filter = FilterFlights;
+             FlightView.Filter = FilterFlights;
+
             BuyTicketCommand = new RelayCommand(ExecuteBuyTicketCommand);
+
             StartLocation = new ObservableCollection<string>
             {
                 "Đà Nẵng, Việt Nam",
                 "Hà Nội, Việt Nam",
                 "TP. Hồ Chí Minh, Việt Nam"
             };
+
             Destination = new ObservableCollection<string>
             {
                 "Đà Nẵng, Việt Nam",
                 "Hà Nội, Việt Nam",
                 "TP. Hồ Chí Minh, Việt Nam"
             };
+
+            SelectedDate = DateTime.Now; ; // Chọn ngày hiện tại ban đầu
         }
 
         private bool FilterFlights(object item)
@@ -150,7 +168,9 @@ namespace QLBVCB.ViewModel
                                           flight.MASB_CATCANH.Equals(ConvertToCode(SelectedStartLocation), StringComparison.OrdinalIgnoreCase);
                 bool destinationMatch = string.IsNullOrEmpty(SelectedDestination) ||
                                         flight.MASB_HACANH.Equals(ConvertToCode(SelectedDestination), StringComparison.OrdinalIgnoreCase);
-                return startLocationMatch && destinationMatch;
+                bool dateMatch = SelectedDate != null ||SelectedDate?.Date == flight.THOIGIAN_CATCANH?.Date;
+
+                return startLocationMatch && destinationMatch && dateMatch;
             }
             return false;
         }

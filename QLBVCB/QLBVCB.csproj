@@ -216,6 +216,9 @@
     <Compile Include="UserControls\CustomerInfo.xaml.cs">
       <DependentUpon>CustomerInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UC_CustomerTicker.xaml.cs">
+      <DependentUpon>UC_CustomerTicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\SeatTemplateSelector.cs" />
     <Compile Include="UC_ControlBar.xaml.cs">
       <DependentUpon>UC_ControlBar.xaml</DependentUpon>
@@ -281,6 +284,7 @@
     <Compile Include="ViewModel\VM_CusMessBox.cs" />
     <Compile Include="ViewModel\VM_CustomerRegister.cs" />
     <Compile Include="ViewModel\VM_CustomerInfo.cs" />
+    <Compile Include="ViewModel\VM_CustomerTicket.cs" />
     <Compile Include="ViewModel\VM_EconomySeat.cs" />
     <Compile Include="ViewModel\VM_EmptySeat.cs" />
     <Compile Include="ViewModel\VM_FillInfo.cs" />
@@ -305,6 +309,7 @@
     <Compile Include="ViewModel\VM_RecuperateSeat.cs" />
     <Compile Include="ViewModel\VM_RevenueDetail.cs" />
     <Compile Include="ViewModel\VM_SeatingChart.cs" />
+    <Compile Include="ViewModel\VM_WCustomerTicket.cs" />
     <Compile Include="View\AERAccount.xaml.cs">
       <DependentUpon>AERAccount.xaml</DependentUpon>
     </Compile>
@@ -340,6 +345,9 @@
     </Compile>
     <Compile Include="View\CustomerRegister.xaml.cs">
       <DependentUpon>CustomerRegister.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomerTicket.xaml.cs">
+      <DependentUpon>CustomerTicket.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditAirplane.xaml.cs">
       <DependentUpon>EditAirplane.xaml</DependentUpon>
@@ -414,6 +422,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\UC_CustomerTicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\UC_EconomySeat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -463,6 +475,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CusMessBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomerTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
