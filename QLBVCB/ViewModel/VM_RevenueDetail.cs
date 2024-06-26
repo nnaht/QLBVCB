@@ -1,5 +1,5 @@
-﻿using OfficeOpenXml.Style;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using QLBVCB.Model;
 using QLBVCB.View;
 using System;
@@ -7,41 +7,81 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
-using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Forms;
+using System.Globalization;
 
 namespace QLBVCB.ViewModel
 {
+    public class NumberFormatConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is decimal decimalValue)
+            {
+                return decimalValue.ToString("N0", CultureInfo.CurrentCulture);
+            }
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     public class DoanhThuResult
     {
         public int THANG { get; set; }
         public decimal VE { get; set; }
-        public decimal LUONG { get; set; }
         public decimal DICHVU { get; set; }
+        public decimal LUONG { get; set; }
         public decimal DOANHTHU { get; set; }
     }
+
     internal class VM_RevenueDetail : VM_Base
     {
         private ObservableCollection<DoanhThuResult> _RevenueList;
-        public ObservableCollection<DoanhThuResult> RevenueList { get { return _RevenueList; } set { _RevenueList = value; OnPropertyChanged(); } }
+        public ObservableCollection<DoanhThuResult> RevenueList
+        {
+            get { return _RevenueList; }
+            set { _RevenueList = value; OnPropertyChanged(); }
+        }
 
         private string _THANG;
-        public string THANG { get => _THANG; set { _THANG = value; OnPropertyChanged(); } }
+        public string THANG
+        {
+            get => _THANG;
+            set { _THANG = value; OnPropertyChanged(); }
+        }
 
         private string _VE;
-        public string VE { get => _VE; set { _VE = value; OnPropertyChanged(); } }
+        public string VE
+        {
+            get => _VE;
+            set { _VE = value; OnPropertyChanged(); }
+        }
 
         private string _DICHVU;
-        public string DICHVU { get => _DICHVU; set { _DICHVU = value; OnPropertyChanged(); } }
+        public string DICHVU
+        {
+            get => _DICHVU;
+            set { _DICHVU = value; OnPropertyChanged(); }
+        }
 
         private string _LUONG;
-        public string LUONG { get => _LUONG; set { _LUONG = value; OnPropertyChanged(); } }
+        public string LUONG
+        {
+            get => _LUONG;
+            set { _LUONG = value; OnPropertyChanged(); }
+        }
 
         private string _DOANHTHU;
-        public string DOANHTHU { get => _DOANHTHU; set { _DOANHTHU = value; OnPropertyChanged(); } }
+        public string DOANHTHU
+        {
+            get => _DOANHTHU;
+            set { _DOANHTHU = value; OnPropertyChanged(); }
+        }
 
         private string _SearchKeyword;
         public string SearchKeyword
@@ -82,7 +122,7 @@ namespace QLBVCB.ViewModel
         private void LoadRevenueData()
         {
             RevenueList = new ObservableCollection<DoanhThuResult>(
-                DataProvider.Ins.DB.Database.SqlQuery<DoanhThuResult>("EXEC DBO.DOANHTHUTUNGTHANG @NAM = {0}", Nam).ToList()
+                DataProvider.Ins.DB.Database.SqlQuery<DoanhThuResult>("EXEC DBO.CHITIETDOANHTHUTUNGTHANG @NAM = {0}", Nam).ToList()
             );
             RevenueView = CollectionViewSource.GetDefaultView(RevenueList);
             RevenueView.Filter = FilterRevenue;

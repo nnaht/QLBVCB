@@ -8,9 +8,14 @@
         xmlns:uc="clr-namespace:QLBVCB.UserControls"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Background="Transparent"
-WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
         xmlns:vm="clr-namespace:QLBVCB.ViewModel"
         Title="RevenueDetail" Height="450" Width="800">
+    <Window.Resources>
+        <vm:NumberFormatConverter x:Key="NumberFormatConverter"/>
+    </Window.Resources>
     <Window.DataContext>
         <vm:VM_RevenueDetail/>
     </Window.DataContext>
@@ -18,65 +23,62 @@ WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True
         <Border Background="#FFF7F1" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,10,0">
-                    <uc:UC_ControlBar2></uc:UC_ControlBar2>
+                    <uc:UC_ControlBar2/>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <ComboBox 
-materialDesign:HintAssist.Hint="Theo Năm"
-materialDesign:TextFieldAssist.HasClearButton="True"
-ItemsSource="{Binding NamList}" 
-Style="{StaticResource MaterialDesignOutlinedComboBox}" 
-BorderBrush="Transparent" Foreground="#FFD90429">
+                    <ComboBox
+                        materialDesign:HintAssist.Hint="Theo Năm"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        ItemsSource="{Binding NamList}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                        BorderBrush="Transparent" Foreground="#FFD90429">
                         <ComboBox.SelectedItem>
                             <Binding Mode="TwoWay" Path="Nam" UpdateSourceTrigger="PropertyChanged"/>
                         </ComboBox.SelectedItem>
                     </ComboBox>
                 </Grid>
                 <Grid Grid.Row="2">
-                                            <ScrollViewer VerticalScrollBarVisibility="Auto"
-      HorizontalScrollBarVisibility="Auto">
-                            <DataGrid ItemsSource="{Binding AirportView}"
-AutoGenerateColumns="False"
-SelectedItem="{Binding AirportSelectedItem}" 
-Background="#FFF8F8F8" 
-                                      IsReadOnly="True"
-Width="760" Height="365">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Mã" Binding="{Binding MASB}" Width="*"/>
-                                    <DataGridTextColumn Header="Tên sân bay" Binding="{Binding TEN_SANBAY}" Width="2*"/>
-                                    <DataGridTextColumn Header="Thành phố" Binding="{Binding THANHPHO}" Width="2*"/>
-                                    <DataGridTextColumn Header="Quốc gia" Binding="{Binding QUOCGIA}" Width="2*"/>
-                                </DataGrid.Columns>
-                                <DataGrid.ColumnHeaderStyle>
-                                    <Style TargetType="DataGridColumnHeader">
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                        <Setter Property="Background" Value="#FFD90429"/>
-                                        <Setter Property="Foreground" Value="White"/>
-                                        <Setter Property="BorderThickness" Value="1,0,0,0"/>
-                                        <Setter Property="BorderBrush" Value="White"/>
-                                        <Setter Property="Padding" Value="5"/>
-                                    </Style>
-                                </DataGrid.ColumnHeaderStyle>
-
-                            </DataGrid>
-                        </ScrollViewer>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <DataGrid ItemsSource="{Binding RevenueView}"
+                                  AutoGenerateColumns="False"
+                                  SelectedItem="{Binding RevenueSelectedItem}"
+                                  Background="#FFF8F8F8"
+                                  IsReadOnly="True"
+                                  Width="760" Height="365">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Tháng" Binding="{Binding THANG}" Width="*"/>
+                                <DataGridTextColumn Header="Vé" Binding="{Binding VE, Converter={StaticResource NumberFormatConverter}}" Width="2*"/>
+                                <DataGridTextColumn Header="Dịch Vụ" Binding="{Binding DICHVU, Converter={StaticResource NumberFormatConverter}}" Width="2*"/>
+                                <DataGridTextColumn Header="Lương" Binding="{Binding LUONG, Converter={StaticResource NumberFormatConverter}}" Width="2*"/>
+                                <DataGridTextColumn Header="Doanh Thu" Binding="{Binding DOANHTHU, Converter={StaticResource NumberFormatConverter}}" Width="2*"/>
+                            </DataGrid.Columns>
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Background" Value="#FFD90429"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="1,0,0,0"/>
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                        </DataGrid>
+                    </ScrollViewer>
                 </Grid>
                 <Grid Grid.Row="3" HorizontalAlignment="Right" Margin="0,0,10,10">
                     <Button
-Height="40"
-materialDesign:ButtonAssist.CornerRadius="5"
-        Command="{Binding ExportExcelManageAirportCommand}"
-IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-Style="{StaticResource MaterialDesignRaisedLightButton}"
-ToolTip="MaterialDesignRaisedLightButton with Round Corners" Background="#FFD90429" BorderBrush="#FFB11409" Width="140">
-                        <TextBlock
-    Text="Xuất File Excel" Foreground="#DDFEFEFE" />
+                        Height="40"
+                        materialDesign:ButtonAssist.CornerRadius="5"
+                        Command="{Binding ExportExcelManageRevenueCommand}"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                        Background="#FFD90429" BorderBrush="#FFB11409" Width="140">
+                        <TextBlock Text="Xuất File Excel" Foreground="#DDFEFEFE"/>
                     </Button>
                 </Grid>
             </Grid>
