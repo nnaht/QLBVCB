@@ -217,6 +217,10 @@ namespace QLBVCB.ViewModel
             }
             return false;
         }
+        public bool IsCustomerVisible
+        {
+            get { return position != 3; }
+        }
         public void ShowCustomMessageBox(string message)
         {
             CusMessBox customMessageBox = new CusMessBox();

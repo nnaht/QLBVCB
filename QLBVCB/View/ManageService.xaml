@@ -89,6 +89,7 @@
             <Grid Grid.Column="0" HorizontalAlignment="Left" >
                 <Button Height="40"
                         materialDesign:ButtonAssist.CornerRadius="5"
+                        Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding ExportExcelManageServiceCommand}"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
@@ -105,6 +106,7 @@
                         ToolTip="Edit"
                         Background="#FFD90429"
                         HorizontalAlignment="Right"
+                        Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding OpenAERServiceCommand}">
                     <materialDesign:PackIcon Kind="Edit" Height="24" Width="24"  />
                 </Button>

@@ -180,7 +180,10 @@ namespace QLBVCB.ViewModel
             }
             return false;
         }
-
+        public bool IsCustomerVisible
+        {
+            get { return position != 3; }
+        }
         private void FilterTicketTypes()
         {
             TicketTypeView.Refresh();

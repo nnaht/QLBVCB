@@ -121,7 +121,7 @@
                         </Button.Template>
                     </Button>
                     <Button x:Name="btTicketType"
-        Content="Quản lý loại vé"
+        Content="Loại vé"
         Command="{Binding ManageTicketTypeCommand}">
                         <Button.Template>
                             <ControlTemplate>
@@ -181,7 +181,7 @@
                         </Button.Template>
                     </Button>
                     <Button x:Name="btAirport"
-         Content="Quản lý sân bay"
+         Content="Sân bay"
          Command="{Binding ManageAirportCommand}">
                         <Button.Template>
                             <ControlTemplate>

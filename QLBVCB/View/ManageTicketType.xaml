@@ -77,6 +77,7 @@
                 <Button
             Height="40"
             materialDesign:ButtonAssist.CornerRadius="5"
+                        Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Command="{Binding ExportExcelManageTicketTypeCommand}"
             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
             Style="{StaticResource MaterialDesignRaisedLightButton}"
@@ -87,6 +88,7 @@
             <Grid Grid.Column="1" >
                 <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
             ToolTip="Edit"
+                        Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Background="#FFD90429"
             HorizontalAlignment="Right" Command="{Binding OpenAERTicketTypeCommand}">
                     <materialDesign:PackIcon Kind="Edit" Height="24" Width="24"  />
