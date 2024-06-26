@@ -35,6 +35,16 @@ namespace QLBVCB.ViewModel
                 OnPropertyChanged(nameof(SDT));
             }
         }
+        private bool isRecuperate;
+        public bool IsRecuperate
+        {
+            get => isRecuperate;
+            set
+            {
+                isRecuperate = value;
+                OnPropertyChanged(nameof(isRecuperate));
+            }
+        }
         public void ShowCustomMessageBox(string message)
         {
             CusMessBox customMessageBox = new CusMessBox();
@@ -45,6 +55,7 @@ namespace QLBVCB.ViewModel
         public ICommand ExportPdfCommand { get; set; }
         public VM_FillInfo(List<Tuple<string, int, int>> selection, bool isRecuperate)
         {
+            IsRecuperate = isRecuperate;
             ExportPdfCommand = new RelayCommand(ExecuteExportPdfCommand);
             BookCommand = new RelayCommand(ExecuteBookCommand);
             AddCustomerCommand = new RelayCommand<Button>((p) => { return true; }, (p) => { CustomerRegister cr = new CustomerRegister(); cr.DataContext = new VM_CustomerRegister(); cr.ShowDialog(); });
@@ -93,14 +104,11 @@ namespace QLBVCB.ViewModel
             double dpi = 96;
             double width = itemsControl.ActualWidth;
             double height = itemsControl.ActualHeight;
-
             var size = new Size(width, height);
             itemsControl.Measure(size);
             itemsControl.Arrange(new Rect(size));
-
             RenderTargetBitmap rtb = new RenderTargetBitmap((int)width, (int)height, dpi, dpi, PixelFormats.Pbgra32);
             rtb.Render(itemsControl);
-
             PngBitmapEncoder encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(rtb));
 
@@ -202,8 +210,12 @@ namespace QLBVCB.ViewModel
 
 
                 ShowCustomMessageBox("Đặt vé thành công.");
+                CustomerTicket ct = new CustomerTicket();
+                ct.DataContext = new VM_WCustomerTicket(selection2(Customers), IsRecuperate);
                 Application.Current.Windows.OfType<FillInfo>().FirstOrDefault()?.Close();
                 CloseWindow(Application.Current.MainWindow);
+                Application.Current.MainWindow = ct;
+                ct.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -219,6 +231,17 @@ namespace QLBVCB.ViewModel
                 ShowCustomMessageBox("Đặt chỗ không thành công");
             }
         }
+        private List<Tuple<string, int, int, string, string,string>> selection2(ObservableCollection<VM_CustomerInfo> customers)
+        {
+            var temp = new List<Tuple<string, int, int, string, string,string>>();
+            for (int i = 0; i < totalPeople; i++)
+            {
+                temp.Add(new Tuple<string, int, int, string, string,string>(
+                    customers[i].MACB, customers[i].DAY, customers[i].HANG, customers[i].SelectedMealOption, customers[i].SelectedLuggageOption, customers[i].PassengerName));
+            }
+            return temp;
+        }
+
         private void CloseWindow(Window window)
         {
             if (window != null)

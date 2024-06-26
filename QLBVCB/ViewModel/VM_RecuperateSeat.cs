@@ -116,7 +116,6 @@ namespace QLBVCB.ViewModel
         {
             FillInfo fillInfo = new FillInfo();
             fillInfo.DataContext = new VM_FillInfo(selection,true);
-
             Application.Current.Windows.OfType<RecuperateSeat>().FirstOrDefault()?.Close();
             CloseWindow(Application.Current.MainWindow);
             Application.Current.MainWindow = fillInfo;

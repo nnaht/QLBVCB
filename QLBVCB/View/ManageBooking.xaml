@@ -91,6 +91,7 @@ IsChecked="{Binding IsRecuperate, Mode=TwoWay}"/>
                           Style="{StaticResource MaterialDesignOutlinedComboBox}" 
                           BorderBrush="#B2ED1C1C" Foreground="#FFD90429">
                         <ComboBox.SelectedItem>
+                            
                             <Binding Mode="TwoWay" Path="SelectedDestination" UpdateSourceTrigger="PropertyChanged"/>
                         </ComboBox.SelectedItem>
                     </ComboBox>
@@ -99,7 +100,10 @@ IsChecked="{Binding IsRecuperate, Mode=TwoWay}"/>
                             Width="256"
                             BorderBrush="#B2ED1C1C" Foreground="#FFD90429"
                             materialDesign:HintAssist.Hint="Ngày cất cánh"
-                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                            SelectedDate="{Binding SelectedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+/>
+                    
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1" VerticalAlignment="Center">
