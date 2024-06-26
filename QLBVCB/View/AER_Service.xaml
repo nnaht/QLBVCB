@@ -62,7 +62,7 @@ Title="AERTicket" Height="600" Width="800">
                     </Grid>
                     <Grid Grid.Row="1" Margin ="20,0,10,0"
                       HorizontalAlignment="Center">
-                        <TextBox Text="{Binding SearchAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        <TextBox Text="{Binding SearchKeyword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              Height="40"
                              Width="170"

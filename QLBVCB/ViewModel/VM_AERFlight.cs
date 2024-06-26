@@ -155,7 +155,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is CHUYENBAY flight)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || flight.MASB_CATCANH.Contains(SearchKeyword);
+                return string.IsNullOrEmpty(SearchKeyword) || flight.MASB_CATCANH.IndexOf(SearchKeyword, StringComparison.OrdinalIgnoreCase) >= 0;
             }
             return false;
         }

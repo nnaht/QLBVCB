@@ -213,7 +213,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is DICHVU service)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || service.TENDV.Contains(SearchKeyword);
+                return string.IsNullOrEmpty(SearchKeyword) || service.TENDV.IndexOf(SearchKeyword, StringComparison.OrdinalIgnoreCase) >= 0;
             }
             return false;
         }

@@ -149,7 +149,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is LOAIVE ticketType)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || ticketType.TEN_LOAIVE.Contains(SearchKeyword);
+                return string.IsNullOrEmpty(SearchKeyword) || ticketType.TEN_LOAIVE.IndexOf(SearchKeyword, StringComparison.OrdinalIgnoreCase) >= 0;
             }
             return false;
         }

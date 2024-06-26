@@ -155,7 +155,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is MAYBAY plane)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || plane.HANGMB.StartsWith(SearchKeyword);
+                return string.IsNullOrEmpty(SearchKeyword) || plane.HANGMB.IndexOf(SearchKeyword, StringComparison.OrdinalIgnoreCase) >= 0;
             }
             return false;
         }

@@ -125,7 +125,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is SANBAY airport)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || airport.TEN_SANBAY.Contains(SearchKeyword);
+                return string.IsNullOrEmpty(SearchKeyword) || airport.TEN_SANBAY.IndexOf(SearchKeyword, StringComparison.OrdinalIgnoreCase) >= 0;
             }
             return false;
         }

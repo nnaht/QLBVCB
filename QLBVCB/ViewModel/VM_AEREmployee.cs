@@ -180,7 +180,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is NHANVIEN employee)
             {
-                return string.IsNullOrEmpty(SearchEmployee) || employee.HOTEN.Contains(SearchEmployee);
+                return string.IsNullOrEmpty(SearchEmployee) || employee.HOTEN.IndexOf(SearchEmployee, StringComparison.OrdinalIgnoreCase) >= 0;
             }
             return false;
         }

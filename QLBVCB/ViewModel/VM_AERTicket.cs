@@ -140,7 +140,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is VEBAY ticket)
             {
-                return string.IsNullOrEmpty(SearchTicket) || ticket.MACB.Contains(SearchTicket);
+                return string.IsNullOrEmpty(SearchTicket) || ticket.MACB.IndexOf(SearchTicket, StringComparison.OrdinalIgnoreCase) >= 0;
             }
             return false;
         }

@@ -135,7 +135,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is KHACHHANG customer)
             {
-                return string.IsNullOrEmpty(SearchCustomer) || customer.HOTEN.Contains(SearchCustomer);
+                return string.IsNullOrEmpty(SearchCustomer) || customer.HOTEN.IndexOf(SearchCustomer, StringComparison.OrdinalIgnoreCase) >= 0;
             }
             return false;
         }

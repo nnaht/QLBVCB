@@ -130,7 +130,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is TAIKHOAN ticket)
             {
-                return string.IsNullOrEmpty(SearchAccount) || ticket.MANV.Contains(SearchAccount);
+                return string.IsNullOrEmpty(SearchAccount) || ticket.MANV.IndexOf(SearchAccount, StringComparison.OrdinalIgnoreCase) >= 0;
             }
             return false;
         }
