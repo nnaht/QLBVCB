@@ -100,11 +100,16 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                var customer = new KHACHHANG() { MAKH = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, TENTK = TENTK, MATKHAU = MATKHAU, HOATDONG = HOATDONG };
-                DataProvider.Ins.DB.KHACHHANGs.Add(customer);
-                DataProvider.Ins.DB.SaveChanges();
-                CustomerList.Add(customer);
-                ShowCustomMessageBox("Thêm thành công!");
+                if (DataProvider.Ins.DB.KHACHHANGs.Where(x => x.TENTK == TENTK).Count() != 0)
+                    ShowCustomMessageBox("Tên tài khoản đã tồn tại!");
+                else
+                {
+                    var customer = new KHACHHANG() { MAKH = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, TENTK = TENTK, MATKHAU = MATKHAU, HOATDONG = HOATDONG };
+                    DataProvider.Ins.DB.KHACHHANGs.Add(customer);
+                    DataProvider.Ins.DB.SaveChanges();
+                    CustomerList.Add(customer);
+                    ShowCustomMessageBox("Thêm thành công!");
+                }
             });
 
             EditCustomerCommand = new RelayCommand<object>((p) =>
@@ -131,7 +136,7 @@ namespace QLBVCB.ViewModel
                 customer.MATKHAU = MATKHAU;
                 customer.HOATDONG = HOATDONG;
                 DataProvider.Ins.DB.SaveChanges();
-                ShowCustomMessageBox("Thêm thành công!");
+                ShowCustomMessageBox("Sửa thành công!");
             });
 
             RemoveCustomerCommand = new RelayCommand<object>((p) =>

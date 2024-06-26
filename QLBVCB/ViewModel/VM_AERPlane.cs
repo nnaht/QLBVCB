@@ -120,7 +120,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is MAYBAY plane)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || plane.LOAIMB.StartsWith(SearchKeyword, StringComparison.OrdinalIgnoreCase);
+                return string.IsNullOrEmpty(SearchKeyword) || plane.HANGMB.Contains(SearchKeyword);
             }
             return false;
         }

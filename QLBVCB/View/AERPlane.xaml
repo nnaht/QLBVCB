@@ -50,7 +50,7 @@
                                  HorizontalAlignment="Left"
                                  materialDesign:HintAssist.Background="Transparent"
                                  materialDesign:HintAssist.Foreground="Black"
-                                 materialDesign:HintAssist.Hint="Nhập loại máy bay..."
+                                 materialDesign:HintAssist.Hint="Nhập hãng máy bay..."
                                  materialDesign:HintAssist.IsFloating="False"
                                  FontSize="16">
                             <TextBox.Padding>

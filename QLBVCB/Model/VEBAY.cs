@@ -33,8 +33,11 @@ namespace QLBVCB.Model
         private string _MALV;
         public string MALV { get => _MALV; set { _MALV = value; OnPropertyChanged(); } }
 
-        private Nullable<bool> _DADAT;
-        public Nullable<bool> DADAT { get => _DADAT; set { _DADAT = value; OnPropertyChanged(); } }
+        private string _TENNGUOIDAT;
+        public string TENNGUOIDAT { get => _TENNGUOIDAT; set { _TENNGUOIDAT = value; OnPropertyChanged(); } }
+
+        private string _TENHANHKHACH;
+        public string TENHANHKHACH { get => _TENHANHKHACH; set { _TENHANHKHACH = value; OnPropertyChanged(); } }
 
         public virtual CHUYENBAY CHUYENBAY { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

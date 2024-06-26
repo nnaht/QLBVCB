@@ -69,7 +69,7 @@
                                  HorizontalAlignment="Left"
                                  materialDesign:HintAssist.Background="Transparent"
                                  materialDesign:HintAssist.Foreground="Black"
-                                 materialDesign:HintAssist.Hint="Nhập tên tài khoản..."
+                                 materialDesign:HintAssist.Hint="Nhập mã nhân viên..."
                                  materialDesign:HintAssist.IsFloating="False"
                                  FontSize="16">
                             <TextBox.Padding>

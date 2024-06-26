@@ -11,10 +11,11 @@ using System.Windows.Forms;
 using System;
 using QLBVCB.View;
 using System.Globalization;
+using System.Windows;
 
 namespace QLBVCB.ViewModel
 {
-    
+
 
     internal class VM_AERService : VM_Base
     {
@@ -45,7 +46,6 @@ namespace QLBVCB.ViewModel
             {
                 _DONGIA = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(FormattedDONGIA)); // Notify UI that formatted value has changed
             }
         }
 
@@ -92,23 +92,37 @@ namespace QLBVCB.ViewModel
         public VM_AERService()
         {
             ServiceList = new ObservableCollection<DICHVU>(DataProvider.Ins.DB.DICHVUs);
+            var displayServicecList = DataProvider.Ins.DB.DICHVUs.Where(x => x.MADV == MADV);
             ServiceView = CollectionViewSource.GetDefaultView(ServiceList);
             ServiceView.Filter = FilterService;
 
             AddServiceCommand = new RelayCommand<object>((p) =>
             {
-                return !string.IsNullOrEmpty(MADV) && !string.IsNullOrEmpty(LOAIDV) && !string.IsNullOrEmpty(TENDV);
+                if (string.IsNullOrEmpty(MADV) || string.IsNullOrEmpty(LOAIDV) || string.IsNullOrEmpty(TENDV))
+                    return false;
+                if (displayServicecList == null)
+                    return false;
+                if (displayServicecList.Count() != 0)
+                    return false;
+                return true;
             }, (p) =>
             {
                 var service = new DICHVU() { MADV = MADV, TENDV = TENDV, SOLUONG = SOLUONG, DONGIA = DONGIA, LOAIDV = LOAIDV };
                 DataProvider.Ins.DB.DICHVUs.Add(service);
                 DataProvider.Ins.DB.SaveChanges();
                 ServiceList.Add(service);
+                ShowCustomMessageBox("Thêm thành công!");
             });
 
             EditServiceCommand = new RelayCommand<object>((p) =>
             {
-                return ServiceSelectedItem != null;
+                if (string.IsNullOrEmpty(MADV) || string.IsNullOrEmpty(LOAIDV) || string.IsNullOrEmpty(TENDV))
+                    return false;
+                if (ServiceSelectedItem == null)
+                    return false;
+                if (displayServicecList.Count() == 0)
+                    return false;
+                return true;
             }, (p) =>
             {
                 var service = DataProvider.Ins.DB.DICHVUs.Find(MADV);
@@ -119,10 +133,7 @@ namespace QLBVCB.ViewModel
                     service.SOLUONG = SOLUONG;
                     service.DONGIA = DONGIA;
                     DataProvider.Ins.DB.SaveChanges();
-                    ServiceSelectedItem.LOAIDV = LOAIDV;
-                    ServiceSelectedItem.TENDV = TENDV;
-                    ServiceSelectedItem.SOLUONG = SOLUONG;
-                    ServiceSelectedItem.DONGIA = DONGIA;
+                    ShowCustomMessageBox("Sửa thành công!");
                 }
             });
 
@@ -131,9 +142,13 @@ namespace QLBVCB.ViewModel
                 return ServiceSelectedItem != null;
             }, (p) =>
             {
-                DataProvider.Ins.DB.DICHVUs.Remove(ServiceSelectedItem);
-                DataProvider.Ins.DB.SaveChanges();
-                ServiceList.Remove(ServiceSelectedItem);
+                if (System.Windows.MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.DICHVUs.Remove(ServiceSelectedItem);
+                    DataProvider.Ins.DB.SaveChanges();
+                    ServiceList.Remove(ServiceSelectedItem);
+                    ShowCustomMessageBox("Xóa thành công!");
+                }
             });
         }
 
@@ -141,7 +156,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is DICHVU service)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || service.TENDV.StartsWith(SearchKeyword, StringComparison.OrdinalIgnoreCase);
+                return string.IsNullOrEmpty(SearchKeyword) || service.TENDV.Contains(SearchKeyword);
             }
             return false;
         }
@@ -149,6 +164,12 @@ namespace QLBVCB.ViewModel
         private void FilterService()
         {
             ServiceView.Refresh();
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
     }
 }

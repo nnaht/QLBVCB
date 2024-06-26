@@ -99,6 +99,7 @@
                                  Foreground="#FFD90429"
                                  BorderBrush="#FFD90429"
                                  materialDesign:HintAssist.Hint="Mã khách hàng"
+                                 materialDesign:TextFieldAssist.HasClearButton="True"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  Width="140">
                         </TextBox>

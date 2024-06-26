@@ -54,7 +54,7 @@
                                      HorizontalAlignment="Left"
                                      materialDesign:HintAssist.Background="Transparent"
                                      materialDesign:HintAssist.Foreground="Black"
-                                     materialDesign:HintAssist.Hint="Nhập sân bay hạ cánh..."
+                                     materialDesign:HintAssist.Hint="Nhập sân bay cất cánh..."
                                      materialDesign:HintAssist.IsFloating="False"
                                      FontSize="16">
                                 <TextBox.Padding>
@@ -104,21 +104,21 @@
                                      Width="140" Margin="20,0,-20,0" />
                         </Grid>
                         <Grid Grid.Row="1">
-                            <TextBox VerticalAlignment="Center"
+                            <DatePicker VerticalAlignment="Center"
                                      materialDesign:HintAssist.Hint="Thời gian cất cánh"
-                                     Text="{Binding THOIGIAN_CATCANH, UpdateSourceTrigger=PropertyChanged}"
+                                     SelectedDate="{Binding THOIGIAN_CATCANH, UpdateSourceTrigger=PropertyChanged}"
                                      Foreground="#FFD90429"
                                      BorderBrush="#FFD90429"
-                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
                                      Width="140" Margin="20,0,-20,0" />
                         </Grid>
                         <Grid Grid.Row="2">
-                            <TextBox VerticalAlignment="Center"
+                            <DatePicker VerticalAlignment="Center"
                                      Foreground="#FFD90429"
                                      BorderBrush="#FFD90429"
                                      materialDesign:HintAssist.Hint="Thời gian hạ cánh"
-                                     Text="{Binding THOIGIAN_HACANH, UpdateSourceTrigger=PropertyChanged}"
-                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     SelectedDate="{Binding THOIGIAN_HACANH, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                      Margin="20,0,-20,0" />
                         </Grid>
                     </Grid>
@@ -164,7 +164,7 @@
                                       AutoGenerateColumns="False"
                                       SelectedItem="{Binding FlightSelectedItem}" 
                                       Background="#FFF8F8F8" 
-                                      Width="760" Height="365"
+                                      Width="760"
                                       IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Mã chuyến bay" Binding="{Binding MACB}" Width="Auto"/>

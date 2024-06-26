@@ -70,6 +70,8 @@
                         <Grid Grid.Row="0">
                             <TextBox VerticalAlignment="Top"
                                      Foreground="#FFD90429"
+                                     IsReadOnly="True"
+                                     materialDesign:TextFieldAssist.HasClearButton="True"
                                      BorderBrush="#FFD90429"
                                      materialDesign:HintAssist.Hint="Mã loại vé"
                                      Text="{Binding MALV, UpdateSourceTrigger=PropertyChanged}"

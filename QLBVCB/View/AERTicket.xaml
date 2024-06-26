@@ -96,6 +96,7 @@
                                  Foreground="#FFD90429"
                                  BorderBrush="#FFD90429"
                                  materialDesign:HintAssist.Hint="Mã vé bay"
+                                 materialDesign:TextFieldAssist.HasClearButton="True"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  Width="140">
                         </TextBox>
@@ -110,7 +111,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="0" Grid.Column="2">
+                    <Grid Grid.Row="2" Grid.Column="0">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding THUTU_GHE, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -120,7 +121,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="1" Grid.Column="2">
+                    <Grid Grid.Row="0" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding MALV, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -130,12 +131,22 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="2" Grid.Column="2">
+                    <Grid Grid.Row="1" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
-                                 Text="{Binding DADAT, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding TENNGUOIDAT, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
                                  BorderBrush="#FFD90429"
-                                 materialDesign:HintAssist.Hint="Tình trạng"
+                                 materialDesign:HintAssist.Hint="Tên người đặt"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Width="140">
+                        </TextBox>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="2">
+                        <TextBox VerticalAlignment="Center"
+                                 Text="{Binding TENHANHKHACH, UpdateSourceTrigger=PropertyChanged}"
+                                 Foreground="#FFD90429"
+                                 BorderBrush="#FFD90429"
+                                 materialDesign:HintAssist.Hint="Tên hành khách"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  Width="140">
                         </TextBox>
@@ -170,7 +181,8 @@
                                 <DataGridTextColumn Width="*" Header="Mã chuyến bay" Binding="{Binding MACB}"></DataGridTextColumn>
                                 <DataGridTextColumn Width="*" Header="Ghế" Binding="{Binding THUTU_GHE}"></DataGridTextColumn>
                                 <DataGridTextColumn Width="*" Header="Mã loại vé" Binding="{Binding MALV}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="*" Header="Tình trạng" Binding="{Binding DADAT}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="*" Header="Tên người đặt" Binding="{Binding TENNGUOIDAT}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="*" Header="Tên hành khách" Binding="{Binding TENHANHKHACH}"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </ScrollViewer>
@@ -184,19 +196,6 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" Margin="10,0, 10,0">
-                    <Grid Width="Auto">
-                        <Button Height="Auto"
-                                Command="{Binding AddTicketCommand}"
-                                materialDesign:ButtonAssist.CornerRadius="5"
-                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                ToolTip="Thêm" Background="#FFD90429" BorderBrush="#FFB11409">
-                            <TextBlock Text="Thêm"
-                                       Foreground="#DDFEFEFE" />
-                        </Button>
-                    </Grid>
-                </Grid>
                 <Grid Grid.Column="1" Margin="10,0,10,0">
                     <Grid Width="Auto">
                         <Button Height="Auto"

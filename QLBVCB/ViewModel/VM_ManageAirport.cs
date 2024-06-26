@@ -65,6 +65,7 @@ namespace QLBVCB.ViewModel
             try
             {
                 AERAirport aERAirport = new AERAirport();
+                aERAirport.DataContext = new VM_AERAirport();
                 aERAirport.ShowDialog();
             }
             catch (Exception ex)
@@ -163,7 +164,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is SANBAY airport)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || airport.TEN_SANBAY.StartsWith(SearchKeyword, StringComparison.OrdinalIgnoreCase);
+                return string.IsNullOrEmpty(SearchKeyword) || airport.TEN_SANBAY.Contains(SearchKeyword);
             }
             return false;
         }

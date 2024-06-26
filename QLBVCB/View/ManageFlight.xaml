@@ -30,7 +30,7 @@
              materialDesign:HintAssist.IsFloating="False"
              materialDesign:HintAssist.Background="Transparent"
              materialDesign:HintAssist.Foreground="Black"
-             materialDesign:HintAssist.Hint="🔎 Nhập sân bay hạ cánh..."
+             materialDesign:HintAssist.Hint="🔎 Nhập sân bay cất cánh..."
              Style="{StaticResource MaterialDesignOutlinedTextBox}">
             </TextBox>
         </Grid>

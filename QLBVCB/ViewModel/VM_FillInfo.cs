@@ -173,9 +173,10 @@ namespace QLBVCB.ViewModel
                         {
                             MAVB = mavb,
                             MACB = customer.MACB,
-                            MALV= customer.HANG >= 6 ? "LV01": "LV02",
-                            THUTU_GHE = customer.DAY.ToString()+customer.HANG.ToString(),
-                            
+                            MALV = customer.HANG >= 6 ? "LV01" : "LV02",
+                            THUTU_GHE = customer.DAY.ToString() + customer.HANG.ToString(),
+                            TENNGUOIDAT = khachHang.HOTEN,
+                            TENHANHKHACH = names[i],
                         };
                         DataProvider.Ins.DB.VEBAYs.Add(veBay);
 

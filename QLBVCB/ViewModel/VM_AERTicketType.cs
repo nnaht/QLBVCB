@@ -1,4 +1,5 @@
 ﻿using QLBVCB.Model;
+using QLBVCB.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -88,12 +90,12 @@ namespace QLBVCB.ViewModel
                     string numberPart = lastMalv.Substring(2);
                     if (int.TryParse(numberPart, out int number))
                     {
-                        number++; 
-                        maTemp = $"LV{number.ToString("D2")}"; 
+                        number++;
+                        maTemp = $"LV{number.ToString("D2")}";
                     }
                     else
                     {
-                        maTemp = DataProvider.Ins.DB.LOAIVEs.LastOrDefault().MALV + 1; 
+                        maTemp = DataProvider.Ins.DB.LOAIVEs.LastOrDefault().MALV + 1;
                     }
                 }
                 else
@@ -104,6 +106,7 @@ namespace QLBVCB.ViewModel
                 DataProvider.Ins.DB.LOAIVEs.Add(ticketType);
                 DataProvider.Ins.DB.SaveChanges();
                 TicketTypeList.Add(ticketType);
+                ShowCustomMessageBox("Thêm thành công!");
             });
 
             EditTicketTypeCommand = new RelayCommand<object>((p) =>
@@ -124,6 +127,7 @@ namespace QLBVCB.ViewModel
                 ticketType.PHI_THAYDOI = PHI_THAYDOI;
                 ticketType.PHI_HUY = PHI_HUY;
                 DataProvider.Ins.DB.SaveChanges();
+                ShowCustomMessageBox("Sửa thành công!");
             });
 
             RemoveTicketTypeCommand = new RelayCommand<object>((p) =>
@@ -131,17 +135,21 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                DataProvider.Ins.DB.LOAIVEs.Remove(TicketTypeSelectedItem);
-                DataProvider.Ins.DB.SaveChanges();
+                if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.LOAIVEs.Remove(TicketTypeSelectedItem);
+                    DataProvider.Ins.DB.SaveChanges();
 
-                TicketTypeList.Remove(TicketTypeSelectedItem);
+                    TicketTypeList.Remove(TicketTypeSelectedItem);
+                    ShowCustomMessageBox("Xóa thành công!");
+                }
             });
         }
         private bool FilterTicketType(object item)
         {
             if (item is LOAIVE ticketType)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || ticketType.TEN_LOAIVE.StartsWith(SearchKeyword, StringComparison.OrdinalIgnoreCase);
+                return string.IsNullOrEmpty(SearchKeyword) || ticketType.TEN_LOAIVE.Contains(SearchKeyword);
             }
             return false;
         }
@@ -149,6 +157,12 @@ namespace QLBVCB.ViewModel
         private void FilterTicketTypes()
         {
             TicketTypeView.Refresh();
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
     }
 }

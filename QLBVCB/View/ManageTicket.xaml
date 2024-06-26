@@ -73,7 +73,8 @@ Margin="5">
                         <DataGridTextColumn Width="*" Header="Mã chuyến bay" Binding="{Binding MACB}"></DataGridTextColumn>
                         <DataGridTextColumn Width="*" Header="Ghế" Binding="{Binding THUTU_GHE}"></DataGridTextColumn>
                         <DataGridTextColumn Width="*" Header="Mã loại vé" Binding="{Binding MALV}"></DataGridTextColumn>
-                        <DataGridTextColumn Width="*" Header="Tình trạng" Binding="{Binding DADAT}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="*" Header="Tên người đặt" Binding="{Binding TENNGUOIDAT}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="*" Header="Tên hành khách" Binding="{Binding TENHANHKHACH}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>

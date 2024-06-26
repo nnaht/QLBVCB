@@ -74,6 +74,7 @@ namespace QLBVCB.ViewModel
             try
             {
                 AERTicketType aERTicketType = new AERTicketType();
+                aERTicketType.DataContext = new VM_AERTicketType();
                 aERTicketType.ShowDialog();
             }
             catch (Exception ex)

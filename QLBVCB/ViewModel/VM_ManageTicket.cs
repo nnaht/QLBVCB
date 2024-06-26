@@ -28,7 +28,7 @@ namespace QLBVCB.ViewModel
         public VM_ManageTicket()
         {
             TicketList = new ObservableCollection<VEBAY>(DataProvider.Ins.DB.VEBAYs);
-            OpenAERTicketCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AERTicket aer = new AERTicket(); aer.ShowDialog(); });
+            OpenAERTicketCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AERTicket aer = new AERTicket(); aer.DataContext = new VM_AERTicket(); aer.ShowDialog(); });
             TicketView = CollectionViewSource.GetDefaultView(TicketList);
             TicketView.Filter = FilterTicket;
             ExportExcelManageTicketCommand = new RelayCommand(ExecuteExportExcelManageTicketCommand);
@@ -63,7 +63,7 @@ namespace QLBVCB.ViewModel
                     excelWorkSheet.Cells.Style.Font.Size = 14;
                     excelWorkSheet.Cells.Style.Font.Name = "Times New Roman";
 
-                    string[] columnHeader = { "Mã vé bay", "Mã chuyến bay", "Ghế", "Mã loại vé", "Tình trạng" };
+                    string[] columnHeader = { "Mã vé bay", "Mã chuyến bay", "Ghế", "Mã loại vé", "Tên người đặt", "Tên hành khách" };
                     var countColumnHeader = columnHeader.Length;
                     excelWorkSheet.Cells[1, 1].Value = "Danh sách vé bay";
                     excelWorkSheet.Cells[1, 1, 1, countColumnHeader].Merge = true;
@@ -92,7 +92,8 @@ namespace QLBVCB.ViewModel
                         excelWorkSheet.Cells[rowIndex, 2].Value = ticket.MACB;
                         excelWorkSheet.Cells[rowIndex, 3].Value = ticket.THUTU_GHE;
                         excelWorkSheet.Cells[rowIndex, 4].Value = ticket.MALV;
-                        excelWorkSheet.Cells[rowIndex, 5].Value = ticket.DADAT;
+                        excelWorkSheet.Cells[rowIndex, 5].Value = ticket.TENNGUOIDAT;
+                        excelWorkSheet.Cells[rowIndex, 6].Value = ticket.TENHANHKHACH;
 
                         for (int i = 1; i <= countColumnHeader; i++)
                         {

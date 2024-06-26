@@ -106,13 +106,18 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                var employee = new NHANVIEN() { MANV = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRI = VITRI, TENTK = TENTK, MATKHAU = MATKHAU };
-                var accout = new TAIKHOAN() { MANV = GetNextId(), TENTK = TENTK, MATKHAU = MATKHAU };
-                DataProvider.Ins.DB.NHANVIENs.Add(employee);
-                DataProvider.Ins.DB.TAIKHOANs.Add(accout);
-                DataProvider.Ins.DB.SaveChanges();
-                EmployeeList.Add(employee);
-                ShowCustomMessageBox("Thêm thành công!");
+                if (DataProvider.Ins.DB.NHANVIENs.Where(x => x.TENTK == TENTK).Count() != 0)
+                    ShowCustomMessageBox("Tên tài khoản đã tồn tại!");
+                else
+                {
+                    var employee = new NHANVIEN() { MANV = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRI = VITRI, TENTK = TENTK, MATKHAU = MATKHAU };
+                    var accout = new TAIKHOAN() { MANV = GetNextId(), TENTK = TENTK, MATKHAU = MATKHAU };
+                    DataProvider.Ins.DB.NHANVIENs.Add(employee);
+                    DataProvider.Ins.DB.TAIKHOANs.Add(accout);
+                    DataProvider.Ins.DB.SaveChanges();
+                    EmployeeList.Add(employee);
+                    ShowCustomMessageBox("Thêm thành công!");
+                }
             });
 
             EditEmployeeCommand = new RelayCommand<object>((p) =>

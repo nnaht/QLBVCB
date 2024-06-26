@@ -67,6 +67,8 @@ namespace QLBVCB.ViewModel
                     ShowCustomMessageBox("Nhân viên đã có tài khoản!");
                 else if (displayEmployeeList.Count() == 0)
                     ShowCustomMessageBox("Không tồn tại mã nhân viên!");
+                else if (DataProvider.Ins.DB.TAIKHOANs.Where(x => x.TENTK == TENTK).Count() != 0)
+                    ShowCustomMessageBox("Tên tài khoản đã tồn tại!");
                 else
                 {
                     var account = new TAIKHOAN() { TENTK = TENTK, MATKHAU = MATKHAU, MANV = MANV };
@@ -126,7 +128,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is TAIKHOAN ticket)
             {
-                return string.IsNullOrEmpty(SearchAccount) || ticket.TENTK.Contains(SearchAccount);
+                return string.IsNullOrEmpty(SearchAccount) || ticket.MANV.Contains(SearchAccount);
             }
             return false;
         }

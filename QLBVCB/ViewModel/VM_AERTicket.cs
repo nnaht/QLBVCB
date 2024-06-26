@@ -31,10 +31,14 @@ namespace QLBVCB.ViewModel
         private string _MALV;
         public string MALV { get => _MALV; set { _MALV = value; OnPropertyChanged(); } }
 
-        private string _DADAT;
-        public string DADAT { get => _DADAT; set { _DADAT = value; OnPropertyChanged(); } }
+        private string _TENNGUOIDAT;
+        public string TENNGUOIDAT { get => _TENNGUOIDAT; set { _TENNGUOIDAT = value; OnPropertyChanged(); } }
 
-        public ICommand AddTicketCommand { get; set; }
+        private string _TENHANHKHACH;
+        public string TENHANHKHACH { get => _TENHANHKHACH; set { _TENHANHKHACH = value; OnPropertyChanged(); } }
+
+
+        //public ICommand AddTicketCommand { get; set; }
         public ICommand EditTicketCommand { get; set; }
         public ICommand RemoveTicketCommand { get; set; }
         public ICollectionView TicketView { get; private set; }
@@ -53,7 +57,8 @@ namespace QLBVCB.ViewModel
                     MACB = TicketSelectedItem.MACB;
                     THUTU_GHE = TicketSelectedItem.THUTU_GHE;
                     MALV = TicketSelectedItem.MALV;
-                    DADAT = TicketSelectedItem.DADAT.ToString();
+                    TENNGUOIDAT = TicketSelectedItem.TENNGUOIDAT;
+                    TENHANHKHACH = TicketSelectedItem.TENHANHKHACH;
                 }
             }
         }
@@ -64,27 +69,27 @@ namespace QLBVCB.ViewModel
             TicketView = CollectionViewSource.GetDefaultView(TicketList);
             TicketView.Filter = FilterTicket;
 
-            AddTicketCommand = new RelayCommand<object>((p) =>
-            {
-                if (string.IsNullOrEmpty(MACB) || string.IsNullOrEmpty(THUTU_GHE) || string.IsNullOrEmpty(MALV) || string.IsNullOrEmpty(DADAT))
-                    return false;
-                if (displayTicketList == null)
-                    return false;
-                if (displayTicketList.Count() != 0)
-                    return false;
-                return true;
-            }, (p) =>
-            {
-                var ticket = new VEBAY() { MACB = MACB, THUTU_GHE = THUTU_GHE, MALV = MALV, DADAT = bool.Parse(DADAT) };
-                DataProvider.Ins.DB.VEBAYs.Add(ticket);
-                DataProvider.Ins.DB.SaveChanges();
-                TicketList.Add(ticket);
-                ShowCustomMessageBox("Thêm thành công!");
-            });
+            //AddTicketCommand = new RelayCommand<object>((p) =>
+            //{
+            //    if (string.IsNullOrEmpty(MACB) || string.IsNullOrEmpty(THUTU_GHE) || string.IsNullOrEmpty(MALV))
+            //        return false;
+            //    if (displayTicketList == null)
+            //        return false;
+            //    if (displayTicketList.Count() != 0)
+            //        return false;
+            //    return true;
+            //}, (p) =>
+            //{
+            //    var ticket = new VEBAY() { MACB = MACB, THUTU_GHE = THUTU_GHE, MALV = MALV };
+            //    DataProvider.Ins.DB.VEBAYs.Add(ticket);
+            //    DataProvider.Ins.DB.SaveChanges();
+            //    TicketList.Add(ticket);
+            //    ShowCustomMessageBox("Thêm thành công!");
+            //});
 
             EditTicketCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MACB) || string.IsNullOrEmpty(THUTU_GHE) || string.IsNullOrEmpty(MALV) || string.IsNullOrEmpty(DADAT))
+                if (string.IsNullOrEmpty(MACB) || string.IsNullOrEmpty(THUTU_GHE) || string.IsNullOrEmpty(MALV))
                     return false;
                 if (TicketSelectedItem == null)
                     return false;
@@ -97,7 +102,8 @@ namespace QLBVCB.ViewModel
                 ticket.MACB = MACB;
                 ticket.THUTU_GHE = THUTU_GHE;
                 ticket.MALV = MALV;
-                ticket.DADAT = bool.Parse(DADAT);
+                ticket.TENNGUOIDAT = TENNGUOIDAT;
+                ticket.TENHANHKHACH = TENHANHKHACH;
                 DataProvider.Ins.DB.SaveChanges();
                 ShowCustomMessageBox("Sửa thành công!");
             });
@@ -109,6 +115,8 @@ namespace QLBVCB.ViewModel
             {
                 if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
+                    var booking = DataProvider.Ins.DB.DADATs.Where(x => x.MAVB == TicketSelectedItem.MAVB).SingleOrDefault();
+                    DataProvider.Ins.DB.DADATs.Remove(booking);
                     DataProvider.Ins.DB.VEBAYs.Remove(TicketSelectedItem);
                     DataProvider.Ins.DB.SaveChanges();
                     TicketList.Remove(TicketSelectedItem);

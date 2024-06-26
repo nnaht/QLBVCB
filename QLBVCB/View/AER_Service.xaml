@@ -15,6 +15,9 @@ TextOptions.TextFormattingMode="Ideal"
 TextOptions.TextRenderingMode="Auto"
 FontFamily="{DynamicResource MaterialDesignFont}"    
 Background="Transparent"
+        
+        DataContext="{StaticResource AERServiceVM}"
+        
 WindowStartupLocation="CenterScreen"
 ResizeMode="NoResize"
 WindowStyle="None"
@@ -24,9 +27,6 @@ Title="AERTicket" Height="600" Width="800">
         <vm:NullToDefaultConverter  x:Key="NullToDefaultConverter"/>
         <vm:DongiaFormatterConverter x:Key="DongiaFormatterConverter"/>
     </Window.Resources>
-    <Window.DataContext>
-        <vm:VM_AERService/>
-    </Window.DataContext>
     <Border Background="#FFF7F1"
             BorderBrush="Black"
             BorderThickness="1"
@@ -85,6 +85,7 @@ Title="AERTicket" Height="600" Width="800">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -93,15 +94,27 @@ Title="AERTicket" Height="600" Width="800">
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Row="0" Grid.Column="0">
                         <TextBox VerticalAlignment="Center"
-                             Text="{Binding LOAIDV, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding MADV, UpdateSourceTrigger=PropertyChanged}"
                              Foreground="#FFD90429"
                              BorderBrush="#FFD90429"
-                             materialDesign:HintAssist.Hint="Loại dịch vụ"
+                             materialDesign:HintAssist.Hint="Mã dịch vụ"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              Width="140">
                         </TextBox>
                     </Grid>
                     <Grid Grid.Row="1" Grid.Column="0">
+                        <ComboBox VerticalAlignment="Center"
+                                  Text="{Binding LOAIDV, UpdateSourceTrigger=PropertyChanged}"
+                                  Foreground="#FFD90429"
+                                  BorderBrush="#FFD90429"
+                                  materialDesign:HintAssist.Hint="Loại dịch vụ"
+                                  Style="{StaticResource MaterialDesignComboBox}"
+                                  Width="140">
+                            <ComboBoxItem>Hành lý</ComboBoxItem>
+                            <ComboBoxItem>Suất ăn</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                    <Grid Grid.Row="0" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                              Text="{Binding TENDV, UpdateSourceTrigger=PropertyChanged}"
                              Foreground="#FFD90429"
@@ -111,7 +124,7 @@ Title="AERTicket" Height="600" Width="800">
                              Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="0" Grid.Column="2">
+                    <Grid Grid.Row="1" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                              Text="{Binding SOLUONG, UpdateSourceTrigger=PropertyChanged}"
                              Foreground="#FFD90429"
@@ -121,7 +134,7 @@ Title="AERTicket" Height="600" Width="800">
                              Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="1" Grid.Column="2">
+                    <Grid Grid.Row="2" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                              Text="{Binding DONGIA, UpdateSourceTrigger=PropertyChanged}"
                              Foreground="#FFD90429"
@@ -177,7 +190,7 @@ Title="AERTicket" Height="600" Width="800">
                 <Grid Grid.Column="0" Margin="10,0, 10,0">
                     <Grid Width="Auto">
                         <Button Height="Auto"
-                            Command="{Binding AddAccountCommand}"
+                            Command="{Binding AddServiceCommand}"
                             materialDesign:ButtonAssist.CornerRadius="5"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
@@ -190,7 +203,7 @@ Title="AERTicket" Height="600" Width="800">
                 <Grid Grid.Column="1" Margin="10,0,10,0">
                     <Grid Width="Auto">
                         <Button Height="Auto"
-                            Command="{Binding EditAccountCommand}"
+                            Command="{Binding EditServiceCommand}"
                             materialDesign:ButtonAssist.CornerRadius="5"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
@@ -203,7 +216,7 @@ Title="AERTicket" Height="600" Width="800">
                 <Grid Grid.Column="2" Margin="10,0,10,0">
                     <Grid Width="Auto">
                         <Button Height="Auto"
-                            Command="{Binding RemoveAccountCommand}"
+                            Command="{Binding RemoveServiceCommand}"
                             materialDesign:ButtonAssist.CornerRadius="5"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"

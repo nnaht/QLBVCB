@@ -26,7 +26,7 @@ namespace QLBVCB.ViewModel
         public VM_ManageAccount()
         {
             AccountList = new ObservableCollection<TAIKHOAN>(DataProvider.Ins.DB.TAIKHOANs);
-            OpenAERAccountCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AERAccount aer = new AERAccount(); aer.ShowDialog(); });
+            OpenAERAccountCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AERAccount aer = new AERAccount(); aer.DataContext = new VM_AERAccount(); aer.ShowDialog(); });
             AccountView = CollectionViewSource.GetDefaultView(AccountList);
             AccountView.Filter = FilterAccount;
             ExportExcelManageAccountCommand = new RelayCommand(ExecuteExportExcelManageAccountCommand);
@@ -61,7 +61,7 @@ namespace QLBVCB.ViewModel
                     excelWorkSheet.Cells.Style.Font.Size = 14;
                     excelWorkSheet.Cells.Style.Font.Name = "Times New Roman";
 
-                    string[] columnHeader = { "Tên tài khoản", "Mật khẩu", "Hoạt động", "Mã nhân viên" };
+                    string[] columnHeader = { "Mã nhân viên", "Tên tài khoản", "Mật khẩu" };
                     var countColumnHeader = columnHeader.Length;
                     excelWorkSheet.Cells[1, 1].Value = "Danh sách nhân viên";
                     excelWorkSheet.Cells[1, 1, 1, countColumnHeader].Merge = true;
@@ -130,7 +130,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is TAIKHOAN ticket)
             {
-                return string.IsNullOrEmpty(SearchAccount) || ticket.TENTK.Contains(SearchAccount);
+                return string.IsNullOrEmpty(SearchAccount) || ticket.MANV.Contains(SearchAccount);
             }
             return false;
         }

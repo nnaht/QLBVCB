@@ -56,6 +56,7 @@ namespace QLBVCB.ViewModel
             try
             {
                 AERPlane aERPlane = new AERPlane();
+                aERPlane.DataContext = new VM_AERPlane();
                 aERPlane.ShowDialog();
             }
             catch (Exception ex)
@@ -154,7 +155,7 @@ namespace QLBVCB.ViewModel
         {
             if (item is MAYBAY plane)
             {
-                return string.IsNullOrEmpty(SearchKeyword) || plane.MAMB.StartsWith(SearchKeyword, StringComparison.OrdinalIgnoreCase);
+                return string.IsNullOrEmpty(SearchKeyword) || plane.HANGMB.StartsWith(SearchKeyword);
             }
             return false;
         }

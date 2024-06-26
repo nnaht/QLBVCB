@@ -30,7 +30,7 @@
           <Property Name="MAKH" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="MAVB" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="MASA" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="TENHANHKHACH" Type="varchar" MaxLength="30" />
+          <Property Name="TENHANHKHACH" Type="nvarchar" MaxLength="30" />
           <Property Name="MAHL" Type="nvarchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="DICHVU">
@@ -119,7 +119,8 @@
           <Property Name="MACB" Type="nvarchar" MaxLength="7" Nullable="false" />
           <Property Name="THUTU_GHE" Type="nvarchar" MaxLength="3" />
           <Property Name="MALV" Type="nvarchar" MaxLength="4" Nullable="false" />
-          <Property Name="DADAT" Type="bit" />
+          <Property Name="TENNGUOIDAT" Type="nvarchar" MaxLength="30" />
+          <Property Name="TENHANHKHACH" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <Association Name="FK__CHUYENBAY__MAMB__30F848ED">
           <End Role="MAYBAY" Type="Self.MAYBAY" Multiplicity="1" />
@@ -343,7 +344,7 @@
           <Property Name="MAKH" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MAVB" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MASA" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TENHANHKHACH" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TENHANHKHACH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="MAHL" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CHUYENBAY" Relationship="Self.FK_DADAT_CHUYENBAY" FromRole="DADAT" ToRole="CHUYENBAY" />
           <NavigationProperty Name="DICHVU" Relationship="Self.FK_DADAT_DICHVU_MAHL" FromRole="DADAT" ToRole="DICHVU" />
@@ -446,10 +447,11 @@
           <Property Name="MACB" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="THUTU_GHE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="MALV" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DADAT" Type="Boolean" />
           <NavigationProperty Name="CHUYENBAY" Relationship="Self.FK__VEBAY__MACB__35BCFE0A" FromRole="VEBAY" ToRole="CHUYENBAY" />
           <NavigationProperty Name="DADATs" Relationship="Self.FK_DADAT_VEBAY" FromRole="VEBAY" ToRole="DADAT" />
           <NavigationProperty Name="LOAIVE" Relationship="Self.FK__VEBAY__MALV__36B12243" FromRole="VEBAY" ToRole="LOAIVE" />
+          <Property Name="TENNGUOIDAT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TENHANHKHACH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__CHUYENBAY__MAMB__30F848ED">
           <End Role="MAYBAY" Type="Self.MAYBAY" Multiplicity="1" />
@@ -763,11 +765,12 @@
           <EntitySetMapping Name="VEBAYs">
             <EntityTypeMapping TypeName="QLBVCBModel.VEBAY">
               <MappingFragment StoreEntitySet="VEBAY">
+                <ScalarProperty Name="TENHANHKHACH" ColumnName="TENHANHKHACH" />
+                <ScalarProperty Name="TENNGUOIDAT" ColumnName="TENNGUOIDAT" />
                 <ScalarProperty Name="MAVB" ColumnName="MAVB" />
                 <ScalarProperty Name="MACB" ColumnName="MACB" />
                 <ScalarProperty Name="THUTU_GHE" ColumnName="THUTU_GHE" />
                 <ScalarProperty Name="MALV" ColumnName="MALV" />
-                <ScalarProperty Name="DADAT" ColumnName="DADAT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
