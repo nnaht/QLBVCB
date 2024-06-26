@@ -55,7 +55,6 @@
           <Property Name="DIACHI" Type="nvarchar" MaxLength="50" />
           <Property Name="SDT" Type="varchar" MaxLength="10" />
           <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
-          <Property Name="HOATDONG" Type="bit" />
           <Property Name="TENTK" Type="varchar" MaxLength="50" />
           <Property Name="MATKHAU" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -376,7 +375,6 @@
           <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HOATDONG" Type="Boolean" />
           <Property Name="TENTK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DADATs" Relationship="Self.FK_DADAT_KHACHHANG" FromRole="KHACHHANG" ToRole="DADAT" />
@@ -699,7 +697,6 @@
                 <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
                 <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="HOATDONG" ColumnName="HOATDONG" />
                 <ScalarProperty Name="TENTK" ColumnName="TENTK" />
                 <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
               </MappingFragment>

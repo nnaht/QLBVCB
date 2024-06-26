@@ -60,7 +60,7 @@ namespace QLBVCB.ViewModel
                     excelWorkSheet.Cells.Style.Font.Size = 14;
                     excelWorkSheet.Cells.Style.Font.Name = "Times New Roman";
 
-                    string[] columnHeader = { "Mã khách hàng", "Họ tên", "Ngày sinh", "Giới tính", "Căn cước công dân", "Địa chỉ", "Số điện thoại", "Email", "Hoạt động" };
+                    string[] columnHeader = { "Mã khách hàng", "Họ tên", "Ngày sinh", "Giới tính", "Căn cước công dân", "Địa chỉ", "Số điện thoại", "Email" };
                     var countColumnHeader = columnHeader.Length;
                     excelWorkSheet.Cells[1, 1].Value = "Danh sách khách hàng";
                     excelWorkSheet.Cells[1, 1, 1, countColumnHeader].Merge = true;
@@ -93,7 +93,6 @@ namespace QLBVCB.ViewModel
                         excelWorkSheet.Cells[rowIndex, 6].Value = customer.DIACHI;
                         excelWorkSheet.Cells[rowIndex, 7].Value = customer.SDT;
                         excelWorkSheet.Cells[rowIndex, 8].Value = customer.EMAIL;
-                        excelWorkSheet.Cells[rowIndex, 9].Value = customer.HOATDONG;
 
                         for (int i = 1; i <= countColumnHeader; i++)
                         {

@@ -48,9 +48,6 @@ namespace QLBVCB.ViewModel
         private string _MATKHAU;
         public string MATKHAU { get => _MATKHAU; set { _MATKHAU = value; OnPropertyChanged(); } }
 
-        private Nullable<bool> _HOATDONG;
-        public Nullable<bool> HOATDONG { get => _HOATDONG; set { _HOATDONG = value; OnPropertyChanged(); } }
-
         public ICommand AddCustomerCommand { get; set; }
         public ICommand EditCustomerCommand { get; set; }
         public ICommand RemoveCustomerCommand { get; set; }
@@ -76,7 +73,6 @@ namespace QLBVCB.ViewModel
                     EMAIL = CustomerSelectedItem.EMAIL;
                     TENTK = CustomerSelectedItem.TENTK;
                     MATKHAU = CustomerSelectedItem.MATKHAU;
-                    HOATDONG = CustomerSelectedItem.HOATDONG;
                 }
             }
         }
@@ -104,7 +100,7 @@ namespace QLBVCB.ViewModel
                     ShowCustomMessageBox("Tên tài khoản đã tồn tại!");
                 else
                 {
-                    var customer = new KHACHHANG() { MAKH = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, TENTK = TENTK, MATKHAU = MATKHAU, HOATDONG = HOATDONG };
+                    var customer = new KHACHHANG() { MAKH = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, TENTK = TENTK, MATKHAU = MATKHAU };
                     DataProvider.Ins.DB.KHACHHANGs.Add(customer);
                     DataProvider.Ins.DB.SaveChanges();
                     CustomerList.Add(customer);
@@ -134,7 +130,6 @@ namespace QLBVCB.ViewModel
                 customer.EMAIL = EMAIL;
                 customer.TENTK = TENTK;
                 customer.MATKHAU = MATKHAU;
-                customer.HOATDONG = HOATDONG;
                 DataProvider.Ins.DB.SaveChanges();
                 ShowCustomMessageBox("Sửa thành công!");
             });

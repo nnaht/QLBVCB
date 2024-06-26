@@ -78,7 +78,6 @@ Margin="5">
                         <DataGridTextColumn Width="Auto" Header="Địa chỉ" Binding="{Binding DIACHI}"></DataGridTextColumn>
                         <DataGridTextColumn Width="Auto" Header="Số điện thoại" Binding="{Binding SDT}"></DataGridTextColumn>
                         <DataGridTextColumn Width="Auto" Header="Email" Binding="{Binding EMAIL}"></DataGridTextColumn>
-                        <DataGridTextColumn Width="Auto" Header="Hoạt động" Binding="{Binding HOATDONG}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>

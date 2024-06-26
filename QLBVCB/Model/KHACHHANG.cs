@@ -45,9 +45,6 @@ namespace QLBVCB.Model
         private string _EMAIL;
         public string EMAIL { get => _EMAIL; set { _EMAIL = value; OnPropertyChanged(); } }
 
-        private Nullable<bool> _HOATDONG;
-        public Nullable<bool> HOATDONG { get => _HOATDONG; set { _HOATDONG = value; OnPropertyChanged(); } }
-
         private string _TENTK;
         public string TENTK { get => _TENTK; set { _TENTK = value; OnPropertyChanged(); } }
 

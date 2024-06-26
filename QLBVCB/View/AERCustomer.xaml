@@ -114,7 +114,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid Grid.Row="0" Grid.Column="2">
                         <DatePicker VerticalAlignment="Center"
                                     SelectedDate="{Binding NGAYSINH, UpdateSourceTrigger=PropertyChanged}"
                                     Foreground="#FFD90429"
@@ -124,7 +124,7 @@
                                     Width="140">
                         </DatePicker>
                     </Grid>
-                    <Grid Grid.Row="0" Grid.Column="2">
+                    <Grid Grid.Row="1" Grid.Column="2">
                         <ComboBox VerticalAlignment="Center"
                                   Text="{Binding GIOITINH, UpdateSourceTrigger=PropertyChanged}"
                                   Foreground="#FFD90429"
@@ -136,7 +136,7 @@
                             <ComboBoxItem>Nữ</ComboBoxItem>
                         </ComboBox>
                     </Grid>
-                    <Grid Grid.Row="1" Grid.Column="2">
+                    <Grid Grid.Row="2" Grid.Column="2">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding CCCD, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -146,7 +146,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="2" Grid.Column="2">
+                    <Grid Grid.Row="0" Grid.Column="4">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding DIACHI, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -156,7 +156,7 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="0" Grid.Column="4">
+                    <Grid Grid.Row="1" Grid.Column="4">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding SDT, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
@@ -166,22 +166,12 @@
                                  Width="140">
                         </TextBox>
                     </Grid>
-                    <Grid Grid.Row="1" Grid.Column="4">
+                    <Grid Grid.Row="2" Grid.Column="4">
                         <TextBox VerticalAlignment="Center"
                                  Text="{Binding EMAIL, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="#FFD90429"
                                  BorderBrush="#FFD90429"
                                  materialDesign:HintAssist.Hint="Email"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 Width="140">
-                        </TextBox>
-                    </Grid>
-                    <Grid Grid.Row="2" Grid.Column="4">
-                        <TextBox VerticalAlignment="Center"
-                                 Text="{Binding HOATDONG, UpdateSourceTrigger=PropertyChanged}"
-                                 Foreground="#FFD90429"
-                                 BorderBrush="#FFD90429"
-                                 materialDesign:HintAssist.Hint="Hoạt động"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  Width="140">
                         </TextBox>
@@ -242,7 +232,6 @@
                                 <DataGridTextColumn Width="Auto" Header="Email" Binding="{Binding EMAIL}"></DataGridTextColumn>
                                 <DataGridTextColumn Width="Auto" Header="Tên tài khoản" Binding="{Binding TENTK}"></DataGridTextColumn>
                                 <DataGridTextColumn Width="Auto" Header="Mật khẩu" Binding="{Binding MATKHAU}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="Auto" Header="Hoạt động" Binding="{Binding HOATDONG}"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </ScrollViewer>
