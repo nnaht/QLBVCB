@@ -212,7 +212,7 @@ namespace QLBVCB.ViewModel
                 SeatingPlan seatingPlan = new SeatingPlan();
                 seatingPlan.DataContext = new VM_SeatingChart(MACB, totalSeats, IsRecuperate);
 
-                Application.Current.MainWindow = seatingPlan;
+                //Application.Current.MainWindow = seatingPlan;
                 seatingPlan.ShowDialog();
             }
             else

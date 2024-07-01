@@ -117,7 +117,7 @@ namespace QLBVCB.ViewModel
                 Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.Close();
                 CloseWindow(Application.Current.MainWindow);
                 Application.Current.MainWindow = loginWindow;
-                loginWindow.Show();
+                loginWindow.ShowDialog();
             });
         }
 

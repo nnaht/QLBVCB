@@ -213,8 +213,8 @@ namespace QLBVCB.ViewModel
                 CustomerTicket ct = new CustomerTicket();
                 ct.DataContext = new VM_WCustomerTicket(selection2(Customers), IsRecuperate);
                 Application.Current.Windows.OfType<FillInfo>().FirstOrDefault()?.Close();
-                CloseWindow(Application.Current.MainWindow);
-                Application.Current.MainWindow = ct;
+                //CloseWindow(Application.Current.MainWindow);
+                //Application.Current.MainWindow = ct;
                 ct.ShowDialog();
             }
             catch (Exception ex)
@@ -278,7 +278,11 @@ namespace QLBVCB.ViewModel
         }
 
 
-       
+        public bool IsCustomerVisible
+        {
+            get { return position != 3; }
+        }
+
         public void setTotalPeople(List<Tuple<string, int, int>> selection, bool isRecuperate)
         {
             totalPeople = selection.Count;

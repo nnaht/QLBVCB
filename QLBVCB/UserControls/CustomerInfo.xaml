@@ -27,9 +27,9 @@
                         <Label FontSize="13"  Foreground="#00224D" FontWeight="Medium" Content="Hãng chuyên chở"/>
                         <Label Foreground="#00224D" FontWeight="Normal"  Content="{Binding Brand}" FontSize="13"/>
                         <Label Foreground="#00224D" FontWeight="Medium" FontSize="13"  Content="Nơi đi"/>
-                        <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding Start}" FontSize="13"></TextBlock>
+                        <TextBlock Foreground="#00224D" TextWrapping="WrapWithOverflow" Text="{Binding Start}" FontSize="13"></TextBlock>
                         <Label Foreground="#00224D" FontWeight="Medium" FontSize="13" Content="Nơi đến"/>
-                        <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding End}" FontSize="13"></TextBlock>
+                        <TextBlock Foreground="#00224D" TextWrapping="WrapWithOverflow" Text="{Binding End}" FontSize="13"></TextBlock>
                         <Label Foreground="#00224D" FontWeight="Medium" FontSize="13" Content="Mã chuyến bay"/>
                         <Label Foreground="#00224D" FontWeight="Normal" FontSize="13" Content="{Binding MACB}"/>
                         <Label Foreground="#00224D" FontWeight="Medium" FontSize="13" Content="Ngày"/>

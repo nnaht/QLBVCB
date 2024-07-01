@@ -173,8 +173,8 @@ namespace QLBVCB.ViewModel
                     FillInfo fillInfo = new FillInfo();
                     fillInfo.DataContext = new VM_FillInfo(selection, false);
                     Application.Current.Windows.OfType<SeatingPlan>().FirstOrDefault()?.Close();
-                    CloseWindow(Application.Current.MainWindow);
-                    Application.Current.MainWindow = fillInfo;
+                    //CloseWindow(Application.Current.MainWindow);
+                    //Application.Current.MainWindow = fillInfo;
                     fillInfo.ShowDialog();
                 }
                 catch (Exception ex)
