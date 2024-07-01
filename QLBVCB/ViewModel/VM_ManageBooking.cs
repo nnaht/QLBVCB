@@ -158,6 +158,7 @@ namespace QLBVCB.ViewModel
                 "TP. Hồ Chí Minh, Việt Nam"
             };
 
+            SelectedDate = null;
         }
 
         private bool FilterFlights(object item)
