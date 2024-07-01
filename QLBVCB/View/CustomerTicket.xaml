@@ -41,7 +41,7 @@ AllowsTransparency="True">
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Margin="20,0" Orientation="Horizontal">
-                           
+
                         </StackPanel>
                         <Grid Grid.Column="1" Margin="20,0" HorizontalAlignment="Center">
                         </Grid>
@@ -71,9 +71,13 @@ AllowsTransparency="True">
                         </ItemsControl>
                     </ScrollViewer>
                 </Grid>
-                <Grid Grid.Row="3" HorizontalAlignment="Right" Margin="0,20,10,10">
-                    <StackPanel Orientation="Horizontal" Margin="10,0,10,10">
-                        <Button Height="40"
+                <Grid Grid.Row="3" HorizontalAlignment="Stretch" Margin="10,20,10,10">
+                    <StackPanel HorizontalAlignment="Left"  Height="40" Orientation="Horizontal" >
+                        <Label Content="Tổng tiền: " FontWeight="Bold" FontSize="16" VerticalAlignment="Center"></Label>
+                        <Label Content="{Binding TotalPrice}" FontSize="16" VerticalAlignment="Center" ></Label>
+                    </StackPanel>
+                    <Button Height="40"
+                                HorizontalAlignment="Right"
                                 Width="150"
                                 Command="{Binding ExportPdfCommand}"
                                 materialDesign:ButtonAssist.CornerRadius="5"
@@ -82,9 +86,8 @@ AllowsTransparency="True">
                                 ToolTip="Xuất pdf"
                                 Background="#FFD90429"
                                 BorderBrush="#FFB11409">
-                            <TextBlock Text="Xuất pdf" Foreground="#DDFEFEFE"/>
-                        </Button>
-                    </StackPanel>
+                        <TextBlock Text="Xuất pdf" Foreground="#DDFEFEFE"/>
+                    </Button>
                 </Grid>
             </Grid>
         </Border>
