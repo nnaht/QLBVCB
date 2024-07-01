@@ -30,6 +30,16 @@ namespace QLBVCB.ViewModel
             customMessageBox.ShowDialog();
         }
         private int totalPeople;
+        private String totalPrice;
+        public string TotalPrice
+        {
+            get => totalPrice;
+            set
+            {
+                totalPrice = value;
+                OnPropertyChanged(nameof(totalPrice));
+            }
+        }
         public ICommand ExportPdfCommand { get; set; }
         public VM_WCustomerTicket(List<Tuple<string, int, int,string,string,string>> selection, bool isRecuperate)
         {
@@ -49,7 +59,66 @@ namespace QLBVCB.ViewModel
                 customerInfo.DataContext = customer;
                 CustomerInfos.Add(customerInfo);
             }
+            SetTotalPrice();
         }
+
+        private decimal GetLuggageFee(String selectedLuggageOption)
+        {
+            return DataProvider.Ins.DB.DICHVUs
+                            .Where(dv => dv.LOAIDV == "Hành lý" && dv.TENDV == selectedLuggageOption)
+                            .SingleOrDefault().DONGIA;
+
+        }
+
+        private decimal GetMealFee(String selectedMealOption)
+        {
+            return DataProvider.Ins.DB.DICHVUs
+                            .Where(dv => dv.LOAIDV == "Suất ăn" && dv.TENDV == selectedMealOption)
+                            .SingleOrDefault().DONGIA;
+
+        }
+
+        private decimal GetSeatFee(String selectedTicketType)
+        {
+            String tempString;
+            if(selectedTicketType == "Business Class")
+            {
+                tempString = "Business";
+            }
+            else
+            {
+                tempString = "Economy";
+            }
+            var temp = DataProvider.Ins.DB.LOAIVEs
+                            .Where(dv => dv.TEN_LOAIVE == tempString)
+                            .SingleOrDefault().GIAVE;
+            if(temp != null)
+            {
+                return (decimal)temp;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        private String ConvertToCurrency(decimal value)
+        {
+            string temp = value.ToString("N0").Replace(",", ".") + "VND";
+            return temp;
+        }
+        private void SetTotalPrice()
+        {
+            decimal temp = 0;
+            foreach (var customer in Customers)
+            {
+                temp += GetLuggageFee(customer.HANHLY) + GetMealFee(customer.SUATAN) + GetSeatFee(customer.SeatType);
+                
+            }
+
+            TotalPrice = ConvertToCurrency(temp);
+        }
+
+
         private void ExecuteExportPdfCommand(object obj)
         {
             var mainWindow = Application.Current.Windows.OfType<CustomerTicket>().FirstOrDefault();
