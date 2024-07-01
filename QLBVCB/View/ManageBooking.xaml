@@ -101,6 +101,7 @@ IsChecked="{Binding IsRecuperate, Mode=TwoWay}"/>
                             BorderBrush="#B2ED1C1C" Foreground="#FFD90429"
                             materialDesign:HintAssist.Hint="Ngày cất cánh"
                             Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                            materialDesign:TextFieldAssist.HasClearButton="True"
                             SelectedDate="{Binding SelectedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 />
                     

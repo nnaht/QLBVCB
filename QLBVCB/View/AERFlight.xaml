@@ -104,22 +104,22 @@
                                      Width="140" Margin="20,0,-20,0" />
                         </Grid>
                         <Grid Grid.Row="1">
-                            <DatePicker VerticalAlignment="Center"
-                                     materialDesign:HintAssist.Hint="Thời gian cất cánh"
-                                     SelectedDate="{Binding THOIGIAN_CATCANH, UpdateSourceTrigger=PropertyChanged}"
+                            <TextBox VerticalAlignment="Center"
+                                     materialDesign:HintAssist.Hint="Thời gian cất cánh(mm/dd/yyyy hh:mm:ss)"
+                                     Text="{Binding THOIGIAN_CATCANH, UpdateSourceTrigger=PropertyChanged}"
                                      Foreground="#FFD90429"
                                      BorderBrush="#FFD90429"
-                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                                      Width="140" Margin="20,0,-20,0" />
                         </Grid>
                         <Grid Grid.Row="2">
-                            <DatePicker VerticalAlignment="Center"
+                            <TextBox VerticalAlignment="Center"
                                      Foreground="#FFD90429"
                                      BorderBrush="#FFD90429"
-                                     materialDesign:HintAssist.Hint="Thời gian hạ cánh"
-                                     SelectedDate="{Binding THOIGIAN_HACANH, UpdateSourceTrigger=PropertyChanged}"
-                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                                     Margin="20,0,-20,0" />
+                                     materialDesign:HintAssist.Hint="Thời gian hạ cánh(mm/dd/yyyy hh:mm:ss)"
+                                     Text="{Binding THOIGIAN_HACANH, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     Width="140" Margin="20,0,-20,0" />
                         </Grid>
                     </Grid>
                     <Grid Grid.Column="3" HorizontalAlignment="Right" Margin="0,0,30,0">
@@ -169,12 +169,12 @@
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Mã chuyến bay" Binding="{Binding MACB}" Width="Auto"/>
                                     <DataGridTextColumn Header="Mã máy bay" Binding="{Binding MAMB}" Width="Auto"/>
+                                    <DataGridTextColumn Header="Sân bay cất cánh" Binding="{Binding MASB_CATCANH}" Width="Auto"/>
+                                    <DataGridTextColumn Header="Sân bay hạ cánh" Binding="{Binding MASB_HACANH}" Width="Auto"/>
                                     <DataGridTextColumn Header="Thời gian cất cánh" Binding="{Binding THOIGIAN_CATCANH}" Width="Auto"/>
                                     <DataGridTextColumn Header="Thời gian hạ cánh" Binding="{Binding THOIGIAN_HACANH}" Width="Auto"/>
                                     <DataGridTextColumn Header="Trạng thái" Binding="{Binding TRANGTHAI}" Width="Auto"/>
                                     <DataGridTextColumn Header="Số ghế" Binding="{Binding SO_GHE}" Width="Auto"/>
-                                    <DataGridTextColumn Header="Sân bay cất cánh" Binding="{Binding MASB_CATCANH}" Width="Auto"/>
-                                    <DataGridTextColumn Header="Sân bay hạ cánh" Binding="{Binding MASB_HACANH}" Width="Auto"/>
                                 </DataGrid.Columns>
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">

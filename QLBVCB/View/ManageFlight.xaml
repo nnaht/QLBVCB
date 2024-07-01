@@ -50,12 +50,12 @@ Margin="5">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Mã chuyến bay" Binding="{Binding MACB}" Width="Auto"/>
                         <DataGridTextColumn Header="Mã máy bay" Binding="{Binding MAMB}" Width="Auto"/>
+                        <DataGridTextColumn Header="Sân bay cất cánh" Binding="{Binding MASB_CATCANH}" Width="Auto"/>
+                        <DataGridTextColumn Header="Sân bay hạ cánh" Binding="{Binding MASB_HACANH}" Width="Auto"/>
                         <DataGridTextColumn Header="Thời gian cất cánh" Binding="{Binding THOIGIAN_CATCANH}" Width="Auto"/>
                         <DataGridTextColumn Header="Thời gian hạ cánh" Binding="{Binding THOIGIAN_HACANH}" Width="Auto"/>
                         <DataGridTextColumn Header="Trạng thái" Binding="{Binding TRANGTHAI}" Width="Auto"/>
                         <DataGridTextColumn Header="Số ghế" Binding="{Binding SO_GHE}" Width="Auto"/>
-                        <DataGridTextColumn Header="Sân bay cất cánh" Binding="{Binding MASB_CATCANH}" Width="Auto"/>
-                        <DataGridTextColumn Header="Sân bay hạ cánh" Binding="{Binding MASB_HACANH}" Width="Auto"/>
                     </DataGrid.Columns>
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">

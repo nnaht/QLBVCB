@@ -60,6 +60,10 @@ namespace QLBVCB.ViewModel
             {
                 if (string.IsNullOrEmpty(TENTK) || string.IsNullOrEmpty(MATKHAU) || string.IsNullOrEmpty(MANV))
                     return false;
+                if (displayAccountList == null)
+                    return false;
+                if (displayAccountList.Count() != 0)
+                    return false;
                 return true;
             }, (p) =>
             {
@@ -72,6 +76,9 @@ namespace QLBVCB.ViewModel
                 else
                 {
                     var account = new TAIKHOAN() { TENTK = TENTK, MATKHAU = MATKHAU, MANV = MANV };
+                    var employee = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == MANV).SingleOrDefault();
+                    employee.TENTK = TENTK;
+                    employee.MATKHAU = MATKHAU;
                     DataProvider.Ins.DB.TAIKHOANs.Add(account);
                     DataProvider.Ins.DB.SaveChanges();
                     AccountList.Add(account);
@@ -91,9 +98,12 @@ namespace QLBVCB.ViewModel
             }, (p) =>
             {
                 var account = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.TENTK == TENTK).SingleOrDefault();
+                var employee = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == MANV).SingleOrDefault();
                 account.TENTK = TENTK;
                 account.MATKHAU = MATKHAU;
                 account.MANV = MANV;
+                employee.TENTK = TENTK;
+                employee.MATKHAU = MATKHAU;
                 DataProvider.Ins.DB.SaveChanges();
                 ShowCustomMessageBox("Sửa thành công!");
             });
@@ -106,6 +116,9 @@ namespace QLBVCB.ViewModel
                 if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                     DataProvider.Ins.DB.TAIKHOANs.Remove(AccountSelectedItem);
+                    var employee = DataProvider.Ins.DB.NHANVIENs.Where(x => x.TENTK == TENTK).SingleOrDefault();
+                    employee.TENTK = "";
+                    employee.MATKHAU = "";
                     DataProvider.Ins.DB.SaveChanges();
                     AccountList.Remove(AccountSelectedItem);
                     ShowCustomMessageBox("Xóa thành công!");
