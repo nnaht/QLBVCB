@@ -135,13 +135,20 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                try
                 {
-                    DataProvider.Ins.DB.LOAIVEs.Remove(TicketTypeSelectedItem);
-                    DataProvider.Ins.DB.SaveChanges();
+                    if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.LOAIVEs.Remove(TicketTypeSelectedItem);
+                        DataProvider.Ins.DB.SaveChanges();
 
-                    TicketTypeList.Remove(TicketTypeSelectedItem);
-                    ShowCustomMessageBox("Xóa thành công!");
+                        TicketTypeList.Remove(TicketTypeSelectedItem);
+                        ShowCustomMessageBox("Xóa thành công!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ShowCustomMessageBox("Không thể xóa!");
                 }
             });
         }

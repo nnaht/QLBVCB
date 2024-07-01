@@ -142,12 +142,19 @@ namespace QLBVCB.ViewModel
                 return ServiceSelectedItem != null;
             }, (p) =>
             {
-                if (System.Windows.MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                try
                 {
-                    DataProvider.Ins.DB.DICHVUs.Remove(ServiceSelectedItem);
-                    DataProvider.Ins.DB.SaveChanges();
-                    ServiceList.Remove(ServiceSelectedItem);
-                    ShowCustomMessageBox("Xóa thành công!");
+                    if (System.Windows.MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.DICHVUs.Remove(ServiceSelectedItem);
+                        DataProvider.Ins.DB.SaveChanges();
+                        ServiceList.Remove(ServiceSelectedItem);
+                        ShowCustomMessageBox("Xóa thành công!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ShowCustomMessageBox("Không thể xóa!");
                 }
             });
         }

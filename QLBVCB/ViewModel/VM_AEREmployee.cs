@@ -165,15 +165,22 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                try
                 {
-                    var employeeAccount = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.MANV == EmployeeSelectedItem.MANV).FirstOrDefault();
-                    if (employeeAccount != null)
-                        DataProvider.Ins.DB.TAIKHOANs.Remove(employeeAccount);
-                    DataProvider.Ins.DB.NHANVIENs.Remove(EmployeeSelectedItem);
-                    DataProvider.Ins.DB.SaveChanges();
-                    EmployeeList.Remove(EmployeeSelectedItem);
-                    ShowCustomMessageBox("Xóa thành công!");
+                    if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+                        var employeeAccount = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.MANV == EmployeeSelectedItem.MANV).FirstOrDefault();
+                        if (employeeAccount != null)
+                            DataProvider.Ins.DB.TAIKHOANs.Remove(employeeAccount);
+                        DataProvider.Ins.DB.NHANVIENs.Remove(EmployeeSelectedItem);
+                        DataProvider.Ins.DB.SaveChanges();
+                        EmployeeList.Remove(EmployeeSelectedItem);
+                        ShowCustomMessageBox("Xóa thành công!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ShowCustomMessageBox("Không thể xóa!");
                 }
             });
         }

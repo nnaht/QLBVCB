@@ -151,13 +151,20 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                try
                 {
-                    DataProvider.Ins.DB.CHUYENBAYs.Remove(FlightSelectedItem);
-                    DataProvider.Ins.DB.SaveChanges();
+                    if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.CHUYENBAYs.Remove(FlightSelectedItem);
+                        DataProvider.Ins.DB.SaveChanges();
 
-                    FlightList.Remove(FlightSelectedItem);
-                    ShowCustomMessageBox("Xóa thành công!");
+                        FlightList.Remove(FlightSelectedItem);
+                        ShowCustomMessageBox("Xóa thành công!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ShowCustomMessageBox("Không thể xóa!");
                 }
             });
         }
