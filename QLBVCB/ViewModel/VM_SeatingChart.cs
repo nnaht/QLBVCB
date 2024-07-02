@@ -187,8 +187,8 @@ namespace QLBVCB.ViewModel
                 RecuperateFlight recuperate = new RecuperateFlight();
                 recuperate.DataContext = new VM_Recuperate(selection);
                 Application.Current.Windows.OfType<SeatingPlan>().FirstOrDefault()?.Close();
-                CloseWindow(Application.Current.MainWindow);
-                Application.Current.MainWindow = recuperate;
+                //CloseWindow(Application.Current.MainWindow);
+                //Application.Current.MainWindow = recuperate;
                 recuperate.ShowDialog();
             }
         }

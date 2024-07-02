@@ -33,7 +33,7 @@
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                             <DataGrid ItemsSource="{Binding FlightView}"
                            AutoGenerateColumns="False"
-                           SelectedItem="{Binding FlightSelectedItem}" 
+                              SelectedItem="{Binding FlightSelectedItem}" 
                            Background="#FFF8F8F8" 
                            IsReadOnly="True"
                            >
