@@ -102,14 +102,6 @@
           <Property Name="THANHPHO" Type="nvarchar" MaxLength="50" />
           <Property Name="QUOCGIA" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="TAIKHOAN">
-          <Key>
-            <PropertyRef Name="TENTK" />
-          </Key>
-          <Property Name="TENTK" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="MATKHAU" Type="varchar" MaxLength="50" />
-          <Property Name="MANV" Type="nvarchar" MaxLength="6" Nullable="false" />
-        </EntityType>
         <EntityType Name="VEBAY">
           <Key>
             <PropertyRef Name="MAVB" />
@@ -154,18 +146,6 @@
             </Principal>
             <Dependent Role="CHUYENBAY">
               <PropertyRef Name="MASB_HACANH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TAIKHOAN__MANV__286302EC">
-          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
-          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NHANVIEN">
-              <PropertyRef Name="MANV" />
-            </Principal>
-            <Dependent Role="TAIKHOAN">
-              <PropertyRef Name="MANV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -308,7 +288,6 @@
           <EntitySet Name="MAYBAY" EntityType="Self.MAYBAY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANBAY" EntityType="Self.SANBAY" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEBAY" EntityType="Self.VEBAY" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__CHUYENBAY__MAMB__30F848ED" Association="Self.FK__CHUYENBAY__MAMB__30F848ED">
             <End Role="MAYBAY" EntitySet="MAYBAY" />
@@ -321,10 +300,6 @@
           <AssociationSet Name="FK__CHUYENBAY__MASB___32E0915F" Association="Self.FK__CHUYENBAY__MASB___32E0915F">
             <End Role="SANBAY" EntitySet="SANBAY" />
             <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TAIKHOAN__MANV__286302EC" Association="Self.FK__TAIKHOAN__MANV__286302EC">
-            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
-            <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
           </AssociationSet>
           <AssociationSet Name="FK__VEBAY__MACB__35BCFE0A" Association="Self.FK__VEBAY__MACB__35BCFE0A">
             <End Role="CHUYENBAY" EntitySet="CHUYENBAY" />
@@ -461,7 +436,6 @@
           <Property Name="VITRI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TENTK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK__TAIKHOAN__MANV__286302EC" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
         </EntityType>
         <EntityType Name="SANBAY">
           <Key>
@@ -473,15 +447,6 @@
           <Property Name="QUOCGIA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CHUYENBAYs" Relationship="Self.FK__CHUYENBAY__MASB___31EC6D26" FromRole="SANBAY" ToRole="CHUYENBAY" />
           <NavigationProperty Name="CHUYENBAYs1" Relationship="Self.FK__CHUYENBAY__MASB___32E0915F" FromRole="SANBAY" ToRole="CHUYENBAY" />
-        </EntityType>
-        <EntityType Name="TAIKHOAN">
-          <Key>
-            <PropertyRef Name="TENTK" />
-          </Key>
-          <Property Name="TENTK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MANV" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__TAIKHOAN__MANV__286302EC" FromRole="TAIKHOAN" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="VEBAY">
           <Key>
@@ -617,18 +582,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TAIKHOAN__MANV__286302EC">
-          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
-          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NHANVIEN">
-              <PropertyRef Name="MANV" />
-            </Principal>
-            <Dependent Role="TAIKHOAN">
-              <PropertyRef Name="MANV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="QLBVCBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CHUYENBAYs" EntityType="Self.CHUYENBAY" />
           <EntitySet Name="DADATs" EntityType="Self.DADAT" />
@@ -638,7 +591,6 @@
           <EntitySet Name="MAYBAYs" EntityType="Self.MAYBAY" />
           <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
           <EntitySet Name="SANBAYs" EntityType="Self.SANBAY" />
-          <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
           <EntitySet Name="VEBAYs" EntityType="Self.VEBAY" />
           <AssociationSet Name="FK__CHUYENBAY__MAMB__30F848ED" Association="Self.FK__CHUYENBAY__MAMB__30F848ED">
             <End Role="MAYBAY" EntitySet="MAYBAYs" />
@@ -680,15 +632,11 @@
             <End Role="LOAIVE" EntitySet="LOAIVEs" />
             <End Role="VEBAY" EntitySet="VEBAYs" />
           </AssociationSet>
-          <AssociationSet Name="FK__TAIKHOAN__MANV__286302EC" Association="Self.FK__TAIKHOAN__MANV__286302EC">
-            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
-            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
-          </AssociationSet>
           <FunctionImport Name="CHITIETDOANHTHUTUNGTHANG">
-            <Parameter Name="NAM" Mode="In" Type="Int32" />
+          <Parameter Name="NAM" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DOANHTHUTUNGTHANG">
-            <Parameter Name="NAM" Mode="In" Type="Int32" />
+          <Parameter Name="NAM" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -840,15 +788,6 @@
                 <ScalarProperty Name="TEN_SANBAY" ColumnName="TEN_SANBAY" />
                 <ScalarProperty Name="THANHPHO" ColumnName="THANHPHO" />
                 <ScalarProperty Name="QUOCGIA" ColumnName="QUOCGIA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TAIKHOANs">
-            <EntityTypeMapping TypeName="QLBVCBModel.TAIKHOAN">
-              <MappingFragment StoreEntitySet="TAIKHOAN">
-                <ScalarProperty Name="TENTK" ColumnName="TENTK" />
-                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
-                <ScalarProperty Name="MANV" ColumnName="MANV" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -28,7 +28,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Left">
             <TextBox Text="{Binding SearchTicket, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-              x:Name="txtBoxSearchType" 
+              x:Name="txtBoxSearchTicket" 
               Margin="20"
               Width="300"
               Height="50"

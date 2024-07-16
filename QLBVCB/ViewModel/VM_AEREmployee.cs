@@ -111,9 +111,7 @@ namespace QLBVCB.ViewModel
                 else
                 {
                     var employee = new NHANVIEN() { MANV = GetNextId(), HOTEN = HOTEN, NGAYSINH = NGAYSINH, GIOITINH = GIOITINH, CCCD = CCCD, DIACHI = DIACHI, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRI = VITRI, TENTK = TENTK, MATKHAU = MATKHAU };
-                    var account = new TAIKHOAN() { MANV = GetNextId(), TENTK = TENTK, MATKHAU = MATKHAU };
                     DataProvider.Ins.DB.NHANVIENs.Add(employee);
-                    DataProvider.Ins.DB.TAIKHOANs.Add(account);
                     DataProvider.Ins.DB.SaveChanges();
                     EmployeeList.Add(employee);
                     ShowCustomMessageBox("Thêm thành công!");
@@ -134,7 +132,6 @@ namespace QLBVCB.ViewModel
             }, (p) =>
             {
                 var employee = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == MANV).SingleOrDefault();
-                var account = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.MANV == MANV).SingleOrDefault();
                 employee.HOTEN = HOTEN;
                 employee.NGAYSINH = NGAYSINH;
                 employee.GIOITINH = GIOITINH;
@@ -146,16 +143,6 @@ namespace QLBVCB.ViewModel
                 employee.VITRI = VITRI;
                 employee.TENTK = TENTK;
                 employee.MATKHAU = MATKHAU;
-                if (account != null)
-                {
-                    account.TENTK = TENTK;
-                    account.MATKHAU = MATKHAU;
-                }
-                else
-                {
-                    var eaccount = new TAIKHOAN() { MANV = MANV, TENTK = TENTK, MATKHAU = MATKHAU };
-                    DataProvider.Ins.DB.TAIKHOANs.Add(eaccount);
-                }
                 DataProvider.Ins.DB.SaveChanges();
                 ShowCustomMessageBox("Sửa thành công!");
             });
@@ -169,9 +156,6 @@ namespace QLBVCB.ViewModel
                 {
                     if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {
-                        var employeeAccount = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.MANV == EmployeeSelectedItem.MANV).FirstOrDefault();
-                        if (employeeAccount != null)
-                            DataProvider.Ins.DB.TAIKHOANs.Remove(employeeAccount);
                         DataProvider.Ins.DB.NHANVIENs.Remove(EmployeeSelectedItem);
                         DataProvider.Ins.DB.SaveChanges();
                         EmployeeList.Remove(EmployeeSelectedItem);

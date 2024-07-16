@@ -15,12 +15,6 @@ namespace QLBVCB.Model
     
     public partial class NHANVIEN : VM_Base
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NHANVIEN()
-        {
-            this.TAIKHOANs = new HashSet<TAIKHOAN>();
-        }
-
         private string _MANV;
         public string MANV { get => _MANV; set { _MANV = value; OnPropertyChanged(); } }
 
@@ -56,8 +50,5 @@ namespace QLBVCB.Model
 
         private string _MATKHAU;
         public string MATKHAU { get => _MATKHAU; set { _MATKHAU = value; OnPropertyChanged(); } }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TAIKHOAN> TAIKHOANs { get; set; }
     }
 }

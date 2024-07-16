@@ -65,7 +65,7 @@ namespace QLBVCB.ViewModel
             else
             {
                 IsLogin = false;
-                MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
+                ShowCustomMessageBox("Sai tài khoản hoặc mật khẩu!");
             }
 
         }
@@ -76,6 +76,12 @@ namespace QLBVCB.ViewModel
             {
                 window.Close();
             }
+        }
+        public void ShowCustomMessageBox(string message)
+        {
+            CusMessBox customMessageBox = new CusMessBox();
+            customMessageBox.DataContext = new VM_CusMessBox(message);
+            customMessageBox.ShowDialog();
         }
     }
 }

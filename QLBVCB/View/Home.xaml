@@ -10,6 +10,6 @@
         <!--<Grid.Background>
             <ImageBrush ImageSource="E:\QLBVCB\QLBVCB\Images\home.jpg" Stretch="Fill"/>
         </Grid.Background>-->
-        <Image Source="/Images/home.jpg" Stretch="Fill" />
+        <Image x:Name="iBackground" Source="/Images/home.jpg" Stretch="Fill" />
     </Grid>
 </UserControl>

@@ -35,7 +35,6 @@ namespace QLBVCB.Model
         public virtual DbSet<MAYBAY> MAYBAYs { get; set; }
         public virtual DbSet<NHANVIEN> NHANVIENs { get; set; }
         public virtual DbSet<SANBAY> SANBAYs { get; set; }
-        public virtual DbSet<TAIKHOAN> TAIKHOANs { get; set; }
         public virtual DbSet<VEBAY> VEBAYs { get; set; }
     
         public virtual int CHITIETDOANHTHUTUNGTHANG(Nullable<int> nAM)

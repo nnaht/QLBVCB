@@ -15,8 +15,8 @@ namespace QLBVCB.ViewModel
 {
     internal class VM_AERAccount : VM_Base
     {
-        private ObservableCollection<TAIKHOAN> _AccountList;
-        public ObservableCollection<TAIKHOAN> AccountList { get { return _AccountList; } set { _AccountList = value; OnPropertyChanged(); } }
+        private ObservableCollection<NHANVIEN> _AccountList;
+        public ObservableCollection<NHANVIEN> AccountList { get { return _AccountList; } set { _AccountList = value; OnPropertyChanged(); } }
 
         private string _MANV;
         public string MANV { get => _MANV; set { _MANV = value; OnPropertyChanged(); } }
@@ -31,8 +31,8 @@ namespace QLBVCB.ViewModel
         public ICommand RemoveAccountCommand { get; set; }
         public ICollectionView AccountView { get; private set; }
 
-        private TAIKHOAN _AccountSelectedItem;
-        public TAIKHOAN AccountSelectedItem
+        private NHANVIEN _AccountSelectedItem;
+        public NHANVIEN AccountSelectedItem
         {
             get => _AccountSelectedItem;
             set
@@ -50,8 +50,8 @@ namespace QLBVCB.ViewModel
 
         public VM_AERAccount()
         {
-            AccountList = new ObservableCollection<TAIKHOAN>(DataProvider.Ins.DB.TAIKHOANs);
-            var displayAccountList = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.MANV == MANV);
+            AccountList = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
+            var displayAccountList = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == MANV);
             var displayEmployeeList = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == MANV);
             AccountView = CollectionViewSource.GetDefaultView(AccountList);
             AccountView.Filter = FilterAccount;
@@ -71,17 +71,14 @@ namespace QLBVCB.ViewModel
                     ShowCustomMessageBox("Nhân viên đã có tài khoản!");
                 else if (displayEmployeeList.Count() == 0)
                     ShowCustomMessageBox("Không tồn tại mã nhân viên!");
-                else if (DataProvider.Ins.DB.TAIKHOANs.Where(x => x.TENTK == TENTK).Count() != 0)
+                else if (DataProvider.Ins.DB.NHANVIENs.Where(x => x.TENTK == TENTK).Count() != 0)
                     ShowCustomMessageBox("Tên tài khoản đã tồn tại!");
                 else
                 {
-                    var account = new TAIKHOAN() { TENTK = TENTK, MATKHAU = MATKHAU, MANV = MANV };
                     var employee = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == MANV).SingleOrDefault();
                     employee.TENTK = TENTK;
                     employee.MATKHAU = MATKHAU;
-                    DataProvider.Ins.DB.TAIKHOANs.Add(account);
                     DataProvider.Ins.DB.SaveChanges();
-                    AccountList.Add(account);
                     ShowCustomMessageBox("Thêm thành công!");
                 }
             });
@@ -97,11 +94,7 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                var account = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.TENTK == TENTK).SingleOrDefault();
                 var employee = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == MANV).SingleOrDefault();
-                account.TENTK = TENTK;
-                account.MATKHAU = MATKHAU;
-                account.MANV = MANV;
                 employee.TENTK = TENTK;
                 employee.MATKHAU = MATKHAU;
                 DataProvider.Ins.DB.SaveChanges();
@@ -113,15 +106,21 @@ namespace QLBVCB.ViewModel
                 return true;
             }, (p) =>
             {
-                if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                try
                 {
-                    DataProvider.Ins.DB.TAIKHOANs.Remove(AccountSelectedItem);
-                    var employee = DataProvider.Ins.DB.NHANVIENs.Where(x => x.TENTK == TENTK).SingleOrDefault();
-                    employee.TENTK = "";
-                    employee.MATKHAU = "";
-                    DataProvider.Ins.DB.SaveChanges();
-                    AccountList.Remove(AccountSelectedItem);
-                    ShowCustomMessageBox("Xóa thành công!");
+                    if (MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+                        var employee = DataProvider.Ins.DB.NHANVIENs.Where(x => x.TENTK == TENTK).SingleOrDefault();
+                        employee.TENTK = "";
+                        employee.MATKHAU = "";
+                        DataProvider.Ins.DB.SaveChanges();
+                        AccountList.Remove(AccountSelectedItem);
+                        ShowCustomMessageBox("Xóa thành công!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ShowCustomMessageBox("Không thể xóa!");
                 }
             });
         }
@@ -139,7 +138,7 @@ namespace QLBVCB.ViewModel
         }
         private bool FilterAccount(object item)
         {
-            if (item is TAIKHOAN ticket)
+            if (item is NHANVIEN ticket)
             {
                 return string.IsNullOrEmpty(SearchAccount) || ticket.MANV.IndexOf(SearchAccount, StringComparison.OrdinalIgnoreCase) >= 0;
             }

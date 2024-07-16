@@ -17,15 +17,15 @@ namespace QLBVCB.ViewModel
 {
     internal class VM_ManageAccount : VM_Base
     {
-        private ObservableCollection<TAIKHOAN> _AccountList;
-        public ObservableCollection<TAIKHOAN> AccountList { get { return _AccountList; } set { _AccountList = value; OnPropertyChanged(); } }
+        private ObservableCollection<NHANVIEN> _AccountList;
+        public ObservableCollection<NHANVIEN> AccountList { get { return _AccountList; } set { _AccountList = value; OnPropertyChanged(); } }
         public ICommand OpenAERAccountCommand { get; set; }
         public ICommand ExportExcelManageAccountCommand { get; set; }
         public ICollectionView AccountView { get; private set; }
 
         public VM_ManageAccount()
         {
-            AccountList = new ObservableCollection<TAIKHOAN>(DataProvider.Ins.DB.TAIKHOANs);
+            AccountList = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
             OpenAERAccountCommand = new RelayCommand<object>((p) => { return true; }, (p) => { AERAccount aer = new AERAccount(); aer.DataContext = new VM_AERAccount(); aer.ShowDialog(); });
             AccountView = CollectionViewSource.GetDefaultView(AccountList);
             AccountView.Filter = FilterAccount;
@@ -54,7 +54,7 @@ namespace QLBVCB.ViewModel
 
                 using (ExcelPackage excelPackage = new ExcelPackage())
                 {
-                    excelPackage.Workbook.Properties.Title = "Danh sách tài khoản";
+                    excelPackage.Workbook.Properties.Title = "Danh sách tài khoản nhân viên";
                     excelPackage.Workbook.Worksheets.Add("Sheet1");
                     ExcelWorksheet excelWorkSheet = excelPackage.Workbook.Worksheets[0];
                     excelWorkSheet.Name = "Sheet 1";
@@ -63,7 +63,7 @@ namespace QLBVCB.ViewModel
 
                     string[] columnHeader = { "Mã nhân viên", "Tên tài khoản", "Mật khẩu" };
                     var countColumnHeader = columnHeader.Length;
-                    excelWorkSheet.Cells[1, 1].Value = "Danh sách nhân viên";
+                    excelWorkSheet.Cells[1, 1].Value = "Danh sách tài khoản nhân viên";
                     excelWorkSheet.Cells[1, 1, 1, countColumnHeader].Merge = true;
                     excelWorkSheet.Cells[1, 1, 1, countColumnHeader].Style.Font.Bold = true;
                     excelWorkSheet.Cells[1, 1, 1, countColumnHeader].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
@@ -128,7 +128,7 @@ namespace QLBVCB.ViewModel
         }
         private bool FilterAccount(object item)
         {
-            if (item is TAIKHOAN ticket)
+            if (item is NHANVIEN ticket)
             {
                 return string.IsNullOrEmpty(SearchAccount) || ticket.MANV.IndexOf(SearchAccount, StringComparison.OrdinalIgnoreCase) >= 0;
             }

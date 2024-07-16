@@ -150,21 +150,6 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button x:Name="btFlight"
-        Content="Quản lý chuyến bay"
-        Command="{Binding ManageFlightCommand}"
-        Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="AirplaneSearch" />
-                                    <TextBlock Text="{Binding Content, ElementName=btFlight}" 
-                           VerticalAlignment="Center">
-                                    </TextBlock>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
                     <Button x:Name="btAirplane"
          Content="Quản lý máy bay"
          Command="{Binding ManagePlaneCommand}"
@@ -194,6 +179,21 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                    <Button x:Name="btFlight"
+        Content="Quản lý chuyến bay"
+        Command="{Binding ManageFlightCommand}"
+        Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="AirplaneSearch" />
+                                    <TextBlock Text="{Binding Content, ElementName=btFlight}" 
+                           VerticalAlignment="Center">
+                                    </TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                     <Button x:Name="btCustomer"
 Content="Quản lý khách hàng"
 Command="{Binding ManageCustomerCommand}"
@@ -210,9 +210,9 @@ Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisib
                         </Button.Template>
                     </Button>
                     <Button x:Name="btEmployee" 
-                    Content="Quản lý nhân viên"
-                    Command="{Binding ManageEmployeeCommand}"
-                    Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Content="Quản lý nhân viên"
+                            Command="{Binding ManageEmployeeCommand}"
+                            Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -226,9 +226,9 @@ Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisib
                     </Button>
 
                     <Button x:Name="btAccount"
-                    Content="Quản lý tài khoản"
-                    Command="{Binding ManageAccountCommand}"
-                    Visibility="{Binding IsCEVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Content="Quản lý tài khoản"
+                            Command="{Binding ManageAccountCommand}"
+                            Visibility="{Binding IsCEVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -254,10 +254,6 @@ Visibility="{Binding IsCustomerVisible, Converter={StaticResource BooleanToVisib
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-
-
-
-                    
                     <Button x:Name="btRevenue"
                             Content="Doanh thu"
                             Command="{Binding ManageRevenueCommand}"
